@@ -1,0 +1,66 @@
+{
+  "path-intellisense.mappings": {
+    "@": "${workspaceRoot}",
+    "images": "${workspaceRoot}/src/assets/images",
+    "~images": "${workspaceRoot}/src/assets/images", //alias for using with src:url(~fonts/someFont.eot) in *.modules.css|scss|less (css-modules) - https://github.com/webpack-contrib/css-loader/issues/49
+    "fonts": "${workspaceRoot}/src/assets/fonts",
+    "~fonts": "${workspaceRoot}/src/assets/fonts" //alias for using with src:url(~fonts/someFont.eot) in *.modules.css|scss|less (css-modules) - https://github.com/webpack-contrib/css-loader/issues/49
+  },
+  "stylelint.enable": true,
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+
+  /*
+    if you want fix by format set the following in keybindings.json:
+     {
+      "key": "shift+alt+f",
+      "command": "eslint.executeAutofix"
+     }
+  */
+  "eslint.autoFixOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.formatOnSave": false,
+  "editor.formatOnPaste": true,
+
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  }
+}
