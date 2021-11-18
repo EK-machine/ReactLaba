@@ -7,6 +7,7 @@ import { Component, StrictMode } from "react";
 import ReactDom from "react-dom";
 import style from "./styles/main.module.css";
 import someTypeScript from "./someTypeScript";
+import HelloWorld from "./components/HelloWorld";
 
 interface AppProps {
   nothing: boolean;
@@ -46,6 +47,9 @@ class AppContainer extends Component<AppProps, AppState> {
         <div className={["test-block", style.svgBackground].join(" ")}>
           <h2>Test-block for svg-url-loader</h2>
           <img src={imgCamera} alt="small_SVG_Image" />
+        </div>
+        <div>
+          <HelloWorld />
         </div>
       </StrictMode>
     );
