@@ -1,5 +1,47 @@
 .header__container {
   display: flex;
+  padding: 0 20px;
   flex-direction: row;
-  padding: 10px 20px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #121212;
+  height: 63px;
+}
+
+.header__title-container {
+  height: 100%;
+}
+
+.header__title {
+  font-size: 24px;
+  color: #d6d6d6;
+  line-height: 27px;
+}
+
+.header__btns-container {
+  margin: 0;
+  height: 100%;
+  display: flex;
+}
+
+.header__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 17px;
+  background-color: #121212;
+  font-weight: normal;
+  transition: font-weight 0.2s ease-in-out;
+}
+
+.header__btn:hover {
+  background-color: #272727;
+  font-weight: bold;
+  transition: font-weight 0.2s ease-in-out;
+}
+
+.header__btn-title {
+  margin: 0;
+  font-size: 16px;
+  color: #d1d1d1;
 }

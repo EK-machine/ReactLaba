@@ -1,4 +1,4 @@
-export const routesData = [
+const routesData = [
   {
     path: "/",
     text: "Home",
@@ -12,3 +12,5 @@ export const routesData = [
     text: "About",
   },
 ];
+
+export default routesData;

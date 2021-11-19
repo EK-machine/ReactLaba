@@ -1,11 +1,14 @@
 import React from "react";
 import "./header.css";
 import { NavLink } from "react-router-dom";
-import { routesData } from "./routesData";
+import routesData from "./routesData";
 
 const Header: React.FC = () => {
   const activeStyle = {
-    textDecoration: "underline",
+    textDecoration: "none",
+    backgroundColor: "#272727",
+    boxShadow: "0px -6px 0px 0px #9933CC inset",
+    fontWeight: "bolder",
   };
 
   const inactiveStyle = {
@@ -17,19 +20,18 @@ const Header: React.FC = () => {
       <div className="header__title-container">
         <h1 className="header__title">Best Games Market</h1>
       </div>
-      <ul className="header__elements-list">
+      <div className="header__btns-container">
         {routesData.map(({ path, text }) => (
-          <li key={text} className="header__element">
-            <NavLink
-              to={path}
-              className="header__link"
-              style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
-            >
-              <h1>{text}</h1>
-            </NavLink>
-          </li>
+          <NavLink
+            key={text}
+            to={path}
+            className="header__btn"
+            style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+          >
+            <p className="header__btn-title">{text}</p>
+          </NavLink>
         ))}
-      </ul>
+      </div>
     </header>
   );
 };
