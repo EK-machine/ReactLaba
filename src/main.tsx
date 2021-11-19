@@ -3,7 +3,7 @@ import "./styles/main.scss";
 // watch: native intellisense and file-peek for aliases from jsconfig.json and with none-js files doesn't work: https://github.com/microsoft/TypeScript/issues/29334
 import { Component, StrictMode } from "react";
 import ReactDom from "react-dom";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import someTypeScript from "./someTypeScript";
 import Header from "./components/header";
 import HomePage from "./components/homePage";
@@ -11,6 +11,7 @@ import ProductsPage from "./components/productsPage";
 import AboutPage from "./components/aboutPage";
 import Footer from "./components/footer";
 import routesData from "./components/routesData";
+import ErrorBoundary from "./components/errorBoundary";
 
 interface AppProps {
   nothing: boolean;
@@ -38,14 +39,19 @@ class AppContainer extends Component<AppProps, AppState> {
     return (
       <StrictMode>
         <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path={routesData[0].path} element={<HomePage />} />
-            <Route path={routesData[1].path} element={<ProductsPage />} />
-            <Route path={routesData[2].path} element={<AboutPage />} />
-            <Route path="*" element={<Navigate to={routesData[0].path} />} />
-          </Routes>
-          <Footer />
+          <ErrorBoundary>
+            <Header />
+            <Switch>
+              <Route exact path={routesData[0].path} component={HomePage} />
+              <Route path={routesData[1].path} component={ProductsPage} />
+              <Route path={routesData[2].path} component={AboutPage} />
+              <Route path="*">
+                <Redirect to={routesData[0].path} />
+              </Route>
+              {/* <Route path="*" component={HomePage} /> */}
+            </Switch>
+            <Footer />
+          </ErrorBoundary>
         </BrowserRouter>
       </StrictMode>
     );
