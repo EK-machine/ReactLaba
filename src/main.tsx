@@ -48,7 +48,7 @@ class AppContainer extends Component<AppProps, AppState> {
               <Route path="*">
                 <Redirect to={routesData[0].path} />
               </Route>
-              {/* <Route path="*" component={HomePage} /> */}
+              <Route path="*" component={HomePage} />
             </Switch>
             <Footer />
           </ErrorBoundary>

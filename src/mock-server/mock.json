@@ -1,0 +1,13 @@
+{
+    "games": [
+        { "id": 1, "title": "Halo Infinite", "developer": "343 Industries", "date": "November 15, 2021" },
+        { "id": 2, "title": "Battlefield 2042", "developer": "DICE", "date": "October 15, 2021" },
+        { "id": 3, "title": "Forza Horizon 5", "developer": "Playground Games", "date": "November 5, 2021" },
+        { "id": 4, "title": "Grand Theft Auto: The Trilogy", "developer": "Rockstar North", "date": "October 5, 2021" },
+        { "id": 5, "title": "Far Cry 6", "developer": "Ubisoft Milan", "date": "October 6, 2021" },
+        { "id": 6, "title": "Call of Duty: Vanguard", "developer": "Sledgehammer Games", "date": "September 10, 2021" },
+        { "id": 7, "title": "The Gunk", "developer": "Image & Form Games", "date": "September 20 2021" },
+        { "id": 8, "title": "Back 4 Blood", "developer": "Turtle Rock Studios", "date": "October 12, 2021" },
+        { "id": 9, "title": "12 Minutes", "developer": "Luis Antonio", "date": "August 19, 2021" }
+    ]
+}

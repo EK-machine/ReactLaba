@@ -1,0 +1,9 @@
+.gameCard__container {
+  border: 1px solid black;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.gameCard__paragraph {
+  margin: 0px;
+}
