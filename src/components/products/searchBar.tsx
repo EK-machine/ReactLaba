@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import debounce from "lodash.debounce";
 import "./searchBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,10 +12,21 @@ interface Game {
   date: string;
 }
 
+const startFetchUrl = "http://localhost:3000/games";
+
 const SearchBar: React.FC = () => {
   const [query, setQuery] = useState("");
   const [list, setList] = useState<Array<Game>>([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    async function startingFetch() {
+      const startFetch = await fetch(startFetchUrl);
+      const startFetchJson = await startFetch.json();
+      setList(startFetchJson);
+    }
+    startingFetch();
+  }, []);
 
   const updateQuery = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsLoading(true);
@@ -43,13 +54,15 @@ const SearchBar: React.FC = () => {
         </div>
         <input type="text" placeholder="Search" className="searchBar" onChange={debouncedOnChange} />
       </div>
-      {mockDataFiltered.length === 0 ? (
-        <p>no results...</p>
-      ) : (
-        mockDataFiltered.map(({ id, title, developer, date }) => (
-          <GameCard key={id} title={title} developer={developer} date={date} />
-        ))
-      )}
+      <div className="searchBar__results-container">
+        {mockDataFiltered.length === 0 ? (
+          <p>no results...</p>
+        ) : (
+          mockDataFiltered.map(({ id, title, developer, date }) => (
+            <GameCard key={id} title={title} developer={developer} date={date} />
+          ))
+        )}
+      </div>
     </>
   );
 };

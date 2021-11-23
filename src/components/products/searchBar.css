@@ -1,5 +1,5 @@
 .searchBar__container {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -9,6 +9,7 @@
   border-radius: 8px;
   background-color: #1b1c22;
   padding: 0 5px;
+  margin-bottom: 10px;
 }
 
 .searchBar__icon-container {
@@ -45,4 +46,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.searchBar__results-container {
+  width: 80%;
+  overflow: scroll;
+  height: 300px;
+  box-sizing: border-box;
+  border: 1px solid #bdbac1;
+  border-radius: 8px;
 }

@@ -10,7 +10,6 @@ const ProductsDropDown: React.FC = () => {
   const clickHandler = () => {
     setToggle(!toggle);
   };
-  console.log(toggle);
 
   return (
     <div className="productsDropDown__container">
