@@ -9,6 +9,7 @@
   height: 63px;
   position: absolute;
   bottom: 0;
+  z-index: 1;
 }
 
 .footer__title-container {
