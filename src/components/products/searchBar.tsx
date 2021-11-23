@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import debounce from "lodash.debounce";
 import "./searchBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import GameCard from "../gameCard";
 
 interface Game {
@@ -35,7 +35,11 @@ const SearchBar: React.FC = () => {
     <>
       <div className="searchBar__container">
         <div className="searchBar__icon-container">
-          {isLoading ? <h1>loading...</h1> : <FontAwesomeIcon icon={faSearch} className="searchBar__icon" />}
+          {isLoading ? (
+            <FontAwesomeIcon icon={faSpinner} className="searchBar__loading-icon" />
+          ) : (
+            <FontAwesomeIcon icon={faSearch} className="searchBar__search-icon" />
+          )}
         </div>
         <input type="text" placeholder="Search" className="searchBar" onChange={debouncedOnChange} />
       </div>

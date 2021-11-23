@@ -19,6 +19,11 @@
   align-items: center;
 }
 
+.searchBar__loading-icon {
+  color: #bdbac1;
+  animation: loadingSpin 4s linear infinite;
+}
+
 .searchBar {
   width: 100%;
   background-color: #1b1c22;
@@ -30,4 +35,14 @@
 
 .searchBar:focus {
   outline: none;
+}
+
+@keyframes loadingSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
