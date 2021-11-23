@@ -1,18 +1,19 @@
 import React from "react";
 import "./footer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlaystation, faSteam, faXbox } from "@fortawesome/free-brands-svg-icons";
+import { faDesktop } from "@fortawesome/free-solid-svg-icons";
+import { faPlaystation, faXbox } from "@fortawesome/free-brands-svg-icons";
 
 const gameCompaniesIcons = [
+  {
+    title: "PC",
+    icon: faDesktop,
+    href: "https://www.pcgamer.com/",
+  },
   {
     title: "Playstation",
     icon: faPlaystation,
     href: "https://www.playstation.com/en-us/",
-  },
-  {
-    title: "Steam",
-    icon: faSteam,
-    href: "https://store.steampowered.com/",
   },
   {
     title: "Xbox",

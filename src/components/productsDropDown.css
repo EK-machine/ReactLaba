@@ -1,0 +1,107 @@
+.productsDropDown__container {
+  display: flex;
+  flex-direction: column;
+  min-width: 129px;
+  z-index: 1;
+}
+
+.productsDropDown__btn {
+  outline: none;
+  font-size: 16px;
+  color: #d1d1d1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 17px;
+  background-color: #121212;
+  text-decoration: none;
+  min-height: 63px;
+  border: none;
+  font-weight: normal;
+  transition: font-weight 0.2s ease-in-out;
+}
+
+.productsDropDown__btn:hover {
+  cursor: pointer;
+  background-color: #272727;
+  font-weight: bold;
+  transition: font-weight 0.2s ease-in-out;
+}
+
+.productsDropDown__btn-title {
+  padding-right: 5px;
+  margin: 0;
+  font-size: 16px;
+  color: #d1d1d1;
+}
+
+.productsDropDown__btn-active {
+  cursor: pointer;
+  outline: none;
+  font-size: 16px;
+  color: #d6d6d6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 17px;
+  text-decoration: none;
+  min-height: 63px;
+  border: none;
+  font-weight: bold;
+  transition: font-weight 0.2s ease-in-out;
+}
+
+.productsDropDown__btn-active:hover {
+  cursor: pointer;
+  background-color: #272727;
+  font-weight: bold;
+  transition: font-weight 0.2s ease-in-out;
+}
+
+.productsDropDown__btn-title_acive {
+  padding-right: 5px;
+  margin: 0;
+  font-size: 16px;
+  color: #d1d1d1;
+}
+
+.productsDropDown__items-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #121212;
+  color: #d6d6d6;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.productsDropDown__item {
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  font-size: 16px;
+  color: #d6d6d6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 17px;
+  text-decoration: none;
+  min-height: 63px;
+  border: none;
+  font-weight: normal;
+  transition: font-weight 0.2s ease-in-out;
+}
+
+.productsDropDown__item:hover {
+  background-color: #272727;
+  font-weight: bold;
+  transition: font-weight 0.2s ease-in-out;
+}
+
+.productsDropDown__item-active {
+  background-color: #272727;
+  font-weight: bold;
+  transition: font-weight 0.2s ease-in-out;
+  box-shadow: 0px -6px 0px 0px #9933cc inset;
+}

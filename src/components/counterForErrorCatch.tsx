@@ -11,7 +11,7 @@ const CounterForErrorCatch: React.FC = () => {
 
   return (
     <button type="button" onClick={handleClick}>
-      I was clicked {count} times
+      Click me 3 times: {count}
     </button>
   );
 };

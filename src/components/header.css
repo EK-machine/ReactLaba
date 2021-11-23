@@ -6,6 +6,7 @@
   align-items: center;
   background-color: #121212;
   height: 63px;
+  z-index: 100;
 }
 
 .header__title-container {
