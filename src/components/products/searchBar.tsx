@@ -3,13 +3,14 @@ import debounce from "lodash.debounce";
 import "./searchBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import GameCard from "../gameCard";
+import ProductsOutput from "./productsOutput";
 
 interface Game {
   id: number;
   title: string;
   developer: string;
   date: string;
+  category: string;
 }
 
 const startFetchUrl = "http://localhost:3000/games";
@@ -52,17 +53,9 @@ const SearchBar: React.FC = () => {
             <FontAwesomeIcon icon={faSearch} className="searchBar__search-icon" />
           )}
         </div>
-        <input type="text" placeholder="Search" className="searchBar" onChange={debouncedOnChange} />
+        <input type="text" placeholder="Search game by name" className="searchBar" onChange={debouncedOnChange} />
       </div>
-      <div className="searchBar__results-container">
-        {mockDataFiltered.length === 0 ? (
-          <p>no results...</p>
-        ) : (
-          mockDataFiltered.map(({ id, title, developer, date }) => (
-            <GameCard key={id} title={title} developer={developer} date={date} />
-          ))
-        )}
-      </div>
+      <ProductsOutput productList={mockDataFiltered} />
     </>
   );
 };

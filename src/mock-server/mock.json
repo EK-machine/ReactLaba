@@ -1,13 +1,13 @@
 {
     "games": [
-        { "id": 1, "title": "Halo Infinite", "developer": "343 Industries", "date": "November 15, 2021" },
-        { "id": 2, "title": "Battlefield 2042", "developer": "DICE", "date": "October 15, 2021" },
-        { "id": 3, "title": "Forza Horizon 5", "developer": "Playground Games", "date": "November 5, 2021" },
-        { "id": 4, "title": "Grand Theft Auto: The Trilogy", "developer": "Rockstar North", "date": "October 5, 2021" },
-        { "id": 5, "title": "Far Cry 6", "developer": "Ubisoft Milan", "date": "October 6, 2021" },
-        { "id": 6, "title": "Call of Duty: Vanguard", "developer": "Sledgehammer Games", "date": "September 10, 2021" },
-        { "id": 7, "title": "The Gunk", "developer": "Image & Form Games", "date": "September 20 2021" },
-        { "id": 8, "title": "Back 4 Blood", "developer": "Turtle Rock Studios", "date": "October 12, 2021" },
-        { "id": 9, "title": "12 Minutes", "developer": "Luis Antonio", "date": "August 19, 2021" }
+        { "id": 1, "title": "Halo Infinite", "developer": "343 Industries", "timestamp": 1636923600000, "date": "15.11.2021", "category": "pc" },
+        { "id": 2, "title": "Battlefield 2042", "developer": "DICE", "timestamp": 1634245200000, "date": "15.10.2021", "category": "pc, xbx" },
+        { "id": 3, "title": "Forza Horizon 5", "developer": "Playground Games", "timestamp": 1636059600000, "date": "5.11.2021", "category": "pc, ps, xbx" },
+        { "id": 4, "title": "Grand Theft Auto: The Trilogy", "developer": "Rockstar North", "timestamp": 1633381200000, "date": "5.10.2021", "category": "ps" },
+        { "id": 5, "title": "Far Cry 6", "developer": "Ubisoft Milan", "timestamp": 1633467600000, "date": "6.10.2021", "category": "pc, ps" },
+        { "id": 6, "title": "Call of Duty: Vanguard", "developer": "Sledgehammer Games", "timestamp": 1631221200000, "date": "10.09.2021", "category": "pc, ps, xbx" },
+        { "id": 7, "title": "The Gunk", "developer": "Image & Form Games", "timestamp": 1632085200000, "date": "20.09.2021", "category": "xbx" },
+        { "id": 8, "title": "Back 4 Blood", "developer": "Turtle Rock Studios", "timestamp": 1633986000000, "date": "12.10.2021", "category": "pc, ps, xbx" },
+        { "id": 9, "title": "12 Minutes", "developer": "Luis Antonio", "timestamp": 1629320400000, "date": "19.08.2021", "category": "pc" }
     ]
 }

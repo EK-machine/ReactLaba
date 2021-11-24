@@ -1,0 +1,35 @@
+import React, { useState, useEffect } from "react";
+import "./newGames.css";
+import GameCard from "./gameCard";
+
+const startFetchUrl = "http://localhost:3000/games?_sort=timestamp&_order=desc";
+
+const NewGames: React.FC = () => {
+  const [newGamesList, setNewGamesList] = useState([]);
+
+  useEffect(() => {
+    async function newGameFetching() {
+      const newGameFetch = await fetch(startFetchUrl);
+      const newGameJson = await newGameFetch.json();
+      setNewGamesList(newGameJson.slice(0, 3));
+    }
+    newGameFetching();
+  }, []);
+
+  return (
+    <>
+      <div className="newGame__container">
+        <div className="newGame__title-container">
+          <h1 className="newGame__title">New games</h1>
+        </div>
+        <div className="newGame__content-container">
+          {newGamesList.map(({ title, date, category }) => (
+            <GameCard key={title} title={title} date={date} category={category} />
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default NewGames;

@@ -47,16 +47,3 @@
     transform: rotate(360deg);
   }
 }
-
-::-webkit-scrollbar {
-  display: none;
-}
-
-.searchBar__results-container {
-  width: 80%;
-  overflow: scroll;
-  height: 300px;
-  box-sizing: border-box;
-  border: 1px solid #bdbac1;
-  border-radius: 8px;
-}

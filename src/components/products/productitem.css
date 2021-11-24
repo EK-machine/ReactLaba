@@ -1,0 +1,15 @@
+.productItem__container {
+  border: 1px solid black;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #353434;
+}
+
+.productItem__container:hover {
+  cursor: pointer;
+  background-color: black;
+}
+
+.productItem__paragraph {
+  margin: 0px;
+}

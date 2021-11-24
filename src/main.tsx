@@ -7,13 +7,10 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import someTypeScript from "./someTypeScript";
 import Header from "./components/header";
 import HomePage from "./components/homePage";
-import PCProductsPage from "./components/pCProductsPage";
-import PSProductsPage from "./components/pSProductsPage";
-import XBXProductsPage from "./components/xBXProductsPage";
+import ProductsPage from "./components/products/productsPage";
 import AboutPage from "./components/aboutPage";
-import Footer from "./components/footer";
+import Footer from "./components/products/footer";
 import routesData from "./components/routesData";
-import productsRoutesData from "./components/productsRoutesData";
 import ErrorBoundary from "./components/errorBoundary";
 
 interface AppProps {
@@ -46,9 +43,7 @@ class AppContainer extends Component<AppProps, AppState> {
             <Header />
             <Switch>
               <Route exact path={routesData[0].path} component={HomePage} />
-              <Route path={productsRoutesData[0].path} component={PCProductsPage} />
-              <Route path={productsRoutesData[1].path} component={PSProductsPage} />
-              <Route path={productsRoutesData[2].path} component={XBXProductsPage} />
+              <Route exact path="/products/:id" component={ProductsPage} />
               <Route path={routesData[2].path} component={AboutPage} />
               <Route path="*">
                 <Redirect to={routesData[0].path} />

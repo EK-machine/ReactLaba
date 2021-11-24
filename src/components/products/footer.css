@@ -7,7 +7,7 @@
   align-items: center;
   background-color: #121212;
   height: 63px;
-  position: absolute;
+  position: relative;
   bottom: 0;
   z-index: 1;
 }

@@ -1,5 +1,26 @@
 import React from "react";
+import "./categories.css";
+import { faDesktop } from "@fortawesome/free-solid-svg-icons";
+import { faPlaystation, faXbox } from "@fortawesome/free-brands-svg-icons";
 import Category from "./category";
+
+const gameCategories = [
+  {
+    title: "PC",
+    icon: faDesktop,
+    path: "/products/pc",
+  },
+  {
+    title: "Playstation",
+    icon: faPlaystation,
+    path: "/products/ps",
+  },
+  {
+    title: "Xbox",
+    icon: faXbox,
+    path: "/products/xbx",
+  },
+];
 
 const Categories: React.FC = () => (
   <div className="categories__container">
@@ -7,9 +28,11 @@ const Categories: React.FC = () => (
       <h1 className="categories__title">Categories</h1>
     </div>
     <div className="categories__content-container">
-      <Category />
-      <Category />
-      <Category />
+      {gameCategories.map(
+        ({ title, icon, path }): JSX.Element => (
+          <Category key={title} title={title} icon={icon} path={path} />
+        )
+      )}
     </div>
   </div>
 );

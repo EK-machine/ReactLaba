@@ -1,0 +1,8 @@
+.productsPage__container {
+  background-color: #353434;
+  z-index: 0;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
