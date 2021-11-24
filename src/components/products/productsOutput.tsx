@@ -1,9 +1,10 @@
 import React from "react";
 import "./productsOutput.css";
 import ProductItem from "./productItem";
+import { Game } from "./searchBar";
 
 interface POProps {
-  productList: [];
+  productList: Array<Game>;
 }
 
 const ProductsOutput: React.FC<POProps> = ({ productList }) => (

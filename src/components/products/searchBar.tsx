@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import ProductsOutput from "./productsOutput";
 
-interface Game {
+export interface Game {
   id: number;
   title: string;
   developer: string;

@@ -3,7 +3,13 @@ import { Link } from "react-router-dom";
 import "./category.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Category: React.FC = ({ icon, title, path }) => (
+interface CategoryProp {
+  icon: string;
+  title: string;
+  path: string;
+}
+
+const Category: React.FC<CategoryProp> = ({ icon, title, path }) => (
   <Link to={path} key={title} className="category__container">
     <div className="category__frame">
       <div className="category__icon-container">

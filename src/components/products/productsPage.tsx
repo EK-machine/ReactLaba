@@ -2,23 +2,23 @@ import React, { useEffect, useState } from "react";
 import "./productspage.css";
 import { useParams } from "react-router-dom";
 import ProductsOutput from "./productsOutput";
+import { Game } from "./searchBar";
 
 interface RouteParams {
   id: string;
-  category: string;
 }
 
 const startFetchUrl = "http://localhost:3000/games";
 
 const ProductsPage: React.FC = () => {
-  const [categoryList, setCategoryList] = useState([]);
+  const [categoryList, setCategoryList] = useState<Array<Game>>([]);
 
   const { id } = useParams<RouteParams>();
 
   useEffect(() => {
     async function fetchOnId() {
       const startFetch = await fetch(startFetchUrl);
-      const startFetchJson = await startFetch.json();
+      const startFetchJson: Array<Game> = await startFetch.json();
       const categoryFiltered = startFetchJson.filter(({ category }) => category.toLowerCase().includes(id));
 
       setCategoryList(categoryFiltered);

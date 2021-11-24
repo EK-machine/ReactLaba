@@ -8,7 +8,7 @@ interface productItemProps {
   category?: string;
 }
 
-const ProductItem = ({ title, developer, date, category }: productItemProps): JSX.Element => (
+const ProductItem: React.FC<productItemProps> = ({ title, developer, date, category }) => (
   <div className="productItem__container" onClick={() => alert("got product")}>
     <p className="productItem__paragraph">Title: {title}</p>
     <p className="productItem__paragraph">Developer: {developer}</p>

@@ -1,7 +1,8 @@
 import React from "react";
 import "./gameCard.css";
+import { Game } from "./products/searchBar";
 
-const GameCard = ({ title, date, category }): JSX.Element => (
+const GameCard: React.FC<Array<Game>> = ({ title, date, category }) => (
   <div className="gameCard__container">
     <div className="gameCard__inner">
       <div className="gameCard__front">
