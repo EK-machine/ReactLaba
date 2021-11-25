@@ -35,8 +35,9 @@
 }
 
 .productsDropDown__btn-active {
+  background-color: #121212;
   cursor: pointer;
-  outline: none;
+  /* outline: none; */
   font-size: 16px;
   color: #d6d6d6;
   display: flex;
@@ -73,6 +74,10 @@
   color: #d6d6d6;
   font-size: 16px;
   z-index: 1;
+}
+
+.productsDropDown__item-wrapper {
+  width: 100%;
 }
 
 .productsDropDown__item {

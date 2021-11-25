@@ -4,13 +4,13 @@ import "./searchBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import ProductsOutput from "./productsOutput";
-import { Game } from "../../types/types";
+import { ProductItemProps } from "../../types/types";
 
 const startFetchUrl = "http://localhost:3000/games";
 
 const SearchBar: React.FC = () => {
   const [query, setQuery] = useState("");
-  const [list, setList] = useState<Array<Game>>([]);
+  const [list, setList] = useState<Array<ProductItemProps>>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {

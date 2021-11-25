@@ -1,10 +1,10 @@
 import React from "react";
 import "./productsOutput.css";
-import ProductItem from "./productItem";
-import { Game } from "../../types/types";
+import ProductItemLine from "./productItemline";
+import { ProductItemProps } from "../../types/types";
 
 interface POProps {
-  productList: Array<Game>;
+  productList: Array<ProductItemProps>;
 }
 
 const ProductsOutput: React.FC<POProps> = ({ productList }) => (
@@ -13,7 +13,7 @@ const ProductsOutput: React.FC<POProps> = ({ productList }) => (
       <p>no results...</p>
     ) : (
       productList.map(({ id, title, developer, date, category }) => (
-        <ProductItem key={id} title={title} developer={developer} date={date} category={category} />
+        <ProductItemLine key={id} title={title} developer={developer} date={date} category={category} />
       ))
     )}
   </div>

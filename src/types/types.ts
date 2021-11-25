@@ -1,18 +1,11 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
-export interface Game {
+export interface ProductItemProps {
   id?: number;
   title: string;
   developer?: string;
   date: string;
   category: string;
-}
-
-export interface productItemProps {
-  title: string;
-  developer: string;
-  date: string;
-  category?: string;
 }
 
 export interface CategoryProp {

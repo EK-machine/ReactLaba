@@ -11,33 +11,54 @@ const ProductsDropDown: React.FC = () => {
     setToggle(!toggle);
   };
 
+  const buttonHandler = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      setToggle(!toggle);
+    }
+  };
+
   return (
     <div className="productsDropDown__container">
       {toggle ? (
-        <div onClick={clickHandler} className="productsDropDown__btn-active" role="button">
-          <p className="productsDropDown__btn-title_acive">Products </p>
-          <FontAwesomeIcon icon={faCaretUp} />
-        </div>
+        <>
+          <div
+            onClick={clickHandler}
+            onKeyUp={buttonHandler}
+            className="productsDropDown__btn-active"
+            role="button"
+            tabIndex={1}
+          >
+            <p className="productsDropDown__btn-title_acive">Products </p>
+            <FontAwesomeIcon icon={faCaretUp} />
+          </div>
+          <div className="productsDropDown__items-container">
+            {productsRoutesData.map(({ text, path }) => (
+              // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+              <div className="productsDropDown__item-wrapper" key={text} tabIndex={1}>
+                <NavLink
+                  to={path}
+                  key={text}
+                  className="productsDropDown__item"
+                  activeClassName="productsDropDown__item-active"
+                >
+                  <p className="productsDropDown__item-text">{text}</p>
+                </NavLink>
+              </div>
+            ))}
+          </div>
+        </>
       ) : (
-        <div onClick={clickHandler} className="productsDropDown__btn" role="button">
+        <div
+          onClick={clickHandler}
+          onKeyUp={buttonHandler}
+          className="productsDropDown__btn"
+          tabIndex={0}
+          role="button"
+        >
           <p className="productsDropDown__btn-title">Products </p>
           <FontAwesomeIcon icon={faCaretDown} />
         </div>
       )}
-      {toggle ? (
-        <div className="productsDropDown__items-container">
-          {productsRoutesData.map(({ text, path }) => (
-            <NavLink
-              to={path}
-              key={text}
-              className="productsDropDown__item"
-              activeClassName="productsDropDown__item-active"
-            >
-              <p className="productsDropDown__item-text">{text}</p>
-            </NavLink>
-          ))}
-        </div>
-      ) : null}
     </div>
   );
 };
