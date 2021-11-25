@@ -2,7 +2,7 @@ import React from "react";
 import "./gameCard.css";
 import { Game } from "../types/types";
 
-const GameCard: React.FC<Array<Game>> = ({ title, date, category }) => (
+const GameCard: React.FC<Game> = ({ title, date, category }) => (
   <div className="gameCard__container">
     <div className="gameCard__inner">
       <div className="gameCard__front">

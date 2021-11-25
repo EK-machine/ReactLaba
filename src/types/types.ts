@@ -1,7 +1,9 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+
 export interface Game {
-  id: number;
+  id?: number;
   title: string;
-  developer: string;
+  developer?: string;
   date: string;
   category: string;
 }
@@ -14,9 +16,9 @@ export interface productItemProps {
 }
 
 export interface CategoryProp {
-  icon: string;
   title: string;
   path: string;
+  icon: IconProp;
 }
 
 export interface ErrorBoundaryProps {

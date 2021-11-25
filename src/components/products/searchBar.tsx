@@ -6,14 +6,6 @@ import { faSearch, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import ProductsOutput from "./productsOutput";
 import { Game } from "../../types/types";
 
-// export interface Game {
-//   id: number;
-//   title: string;
-//   developer: string;
-//   date: string;
-//   category: string;
-// }
-
 const startFetchUrl = "http://localhost:3000/games";
 
 const SearchBar: React.FC = () => {
