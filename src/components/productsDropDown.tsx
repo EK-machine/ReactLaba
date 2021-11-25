@@ -33,7 +33,6 @@ const ProductsDropDown: React.FC = () => {
           </div>
           <div className="productsDropDown__items-container">
             {productsRoutesData.map(({ text, path }) => (
-              // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
               <div className="productsDropDown__item-wrapper" key={text} tabIndex={1}>
                 <NavLink
                   to={path}
