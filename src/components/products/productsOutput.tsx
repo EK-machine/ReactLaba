@@ -1,7 +1,7 @@
 import React from "react";
 import "./productsOutput.css";
 import ProductItem from "./productItem";
-import { Game } from "./searchBar";
+import { Game } from "../../types/types";
 
 interface POProps {
   productList: Array<Game>;

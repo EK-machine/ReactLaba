@@ -1,12 +1,6 @@
 import React from "react";
 import "./productitem.css";
-
-interface productItemProps {
-  title: string;
-  developer: string;
-  date: string;
-  category?: string;
-}
+import { productItemProps } from "../../types/types";
 
 const ProductItem: React.FC<productItemProps> = ({ title, developer, date, category }) => (
   <div className="productItem__container" onClick={() => alert("got product")}>

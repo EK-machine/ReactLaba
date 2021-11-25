@@ -1,6 +1,6 @@
 import React from "react";
 import "./gameCard.css";
-import { Game } from "./products/searchBar";
+import { Game } from "../types/types";
 
 const GameCard: React.FC<Array<Game>> = ({ title, date, category }) => (
   <div className="gameCard__container">

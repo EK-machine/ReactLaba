@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./productspage.css";
 import { useParams } from "react-router-dom";
 import ProductsOutput from "./productsOutput";
-import { Game } from "./searchBar";
-
-interface RouteParams {
-  id: string;
-}
+import { Game, RouteParams } from "../../types/types";
 
 const startFetchUrl = "http://localhost:3000/games";
 

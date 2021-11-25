@@ -1,13 +1,7 @@
 import React, { ErrorInfo } from "react";
 import { withRouter } from "react-router-dom";
 import routesData from "./routesData";
-
-interface ErrorBoundaryProps {
-  children?: React.ReactElement[];
-}
-interface ErrorBoundaryState {
-  thereIsError: boolean;
-}
+import { ErrorBoundaryProps, ErrorBoundaryState } from "../types/types";
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
