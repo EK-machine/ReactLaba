@@ -1,4 +1,4 @@
-import React, { useState, useState } from "react";
+import React, { useState } from "react";
 import "./header.css";
 import { NavLink } from "react-router-dom";
 import routesData from "./routesData";
@@ -7,7 +7,7 @@ import Modal from "./modal";
 
 const Header: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
-  const handleClick = () => {
+  const showModalFunc = () => {
     setShowModal(!showModal);
   };
   return (
@@ -42,7 +42,7 @@ const Header: React.FC = () => {
           <p className="header__btn-title">{routesData[2].text}</p>
         </NavLink>
       </div>
-      <button type="button" onClick={handleClick}>
+      <button type="button" onClick={showModalFunc}>
         click
       </button>
       {showModal ? (
