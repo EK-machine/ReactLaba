@@ -1,0 +1,10 @@
+.inputText__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inputText__label {
+  margin-right: 10px;
+}

@@ -1,17 +1,14 @@
 import React from "react";
-// import React, { useState } from "react";
 import "./header.css";
 import { NavLink } from "react-router-dom";
 import routesData from "./routesData";
 import ProductsDropDown from "./productsDropDown";
-// import Modal from "./modal";
-import SignInBtn from "./signInBtn";
+import SignInBtn from "./elements/signInBtn";
+import SignUpBtn from "./elements/signUpBtn";
+import SignOutBtn from "./elements/signOutBtn";
+import { HeaderProps } from "../types/types";
 
-const Header: React.FC = () => (
-  // const [showModal, setShowModal] = useState(false);
-  // const showModalFunc = () => {
-  //   setShowModal(!showModal);
-  // };
+const Header: React.FC<HeaderProps> = ({ logInState, logInFunc, logOutFunc }) => (
   <header className="header__container">
     <div className="header__title-container">
       <h1 className="header__title">Best Games Market</h1>
@@ -42,16 +39,16 @@ const Header: React.FC = () => (
       >
         <p className="header__btn-title">{routesData[2].text}</p>
       </NavLink>
-      <SignInBtn />
+      <div className="header__btn-log_container">
+        {logInState ? (
+          <SignOutBtn logOutFunc={logOutFunc} />
+        ) : (
+          <>
+            <SignInBtn logInFunc={logInFunc} /> <SignUpBtn />
+          </>
+        )}
+      </div>
     </div>
-    {/* <button type="button" onClick={showModalFunc}>
-        click
-      </button>
-      {showModal ? (
-        <Modal>
-          <div>1</div>
-        </Modal>
-      ) : null} */}
   </header>
 );
 export default Header;

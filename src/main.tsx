@@ -4,7 +4,6 @@ import "./styles/main.scss";
 import { Component, StrictMode } from "react";
 import ReactDom from "react-dom";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import someTypeScript from "./someTypeScript";
 import Header from "./components/header";
 import HomePage from "./components/homePage";
 import ProductsPage from "./components/products/productsPage";
@@ -12,35 +11,35 @@ import AboutPage from "./components/aboutPage";
 import Footer from "./components/products/footer";
 import routesData from "./components/routesData";
 import ErrorBoundary from "./components/errorBoundary";
-
-interface AppProps {
-  nothing: boolean;
-}
-interface AppState {
-  title: string;
-}
+import { AppProps, AppState } from "./types/types";
 
 class AppContainer extends Component<AppProps, AppState> {
   ["constructor"]: typeof AppContainer;
 
   constructor(props: AppProps) {
     super(props);
-    this.state = {
-      title: someTypeScript("Test-block for css-modules"),
-    };
-    // test class-dead-code
+    this.state = { loggedIn: false };
+
     const goExlcude = true;
     if (!goExlcude) {
       console.warn("class-dead-code doesn't work");
     }
   }
 
+  logInFunc = () => {
+    this.setState({ loggedIn: true });
+  };
+
+  logOutFunc = () => {
+    this.setState({ loggedIn: false });
+  };
+
   render() {
     return (
       <StrictMode>
         <BrowserRouter>
           <ErrorBoundary>
-            <Header />
+            <Header logInFunc={this.logInFunc} logOutFunc={this.logOutFunc} logInState={this.state.loggedIn} />
             <Switch>
               <Route exact path={routesData[0].path} component={HomePage} />
               <Route exact path="/products/:id" component={ProductsPage} />

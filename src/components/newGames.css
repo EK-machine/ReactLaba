@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   padding: 17px;
-  margin: 0 0 10px 0;
+  margin: 0;
 }
 
 .newGame__title-container {

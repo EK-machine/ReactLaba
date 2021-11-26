@@ -1,0 +1,40 @@
+.signOut__container {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #121212;
+  height: 63px;
+  z-index: 1;
+}
+
+.signOut__btn {
+  display: flex;
+  width: 92px;
+  justify-content: center;
+  align-items: center;
+  padding: 0 17px;
+  background-color: #121212;
+  transition: font-weight 0.2s ease-in-out;
+  text-decoration: none;
+  font-size: 16px;
+  color: #d1d1d1;
+  border: none;
+  height: 100%;
+}
+
+.signOut__container:hover .signOut__btn {
+  font-weight: bold;
+  background-color: #272727;
+  cursor: pointer;
+}
+
+.signOut__container:hover {
+  background-color: #272727;
+}
+
+.signOut__title {
+  margin: 0;
+  font-family: "OpenSans-Regular", sans-serif;
+}
