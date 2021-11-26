@@ -26,7 +26,7 @@ const ProductsDropDown: React.FC = () => {
             onKeyUp={buttonHandler}
             className="productsDropDown__btn-active"
             role="button"
-            tabIndex={1}
+            tabIndex={0}
           >
             <p className="productsDropDown__btn-title_acive">Products </p>
             <FontAwesomeIcon icon={faCaretUp} />
@@ -51,8 +51,8 @@ const ProductsDropDown: React.FC = () => {
           onClick={clickHandler}
           onKeyUp={buttonHandler}
           className="productsDropDown__btn"
-          tabIndex={0}
           role="button"
+          tabIndex={0}
         >
           <p className="productsDropDown__btn-title">Products </p>
           <FontAwesomeIcon icon={faCaretDown} />

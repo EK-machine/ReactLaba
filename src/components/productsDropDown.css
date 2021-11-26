@@ -37,7 +37,6 @@
 .productsDropDown__btn-active {
   background-color: #121212;
   cursor: pointer;
-  /* outline: none; */
   font-size: 16px;
   color: #d6d6d6;
   display: flex;
