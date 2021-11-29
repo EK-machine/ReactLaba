@@ -38,11 +38,11 @@ export interface InputProps {
   name: string;
   id: string;
   type: string;
-  loginGetter?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  passwordGetter?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  onChange: (value: string) => void;
 }
 
-export type LogInFunctionType = () => void;
+export type LogInFunctionType = (status: boolean) => void;
 export type LogOutFunctionType = () => void;
 
 export interface HeaderProps {
@@ -53,6 +53,12 @@ export interface HeaderProps {
 
 export interface SignInBtnProps {
   logInFunc: LogInFunctionType;
+  closeModalFunc: () => void;
+}
+
+export interface SignUpBtnProps {
+  logInFunc: LogInFunctionType;
+  closeModalFunc: () => void;
 }
 
 export interface SignOutBtnProps {

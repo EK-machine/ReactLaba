@@ -26,8 +26,8 @@ class AppContainer extends Component<AppProps, AppState> {
     }
   }
 
-  logInFunc = () => {
-    this.setState({ loggedIn: true });
+  logInFunc = (status: boolean) => {
+    this.setState({ loggedIn: status });
   };
 
   logOutFunc = () => {

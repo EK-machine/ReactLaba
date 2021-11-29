@@ -44,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ logInState, logInFunc, logOutFunc }) =>
           <SignOutBtn logOutFunc={logOutFunc} />
         ) : (
           <>
-            <SignInBtn logInFunc={logInFunc} /> <SignUpBtn />
+            <SignInBtn logInFunc={logInFunc} /> <SignUpBtn logInFunc={logInFunc} />
           </>
         )}
       </div>

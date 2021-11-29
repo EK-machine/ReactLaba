@@ -75,9 +75,49 @@
   ],
   "users": [
     {
-      "email": "",
-      "password": "",
-      "id": 1,
+      "login": "",
+      "password": "Qwerty123",
+      "id": 1
     },
+    {
+      "login": "",
+      "password": "Aqwerty123",
+      "id": 2
+    },
+    {
+      "login": "",
+      "password": "Qwertyu123",
+      "id": 3
+    },
+    {
+      "login": "",
+      "password": "Qwerty123",
+      "id": 4
+    },
+    {
+      "login": "",
+      "password": "Qwertyww222",
+      "id": 5
+    },
+    {
+      "login": "",
+      "password": "D1234qwert",
+      "id": 6
+    },
+    {
+      "login": "",
+      "password": "G12345678eee",
+      "id": 7
+    },
+    {
+      "login": "",
+      "password": "Qwerty123",
+      "id": 8
+    },
+    {
+      "login": "",
+      "password": "Qwerty123",
+      "id": 9
+    }
   ]
 }

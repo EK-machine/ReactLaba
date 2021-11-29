@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./inputtext.css";
 import { InputProps } from "../../types/types";
 
-const InputText: React.FC<InputProps> = ({ name, id, type, loginGetter, passwordGetter }) => {
-  const [value, setValue] = useState("");
-  const changeHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-    loginGetter(event.target.value);
-    passwordGetter(event.target.value);
+const InputText: React.FC<InputProps> = ({ name, id, type, value, onChange }) => {
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    onChange(event.target?.value);
   };
 
   return (
