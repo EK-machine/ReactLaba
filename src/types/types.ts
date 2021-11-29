@@ -36,9 +36,10 @@ export interface RouteParams {
 
 export interface InputProps {
   name: string;
-  htmlFor: string;
   id: string;
   type: string;
+  loginGetter?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  passwordGetter?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export type LogInFunctionType = () => void;

@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import "./inputtext.css";
-import InputProps from "../../types/types";
+import { InputProps } from "../../types/types";
 
-const InputText: React.FC = ({ name, htmlFor, id, type }: InputProps) => {
-  const [value, setValue] = useState<string>("");
-  const changeHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+const InputText: React.FC<InputProps> = ({ name, id, type, loginGetter, passwordGetter }) => {
+  const [value, setValue] = useState("");
+  const changeHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+    loginGetter(event.target.value);
+    passwordGetter(event.target.value);
   };
+
   return (
     <div className="inputText__container">
-      <label htmlFor={htmlFor} className="inputText__label">
+      <label htmlFor={id} className="inputText__label">
         {name}
       </label>
       <input
