@@ -8,9 +8,11 @@ import Header from "./components/header";
 import HomePage from "./components/homePage";
 import ProductsPage from "./components/products/productsPage";
 import AboutPage from "./components/aboutPage";
+import LogInPage from "./components/logInPage";
 import Footer from "./components/products/footer";
 import routesData from "./components/routesData";
 import ErrorBoundary from "./components/errorBoundary";
+import ProtectedRoute from "./components/protectedRoute";
 import { AppProps, AppState } from "./types/types";
 
 class AppContainer extends Component<AppProps, AppState> {
@@ -18,7 +20,7 @@ class AppContainer extends Component<AppProps, AppState> {
 
   constructor(props: AppProps) {
     super(props);
-    this.state = { loggedIn: false, userName: "" };
+    this.state = { loggedIn: false, userName: "", showModal: false };
 
     const goExlcude = true;
     if (!goExlcude) {
@@ -34,6 +36,14 @@ class AppContainer extends Component<AppProps, AppState> {
     this.setState({ loggedIn: false });
   };
 
+  showModalFunc = () => {
+    this.setState({ showModal: true });
+  };
+
+  closeModalFunc = () => {
+    this.setState({ showModal: false });
+  };
+
   render() {
     return (
       <StrictMode>
@@ -42,13 +52,32 @@ class AppContainer extends Component<AppProps, AppState> {
             <Header
               logInFunc={this.logInFunc}
               logOutFunc={this.logOutFunc}
-              logInState={this.state.loggedIn}
+              showModalFunc={this.showModalFunc}
+              closeModalFunc={this.closeModalFunc}
               userName={this.state.userName}
+              logInState={this.state.loggedIn}
+              showModal={this.state.showModal}
             />
             <Switch>
+              <Route path="/login">
+                <LogInPage
+                  logInFunc={this.logInFunc}
+                  closeModalFunc={this.closeModalFunc}
+                  showModalFunc={this.showModalFunc}
+                  logInState={this.state.loggedIn}
+                  showModal={this.state.showModal}
+                />
+              </Route>
               <Route exact path={routesData[0].path} component={HomePage} />
-              <Route exact path="/products/:id" component={ProductsPage} />
-              <Route path={routesData[2].path} component={AboutPage} />
+              <ProtectedRoute loggedIn={this.state.loggedIn} logInFunc={this.logInFunc} path="/products/:id">
+                <ProductsPage />
+              </ProtectedRoute>
+              <ProtectedRoute
+                loggedIn={this.state.loggedIn}
+                logInFunc={this.logInFunc}
+                path={routesData[2].path}
+                component={AboutPage}
+              />
               <Route path="*">
                 <Redirect to={routesData[0].path} />
               </Route>

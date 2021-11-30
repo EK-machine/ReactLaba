@@ -1,28 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import "./signinbtn.css";
 import Modal from "./modal";
 import SignInModalBody from "./signInModalBody";
 import { SignInBtnProps } from "../../types/types";
 
-const SignInBtn: React.FC<SignInBtnProps> = ({ logInFunc }): JSX.Element => {
-  const [showModal, setShowModal] = useState(false);
-
-  const showModalFunc = () => {
-    setShowModal(true);
+const SignInBtn: React.FC<SignInBtnProps> = ({ logInFunc, showModalFunc, closeModalFunc, showModal }): JSX.Element => {
+  const showModalHandler = () => {
+    showModalFunc();
   };
 
-  const closeModalFunc = () => {
-    setShowModal(false);
+  const closeModalHandler = () => {
+    closeModalFunc();
   };
 
   return (
     <div className="signIn__container">
-      <button type="button" className="signIn__btn" onClick={showModalFunc}>
+      <button type="button" className="signIn__btn" onClick={showModalHandler}>
         <p className="signIn__title">Sign In</p>
       </button>
       {showModal ? (
         <Modal>
-          <SignInModalBody logInFunc={logInFunc} closeModalFunc={closeModalFunc} />
+          <SignInModalBody logInFunc={logInFunc} closeModalFunc={closeModalHandler} />
         </Modal>
       ) : null}
     </div>

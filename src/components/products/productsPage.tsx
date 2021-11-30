@@ -18,7 +18,6 @@ const ProductsPage: React.FC = () => {
       const categoryFiltered = startFetchJson.filter(({ category }) => category.toLowerCase().includes(id));
 
       setCategoryList(categoryFiltered);
-      console.log(categoryFiltered);
     }
     fetchOnId();
   }, [id]);

@@ -9,7 +9,15 @@ import SignOutBtn from "./elements/signOutBtn";
 import UserName from "./elements/userName";
 import { HeaderProps } from "../types/types";
 
-const Header: React.FC<HeaderProps> = ({ logInState, userName, logInFunc, logOutFunc }) => (
+const Header: React.FC<HeaderProps> = ({
+  logInState,
+  showModal,
+  userName,
+  logInFunc,
+  logOutFunc,
+  showModalFunc,
+  closeModalFunc,
+}) => (
   <header className="header__container">
     <div className="header__title-container">
       <h1 className="header__title">Best Games Market</h1>
@@ -48,7 +56,13 @@ const Header: React.FC<HeaderProps> = ({ logInState, userName, logInFunc, logOut
           </>
         ) : (
           <>
-            <SignInBtn logInFunc={logInFunc} /> <SignUpBtn logInFunc={logInFunc} />
+            <SignInBtn
+              logInFunc={logInFunc}
+              showModalFunc={showModalFunc}
+              closeModalFunc={closeModalFunc}
+              showModal={showModal}
+            />
+            <SignUpBtn logInFunc={logInFunc} />
           </>
         )}
       </div>
