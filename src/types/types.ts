@@ -6,6 +6,7 @@ export interface AppProps {
 
 export interface AppState {
   loggedIn: boolean;
+  userName: string;
 }
 
 export interface ProductItemProps {
@@ -42,21 +43,30 @@ export interface InputProps {
   onChange: (value: string) => void;
 }
 
-export type LogInFunctionType = (status: boolean) => void;
+export type LogInFunctionType = (status: boolean, userName: string) => void;
 export type LogOutFunctionType = () => void;
 
 export interface HeaderProps {
   logOutFunc: LogOutFunctionType;
   logInFunc: LogInFunctionType;
   logInState: boolean;
+  userName: string;
 }
 
 export interface SignInBtnProps {
+  logInFunc: LogInFunctionType;
+}
+
+export interface SignInModalBodyProps {
   logInFunc: LogInFunctionType;
   closeModalFunc: () => void;
 }
 
 export interface SignUpBtnProps {
+  logInFunc: LogInFunctionType;
+}
+
+export interface SignUpModalBodyProps {
   logInFunc: LogInFunctionType;
   closeModalFunc: () => void;
 }

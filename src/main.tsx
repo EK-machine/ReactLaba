@@ -18,7 +18,7 @@ class AppContainer extends Component<AppProps, AppState> {
 
   constructor(props: AppProps) {
     super(props);
-    this.state = { loggedIn: false };
+    this.state = { loggedIn: false, userName: "" };
 
     const goExlcude = true;
     if (!goExlcude) {
@@ -26,8 +26,8 @@ class AppContainer extends Component<AppProps, AppState> {
     }
   }
 
-  logInFunc = (status: boolean) => {
-    this.setState({ loggedIn: status });
+  logInFunc = (status: boolean, name: string) => {
+    this.setState({ loggedIn: status, userName: name });
   };
 
   logOutFunc = () => {
@@ -39,7 +39,12 @@ class AppContainer extends Component<AppProps, AppState> {
       <StrictMode>
         <BrowserRouter>
           <ErrorBoundary>
-            <Header logInFunc={this.logInFunc} logOutFunc={this.logOutFunc} logInState={this.state.loggedIn} />
+            <Header
+              logInFunc={this.logInFunc}
+              logOutFunc={this.logOutFunc}
+              logInState={this.state.loggedIn}
+              userName={this.state.userName}
+            />
             <Switch>
               <Route exact path={routesData[0].path} component={HomePage} />
               <Route exact path="/products/:id" component={ProductsPage} />

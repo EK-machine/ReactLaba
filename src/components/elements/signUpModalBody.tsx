@@ -3,9 +3,9 @@ import "./signupmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import InputText from "./inputText";
-import { SignUpBtnProps } from "../../types/types";
+import { SignUpModalBodyProps } from "../../types/types";
 
-const SignUpModalBody: React.FC<SignUpBtnProps> = ({ logInFunc, closeModalFunc }) => {
+const SignUpModalBody: React.FC<SignUpModalBodyProps> = ({ logInFunc, closeModalFunc }) => {
   const [logup, setLogup] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");

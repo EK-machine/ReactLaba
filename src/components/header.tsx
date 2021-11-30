@@ -6,9 +6,10 @@ import ProductsDropDown from "./productsDropDown";
 import SignInBtn from "./elements/signInBtn";
 import SignUpBtn from "./elements/signUpBtn";
 import SignOutBtn from "./elements/signOutBtn";
+import UserName from "./elements/userName";
 import { HeaderProps } from "../types/types";
 
-const Header: React.FC<HeaderProps> = ({ logInState, logInFunc, logOutFunc }) => (
+const Header: React.FC<HeaderProps> = ({ logInState, userName, logInFunc, logOutFunc }) => (
   <header className="header__container">
     <div className="header__title-container">
       <h1 className="header__title">Best Games Market</h1>
@@ -41,7 +42,10 @@ const Header: React.FC<HeaderProps> = ({ logInState, logInFunc, logOutFunc }) =>
       </NavLink>
       <div className="header__btn-log_container">
         {logInState ? (
-          <SignOutBtn logOutFunc={logOutFunc} />
+          <>
+            <UserName userName={userName} />
+            <SignOutBtn logOutFunc={logOutFunc} />
+          </>
         ) : (
           <>
             <SignInBtn logInFunc={logInFunc} /> <SignUpBtn logInFunc={logInFunc} />

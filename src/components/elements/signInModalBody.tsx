@@ -3,9 +3,9 @@ import "./signinmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import InputText from "./inputText";
-import { SignInBtnProps } from "../../types/types";
+import { SignInModalBodyProps } from "../../types/types";
 
-const SignInModalBody: React.FC<SignInBtnProps> = ({ logInFunc, closeModalFunc }): JSX.Element => {
+const SignInModalBody: React.FC<SignInModalBodyProps> = ({ logInFunc, closeModalFunc }): JSX.Element => {
   const [login, setLogin] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [message, setMessage] = useState("Please enter password");
@@ -57,7 +57,8 @@ const SignInModalBody: React.FC<SignInBtnProps> = ({ logInFunc, closeModalFunc }
       });
 
       if (postResponse.status === 201) {
-        logInFunc(true);
+        // logInFunc()
+        logInFunc(true, login);
       } else {
         throw new Error(`HTTP status: ${postResponse.status}`);
       }

@@ -1,0 +1,25 @@
+.userName__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  padding: 0 17px;
+  min-width: 115px;
+  background-color: #121212;
+  min-height: 63px;
+  font-weight: normal;
+  transition: font-weight 0.2s ease-in-out;
+}
+
+.userName__container:hover {
+  cursor: pointer;
+  background-color: #272727;
+  font-weight: bold;
+  transition: font-weight 0.2s ease-in-out;
+}
+
+.userName__title {
+  font-size: 16px;
+  color: #d1d1d1;
+  margin: 0;
+}
