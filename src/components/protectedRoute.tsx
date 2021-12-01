@@ -4,57 +4,24 @@ import { Route, Redirect, RouteProps } from "react-router-dom";
 interface ProtectedRouteProps extends RouteProps {
   loggedIn: boolean;
   logInFunc: (status: boolean, userName: string) => void;
-  // path: string;
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ loggedIn, children, ...routeProps }) => (
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ loggedIn, children, location, ...routeProps }) => (
   <Route
     {...routeProps}
-    render={({ loacation }) =>
+    render={() =>
       loggedIn ? (
         children
       ) : (
         <Redirect
           to={{
             pathname: "/login",
-            state: { from: loacation },
+            state: { from: location?.pathname },
           }}
         />
       )
     }
   />
 );
-
-// {
-//   if (loggedIn) {
-//     return <Route {...routeProps} />;
-//   }
-//   return (
-//     <Redirect
-//       to={{
-//         pathname: "/login",
-//         state: { from: path },
-//       }}
-//     />
-//   );
-// };
-
-// (
-//   <Route
-//     path={path}
-//     render={({ loacation }) =>
-//       loggedIn ? (
-//         children
-//       ) : (
-//         <Redirect
-//           to={{
-//             pathname: "/",
-//             state: { from: loacation },
-//           }}
-//         />
-//       )
-//     }
-//   />
-// );
 
 export default ProtectedRoute;

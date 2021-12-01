@@ -9,6 +9,7 @@ import HomePage from "./components/homePage";
 import ProductsPage from "./components/products/productsPage";
 import AboutPage from "./components/aboutPage";
 import LogInPage from "./components/logInPage";
+import ProfilePage from "./components/profilePage";
 import Footer from "./components/products/footer";
 import routesData from "./components/routesData";
 import ErrorBoundary from "./components/errorBoundary";
@@ -20,7 +21,7 @@ class AppContainer extends Component<AppProps, AppState> {
 
   constructor(props: AppProps) {
     super(props);
-    this.state = { loggedIn: false, userName: "", showModal: false };
+    this.state = { loggedIn: false, userName: "", showSignInModal: false, showSignUpModal: false };
 
     const goExlcude = true;
     if (!goExlcude) {
@@ -36,12 +37,16 @@ class AppContainer extends Component<AppProps, AppState> {
     this.setState({ loggedIn: false });
   };
 
-  showModalFunc = () => {
-    this.setState({ showModal: true });
+  showSignUpModalFunc = () => {
+    this.setState({ showSignUpModal: true });
+  };
+
+  showSignInModalFunc = () => {
+    this.setState({ showSignInModal: true });
   };
 
   closeModalFunc = () => {
-    this.setState({ showModal: false });
+    this.setState({ showSignInModal: false, showSignUpModal: false });
   };
 
   render() {
@@ -52,37 +57,45 @@ class AppContainer extends Component<AppProps, AppState> {
             <Header
               logInFunc={this.logInFunc}
               logOutFunc={this.logOutFunc}
-              showModalFunc={this.showModalFunc}
+              showSignUpModalFunc={this.showSignUpModalFunc}
+              showSignInModalFunc={this.showSignInModalFunc}
               closeModalFunc={this.closeModalFunc}
               userName={this.state.userName}
               logInState={this.state.loggedIn}
-              showModal={this.state.showModal}
+              showSignUpModal={this.state.showSignUpModal}
+              showSignInModal={this.state.showSignInModal}
             />
+
             <Switch>
               <Route path="/login">
                 <LogInPage
                   logInFunc={this.logInFunc}
                   closeModalFunc={this.closeModalFunc}
-                  showModalFunc={this.showModalFunc}
+                  showSignInModalFunc={this.showSignInModalFunc}
                   logInState={this.state.loggedIn}
-                  showModal={this.state.showModal}
+                  showSignInModal={this.state.showSignInModal}
                 />
               </Route>
+
               <Route exact path={routesData[0].path} component={HomePage} />
+
               <ProtectedRoute loggedIn={this.state.loggedIn} logInFunc={this.logInFunc} path="/products/:id">
                 <ProductsPage />
               </ProtectedRoute>
-              <ProtectedRoute
-                loggedIn={this.state.loggedIn}
-                logInFunc={this.logInFunc}
-                path={routesData[2].path}
-                component={AboutPage}
-              />
+
+              <ProtectedRoute loggedIn={this.state.loggedIn} logInFunc={this.logInFunc} path={routesData[2].path}>
+                <AboutPage />
+              </ProtectedRoute>
+
+              <ProtectedRoute loggedIn={this.state.loggedIn} logInFunc={this.logInFunc} path={routesData[3].path}>
+                <ProfilePage />
+              </ProtectedRoute>
+
               <Route path="*">
                 <Redirect to={routesData[0].path} />
               </Route>
-              <Route path="*" component={HomePage} />
             </Switch>
+
             <Footer />
           </ErrorBoundary>
         </BrowserRouter>

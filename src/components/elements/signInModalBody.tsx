@@ -5,7 +5,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import InputText from "./inputText";
 import { SignInModalBodyProps } from "../../types/types";
 
-const SignInModalBody: React.FC<SignInModalBodyProps> = ({ logInFunc, closeModalFunc }): JSX.Element => {
+const SignInModalBody: React.FC<SignInModalBodyProps> = ({ logInFunc, closeModalFunc }) => {
   const [login, setLogin] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [message, setMessage] = useState("Please enter password");
@@ -79,9 +79,9 @@ const SignInModalBody: React.FC<SignInModalBodyProps> = ({ logInFunc, closeModal
       <form action="#" className="signIn__modal_content-container" onSubmit={postFunc}>
         <span>{message}</span>
         <br />
-        <InputText name="login" id="login" type="text" onChange={loginGetter} value={login} />
+        <InputText name="Login" id="SignInLogin" type="text" onChange={loginGetter} value={login} />
         <br />
-        <InputText name="password" id="password" type="password" onChange={passwordGetter} value={password} />
+        <InputText name="Password" id="SignInPassword" type="password" onChange={passwordGetter} value={password} />
         <br />
         <div className="signIn__modal_submit-btn-container">
           <input className="signIn__modal_submit-btn" type="submit" />

@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import "./signupmodalbody.css";
+import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import InputText from "./inputText";
 import { SignUpModalBodyProps } from "../../types/types";
+import routesData from "../routesData";
 
 const SignUpModalBody: React.FC<SignUpModalBodyProps> = ({ logInFunc, closeModalFunc }) => {
   const [logup, setLogup] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
   const [message, setMessage] = useState("Please enter password");
+
+  const history = useHistory();
 
   const signUpUrl = "http://localhost:3000/users/1";
 
@@ -70,6 +74,7 @@ const SignUpModalBody: React.FC<SignUpModalBodyProps> = ({ logInFunc, closeModal
       }
 
       const response = await putResponse.json();
+      history.push(routesData[3].path);
       return response;
     }
     return null;
@@ -86,13 +91,13 @@ const SignUpModalBody: React.FC<SignUpModalBodyProps> = ({ logInFunc, closeModal
       <form action="#" className="signUp__modal_content-container" onSubmit={putFunc}>
         <p>{message}</p>
         <br />
-        <InputText name="login" id="login" type="text" onChange={logupGetter} value={logup} />
+        <InputText name="Login" id="SignUplogin" type="text" onChange={logupGetter} value={logup} />
         <br />
-        <InputText name="password" id="password" type="password" onChange={passwordGetter} value={password} />
+        <InputText name="Password" id="SignUpPassword" type="password" onChange={passwordGetter} value={password} />
         <br />
         <InputText
-          name="repeatpassword"
-          id="repeatpassword"
+          name="RepeatPassword"
+          id="SignUpRepeatPassword"
           type="password"
           onChange={repeatPasswordGetter}
           value={repeatPassword}

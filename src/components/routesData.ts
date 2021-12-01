@@ -11,6 +11,10 @@ const routesData = [
     path: "/about",
     text: "About",
   },
+  {
+    path: "/profile",
+    text: "Profilke",
+  },
 ];
 
 export default routesData;

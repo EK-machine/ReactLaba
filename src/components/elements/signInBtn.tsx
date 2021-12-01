@@ -1,16 +1,20 @@
 import React from "react";
 import "./signinbtn.css";
+import { useHistory } from "react-router-dom";
 import Modal from "./modal";
 import SignInModalBody from "./signInModalBody";
 import { SignInBtnProps } from "../../types/types";
+import routesData from "../routesData";
 
-const SignInBtn: React.FC<SignInBtnProps> = ({ logInFunc, showModalFunc, closeModalFunc, showModal }): JSX.Element => {
+const SignInBtn: React.FC<SignInBtnProps> = ({ logInFunc, showSignInModalFunc, closeModalFunc, showSignInModal }) => {
+  const history = useHistory();
   const showModalHandler = () => {
-    showModalFunc();
+    showSignInModalFunc();
   };
 
   const closeModalHandler = () => {
     closeModalFunc();
+    history.push(routesData[0].path);
   };
 
   return (
@@ -18,7 +22,7 @@ const SignInBtn: React.FC<SignInBtnProps> = ({ logInFunc, showModalFunc, closeMo
       <button type="button" className="signIn__btn" onClick={showModalHandler}>
         <p className="signIn__title">Sign In</p>
       </button>
-      {showModal ? (
+      {showSignInModal ? (
         <Modal>
           <SignInModalBody logInFunc={logInFunc} closeModalFunc={closeModalHandler} />
         </Modal>

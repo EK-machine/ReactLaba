@@ -11,11 +11,13 @@ import { HeaderProps } from "../types/types";
 
 const Header: React.FC<HeaderProps> = ({
   logInState,
-  showModal,
+  showSignInModal,
+  showSignUpModal,
   userName,
   logInFunc,
   logOutFunc,
-  showModalFunc,
+  showSignInModalFunc,
+  showSignUpModalFunc,
   closeModalFunc,
 }) => (
   <header className="header__container">
@@ -58,11 +60,16 @@ const Header: React.FC<HeaderProps> = ({
           <>
             <SignInBtn
               logInFunc={logInFunc}
-              showModalFunc={showModalFunc}
+              showSignInModalFunc={showSignInModalFunc}
               closeModalFunc={closeModalFunc}
-              showModal={showModal}
+              showSignInModal={showSignInModal}
             />
-            <SignUpBtn logInFunc={logInFunc} />
+            <SignUpBtn
+              logInFunc={logInFunc}
+              showSignUpModalFunc={showSignUpModalFunc}
+              closeModalFunc={closeModalFunc}
+              showSignUpModal={showSignUpModal}
+            />
           </>
         )}
       </div>

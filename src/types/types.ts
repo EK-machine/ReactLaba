@@ -7,7 +7,8 @@ export interface AppProps {
 export interface AppState {
   loggedIn: boolean;
   userName: string;
-  showModal: boolean;
+  showSignInModal: boolean;
+  showSignUpModal: boolean;
 }
 
 export interface ProductItemProps {
@@ -50,25 +51,27 @@ export type LogOutFunctionType = () => void;
 export interface HeaderProps {
   logOutFunc: LogOutFunctionType;
   logInFunc: LogInFunctionType;
-  showModalFunc: () => void;
+  showSignInModalFunc: () => void;
+  showSignUpModalFunc: () => void;
   closeModalFunc: () => void;
   logInState: boolean;
-  showModal: boolean;
+  showSignInModal: boolean;
+  showSignUpModal: boolean;
   userName: string;
 }
 
 export interface SignInBtnProps {
   logInFunc: LogInFunctionType;
-  showModalFunc: () => void;
+  showSignInModalFunc: () => void;
   closeModalFunc: () => void;
-  showModal: boolean;
+  showSignInModal: boolean;
 }
 
 export interface LogInPageProps {
   logInFunc: LogInFunctionType;
   closeModalFunc: () => void;
-  showModalFunc: () => void;
-  showModal: boolean;
+  showSignInModalFunc: () => void;
+  showSignInModal: boolean;
   logInState: boolean;
 }
 
@@ -79,6 +82,9 @@ export interface SignInModalBodyProps {
 
 export interface SignUpBtnProps {
   logInFunc: LogInFunctionType;
+  showSignUpModalFunc: () => void;
+  closeModalFunc: () => void;
+  showSignUpModal: boolean;
 }
 
 export interface SignUpModalBodyProps {
@@ -88,4 +94,10 @@ export interface SignUpModalBodyProps {
 
 export interface SignOutBtnProps {
   logOutFunc: LogOutFunctionType;
+}
+
+export interface LocationState {
+  from: {
+    pathname: string;
+  };
 }
