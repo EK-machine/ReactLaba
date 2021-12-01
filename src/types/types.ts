@@ -54,10 +54,10 @@ export interface HeaderProps {
   showSignInModalFunc: () => void;
   showSignUpModalFunc: () => void;
   closeModalFunc: () => void;
-  logInState: boolean;
+  logInState?: boolean;
   showSignInModal: boolean;
   showSignUpModal: boolean;
-  userName: string;
+  userName?: string;
 }
 
 export interface SignInBtnProps {
@@ -100,4 +100,8 @@ export interface LocationState {
   from: {
     pathname: string;
   };
+}
+
+export interface UsaerNameProps {
+  userName: string;
 }

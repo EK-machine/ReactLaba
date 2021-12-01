@@ -1,9 +1,6 @@
 import React from "react";
 import "./username.css";
-
-interface UsaerNameProps {
-  userName: string;
-}
+import { UsaerNameProps } from "../../types/types";
 
 const UserName: React.FC<UsaerNameProps> = ({ userName }) => (
   <div className="userName__container">

@@ -75,8 +75,8 @@
   ],
   "users": [
     {
-      "login": "qwerty",
-      "password": "Qwerty12",
+      "login": "cwscece",
+      "password": "Qwerty123",
       "id": 1
     },
     {
@@ -153,6 +153,51 @@
       "login": "ksdjnmkcsk",
       "password": "HJlkjmnl1",
       "id": 16
+    },
+    {
+      "login": "ыфчыфч",
+      "password": "Qwerty123",
+      "id": 17
+    },
+    {
+      "login": "ыфчыфч",
+      "password": "Qwerty123",
+      "id": 18
+    },
+    {
+      "login": "ыфчыфч",
+      "password": "Qwerty123",
+      "id": 19
+    },
+    {
+      "login": "ыфчыфч",
+      "password": "Qwerty123",
+      "id": 20
+    },
+    {
+      "login": "ыфчыфч",
+      "password": "Qwerty123",
+      "id": 21
+    },
+    {
+      "login": "sadxas",
+      "password": "Qwerty12",
+      "id": 22
+    },
+    {
+      "login": "kjknknnj",
+      "password": "Qwerty12",
+      "id": 23
+    },
+    {
+      "login": "welldone",
+      "password": "Welldone111",
+      "id": 24
+    },
+    {
+      "login": "дльдльдл",
+      "password": "Qwerty123",
+      "id": 25
     }
   ]
 }

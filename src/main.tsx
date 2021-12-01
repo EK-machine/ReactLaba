@@ -4,7 +4,7 @@ import "./styles/main.scss";
 import { Component, StrictMode } from "react";
 import ReactDom from "react-dom";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import Header from "./components/header";
+import Header from "./components/header/header";
 import HomePage from "./components/homePage";
 import ProductsPage from "./components/products/productsPage";
 import AboutPage from "./components/aboutPage";
@@ -14,6 +14,7 @@ import Footer from "./components/products/footer";
 import routesData from "./components/routesData";
 import ErrorBoundary from "./components/errorBoundary";
 import ProtectedRoute from "./components/protectedRoute";
+import { LoggedInProvider, UserNameProvider } from "./contex/context";
 import { AppProps, AppState } from "./types/types";
 
 class AppContainer extends Component<AppProps, AppState> {
@@ -54,17 +55,19 @@ class AppContainer extends Component<AppProps, AppState> {
       <StrictMode>
         <BrowserRouter>
           <ErrorBoundary>
-            <Header
-              logInFunc={this.logInFunc}
-              logOutFunc={this.logOutFunc}
-              showSignUpModalFunc={this.showSignUpModalFunc}
-              showSignInModalFunc={this.showSignInModalFunc}
-              closeModalFunc={this.closeModalFunc}
-              userName={this.state.userName}
-              logInState={this.state.loggedIn}
-              showSignUpModal={this.state.showSignUpModal}
-              showSignInModal={this.state.showSignInModal}
-            />
+            <LoggedInProvider value={this.state.loggedIn}>
+              <UserNameProvider value={this.state.userName}>
+                <Header
+                  logInFunc={this.logInFunc}
+                  logOutFunc={this.logOutFunc}
+                  showSignUpModalFunc={this.showSignUpModalFunc}
+                  showSignInModalFunc={this.showSignInModalFunc}
+                  closeModalFunc={this.closeModalFunc}
+                  showSignUpModal={this.state.showSignUpModal}
+                  showSignInModal={this.state.showSignInModal}
+                />
+              </UserNameProvider>
+            </LoggedInProvider>
 
             <Switch>
               <Route path="/login">
