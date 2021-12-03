@@ -1,7 +1,8 @@
 import { logInType, logOutType } from "./actionTypes";
 
-export const logInAction = (): { type: string } => ({
+export const logInAction = (userName: string): { type: string; payload: string } => ({
   type: logInType,
+  payload: userName,
 });
 
 export const logOutAction = (): { type: string } => ({

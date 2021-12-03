@@ -75,8 +75,8 @@
   ],
   "users": [
     {
-      "login": "firstUser",
-      "password": "Qwerty12",
+      "login": "grustnij",
+      "password": "Qwerty123",
       "id": 1
     },
     {
@@ -88,6 +88,51 @@
       "login": "kijnknk",
       "password": "Qwerty123",
       "id": 3
+    },
+    {
+      "login": "jhbjhbjhb",
+      "password": "Qwertryui12",
+      "id": 4
+    },
+    {
+      "login": "kjnknk",
+      "password": "Qwerty123",
+      "id": 5
+    },
+    {
+      "login": "kjnknknkjn",
+      "password": "Qwerty123",
+      "id": 6
+    },
+    {
+      "login": ";dsl,;sdl,s;c,ld",
+      "password": "Qwerty123",
+      "id": 7
+    },
+    {
+      "login": "weron",
+      "password": "Qwerty123",
+      "id": 8
+    },
+    {
+      "login": "gena",
+      "password": "Qwerty123",
+      "id": 9
+    },
+    {
+      "login": "gena",
+      "password": "Qwerty123",
+      "id": 10
+    },
+    {
+      "login": "Sergej",
+      "password": "Qwerty123",
+      "id": 11
+    },
+    {
+      "login": "XBX",
+      "password": "Qwerty123",
+      "id": 12
     }
   ]
 }

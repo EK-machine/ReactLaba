@@ -8,7 +8,6 @@ import SignInBtn from "../elements/signInBtn";
 import SignUpBtn from "../elements/signUpBtn";
 import SignOutBtn from "../elements/signOutBtn";
 import UserName from "../elements/userName";
-// import { LoggedInConsumer, UserNameConsumer } from "../../contex/context";
 import { HeaderProps } from "../../types/types";
 import { logInAction, logOutAction } from "../../redux/actions";
 
@@ -17,9 +16,7 @@ const Header: React.FC<HeaderProps> = ({
   userName,
   showSignInModal,
   showSignUpModal,
-  // logInFunc,
   dispatchedLogInAction,
-  // logOutFunc,
   dispatchedLogOutAction,
   showSignInModalFunc,
   showSignUpModalFunc,
@@ -64,14 +61,12 @@ const Header: React.FC<HeaderProps> = ({
         ) : (
           <>
             <SignInBtn
-              // logInFunc={logInFunc}
               dispatchedLogInAction={dispatchedLogInAction}
               showSignInModalFunc={showSignInModalFunc}
               closeModalFunc={closeModalFunc}
               showSignInModal={showSignInModal}
             />
             <SignUpBtn
-              // logInFunc={logInFunc}
               dispatchedLogInAction={dispatchedLogInAction}
               showSignUpModalFunc={showSignUpModalFunc}
               closeModalFunc={closeModalFunc}
@@ -79,46 +74,18 @@ const Header: React.FC<HeaderProps> = ({
             />
           </>
         )}
-
-        {/* <LoggedInConsumer>
-          {(contextLogInState) => {
-            if (contextLogInState) {
-              return (
-                <>
-                  <UserNameConsumer>{(contextUserName) => <UserName userName={contextUserName} />}</UserNameConsumer>
-                  <SignOutBtn logOutFunc={logOutFunc} />
-                </>
-              );
-            }
-            return (
-              <>
-                <SignInBtn
-                  logInFunc={logInFunc}
-                  showSignInModalFunc={showSignInModalFunc}
-                  closeModalFunc={closeModalFunc}
-                  showSignInModal={showSignInModal}
-                />
-                <SignUpBtn
-                  logInFunc={logInFunc}
-                  showSignUpModalFunc={showSignUpModalFunc}
-                  closeModalFunc={closeModalFunc}
-                  showSignUpModal={showSignUpModal}
-                />
-              </>
-            );
-          }}
-        </LoggedInConsumer> */}
       </div>
     </div>
   </header>
 );
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: { loggedIn: boolean; userName: string }) => ({
   loggedIn: state.loggedIn,
+  userName: state.userName,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchedLogInAction: () => dispatch(logInAction()),
+  dispatchedLogInAction: (userName: string) => dispatch(logInAction(userName)),
   dispatchedLogOutAction: () => dispatch(logOutAction()),
 });
 

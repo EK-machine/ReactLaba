@@ -1,18 +1,20 @@
 import React, { useEffect } from "react";
+import { useSelector, connect } from "react-redux";
 import "./loginpage.css";
 import { useLocation, Redirect, useHistory } from "react-router-dom";
+import { logInAction } from "@/redux/actions";
 import Modal from "./elements/modal";
 import SignInModalBody from "./elements/signInModalBody";
 import { LogInPageProps, LocationState } from "../types/types";
 import routesData from "./routesData";
 
 const LogInPage: React.FC<LogInPageProps> = ({
-  logInFunc,
   closeModalFunc,
   showSignInModalFunc,
+  dispatchedLogInAction,
   showSignInModal,
-  logInState,
 }) => {
+  const loggedIn = useSelector((state) => state.loggedIn);
   const { state } = useLocation<LocationState>();
   const history = useHistory();
 
@@ -27,13 +29,13 @@ const LogInPage: React.FC<LogInPageProps> = ({
 
   return (
     <div className="logInPage__container">
-      {logInState ? (
+      {loggedIn ? (
         <Redirect to={state?.from || routesData[0].path} />
       ) : (
         <div>
           {showSignInModal ? (
             <Modal>
-              <SignInModalBody logInFunc={logInFunc} closeModalFunc={closeModalHandler} />
+              <SignInModalBody dispatchedLogInAction={dispatchedLogInAction} closeModalFunc={closeModalHandler} />
             </Modal>
           ) : null}
         </div>
@@ -41,4 +43,9 @@ const LogInPage: React.FC<LogInPageProps> = ({
     </div>
   );
 };
-export default LogInPage;
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatchedLogInAction: (userName: string) => dispatch(logInAction(userName)),
+});
+
+export default connect(null, mapDispatchToProps)(LogInPage);

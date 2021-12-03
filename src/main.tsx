@@ -16,7 +16,6 @@ import Footer from "./components/products/footer";
 import routesData from "./components/routesData";
 import ErrorBoundary from "./components/errorBoundary";
 import ProtectedRoute from "./components/protectedRoute";
-// import { LoggedInProvider, UserNameProvider } from "./contex/context";
 import { AppProps, AppState } from "./types/types";
 
 class AppContainer extends Component<AppProps, AppState> {
@@ -24,22 +23,13 @@ class AppContainer extends Component<AppProps, AppState> {
 
   constructor(props: AppProps) {
     super(props);
-    // this.state = { loggedIn: false, userName: "", showSignInModal: false, showSignUpModal: false };
-    this.state = { userName: "", showSignInModal: false, showSignUpModal: false };
+    this.state = { showSignInModal: false, showSignUpModal: false };
 
     const goExlcude = true;
     if (!goExlcude) {
       console.warn("class-dead-code doesn't work");
     }
   }
-
-  logInFunc = (status: boolean, name: string) => {
-    this.setState({ loggedIn: status, userName: name });
-  };
-
-  logOutFunc = () => {
-    this.setState({ loggedIn: false });
-  };
 
   showSignUpModalFunc = () => {
     this.setState({ showSignUpModal: true });
@@ -59,44 +49,34 @@ class AppContainer extends Component<AppProps, AppState> {
         <StrictMode>
           <BrowserRouter>
             <ErrorBoundary>
-              {/* <LoggedInProvider value={this.state.loggedIn}>
-                <UserNameProvider value={this.state.userName}> */}
               <Header
-                // logInFunc={this.logInFunc}
-                // logInState={this.state.loggedIn}
-                // logOutFunc={this.logOutFunc}
                 showSignUpModalFunc={this.showSignUpModalFunc}
                 showSignInModalFunc={this.showSignInModalFunc}
                 closeModalFunc={this.closeModalFunc}
-                userName={this.state.userName}
                 showSignUpModal={this.state.showSignUpModal}
                 showSignInModal={this.state.showSignInModal}
               />
-              {/* </UserNameProvider>
-              </LoggedInProvider> */}
 
               <Switch>
                 <Route path="/login">
                   <LogInPage
-                    logInFunc={this.logInFunc}
                     closeModalFunc={this.closeModalFunc}
                     showSignInModalFunc={this.showSignInModalFunc}
-                    logInState={this.state.loggedIn}
                     showSignInModal={this.state.showSignInModal}
                   />
                 </Route>
 
                 <Route exact path={routesData[0].path} component={HomePage} />
 
-                <ProtectedRoute loggedIn={this.state.loggedIn} logInFunc={this.logInFunc} path="/products/:id">
+                <ProtectedRoute path="/products/:id">
                   <ProductsPage />
                 </ProtectedRoute>
 
-                <ProtectedRoute loggedIn={this.state.loggedIn} logInFunc={this.logInFunc} path={routesData[2].path}>
+                <ProtectedRoute path={routesData[2].path}>
                   <AboutPage />
                 </ProtectedRoute>
 
-                <ProtectedRoute loggedIn={this.state.loggedIn} logInFunc={this.logInFunc} path={routesData[3].path}>
+                <ProtectedRoute path={routesData[3].path}>
                   <ProfilePage />
                 </ProtectedRoute>
 

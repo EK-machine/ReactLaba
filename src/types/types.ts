@@ -6,7 +6,7 @@ export interface AppProps {
 
 export interface AppState {
   loggedIn?: boolean;
-  userName: string;
+  userName?: string;
   showSignInModal: boolean;
   showSignUpModal: boolean;
 }
@@ -45,17 +45,15 @@ export interface InputProps {
   onChange: (value: string) => void;
 }
 
-export type LogInFunctionType = (status: boolean, userName: string) => void;
+export type LogInFunctionType = (userName: string) => void;
 export type LogOutFunctionType = () => void;
 
 export interface HeaderProps {
   dispatchedLogOutAction: LogOutFunctionType;
-  // logInFunc: LogInFunctionType;
   dispatchedLogInAction: LogInFunctionType;
   showSignInModalFunc: () => void;
   showSignUpModalFunc: () => void;
   closeModalFunc: () => void;
-  // logInState?: boolean;
   showSignInModal: boolean;
   showSignUpModal: boolean;
   loggedIn?: boolean;
@@ -70,15 +68,14 @@ export interface SignInBtnProps {
 }
 
 export interface LogInPageProps {
-  logInFunc: LogInFunctionType;
+  dispatchedLogInAction: LogInFunctionType;
   closeModalFunc: () => void;
   showSignInModalFunc: () => void;
   showSignInModal: boolean;
-  logInState: boolean;
 }
 
 export interface SignInModalBodyProps {
-  dispatchedLogInAction: LogInFunctionType;
+  dispatchedLogInAction?: LogInFunctionType;
   closeModalFunc: () => void;
 }
 

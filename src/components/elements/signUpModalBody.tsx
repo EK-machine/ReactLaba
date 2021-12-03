@@ -68,7 +68,7 @@ const SignUpModalBody: React.FC<SignUpModalBodyProps> = ({ dispatchedLogInAction
       });
 
       if (putResponse.status === 200) {
-        dispatchedLogInAction(true, logup);
+        dispatchedLogInAction(logup);
       } else {
         throw new Error(`HTTP status: ${putResponse.status}`);
       }

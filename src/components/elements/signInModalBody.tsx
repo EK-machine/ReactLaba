@@ -57,7 +57,7 @@ const SignInModalBody: React.FC<SignInModalBodyProps> = ({ dispatchedLogInAction
       });
 
       if (postResponse.status === 201) {
-        dispatchedLogInAction(true, login);
+        dispatchedLogInAction(login);
       } else {
         throw new Error(`HTTP status: ${postResponse.status}`);
       }
