@@ -6,7 +6,12 @@ import { SignUpBtnProps } from "../../types/types";
 import SignUpModalBody from "./signUpModalBody";
 import routesData from "../routesData";
 
-const SignUpBtn: React.FC<SignUpBtnProps> = ({ logInFunc, showSignUpModalFunc, closeModalFunc, showSignUpModal }) => {
+const SignUpBtn: React.FC<SignUpBtnProps> = ({
+  dispatchedLogInAction,
+  showSignUpModalFunc,
+  closeModalFunc,
+  showSignUpModal,
+}) => {
   const history = useHistory();
 
   const showModalHandler = () => {
@@ -25,7 +30,7 @@ const SignUpBtn: React.FC<SignUpBtnProps> = ({ logInFunc, showSignUpModalFunc, c
       </button>
       {showSignUpModal ? (
         <Modal>
-          <SignUpModalBody logInFunc={logInFunc} closeModalFunc={closeModalHandler} />
+          <SignUpModalBody dispatchedLogInAction={dispatchedLogInAction} closeModalFunc={closeModalHandler} />
         </Modal>
       ) : null}
     </div>

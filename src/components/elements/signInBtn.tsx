@@ -6,7 +6,12 @@ import SignInModalBody from "./signInModalBody";
 import { SignInBtnProps } from "../../types/types";
 import routesData from "../routesData";
 
-const SignInBtn: React.FC<SignInBtnProps> = ({ logInFunc, showSignInModalFunc, closeModalFunc, showSignInModal }) => {
+const SignInBtn: React.FC<SignInBtnProps> = ({
+  dispatchedLogInAction,
+  showSignInModalFunc,
+  closeModalFunc,
+  showSignInModal,
+}) => {
   const history = useHistory();
   const showModalHandler = () => {
     showSignInModalFunc();
@@ -24,7 +29,7 @@ const SignInBtn: React.FC<SignInBtnProps> = ({ logInFunc, showSignInModalFunc, c
       </button>
       {showSignInModal ? (
         <Modal>
-          <SignInModalBody logInFunc={logInFunc} closeModalFunc={closeModalHandler} />
+          <SignInModalBody dispatchedLogInAction={dispatchedLogInAction} closeModalFunc={closeModalHandler} />
         </Modal>
       ) : null}
     </div>

@@ -5,7 +5,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import InputText from "./inputText";
 import { SignInModalBodyProps } from "../../types/types";
 
-const SignInModalBody: React.FC<SignInModalBodyProps> = ({ logInFunc, closeModalFunc }) => {
+const SignInModalBody: React.FC<SignInModalBodyProps> = ({ dispatchedLogInAction, closeModalFunc }) => {
   const [login, setLogin] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [message, setMessage] = useState("Please enter password");
@@ -57,7 +57,7 @@ const SignInModalBody: React.FC<SignInModalBodyProps> = ({ logInFunc, closeModal
       });
 
       if (postResponse.status === 201) {
-        logInFunc(true, login);
+        dispatchedLogInAction(true, login);
       } else {
         throw new Error(`HTTP status: ${postResponse.status}`);
       }

@@ -7,7 +7,7 @@ import InputText from "./inputText";
 import { SignUpModalBodyProps } from "../../types/types";
 import routesData from "../routesData";
 
-const SignUpModalBody: React.FC<SignUpModalBodyProps> = ({ logInFunc, closeModalFunc }) => {
+const SignUpModalBody: React.FC<SignUpModalBodyProps> = ({ dispatchedLogInAction, closeModalFunc }) => {
   const [logup, setLogup] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
@@ -68,7 +68,7 @@ const SignUpModalBody: React.FC<SignUpModalBodyProps> = ({ logInFunc, closeModal
       });
 
       if (putResponse.status === 200) {
-        logInFunc(true, logup);
+        dispatchedLogInAction(true, logup);
       } else {
         throw new Error(`HTTP status: ${putResponse.status}`);
       }

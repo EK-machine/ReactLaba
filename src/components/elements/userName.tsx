@@ -1,8 +1,8 @@
 import React from "react";
 import "./username.css";
-import { UsaerNameProps } from "../../types/types";
+import { UserNameProps } from "../../types/types";
 
-const UserName: React.FC<UsaerNameProps> = ({ userName }) => (
+const UserName: React.FC<UserNameProps> = ({ userName }) => (
   <div className="userName__container">
     <p className="userName__title">{userName}</p>
   </div>

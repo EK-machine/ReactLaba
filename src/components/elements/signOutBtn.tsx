@@ -6,10 +6,10 @@ import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
 import { SignOutBtnProps } from "../../types/types";
 import routesData from "../routesData";
 
-const SignOutBtn: React.FC<SignOutBtnProps> = ({ logOutFunc }) => {
+const SignOutBtn: React.FC<SignOutBtnProps> = ({ dispatchedLogOutAction }) => {
   const history = useHistory();
   const handleCkick = () => {
-    logOutFunc();
+    dispatchedLogOutAction();
     history.push(routesData[0].path);
     window.location.reload();
   };

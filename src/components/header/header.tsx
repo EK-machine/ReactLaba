@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import "./header.css";
 import { NavLink } from "react-router-dom";
 import routesData from "../routesData";
@@ -7,14 +8,19 @@ import SignInBtn from "../elements/signInBtn";
 import SignUpBtn from "../elements/signUpBtn";
 import SignOutBtn from "../elements/signOutBtn";
 import UserName from "../elements/userName";
-import { LoggedInConsumer, UserNameConsumer } from "../../contex/context";
+// import { LoggedInConsumer, UserNameConsumer } from "../../contex/context";
 import { HeaderProps } from "../../types/types";
+import { logInAction, logOutAction } from "../../redux/actions";
 
 const Header: React.FC<HeaderProps> = ({
+  loggedIn,
+  userName,
   showSignInModal,
   showSignUpModal,
-  logInFunc,
-  logOutFunc,
+  // logInFunc,
+  dispatchedLogInAction,
+  // logOutFunc,
+  dispatchedLogOutAction,
   showSignInModalFunc,
   showSignUpModalFunc,
   closeModalFunc,
@@ -50,7 +56,31 @@ const Header: React.FC<HeaderProps> = ({
         <p className="header__btn-title">{routesData[2].text}</p>
       </NavLink>
       <div className="header__btn-log_container">
-        <LoggedInConsumer>
+        {loggedIn ? (
+          <>
+            <UserName userName={userName} />
+            <SignOutBtn dispatchedLogOutAction={dispatchedLogOutAction} />
+          </>
+        ) : (
+          <>
+            <SignInBtn
+              // logInFunc={logInFunc}
+              dispatchedLogInAction={dispatchedLogInAction}
+              showSignInModalFunc={showSignInModalFunc}
+              closeModalFunc={closeModalFunc}
+              showSignInModal={showSignInModal}
+            />
+            <SignUpBtn
+              // logInFunc={logInFunc}
+              dispatchedLogInAction={dispatchedLogInAction}
+              showSignUpModalFunc={showSignUpModalFunc}
+              closeModalFunc={closeModalFunc}
+              showSignUpModal={showSignUpModal}
+            />
+          </>
+        )}
+
+        {/* <LoggedInConsumer>
           {(contextLogInState) => {
             if (contextLogInState) {
               return (
@@ -77,9 +107,19 @@ const Header: React.FC<HeaderProps> = ({
               </>
             );
           }}
-        </LoggedInConsumer>
+        </LoggedInConsumer> */}
       </div>
     </div>
   </header>
 );
-export default Header;
+
+const mapStateToProps = (state) => ({
+  loggedIn: state.loggedIn,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatchedLogInAction: () => dispatch(logInAction()),
+  dispatchedLogOutAction: () => dispatch(logOutAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

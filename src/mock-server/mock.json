@@ -75,129 +75,19 @@
   ],
   "users": [
     {
-      "login": "cwscece",
-      "password": "Qwerty123",
+      "login": "firstUser",
+      "password": "Qwerty12",
       "id": 1
     },
     {
-      "login": "qwert",
-      "password": "Qwerty123",
+      "login": "qwerty",
+      "password": "Qwerty12345",
       "id": 2
     },
     {
-      "login": "vberg",
-      "password": "Vbergy1234",
+      "login": "kijnknk",
+      "password": "Qwerty123",
       "id": 3
-    },
-    {
-      "login": "Qwerty",
-      "password": "Qwerty123",
-      "id": 4
-    },
-    {
-      "login": "thereis",
-      "password": "Qwerty12",
-      "id": 5
-    },
-    {
-      "login": "Qwerty",
-      "password": "Qwert1yhhhhhh",
-      "id": 6
-    },
-    {
-      "login": "There is an obj",
-      "password": "Qwerty12",
-      "id": 7
-    },
-    {
-      "login": "qwerty1",
-      "password": "Qwerty12",
-      "id": 8
-    },
-    {
-      "login": "Qwerty1",
-      "password": "Qwerty12",
-      "id": 9
-    },
-    {
-      "login": "qwerty1",
-      "password": "Qwerty12",
-      "id": 10
-    },
-    {
-      "login": "qwerty",
-      "password": "Qwerty12",
-      "id": 11
-    },
-    {
-      "login": "Thereisit",
-      "password": "Qwerty12",
-      "id": 12
-    },
-    {
-      "login": "qwerty",
-      "password": "Qwerty12",
-      "id": 13
-    },
-    {
-      "login": "thereis",
-      "password": "Cacifjhb11",
-      "id": 14
-    },
-    {
-      "login": "sdcsscsd",
-      "password": "Slkmlml11111",
-      "id": 15
-    },
-    {
-      "login": "ksdjnmkcsk",
-      "password": "HJlkjmnl1",
-      "id": 16
-    },
-    {
-      "login": "ыфчыфч",
-      "password": "Qwerty123",
-      "id": 17
-    },
-    {
-      "login": "ыфчыфч",
-      "password": "Qwerty123",
-      "id": 18
-    },
-    {
-      "login": "ыфчыфч",
-      "password": "Qwerty123",
-      "id": 19
-    },
-    {
-      "login": "ыфчыфч",
-      "password": "Qwerty123",
-      "id": 20
-    },
-    {
-      "login": "ыфчыфч",
-      "password": "Qwerty123",
-      "id": 21
-    },
-    {
-      "login": "sadxas",
-      "password": "Qwerty12",
-      "id": 22
-    },
-    {
-      "login": "kjknknnj",
-      "password": "Qwerty12",
-      "id": 23
-    },
-    {
-      "login": "welldone",
-      "password": "Welldone111",
-      "id": 24
-    },
-    {
-      "login": "дльдльдл",
-      "password": "Qwerty123",
-      "id": 25
     }
   ]
 }
