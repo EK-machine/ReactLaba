@@ -1,53 +1,26 @@
 import React, { useEffect } from "react";
-import { Dispatch } from "redux";
-import { useSelector, connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./loginpage.css";
-import { useLocation, Redirect, useHistory } from "react-router-dom";
-import { logInAction } from "@/redux/actions";
-import Modal from "./elements/modal";
-import SignInModalBody from "./elements/signInModalBody";
-import { LogInPageProps, LocationState } from "../types/types";
+import { useLocation, Redirect } from "react-router-dom";
+import { LocationState } from "../types/types";
 import routesData from "./routesData";
 import { ReducerState } from "../redux/reducer";
+import { showSignInModalAction } from "../redux/actions";
 
-const LogInPage: React.FC<LogInPageProps> = ({
-  closeModalFunc,
-  showSignInModalFunc,
-  dispatchedLogInAction,
-  showSignInModal,
-}) => {
+const LogInPage: React.FC = () => {
   const loggedIn = useSelector((state: ReducerState) => state.loggedIn);
   const { state } = useLocation<LocationState>();
-  const history = useHistory();
-
-  const closeModalHandler = () => {
-    closeModalFunc();
-    history.push(routesData[0].path);
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    showSignInModalFunc();
-  }, []);
+    if (!loggedIn) {
+      dispatch(showSignInModalAction());
+    }
+  }, [loggedIn]);
 
   return (
-    <div className="logInPage__container">
-      {loggedIn ? (
-        <Redirect to={state?.from || routesData[0].path} />
-      ) : (
-        <div>
-          {showSignInModal ? (
-            <Modal>
-              <SignInModalBody dispatchedLogInAction={dispatchedLogInAction} closeModalFunc={closeModalHandler} />
-            </Modal>
-          ) : null}
-        </div>
-      )}
-    </div>
+    <div className="logInPage__container">{loggedIn ? <Redirect to={state?.from || routesData[0].path} /> : null}</div>
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  dispatchedLogInAction: (userName: string) => dispatch(logInAction(userName)),
-});
-
-export default connect(null, mapDispatchToProps)(LogInPage);
+export default LogInPage;

@@ -17,13 +17,13 @@ import routesData from "./components/routesData";
 import ErrorBoundary from "./components/errorBoundary";
 import ProtectedRoute from "./components/protectedRoute";
 import { AppProps, AppState } from "./types/types";
+import ModalContainer from "./components/elements/modalContainer";
 
 class AppContainer extends Component<AppProps, AppState> {
   ["constructor"]: typeof AppContainer;
 
   constructor(props: AppProps) {
     super(props);
-    this.state = { showSignInModal: false, showSignUpModal: false };
 
     const goExlcude = true;
     if (!goExlcude) {
@@ -31,39 +31,17 @@ class AppContainer extends Component<AppProps, AppState> {
     }
   }
 
-  showSignUpModalFunc = () => {
-    this.setState({ showSignUpModal: true });
-  };
-
-  showSignInModalFunc = () => {
-    this.setState({ showSignInModal: true });
-  };
-
-  closeModalFunc = () => {
-    this.setState({ showSignInModal: false, showSignUpModal: false });
-  };
-
   render() {
     return (
       <Provider store={store}>
         <StrictMode>
           <BrowserRouter>
             <ErrorBoundary>
-              <Header
-                showSignUpModalFunc={this.showSignUpModalFunc}
-                showSignInModalFunc={this.showSignInModalFunc}
-                closeModalFunc={this.closeModalFunc}
-                showSignUpModal={this.state.showSignUpModal}
-                showSignInModal={this.state.showSignInModal}
-              />
+              <Header />
 
               <Switch>
                 <Route path="/login">
-                  <LogInPage
-                    closeModalFunc={this.closeModalFunc}
-                    showSignInModalFunc={this.showSignInModalFunc}
-                    showSignInModal={this.state.showSignInModal}
-                  />
+                  <LogInPage />
                 </Route>
 
                 <Route exact path={routesData[0].path} component={HomePage} />
@@ -86,6 +64,8 @@ class AppContainer extends Component<AppProps, AppState> {
               </Switch>
 
               <Footer />
+
+              <ModalContainer />
             </ErrorBoundary>
           </BrowserRouter>
         </StrictMode>

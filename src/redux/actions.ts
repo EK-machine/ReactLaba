@@ -1,4 +1,4 @@
-import { logInType, logOutType } from "./actionTypes";
+import { logInType, logOutType, showSignInModal, showSignUpModal, closeModal } from "./actionTypes";
 
 export const logInAction = (userName: string): { type: string; payload: string } => ({
   type: logInType,
@@ -7,4 +7,16 @@ export const logInAction = (userName: string): { type: string; payload: string }
 
 export const logOutAction = (): { type: string } => ({
   type: logOutType,
+});
+
+export const showSignInModalAction = (): { type: string } => ({
+  type: showSignInModal,
+});
+
+export const showSignUpModalAction = (): { type: string } => ({
+  type: showSignUpModal,
+});
+
+export const closeModalAction = (): { type: string } => ({
+  type: closeModal,
 });

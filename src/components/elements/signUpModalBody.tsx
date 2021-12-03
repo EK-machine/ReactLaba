@@ -1,19 +1,35 @@
-import React, { useState } from "react";
-import "./signupmodalbody.css";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import "./signupmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import InputText from "./inputText";
-import { SignUpModalBodyProps } from "../../types/types";
 import routesData from "../routesData";
+import { closeModalAction, logInAction } from "../../redux/actions";
+import { ReducerState } from "../../redux/reducer";
 
-const SignUpModalBody: React.FC<SignUpModalBodyProps> = ({ dispatchedLogInAction, closeModalFunc }) => {
+const SignUpModalBody: React.FC = () => {
   const [logup, setLogup] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
   const [message, setMessage] = useState("Please enter password");
+  const loggedIn = useSelector((state: ReducerState) => state.loggedIn);
+  const closeLogModalDispatch = useDispatch();
 
+  useEffect(() => {
+    if (loggedIn) {
+      closeLogModalDispatch(closeModalAction());
+    }
+  }, [loggedIn]);
+
+  const closeLogIn = () => closeLogModalDispatch(closeModalAction());
+  const dispatchedLogInAction = (userName: string) => closeLogModalDispatch(logInAction(userName));
   const history = useHistory();
+  const closeModalHandler = () => {
+    closeLogIn();
+    history.push(routesData[0].path);
+  };
 
   const signUpUrl = "http://localhost:3000/users/1";
 
@@ -84,7 +100,7 @@ const SignUpModalBody: React.FC<SignUpModalBodyProps> = ({ dispatchedLogInAction
     <div className="signUp__modal_container">
       <div className="signUp__modal_upper-container">
         <h1 className="signUp__modal_title">Registration</h1>
-        <button className="signUp__modal_close-btn" type="button" onClick={closeModalFunc}>
+        <button className="signUp__modal_close-btn" type="button" onClick={closeModalHandler}>
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>

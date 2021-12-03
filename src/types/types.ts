@@ -51,44 +51,16 @@ export type LogOutFunctionType = () => void;
 export interface HeaderProps {
   dispatchedLogOutAction: LogOutFunctionType;
   dispatchedLogInAction: LogInFunctionType;
-  showSignInModalFunc: () => void;
-  showSignUpModalFunc: () => void;
-  closeModalFunc: () => void;
-  showSignInModal: boolean;
-  showSignUpModal: boolean;
-  loggedIn?: boolean;
   userName?: string;
+  loggedIn?: boolean;
 }
 
 export interface SignInBtnProps {
   dispatchedLogInAction: LogInFunctionType;
-  showSignInModalFunc: () => void;
-  closeModalFunc: () => void;
-  showSignInModal: boolean;
-}
-
-export interface LogInPageProps {
-  dispatchedLogInAction: LogInFunctionType;
-  closeModalFunc: () => void;
-  showSignInModalFunc: () => void;
-  showSignInModal: boolean;
-}
-
-export interface SignInModalBodyProps {
-  dispatchedLogInAction: LogInFunctionType;
-  closeModalFunc: () => void;
 }
 
 export interface SignUpBtnProps {
   dispatchedLogInAction: LogInFunctionType;
-  showSignUpModalFunc: () => void;
-  closeModalFunc: () => void;
-  showSignUpModal: boolean;
-}
-
-export interface SignUpModalBodyProps {
-  dispatchedLogInAction: LogInFunctionType;
-  closeModalFunc: () => void;
 }
 
 export interface SignOutBtnProps {

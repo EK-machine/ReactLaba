@@ -12,17 +12,7 @@ import UserName from "../elements/userName";
 import { HeaderProps } from "../../types/types";
 import { logInAction, logOutAction } from "../../redux/actions";
 
-const Header: React.FC<HeaderProps> = ({
-  loggedIn,
-  userName,
-  showSignInModal,
-  showSignUpModal,
-  dispatchedLogInAction,
-  dispatchedLogOutAction,
-  showSignInModalFunc,
-  showSignUpModalFunc,
-  closeModalFunc,
-}) => (
+const Header: React.FC<HeaderProps> = ({ loggedIn, userName, dispatchedLogInAction, dispatchedLogOutAction }) => (
   <header className="header__container">
     <div className="header__title-container">
       <h1 className="header__title">Best Games Market</h1>
@@ -61,18 +51,8 @@ const Header: React.FC<HeaderProps> = ({
           </>
         ) : (
           <>
-            <SignInBtn
-              dispatchedLogInAction={dispatchedLogInAction}
-              showSignInModalFunc={showSignInModalFunc}
-              closeModalFunc={closeModalFunc}
-              showSignInModal={showSignInModal}
-            />
-            <SignUpBtn
-              dispatchedLogInAction={dispatchedLogInAction}
-              showSignUpModalFunc={showSignUpModalFunc}
-              closeModalFunc={closeModalFunc}
-              showSignUpModal={showSignUpModal}
-            />
+            <SignInBtn dispatchedLogInAction={dispatchedLogInAction} />
+            <SignUpBtn dispatchedLogInAction={dispatchedLogInAction} />
           </>
         )}
       </div>
