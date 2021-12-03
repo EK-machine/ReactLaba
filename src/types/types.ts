@@ -75,7 +75,7 @@ export interface LogInPageProps {
 }
 
 export interface SignInModalBodyProps {
-  dispatchedLogInAction?: LogInFunctionType;
+  dispatchedLogInAction: LogInFunctionType;
   closeModalFunc: () => void;
 }
 

@@ -24,3 +24,4 @@ const reducer = (
 };
 
 export default reducer;
+export type ReducerState = ReturnType<typeof reducer>;

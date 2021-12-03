@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Dispatch } from "redux";
 import "./header.css";
 import { NavLink } from "react-router-dom";
 import routesData from "../routesData";
@@ -84,7 +85,7 @@ const mapStateToProps = (state: { loggedIn: boolean; userName: string }) => ({
   userName: state.userName,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   dispatchedLogInAction: (userName: string) => dispatch(logInAction(userName)),
   dispatchedLogOutAction: () => dispatch(logOutAction()),
 });

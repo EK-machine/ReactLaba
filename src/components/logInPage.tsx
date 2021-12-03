@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Dispatch } from "redux";
 import { useSelector, connect } from "react-redux";
 import "./loginpage.css";
 import { useLocation, Redirect, useHistory } from "react-router-dom";
@@ -7,6 +8,7 @@ import Modal from "./elements/modal";
 import SignInModalBody from "./elements/signInModalBody";
 import { LogInPageProps, LocationState } from "../types/types";
 import routesData from "./routesData";
+import { ReducerState } from "../redux/reducer";
 
 const LogInPage: React.FC<LogInPageProps> = ({
   closeModalFunc,
@@ -14,7 +16,7 @@ const LogInPage: React.FC<LogInPageProps> = ({
   dispatchedLogInAction,
   showSignInModal,
 }) => {
-  const loggedIn = useSelector((state) => state.loggedIn);
+  const loggedIn = useSelector((state: ReducerState) => state.loggedIn);
   const { state } = useLocation<LocationState>();
   const history = useHistory();
 
@@ -44,7 +46,7 @@ const LogInPage: React.FC<LogInPageProps> = ({
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   dispatchedLogInAction: (userName: string) => dispatch(logInAction(userName)),
 });
 

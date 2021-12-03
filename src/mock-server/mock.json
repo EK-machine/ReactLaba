@@ -75,7 +75,7 @@
   ],
   "users": [
     {
-      "login": "grustnij",
+      "login": "Hto eto",
       "password": "Qwerty123",
       "id": 1
     },
@@ -133,6 +133,16 @@
       "login": "XBX",
       "password": "Qwerty123",
       "id": 12
+    },
+    {
+      "login": "Zheka",
+      "password": "Qwerty123",
+      "id": 13
+    },
+    {
+      "login": "tricky",
+      "password": "QQdfvdvfd!2345",
+      "id": 14
     }
   ]
 }

@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, RouteProps } from "react-router-dom";
+import { ReducerState } from "../redux/reducer";
 
-const ProtectedRoute: React.FC = ({ children, location, ...routeProps }) => {
-  const loggedIn = useSelector((state) => state.loggedIn);
+const ProtectedRoute: React.FC<RouteProps> = ({ children, location, ...routeProps }) => {
+  const loggedIn = useSelector((state: ReducerState) => state.loggedIn);
   return (
     <Route
       {...routeProps}
