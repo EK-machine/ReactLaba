@@ -1,14 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import "./signinmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import InputText from "./inputText";
-import { SignInModalBodyProps } from "../../types/types";
+import routesData from "../routesData";
+import { closeModalAction, logInAction } from "../../redux/actions";
+import { ReducerState } from "../../redux/reducer";
 
-const SignInModalBody: React.FC<SignInModalBodyProps> = ({ logInFunc, closeModalFunc }) => {
+const SignInModalBody: React.FC = () => {
   const [login, setLogin] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [message, setMessage] = useState("Please enter password");
+  const loggedIn = useSelector((state: ReducerState) => state.loggedIn);
+  const closeLogModalDispatch = useDispatch();
+
+  useEffect(() => {
+    if (loggedIn) {
+      closeLogModalDispatch(closeModalAction());
+    }
+  }, [loggedIn]);
+
+  const closeLogIn = () => closeLogModalDispatch(closeModalAction());
+  const dispatchedLogInAction = (userName: string) => closeLogModalDispatch(logInAction(userName));
+  const history = useHistory();
+  const closeModalHandler = () => {
+    closeLogIn();
+    history.push(routesData[0].path);
+  };
 
   const signInUrl = "http://localhost:3000/users";
 
@@ -57,7 +77,7 @@ const SignInModalBody: React.FC<SignInModalBodyProps> = ({ logInFunc, closeModal
       });
 
       if (postResponse.status === 201) {
-        logInFunc(true, login);
+        dispatchedLogInAction(login);
       } else {
         throw new Error(`HTTP status: ${postResponse.status}`);
       }
@@ -72,7 +92,7 @@ const SignInModalBody: React.FC<SignInModalBodyProps> = ({ logInFunc, closeModal
     <div className="signIn__modal_container">
       <div className="signIn__modal_upper-container">
         <h1 className="signIn__modal_title">Authorization</h1>
-        <button className="signIn__modal_close-btn" type="button" onClick={closeModalFunc}>
+        <button className="signIn__modal_close-btn" type="button" onClick={closeModalHandler}>
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>

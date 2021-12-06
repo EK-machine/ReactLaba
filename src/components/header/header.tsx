@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
 import "./header.css";
 import { NavLink } from "react-router-dom";
 import routesData from "../routesData";
@@ -7,18 +9,10 @@ import SignInBtn from "../elements/signInBtn";
 import SignUpBtn from "../elements/signUpBtn";
 import SignOutBtn from "../elements/signOutBtn";
 import UserName from "../elements/userName";
-import { LoggedInConsumer, UserNameConsumer } from "../../contex/context";
 import { HeaderProps } from "../../types/types";
+import { logInAction, logOutAction } from "../../redux/actions";
 
-const Header: React.FC<HeaderProps> = ({
-  showSignInModal,
-  showSignUpModal,
-  logInFunc,
-  logOutFunc,
-  showSignInModalFunc,
-  showSignUpModalFunc,
-  closeModalFunc,
-}) => (
+const Header: React.FC<HeaderProps> = ({ loggedIn, userName, dispatchedLogInAction, dispatchedLogOutAction }) => (
   <header className="header__container">
     <div className="header__title-container">
       <h1 className="header__title">Best Games Market</h1>
@@ -50,36 +44,30 @@ const Header: React.FC<HeaderProps> = ({
         <p className="header__btn-title">{routesData[2].text}</p>
       </NavLink>
       <div className="header__btn-log_container">
-        <LoggedInConsumer>
-          {(contextLogInState) => {
-            if (contextLogInState) {
-              return (
-                <>
-                  <UserNameConsumer>{(contextUserName) => <UserName userName={contextUserName} />}</UserNameConsumer>
-                  <SignOutBtn logOutFunc={logOutFunc} />
-                </>
-              );
-            }
-            return (
-              <>
-                <SignInBtn
-                  logInFunc={logInFunc}
-                  showSignInModalFunc={showSignInModalFunc}
-                  closeModalFunc={closeModalFunc}
-                  showSignInModal={showSignInModal}
-                />
-                <SignUpBtn
-                  logInFunc={logInFunc}
-                  showSignUpModalFunc={showSignUpModalFunc}
-                  closeModalFunc={closeModalFunc}
-                  showSignUpModal={showSignUpModal}
-                />
-              </>
-            );
-          }}
-        </LoggedInConsumer>
+        {loggedIn ? (
+          <>
+            <UserName userName={userName} />
+            <SignOutBtn dispatchedLogOutAction={dispatchedLogOutAction} />
+          </>
+        ) : (
+          <>
+            <SignInBtn dispatchedLogInAction={dispatchedLogInAction} />
+            <SignUpBtn dispatchedLogInAction={dispatchedLogInAction} />
+          </>
+        )}
       </div>
     </div>
   </header>
 );
-export default Header;
+
+const mapStateToProps = (state: { loggedIn: boolean; userName: string }) => ({
+  loggedIn: state.loggedIn,
+  userName: state.userName,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  dispatchedLogInAction: (userName: string) => dispatch(logInAction(userName)),
+  dispatchedLogOutAction: () => dispatch(logOutAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
