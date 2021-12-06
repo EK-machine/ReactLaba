@@ -1,0 +1,22 @@
+.profileInputText__container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.profileInputText__label {
+  margin: 0px;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.profileInputText__input {
+  border: 1px solid white;
+  box-sizing: border-box;
+  background-color: inherit;
+  width: 100%;
+  height: 2rem;
+  color: white;
+  margin-bottom: 15px;
+}

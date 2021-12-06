@@ -13,7 +13,7 @@ const routesData = [
   },
   {
     path: "/profile",
-    text: "Profilke",
+    text: "Profile",
   },
 ];
 

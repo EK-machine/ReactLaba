@@ -8,7 +8,7 @@ import { ReducerState } from "../redux/reducer";
 import { showSignInModalAction } from "../redux/actions";
 
 const LogInPage: React.FC = () => {
-  const loggedIn = useSelector((state: ReducerState) => state.loggedIn);
+  const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);
   const { state } = useLocation<LocationState>();
   const dispatch = useDispatch();
 

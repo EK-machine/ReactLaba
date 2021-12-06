@@ -1,3 +1,87 @@
 .profilePage__container {
-  background-color: #121212;
+  background-color: #353434;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 15px;
+}
+
+.profilePage__inner-container {
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profilePage__upperSectiopn {
+  border-bottom: 1px solid white;
+  margin: 0 0 55px 0;
+}
+
+.profilePage__userName_title {
+  margin: 0;
+  padding: 0 0 15px 30px;
+  color: white;
+}
+
+.profilePage__lowerSectiopn {
+  width: 60%;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.profilePage__picSection,
+.profilePage__editSection {
+  margin-right: 50px;
+}
+
+.profilePage__picSection {
+  width: 30%;
+  box-sizing: border-box;
+}
+
+.profilePage__picSection_pic {
+  width: 100%;
+  background-color: #ababab;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.profilePage__picSection_changePicBtn,
+.profilePage__btnsSection_saveBtn,
+.profilePage__btnsSection_changePassBtn {
+  width: 100%;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #9933cc;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0;
+}
+
+.profilePage__btnsSection_saveBtn {
+  margin-bottom: 15px;
+}
+
+.profilePage__picSection_changePicBtn > p,
+.profilePage__btnsSection_saveBtn > p,
+.profilePage__btnsSection_changePassBtn > p {
+  margin: 0;
+}
+
+.profilePage__editSection {
+  width: 38%;
+}
+
+.profilePage__btnsSection {
+  width: 18%;
 }

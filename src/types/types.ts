@@ -45,6 +45,13 @@ export interface InputProps {
   onChange: (value: string) => void;
 }
 
+export interface ProfileTextAreaProps {
+  name: string;
+  id: string;
+  value: string;
+  onChange: (value: string) => void;
+}
+
 export type LogInFunctionType = (userName: string) => void;
 export type LogOutFunctionType = () => void;
 
@@ -61,6 +68,10 @@ export interface SignInBtnProps {
 
 export interface SignUpBtnProps {
   dispatchedLogInAction: LogInFunctionType;
+}
+
+export interface UserNameBtnProps {
+  userName: string | undefined;
 }
 
 export interface SignOutBtnProps {

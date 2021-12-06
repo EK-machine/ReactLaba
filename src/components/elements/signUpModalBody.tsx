@@ -14,7 +14,7 @@ const SignUpModalBody: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
   const [message, setMessage] = useState("Please enter password");
-  const loggedIn = useSelector((state: ReducerState) => state.loggedIn);
+  const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);
   const closeLogModalDispatch = useDispatch();
 
   useEffect(() => {
