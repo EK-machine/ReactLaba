@@ -77,8 +77,8 @@ const ChangePassModalBody: React.FC = () => {
       if (patchResponse.status === 404) {
         throw new Error(`HTTP status: ${patchResponse.status}`);
       }
+      dispatch(closeModalAction());
     }
-    dispatch(closeModalAction());
     return null;
   }
 
@@ -92,7 +92,6 @@ const ChangePassModalBody: React.FC = () => {
       </div>
       <form action="#" className="changePass__modal_content-container" onSubmit={changeFunc}>
         <p>{message}</p>
-        <br />
         <br />
         <InputText name="Password" id="SignUpPassword" type="password" onChange={passwordGetter} value={newPassword} />
         <br />

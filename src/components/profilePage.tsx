@@ -12,6 +12,8 @@ const ProfilePage: React.FC = () => {
   const [currentId, setCurrentId] = useState();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [message, setMessage] = useState("");
+  const [formValid, setFormValid] = useState(false);
   const dispatch = useDispatch();
   const dispatchedLogInAction = (newUserName: string) => dispatch(logInAction(newUserName));
 
@@ -37,7 +39,27 @@ const ProfilePage: React.FC = () => {
 
   const userObj = { id: currentId, login: updatedName, description };
 
-  async function saveHandler() {
+  const verifyNewName = (log: string) => {
+    if (!log) {
+      setFormValid(false);
+      setMessage("Please enter new login");
+    } else if (log.length < 3 || log.length > 12) {
+      setFormValid(false);
+      setMessage("New login must be between 3 and 12 characters");
+    } else {
+      setFormValid(true);
+      setMessage("New login is OK");
+    }
+  };
+
+  useEffect(() => {
+    verifyNewName(name);
+  }, [name]);
+
+  async function saveHandler(e: React.SyntheticEvent) {
+    if (e) {
+      e.preventDefault();
+    }
     const patchResponse = await fetch(`http://localhost:3000/users/${currentId}`, {
       method: "PATCH",
       headers: {
@@ -58,7 +80,7 @@ const ProfilePage: React.FC = () => {
         <section className="profilePage__upperSectiopn">
           <h1 className="profilePage__userName_title">{userName}</h1>
         </section>
-        <section className="profilePage__lowerSectiopn">
+        <form className="profilePage__lowerSectiopn" onSubmit={saveHandler}>
           <div className="profilePage__picSection">
             <div className="profilePage__picSection_pic">
               <div>no picture</div>
@@ -68,6 +90,7 @@ const ProfilePage: React.FC = () => {
             </button>
           </div>
           <div className="profilePage__editSection">
+            <span>{message}</span>
             <ProfileInputText name="Username" id="UserName" type="text" onChange={userNameGetter} value={name} />
             <ProfileTextArea
               name="Profile description"
@@ -77,9 +100,12 @@ const ProfilePage: React.FC = () => {
             />
           </div>
           <div className="profilePage__btnsSection">
-            <button type="button" className="profilePage__btnsSection_saveBtn" onClick={saveHandler}>
-              <p>Save profile</p>
-            </button>
+            <input
+              type="submit"
+              className="profilePage__btnsSection_saveBtn"
+              value="Save profile"
+              disabled={!formValid}
+            />
             <button
               type="button"
               className="profilePage__btnsSection_changePassBtn"
@@ -88,7 +114,7 @@ const ProfilePage: React.FC = () => {
               <p>Change password</p>
             </button>
           </div>
-        </section>
+        </form>
       </div>
     </div>
   );

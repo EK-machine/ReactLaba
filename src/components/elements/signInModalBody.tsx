@@ -12,7 +12,8 @@ import { ReducerState } from "../../redux/reducer";
 const SignInModalBody: React.FC = () => {
   const [login, setLogin] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [message, setMessage] = useState("Please enter password");
+  const [loginMessage, setLoginMessage] = useState("Please enter login");
+  const [passMessage, setPassMessage] = useState("Please enter password");
   const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);
   const dispatch = useDispatch();
 
@@ -42,6 +43,16 @@ const SignInModalBody: React.FC = () => {
 
   const signInObj = { login, password };
 
+  const verifyLogin = (log: string) => {
+    if (!log) {
+      return { isValid: false, validMessage: "Please enter login" };
+    }
+    if (log.length < 3 || log.length > 12) {
+      return { isValid: false, validMessage: "Login must be between 3 and 12 characters" };
+    }
+    return { isValid: true, validMessage: "Success" };
+  };
+
   const verifyPassword = (pass: string) => {
     const alphNumPass = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
     if (!pass) {
@@ -64,10 +75,12 @@ const SignInModalBody: React.FC = () => {
       e.preventDefault();
     }
 
-    if (!verifyPassword(password).isValid) {
-      setMessage(verifyPassword(password).validMessage);
+    if (!verifyLogin(login).isValid || !verifyPassword(password).isValid) {
+      setLoginMessage(verifyLogin(login).validMessage);
+      setPassMessage(verifyPassword(password).validMessage);
     } else {
-      setMessage(verifyPassword(password).validMessage);
+      setLoginMessage(verifyLogin(login).validMessage);
+      setPassMessage(verifyPassword(password).validMessage);
       const postResponse = await fetch(signInUrl, {
         method: "POST",
         headers: {
@@ -97,10 +110,9 @@ const SignInModalBody: React.FC = () => {
         </button>
       </div>
       <form action="#" className="signIn__modal_content-container" onSubmit={postFunc}>
-        <span>{message}</span>
-        <br />
+        <span>{loginMessage}</span>
         <InputText name="Login" id="SignInLogin" type="text" onChange={loginGetter} value={login} />
-        <br />
+        <span>{passMessage}</span>
         <InputText name="Password" id="SignInPassword" type="password" onChange={passwordGetter} value={password} />
         <br />
         <div className="signIn__modal_submit-btn-container">

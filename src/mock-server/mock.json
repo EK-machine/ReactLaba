@@ -75,19 +75,9 @@
   ],
   "users": [
     {
-      "login": "Срещ",
-      "password": "Qwerty123",
+      "login": "asasaa",
+      "password": "Asd12345",
       "id": 1
-    },
-    {
-      "login": "letstry",
-      "password": "Qwerty123",
-      "id": 2
-    },
-    {
-      "login": "nukakatam",
-      "password": "Qwerty123",
-      "id": 3
     }
   ]
 }

@@ -13,7 +13,8 @@ const SignUpModalBody: React.FC = () => {
   const [logup, setLogup] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
-  const [message, setMessage] = useState("Please enter password");
+  const [loginMessage, setLoginMessage] = useState("Please enter login");
+  const [passMessage, setPassMessage] = useState("Please enter password");
   const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);
   const dispatch = useDispatch();
 
@@ -47,6 +48,16 @@ const SignUpModalBody: React.FC = () => {
 
   const signUpObj = { login: logup, password };
 
+  const verifyLogin = (log: string) => {
+    if (!log) {
+      return { isValid: false, validMessage: "Please enter login" };
+    }
+    if (log.length < 3 || log.length > 12) {
+      return { isValid: false, validMessage: "Login must be between 3 and 12 characters" };
+    }
+    return { isValid: true, validMessage: "Success" };
+  };
+
   const verifyPassword = (pass: string) => {
     const alphNumPass = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
     if (!pass) {
@@ -70,11 +81,13 @@ const SignUpModalBody: React.FC = () => {
     }
 
     if (!(repeatPassword === password)) {
-      setMessage("Password is not correct");
-    } else if (!verifyPassword(password).isValid) {
-      setMessage(verifyPassword(password).validMessage);
+      setPassMessage("Password is not correct");
+    } else if (!verifyLogin(logup).isValid || !verifyPassword(password).isValid) {
+      setLoginMessage(verifyLogin(logup).validMessage);
+      setPassMessage(verifyPassword(password).validMessage);
     } else {
-      setMessage(verifyPassword(password).validMessage);
+      setLoginMessage(verifyLogin(logup).validMessage);
+      setPassMessage(verifyPassword(password).validMessage);
       const putResponse = await fetch(signUpUrl, {
         method: "PUT",
         headers: {
@@ -105,14 +118,13 @@ const SignUpModalBody: React.FC = () => {
         </button>
       </div>
       <form action="#" className="signUp__modal_content-container" onSubmit={putFunc}>
-        <p>{message}</p>
-        <br />
+        <p>{loginMessage}</p>
         <InputText name="Login" id="SignUplogin" type="text" onChange={logupGetter} value={logup} />
-        <br />
+        <p>{passMessage}</p>
         <InputText name="Password" id="SignUpPassword" type="password" onChange={passwordGetter} value={password} />
         <br />
         <InputText
-          name="RepeatPassword"
+          name="Repeat password"
           id="SignUpRepeatPassword"
           type="password"
           onChange={repeatPasswordGetter}
