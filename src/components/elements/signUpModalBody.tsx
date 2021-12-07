@@ -15,6 +15,8 @@ const SignUpModalBody: React.FC = () => {
   const [repeatPassword, setRepeatPassword] = useState<string>("");
   const [loginMessage, setLoginMessage] = useState("Please enter login");
   const [passMessage, setPassMessage] = useState("Please enter password");
+  const [repeatPassMessage, setRepeatPassMessage] = useState("Please repeat password");
+  const [formValid, setFormValid] = useState(false);
   const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);
   const dispatch = useDispatch();
 
@@ -48,65 +50,79 @@ const SignUpModalBody: React.FC = () => {
 
   const signUpObj = { login: logup, password };
 
-  const verifyLogin = (log: string) => {
+  const verifyName = (log: string) => {
     if (!log) {
-      return { isValid: false, validMessage: "Please enter login" };
+      setLoginMessage("Please enter login");
+    } else if (log.length < 3 || log.length > 12) {
+      setLoginMessage("Login must be between 3 and 12 characters");
+    } else {
+      setLoginMessage("Login is OK");
     }
-    if (log.length < 3 || log.length > 12) {
-      return { isValid: false, validMessage: "Login must be between 3 and 12 characters" };
-    }
-    return { isValid: true, validMessage: "Success" };
   };
 
   const verifyPassword = (pass: string) => {
     const alphNumPass = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
     if (!pass) {
-      return { isValid: false, validMessage: "Please enter password" };
+      setPassMessage("Please enter password");
+    } else if (pass.length < 8 || pass.length > 15) {
+      setPassMessage("Password must be between 8 and 15 characters");
+    } else if (pass[0].toUpperCase() !== pass[0]) {
+      setPassMessage("First character of password must be capital");
+    } else if (!alphNumPass.test(pass)) {
+      setPassMessage("At least 1 character of password must be numeric or alphabetic");
+    } else {
+      setPassMessage("Password is OK");
     }
-    if (pass.length < 8 || pass.length > 15) {
-      return { isValid: false, validMessage: "Password must be between 8 and 15 characters" };
-    }
-    if (pass[0].toUpperCase() !== pass[0]) {
-      return { isValid: false, validMessage: "First character of password must be capital" };
-    }
-    if (!alphNumPass.test(pass)) {
-      return { isValid: false, validMessage: "At least 1 character of password must be numeric or alphabetic" };
-    }
-    return { isValid: true, validMessage: "Success" };
   };
+
+  const comparePass = (pass: string) => {
+    if (password !== repeatPassword || !repeatPassword) {
+      setRepeatPassMessage("Repeated password in not correct");
+    } else {
+      setRepeatPassMessage("Repeated password is OK");
+    }
+  };
+
+  useEffect(() => {
+    verifyName(logup);
+    verifyPassword(password);
+    comparePass(repeatPassword);
+  }, [logup, password, repeatPassword]);
+
+  useEffect(() => {
+    if (
+      loginMessage === "Login is OK" &&
+      passMessage === "Password is OK" &&
+      repeatPassMessage === "Repeated password is OK"
+    ) {
+      setFormValid(true);
+    } else {
+      setFormValid(false);
+    }
+  }, [loginMessage, passMessage, repeatPassMessage]);
 
   async function putFunc(e: React.SyntheticEvent) {
     if (e) {
       e.preventDefault();
     }
 
-    if (!(repeatPassword === password)) {
-      setPassMessage("Password is not correct");
-    } else if (!verifyLogin(logup).isValid || !verifyPassword(password).isValid) {
-      setLoginMessage(verifyLogin(logup).validMessage);
-      setPassMessage(verifyPassword(password).validMessage);
+    const putResponse = await fetch(signUpUrl, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signUpObj),
+    });
+
+    if (putResponse.status === 200) {
+      dispatchedLogInAction(logup);
     } else {
-      setLoginMessage(verifyLogin(logup).validMessage);
-      setPassMessage(verifyPassword(password).validMessage);
-      const putResponse = await fetch(signUpUrl, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signUpObj),
-      });
-
-      if (putResponse.status === 200) {
-        dispatchedLogInAction(logup);
-      } else {
-        throw new Error(`HTTP status: ${putResponse.status}`);
-      }
-
-      const response = await putResponse.json();
-      history.push(routesData[3].path);
-      return response;
+      throw new Error(`HTTP status: ${putResponse.status}`);
     }
-    return null;
+
+    const response = await putResponse.json();
+    history.push(routesData[3].path);
+    return response;
   }
 
   return (
@@ -118,11 +134,10 @@ const SignUpModalBody: React.FC = () => {
         </button>
       </div>
       <form action="#" className="signUp__modal_content-container" onSubmit={putFunc}>
-        <p>{loginMessage}</p>
         <InputText name="Login" id="SignUplogin" type="text" onChange={logupGetter} value={logup} />
-        <p>{passMessage}</p>
+        <p>{loginMessage}</p>
         <InputText name="Password" id="SignUpPassword" type="password" onChange={passwordGetter} value={password} />
-        <br />
+        <p>{passMessage}</p>
         <InputText
           name="Repeat password"
           id="SignUpRepeatPassword"
@@ -130,9 +145,10 @@ const SignUpModalBody: React.FC = () => {
           onChange={repeatPasswordGetter}
           value={repeatPassword}
         />
+        <p>{repeatPassMessage}</p>
         <br />
         <div className="signUp__modal_submit-btn-container">
-          <input className="signUp__modal_submit-btn" type="submit" />
+          <input className="signUp__modal_submit-btn" type="submit" disabled={!formValid} />
         </div>
       </form>
     </div>

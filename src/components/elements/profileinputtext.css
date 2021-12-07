@@ -11,6 +11,11 @@
   color: white;
 }
 
+.profileInputText__label::after {
+  content: "*";
+  color: red;
+}
+
 .profileInputText__input {
   border: 1px solid white;
   box-sizing: border-box;

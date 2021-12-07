@@ -90,8 +90,8 @@ const ProfilePage: React.FC = () => {
             </button>
           </div>
           <div className="profilePage__editSection">
-            <span>{message}</span>
             <ProfileInputText name="Username" id="UserName" type="text" onChange={userNameGetter} value={name} />
+            <span>{message}</span>
             <ProfileTextArea
               name="Profile description"
               id="Description"

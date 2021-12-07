@@ -72,6 +72,11 @@
   margin-bottom: 15px;
 }
 
+.profilePage__btnsSection_saveBtn:disabled {
+  background-color: #ad7cc5;
+  cursor: default;
+}
+
 .profilePage__picSection_changePicBtn > p,
 .profilePage__btnsSection_changePassBtn > p {
   margin: 0;

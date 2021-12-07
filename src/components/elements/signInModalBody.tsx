@@ -14,6 +14,7 @@ const SignInModalBody: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [loginMessage, setLoginMessage] = useState("Please enter login");
   const [passMessage, setPassMessage] = useState("Please enter password");
+  const [formValid, setFormValid] = useState(false);
   const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);
   const dispatch = useDispatch();
 
@@ -43,62 +44,65 @@ const SignInModalBody: React.FC = () => {
 
   const signInObj = { login, password };
 
-  const verifyLogin = (log: string) => {
+  const verifyName = (log: string) => {
     if (!log) {
-      return { isValid: false, validMessage: "Please enter login" };
+      setLoginMessage("Please enter login");
+    } else if (log.length < 3 || log.length > 12) {
+      setLoginMessage("Login must be between 3 and 12 characters");
+    } else {
+      setLoginMessage("Login is OK");
     }
-    if (log.length < 3 || log.length > 12) {
-      return { isValid: false, validMessage: "Login must be between 3 and 12 characters" };
-    }
-    return { isValid: true, validMessage: "Success" };
   };
 
   const verifyPassword = (pass: string) => {
     const alphNumPass = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
     if (!pass) {
-      return { isValid: false, validMessage: "Please enter password" };
+      setPassMessage("Please enter password");
+    } else if (pass.length < 8 || pass.length > 15) {
+      setPassMessage("Password must be between 8 and 15 characters");
+    } else if (pass[0].toUpperCase() !== pass[0]) {
+      setPassMessage("First character of password must be capital");
+    } else if (!alphNumPass.test(pass)) {
+      setPassMessage("At least 1 character of password must be numeric or alphabetic");
+    } else {
+      setPassMessage("Password is OK");
     }
-    if (pass.length < 8 || pass.length > 15) {
-      return { isValid: false, validMessage: "Password must be between 8 and 15 characters" };
-    }
-    if (pass[0].toUpperCase() !== pass[0]) {
-      return { isValid: false, validMessage: "First character of password must be capital" };
-    }
-    if (!alphNumPass.test(pass)) {
-      return { isValid: false, validMessage: "At least 1 character of password must be numeric or alphabetic" };
-    }
-    return { isValid: true, validMessage: "Success" };
   };
+
+  useEffect(() => {
+    verifyName(login);
+    verifyPassword(password);
+  }, [login, password]);
+
+  useEffect(() => {
+    if (loginMessage === "Login is OK" && passMessage === "Password is OK") {
+      setFormValid(true);
+    } else {
+      setFormValid(false);
+    }
+  }, [loginMessage, passMessage]);
 
   async function postFunc(e: React.SyntheticEvent) {
     if (e) {
       e.preventDefault();
     }
 
-    if (!verifyLogin(login).isValid || !verifyPassword(password).isValid) {
-      setLoginMessage(verifyLogin(login).validMessage);
-      setPassMessage(verifyPassword(password).validMessage);
+    const postResponse = await fetch(signInUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signInObj),
+    });
+
+    if (postResponse.status === 201) {
+      dispatchedLogInAction(login);
     } else {
-      setLoginMessage(verifyLogin(login).validMessage);
-      setPassMessage(verifyPassword(password).validMessage);
-      const postResponse = await fetch(signInUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signInObj),
-      });
-
-      if (postResponse.status === 201) {
-        dispatchedLogInAction(login);
-      } else {
-        throw new Error(`HTTP status: ${postResponse.status}`);
-      }
-
-      const response = await postResponse.json();
-      return response;
+      throw new Error(`HTTP status: ${postResponse.status}`);
     }
-    return null;
+
+    const response = await postResponse.json();
+    return response;
   }
 
   return (
@@ -110,13 +114,13 @@ const SignInModalBody: React.FC = () => {
         </button>
       </div>
       <form action="#" className="signIn__modal_content-container" onSubmit={postFunc}>
-        <span>{loginMessage}</span>
         <InputText name="Login" id="SignInLogin" type="text" onChange={loginGetter} value={login} />
-        <span>{passMessage}</span>
+        <span>{loginMessage}</span>
         <InputText name="Password" id="SignInPassword" type="password" onChange={passwordGetter} value={password} />
+        <span>{passMessage}</span>
         <br />
         <div className="signIn__modal_submit-btn-container">
-          <input className="signIn__modal_submit-btn" type="submit" />
+          <input className="signIn__modal_submit-btn" type="submit" disabled={!formValid} />
         </div>
       </form>
     </div>

@@ -52,3 +52,8 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
+.signIn__modal_submit-btn:disabled {
+  background-color: #ad7cc5;
+  cursor: default;
+}

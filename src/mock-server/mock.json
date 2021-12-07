@@ -75,9 +75,14 @@
   ],
   "users": [
     {
-      "login": "asasaa",
-      "password": "Asd12345",
+      "login": "ligally",
+      "password": "Opaopa123",
       "id": 1
+    },
+    {
+      "login": "hellothere",
+      "password": "Qwerty12",
+      "id": 2
     }
   ]
 }

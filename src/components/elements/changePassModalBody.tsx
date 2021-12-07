@@ -11,7 +11,9 @@ const ChangePassModalBody: React.FC = () => {
   const userName = useSelector((state: ReducerState) => state.signIn.userName);
   const [newPassword, setNewPassword] = useState<string>("");
   const [repeatNewPassword, setRepeatNewPassword] = useState<string>("");
-  const [message, setMessage] = useState("Please enter new password");
+  const [passMessage, setPassMessage] = useState("Please enter new password");
+  const [repeatPassMessage, setRepeatPassMessage] = useState("Please enter password");
+  const [formValid, setFormValid] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
   const [currentId, setCurrentId] = useState();
   const dispatch = useDispatch();
@@ -38,47 +40,58 @@ const ChangePassModalBody: React.FC = () => {
   const verifyPassword = (pass: string) => {
     const alphNumPass = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
     if (!pass) {
-      return { isValid: false, validMessage: "Please enter password" };
+      setPassMessage("Please enter password");
+    } else if (pass.length < 8 || pass.length > 15) {
+      setPassMessage("Password must be between 8 and 15 characters");
+    } else if (pass[0].toUpperCase() !== pass[0]) {
+      setPassMessage("First character of password must be capital");
+    } else if (!alphNumPass.test(pass)) {
+      setPassMessage("At least 1 character of password must be numeric or alphabetic");
+    } else {
+      setPassMessage("New password is OK");
     }
-    if (pass.length < 8 || pass.length > 15) {
-      return { isValid: false, validMessage: "Password must be between 8 and 15 characters" };
-    }
-    if (pass[0].toUpperCase() !== pass[0]) {
-      return { isValid: false, validMessage: "First character of password must be capital" };
-    }
-    if (!alphNumPass.test(pass)) {
-      return { isValid: false, validMessage: "At least 1 character of password must be numeric or alphabetic" };
-    }
-    return { isValid: true, validMessage: "Success" };
   };
+
+  const comparePass = (pass: string) => {
+    if (newPassword !== repeatNewPassword || !repeatNewPassword) {
+      setRepeatPassMessage("Repeated password in not correct");
+    } else {
+      setRepeatPassMessage("Repeated password is OK");
+    }
+  };
+
+  useEffect(() => {
+    verifyPassword(newPassword);
+    comparePass(repeatNewPassword);
+  }, [newPassword, repeatNewPassword]);
+
+  useEffect(() => {
+    if (passMessage === "New password is OK" && repeatPassMessage === "Repeated password is OK") {
+      setFormValid(true);
+    } else {
+      setFormValid(false);
+    }
+  }, [passMessage, repeatPassMessage]);
 
   async function changeFunc(e: React.SyntheticEvent) {
     if (e) {
       e.preventDefault();
     }
 
-    if (!(repeatNewPassword === newPassword)) {
-      setMessage("Password is not correct");
-    } else if (!verifyPassword(newPassword).isValid) {
-      setMessage(verifyPassword(newPassword).validMessage);
-    } else {
-      setMessage(verifyPassword(newPassword).validMessage);
+    const password = repeatNewPassword || currentPassword;
 
-      const password = repeatNewPassword || currentPassword;
+    const patchResponse = await fetch(`http://localhost:3000/users/${currentId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password }),
+    });
 
-      const patchResponse = await fetch(`http://localhost:3000/users/${currentId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ password }),
-      });
-
-      if (patchResponse.status === 404) {
-        throw new Error(`HTTP status: ${patchResponse.status}`);
-      }
-      dispatch(closeModalAction());
+    if (patchResponse.status === 404) {
+      throw new Error(`HTTP status: ${patchResponse.status}`);
     }
+    dispatch(closeModalAction());
     return null;
   }
 
@@ -91,9 +104,8 @@ const ChangePassModalBody: React.FC = () => {
         </button>
       </div>
       <form action="#" className="changePass__modal_content-container" onSubmit={changeFunc}>
-        <p>{message}</p>
-        <br />
         <InputText name="Password" id="SignUpPassword" type="password" onChange={passwordGetter} value={newPassword} />
+        <p>{passMessage}</p>
         <br />
         <InputText
           name="Repeat password"
@@ -102,9 +114,10 @@ const ChangePassModalBody: React.FC = () => {
           onChange={repeatPasswordGetter}
           value={repeatNewPassword}
         />
+        <p>{repeatPassMessage}</p>
         <br />
         <div className="changePass__modal_submit-btn-container">
-          <input className="changePass__modal_submit-btn" type="submit" />
+          <input className="changePass__modal_submit-btn" type="submit" disabled={!formValid} />
         </div>
       </form>
     </div>
