@@ -14,16 +14,16 @@ const SignInModalBody: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [message, setMessage] = useState("Please enter password");
   const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);
-  const closeLogModalDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (loggedIn) {
-      closeLogModalDispatch(closeModalAction());
+      dispatch(closeModalAction());
     }
   }, [loggedIn]);
 
-  const closeLogIn = () => closeLogModalDispatch(closeModalAction());
-  const dispatchedLogInAction = (userName: string) => closeLogModalDispatch(logInAction(userName));
+  const closeLogIn = () => dispatch(closeModalAction());
+  const dispatchedLogInAction = (userName: string) => dispatch(logInAction(userName));
   const history = useHistory();
   const closeModalHandler = () => {
     closeLogIn();

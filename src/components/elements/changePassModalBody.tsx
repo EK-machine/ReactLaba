@@ -1,23 +1,38 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./changepassmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { closeModalAction } from "../../redux/actions";
 import InputText from "./inputText";
+import { ReducerState } from "../../redux/reducer";
 
 const ChangePassModalBody: React.FC = () => {
-  const [password, setPassword] = useState<string>("");
-  const [repeatPassword, setRepeatPassword] = useState<string>("");
+  const userName = useSelector((state: ReducerState) => state.signIn.userName);
+  const [newPassword, setNewPassword] = useState<string>("");
+  const [repeatNewPassword, setRepeatNewPassword] = useState<string>("");
   const [message, setMessage] = useState("Please enter new password");
-  const closeModalDispatch = useDispatch();
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [currentId, setCurrentId] = useState();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const currenUserFetch = async () => {
+      const currentUserResp = await fetch(`http://localhost:3000/users?login_like=${userName}`, { method: "GET" });
+      const currentUserRespJson = await currentUserResp.json();
+      const [{ password, id }] = currentUserRespJson;
+      setCurrentPassword(password);
+      setCurrentId(id);
+    };
+    currenUserFetch();
+  }, []);
 
   const passwordGetter = (passwordData: string) => {
-    setPassword(passwordData);
+    setNewPassword(passwordData);
   };
 
   const repeatPasswordGetter = (passwordData: string) => {
-    setRepeatPassword(passwordData);
+    setRepeatNewPassword(passwordData);
   };
 
   const verifyPassword = (pass: string) => {
@@ -37,19 +52,33 @@ const ChangePassModalBody: React.FC = () => {
     return { isValid: true, validMessage: "Success" };
   };
 
-  function changeFunc(e: React.SyntheticEvent) {
+  async function changeFunc(e: React.SyntheticEvent) {
     if (e) {
       e.preventDefault();
     }
 
-    if (!(repeatPassword === password)) {
+    if (!(repeatNewPassword === newPassword)) {
       setMessage("Password is not correct");
-    } else if (!verifyPassword(password).isValid) {
-      setMessage(verifyPassword(password).validMessage);
+    } else if (!verifyPassword(newPassword).isValid) {
+      setMessage(verifyPassword(newPassword).validMessage);
     } else {
-      setMessage(verifyPassword(password).validMessage);
+      setMessage(verifyPassword(newPassword).validMessage);
+
+      const password = repeatNewPassword || currentPassword;
+
+      const patchResponse = await fetch(`http://localhost:3000/users/${currentId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ password }),
+      });
+
+      if (patchResponse.status === 404) {
+        throw new Error(`HTTP status: ${patchResponse.status}`);
+      }
     }
-    closeModalDispatch(closeModalAction());
+    dispatch(closeModalAction());
     return null;
   }
 
@@ -57,11 +86,7 @@ const ChangePassModalBody: React.FC = () => {
     <div className="changePass__modal_container">
       <div className="changePass__modal_upper-container">
         <h1 className="changePass__modal_title">Change password</h1>
-        <button
-          className="changePass__modal_close-btn"
-          type="button"
-          onClick={() => closeModalDispatch(closeModalAction())}
-        >
+        <button className="changePass__modal_close-btn" type="button" onClick={() => dispatch(closeModalAction())}>
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>
@@ -69,14 +94,14 @@ const ChangePassModalBody: React.FC = () => {
         <p>{message}</p>
         <br />
         <br />
-        <InputText name="Password" id="SignUpPassword" type="password" onChange={passwordGetter} value={password} />
+        <InputText name="Password" id="SignUpPassword" type="password" onChange={passwordGetter} value={newPassword} />
         <br />
         <InputText
           name="Repeat password"
           id="SignUpRepeatPassword"
           type="password"
           onChange={repeatPasswordGetter}
-          value={repeatPassword}
+          value={repeatNewPassword}
         />
         <br />
         <div className="changePass__modal_submit-btn-container">

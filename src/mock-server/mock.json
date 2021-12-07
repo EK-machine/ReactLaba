@@ -75,9 +75,19 @@
   ],
   "users": [
     {
-      "login": "dscdsdc",
-      "password": "Qwerty12",
+      "login": "Срещ",
+      "password": "Qwerty123",
       "id": 1
+    },
+    {
+      "login": "letstry",
+      "password": "Qwerty123",
+      "id": 2
+    },
+    {
+      "login": "nukakatam",
+      "password": "Qwerty123",
+      "id": 3
     }
   ]
 }

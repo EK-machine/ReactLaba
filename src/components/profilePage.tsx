@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { showChangePassModalAction } from "../redux/actions";
+import { showChangePassModalAction, logInAction } from "../redux/actions";
 import "./profilepage.css";
 import { ReducerState } from "../redux/reducer";
 import ProfileInputText from "./elements/profileInputText";
@@ -8,15 +8,50 @@ import ProfileTextArea from "./elements/ProfileTextArea";
 
 const ProfilePage: React.FC = () => {
   const userName = useSelector((state: ReducerState) => state.signIn.userName);
-  const changePassModalDispatch = useDispatch();
-  const [name, setName] = useState(userName);
+  const [currentName, setCurrentName] = useState("");
+  const [currentId, setCurrentId] = useState();
+  const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const dispatch = useDispatch();
+  const dispatchedLogInAction = (newUserName: string) => dispatch(logInAction(newUserName));
+
+  useEffect(() => {
+    const currenUserFetch = async () => {
+      const currentUserResp = await fetch(`http://localhost:3000/users?login_like=${userName}`, { method: "GET" });
+      const currentUserRespJson = await currentUserResp.json();
+      const [{ login, id }] = currentUserRespJson;
+      setCurrentName(login);
+      setCurrentId(id);
+    };
+    currenUserFetch();
+  }, []);
+
   const userNameGetter = (inputName: string) => {
     setName(inputName);
   };
   const descriptionGetter = (inputName: string) => {
     setDescription(inputName);
   };
+
+  const updatedName = name || currentName;
+
+  const userObj = { id: currentId, login: updatedName, description };
+
+  async function saveHandler() {
+    const patchResponse = await fetch(`http://localhost:3000/users/${currentId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userObj),
+    });
+
+    if (patchResponse.status === 404) {
+      throw new Error(`HTTP status: ${patchResponse.status}`);
+    }
+    dispatchedLogInAction(updatedName);
+  }
+
   return (
     <div className="profilePage__container">
       <div className="profilePage__inner-container">
@@ -42,13 +77,13 @@ const ProfilePage: React.FC = () => {
             />
           </div>
           <div className="profilePage__btnsSection">
-            <button type="button" className="profilePage__btnsSection_saveBtn">
+            <button type="button" className="profilePage__btnsSection_saveBtn" onClick={saveHandler}>
               <p>Save profile</p>
             </button>
             <button
               type="button"
               className="profilePage__btnsSection_changePassBtn"
-              onClick={() => changePassModalDispatch(showChangePassModalAction())}
+              onClick={() => dispatch(showChangePassModalAction())}
             >
               <p>Change password</p>
             </button>

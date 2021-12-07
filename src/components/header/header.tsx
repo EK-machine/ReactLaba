@@ -8,7 +8,6 @@ import ProductsDropDown from "../productsDropDown";
 import SignInBtn from "../elements/signInBtn";
 import SignUpBtn from "../elements/signUpBtn";
 import SignOutBtn from "../elements/signOutBtn";
-import UserNameBtn from "../elements/userNameBtn";
 import { HeaderProps } from "../../types/types";
 import { logInAction, logOutAction } from "../../redux/actions";
 
@@ -46,7 +45,16 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, userName, dispatchedLogInActi
       <div className="header__btn-log_container">
         {loggedIn ? (
           <>
-            <UserNameBtn userName={userName} />
+            <NavLink
+              key={routesData[3].text}
+              exact
+              to={routesData[3].path}
+              className="header__btn"
+              activeClassName="header__btn-active"
+              role="button"
+            >
+              <p className="header__btn-title">{userName}</p>
+            </NavLink>
             <SignOutBtn dispatchedLogOutAction={dispatchedLogOutAction} />
           </>
         ) : (
