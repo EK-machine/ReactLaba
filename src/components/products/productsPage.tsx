@@ -24,8 +24,15 @@ const ProductsPage: React.FC = () => {
 
   return (
     <div className="productsPage__container">
-      <p>Here are listed products on {id.toLocaleUpperCase()} category:</p>
-      <ProductsOutput productList={categoryList} />
+      <section className="productsPage__left">
+        <p>Here are listed products on {id.toLocaleUpperCase()} category:</p>
+      </section>
+      <section className="productsPage__right">
+        <div className="productsPage__searchBar_container">here will be search bar</div>
+        <div className="productsPage__productsOutput_container">
+          <ProductsOutput productList={categoryList} />
+        </div>
+      </section>
     </div>
   );
 };

@@ -6,7 +6,12 @@
       "developer": "343 Industries",
       "timestamp": 1636923600000,
       "date": "15.11.2021",
-      "category": "pc"
+      "category": "pc",
+      "description": "It is the seventh main entry in the Halo series, following 2015's Halo 5: Guardians.",
+      "genre": "action-adventure game, first-person shooter",
+      "age": 13,
+      "rating": 5,
+      "price": 59.99
     },
     {
       "id": 2,
@@ -14,7 +19,12 @@
       "developer": "DICE",
       "timestamp": 1634245200000,
       "date": "15.10.2021",
-      "category": "pc, xbx"
+      "category": "pc, xbx",
+      "description": "Battlefield 2042 is a first-person shooter video game developed by DICE and published by Electronic Arts.",
+      "genre": "action-adventure game, first-person shooter",
+      "age": 15,
+      "rating": 3,
+      "price": 59.99
     },
     {
       "id": 3,
@@ -22,7 +32,12 @@
       "developer": "Playground Games",
       "timestamp": 1636059600000,
       "date": "5.11.2021",
-      "category": "pc, ps, xbx"
+      "category": "pc, ps, xbx",
+      "description": "Accessible open-world racer encourages social gaming.",
+      "genre": "action-adventure game, racing game",
+      "age": 6,
+      "rating": 4,
+      "price": 59.99
     },
     {
       "id": 4,
@@ -30,7 +45,12 @@
       "developer": "Rockstar North",
       "timestamp": 1633381200000,
       "date": "5.10.2021",
-      "category": "ps"
+      "category": "ps",
+      "description": "The Trilogy - The Definitive Edition. GTAIII, Vice City, and San Andreas updated with enhanced visuals and gameplay..",
+      "genre": "action-adventure game, nonlinear gameplay",
+      "age": 11,
+      "rating": 4,
+      "price": 59.99
     },
     {
       "id": 5,
@@ -38,7 +58,12 @@
       "developer": "Ubisoft Milan",
       "timestamp": 1633467600000,
       "date": "6.10.2021",
-      "category": "pc, ps"
+      "category": "pc, ps",
+      "description": "In Far Cry 6, play as a local Yaran and fight using over-the-top guerrilla tactics and weaponry to liberate your nation.",
+      "genre": "action-adventure game, first-person shooter, nonlinear gameplay",
+      "age": 18,
+      "rating": 3,
+      "price": 79.99
     },
     {
       "id": 6,
@@ -46,7 +71,12 @@
       "developer": "Sledgehammer Games",
       "timestamp": 1631221200000,
       "date": "10.09.2021",
-      "category": "pc, ps, xbx"
+      "category": "pc, ps, xbx",
+      "description": "Call of Duty: Vanguard is a 2021 first-person shooter game developed by Sledgehammer Games.",
+      "genre": "action-adventure game, first-person shooter",
+      "age": 18,
+      "rating": 5,
+      "price": 65.99
     },
     {
       "id": 7,
@@ -54,7 +84,12 @@
       "developer": "Image & Form Games",
       "timestamp": 1632085200000,
       "date": "20.09.2021",
-      "category": "xbx"
+      "category": "xbx",
+      "description": "The Gunk is an upcoming action-adventure video game developed by Image & Form.",
+      "genre": "action-adventure game",
+      "age": 7,
+      "rating": 3,
+      "price": 39.99
     },
     {
       "id": 8,
@@ -62,7 +97,12 @@
       "developer": "Turtle Rock Studios",
       "timestamp": 1633986000000,
       "date": "12.10.2021",
-      "category": "pc, ps, xbx"
+      "category": "pc, ps, xbx",
+      "description": "Back 4 Blood is a thrilling cooperative first-person shooter from the creators of the critically acclaimed Left 4 Dead franchise.",
+      "genre": "first-person shooter, survival game",
+      "age": 18,
+      "rating": 3,
+      "price": 59.99
     },
     {
       "id": 9,
@@ -70,13 +110,96 @@
       "developer": "Luis Antonio",
       "timestamp": 1629320400000,
       "date": "19.08.2021",
-      "category": "pc"
+      "category": "pc",
+      "description": "TWELVE MINUTES is a real-time top-down interactive thriller with an accessible click and drag interface.",
+      "genre": "action-adventure game, indie game, puzzle game",
+      "age": 18,
+      "rating": 5,
+      "price": 24.99
+    },
+    {
+      "id": 10,
+      "title": "Hitman 3",
+      "developer": "IO Interactive",
+      "timestamp": 1611144000000,
+      "date": "20.01.2021",
+      "category": "pc, ps, xbx",
+      "description": "HITMAN 3 is the dramatic conclusion to the World of Assassination trilogy.",
+      "genre": "action-adventure game, shooter game, stealth game",
+      "age": 18,
+      "rating": 5,
+      "price": 79.99
+    },
+    {
+      "id": 11,
+      "title": "Deathloop",
+      "developer": "Arkane Studios",
+      "timestamp": 1631577600000,
+      "date": "14.09.2021",
+      "category": "pc, ps",
+      "description": "Deathloop is a 2021 first-person shooter game developed by Arkane Studios and published by Bethesda Softworks.",
+      "genre": "action-adventure game, fighting game,  first-person shooter",
+      "age": 18,
+      "rating": 4,
+      "price": 59.99
+    },
+    {
+      "id": 12,
+      "title": "Solar Ash",
+      "developer": "Heart Machine",
+      "timestamp": 1638403200000,
+      "date": "02.12.2021",
+      "category": "pc, ps",
+      "description": "Solar Ash is an adventure platforming game developed by Heart Machine and published by Annapurna Interactive.",
+      "genre": "action-adventure game, fighting game",
+      "age": 11,
+      "rating": 4,
+      "price": 39.99
+    },
+    {
+      "id": 13,
+      "title": "Resident Evil Village",
+      "developer": "Capcom",
+      "timestamp": 1619827200000,
+      "date": "01.05.2021",
+      "category": "pc, ps, xbx",
+      "description": "Resident Evil Village is a 2021 survival horror game developed and published by Capcom.",
+      "genre": "survival game",
+      "age": 18,
+      "rating": 5,
+      "price": 79.99
+    },
+    {
+      "id": 14,
+      "title": "Psychonauts 2",
+      "developer": "Double Fine",
+      "timestamp": 1629849600000,
+      "date": "25.08.2021",
+      "category": "pc, xbx",
+      "description": "Psychonauts 2 is a platform game developed by Double Fine and published by Xbox Game Studios.",
+      "genre": "action-adventure game, fighting game",
+      "age": 7,
+      "rating": 5,
+      "price": 59.99
+    },
+    {
+      "id": 15,
+      "title": "Returnal",
+      "developer": "Housemarque",
+      "timestamp": 1619740800000,
+      "date": "30.04.2021",
+      "category": "ps",
+      "description": "Returnal is a third-person shooter roguelike video game developed by Housemarque and published by Sony Interactive Entertainment.",
+      "genre": "action-adventure game, third-person shooter",
+      "age": 16,
+      "rating": 4,
+      "price": 39.99
     }
   ],
   "users": [
     {
-      "login": "vot",
-      "password": "Qwerty123",
+      "login": "ewfeww",
+      "password": "Qwerty12",
       "id": 1
     }
   ]

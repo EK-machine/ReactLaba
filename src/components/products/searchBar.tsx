@@ -14,12 +14,18 @@ const SearchBar: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    let cancel = false;
     async function startingFetch() {
       const startFetch = await fetch(startFetchUrl);
       const startFetchJson = await startFetch.json();
-      setList(startFetchJson);
+      if (!cancel) {
+        setList(startFetchJson);
+      }
     }
     startingFetch();
+    return () => {
+      cancel = true;
+    };
   }, []);
 
   const updateQuery = async (e: React.ChangeEvent<HTMLInputElement>) => {

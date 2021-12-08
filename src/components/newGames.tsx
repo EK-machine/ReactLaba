@@ -8,12 +8,18 @@ const NewGames: React.FC = () => {
   const [newGamesList, setNewGamesList] = useState([]);
 
   useEffect(() => {
+    let cancel = false;
     async function newGameFetching() {
       const newGameFetch = await fetch(startFetchUrl);
       const newGameJson = await newGameFetch.json();
-      setNewGamesList(newGameJson.slice(0, 3));
+      if (!cancel) {
+        setNewGamesList(newGameJson.slice(0, 3));
+      }
     }
     newGameFetching();
+    return () => {
+      cancel = true;
+    };
   }, []);
 
   return (

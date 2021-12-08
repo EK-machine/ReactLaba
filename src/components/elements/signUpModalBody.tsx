@@ -13,18 +13,21 @@ const SignUpModalBody: React.FC = () => {
   const [logup, setLogup] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
-  const [message, setMessage] = useState("Please enter password");
-  const loggedIn = useSelector((state: ReducerState) => state.loggedIn);
-  const closeLogModalDispatch = useDispatch();
+  const [loginMessage, setLoginMessage] = useState("Please enter login");
+  const [passMessage, setPassMessage] = useState("Please enter password");
+  const [repeatPassMessage, setRepeatPassMessage] = useState("Please repeat password");
+  const [formValid, setFormValid] = useState(false);
+  const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (loggedIn) {
-      closeLogModalDispatch(closeModalAction());
+      dispatch(closeModalAction());
     }
   }, [loggedIn]);
 
-  const closeLogIn = () => closeLogModalDispatch(closeModalAction());
-  const dispatchedLogInAction = (userName: string) => closeLogModalDispatch(logInAction(userName));
+  const closeLogIn = () => dispatch(closeModalAction());
+  const dispatchedLogInAction = (userName: string) => dispatch(logInAction(userName));
   const history = useHistory();
   const closeModalHandler = () => {
     closeLogIn();
@@ -47,53 +50,79 @@ const SignUpModalBody: React.FC = () => {
 
   const signUpObj = { login: logup, password };
 
+  const verifyName = (log: string) => {
+    if (!log) {
+      setLoginMessage("Please enter login");
+    } else if (log.length < 3 || log.length > 12) {
+      setLoginMessage("Login must be between 3 and 12 characters");
+    } else {
+      setLoginMessage("Login is OK");
+    }
+  };
+
   const verifyPassword = (pass: string) => {
     const alphNumPass = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
     if (!pass) {
-      return { isValid: false, validMessage: "Please enter password" };
+      setPassMessage("Please enter password");
+    } else if (pass.length < 8 || pass.length > 15) {
+      setPassMessage("Password must be between 8 and 15 characters");
+    } else if (pass[0].toUpperCase() !== pass[0]) {
+      setPassMessage("First character of password must be capital");
+    } else if (!alphNumPass.test(pass)) {
+      setPassMessage("At least 1 character of password must be numeric or alphabetic");
+    } else {
+      setPassMessage("Password is OK");
     }
-    if (pass.length < 8 || pass.length > 15) {
-      return { isValid: false, validMessage: "Password must be between 8 and 15 characters" };
-    }
-    if (pass[0].toUpperCase() !== pass[0]) {
-      return { isValid: false, validMessage: "First character of password must be capital" };
-    }
-    if (!alphNumPass.test(pass)) {
-      return { isValid: false, validMessage: "At least 1 character of password must be numeric or alphabetic" };
-    }
-    return { isValid: true, validMessage: "Success" };
   };
+
+  const comparePass = (pass: string) => {
+    if (password !== repeatPassword || !repeatPassword) {
+      setRepeatPassMessage("Repeated password in not correct");
+    } else {
+      setRepeatPassMessage("Repeated password is OK");
+    }
+  };
+
+  useEffect(() => {
+    verifyName(logup);
+    verifyPassword(password);
+    comparePass(repeatPassword);
+  }, [logup, password, repeatPassword]);
+
+  useEffect(() => {
+    if (
+      loginMessage === "Login is OK" &&
+      passMessage === "Password is OK" &&
+      repeatPassMessage === "Repeated password is OK"
+    ) {
+      setFormValid(true);
+    } else {
+      setFormValid(false);
+    }
+  }, [loginMessage, passMessage, repeatPassMessage]);
 
   async function putFunc(e: React.SyntheticEvent) {
     if (e) {
       e.preventDefault();
     }
 
-    if (!(repeatPassword === password)) {
-      setMessage("Password is not correct");
-    } else if (!verifyPassword(password).isValid) {
-      setMessage(verifyPassword(password).validMessage);
+    const putResponse = await fetch(signUpUrl, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signUpObj),
+    });
+
+    if (putResponse.status === 200) {
+      dispatchedLogInAction(logup);
     } else {
-      setMessage(verifyPassword(password).validMessage);
-      const putResponse = await fetch(signUpUrl, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signUpObj),
-      });
-
-      if (putResponse.status === 200) {
-        dispatchedLogInAction(logup);
-      } else {
-        throw new Error(`HTTP status: ${putResponse.status}`);
-      }
-
-      const response = await putResponse.json();
-      history.push(routesData[3].path);
-      return response;
+      throw new Error(`HTTP status: ${putResponse.status}`);
     }
-    return null;
+
+    const response = await putResponse.json();
+    history.push(routesData[3].path);
+    return response;
   }
 
   return (
@@ -105,22 +134,21 @@ const SignUpModalBody: React.FC = () => {
         </button>
       </div>
       <form action="#" className="signUp__modal_content-container" onSubmit={putFunc}>
-        <p>{message}</p>
-        <br />
         <InputText name="Login" id="SignUplogin" type="text" onChange={logupGetter} value={logup} />
-        <br />
+        <p>{loginMessage}</p>
         <InputText name="Password" id="SignUpPassword" type="password" onChange={passwordGetter} value={password} />
-        <br />
+        <p>{passMessage}</p>
         <InputText
-          name="RepeatPassword"
+          name="Repeat password"
           id="SignUpRepeatPassword"
           type="password"
           onChange={repeatPasswordGetter}
           value={repeatPassword}
         />
+        <p>{repeatPassMessage}</p>
         <br />
         <div className="signUp__modal_submit-btn-container">
-          <input className="signUp__modal_submit-btn" type="submit" />
+          <input className="signUp__modal_submit-btn" type="submit" disabled={!formValid} />
         </div>
       </form>
     </div>

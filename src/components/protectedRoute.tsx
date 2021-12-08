@@ -4,7 +4,7 @@ import { Route, Redirect, RouteProps } from "react-router-dom";
 import { ReducerState } from "../redux/reducer";
 
 const ProtectedRoute: React.FC<RouteProps> = ({ children, location, ...routeProps }) => {
-  const loggedIn = useSelector((state: ReducerState) => state.loggedIn);
+  const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);
   return (
     <Route
       {...routeProps}

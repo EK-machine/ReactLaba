@@ -1,10 +1,18 @@
-import { initialState } from "./initalState";
-import { logInType, logOutType, showSignInModal, showSignUpModal, closeModal } from "./actionTypes";
+import { combineReducers } from "redux";
+import { initialLogInState, initialModalState } from "./initalState";
+import {
+  logInType,
+  logOutType,
+  showSignInModal,
+  showSignUpModal,
+  showChangePassModal,
+  closeModal,
+} from "./actionTypes";
 
-const reducer = (
-  state = initialState,
+const logInReducer = (
+  state = initialLogInState,
   action: { type: string; payload: string }
-): { loggedIn: boolean; userName: string; signInModalVisible: boolean; signUpModalVisible: boolean } => {
+): { loggedIn: boolean; userName: string } => {
   switch (action.type) {
     case logInType:
       return {
@@ -16,30 +24,55 @@ const reducer = (
       return {
         ...state,
         loggedIn: false,
-        userName: initialState.userName,
-      };
-    case showSignInModal:
-      return {
-        ...state,
-        signInModalVisible: true,
-        signUpModalVisible: false,
-      };
-    case showSignUpModal:
-      return {
-        ...state,
-        signInModalVisible: false,
-        signUpModalVisible: true,
-      };
-    case closeModal:
-      return {
-        ...state,
-        signInModalVisible: false,
-        signUpModalVisible: false,
+        userName: initialLogInState.userName,
       };
     default:
       return state;
   }
 };
 
-export default reducer;
-export type ReducerState = ReturnType<typeof reducer>;
+const modalReducer = (
+  state = initialModalState,
+  action: { type: string }
+): { signInModalVisible: boolean; signUpModalVisible: boolean; changePassModalVisible: boolean } => {
+  switch (action.type) {
+    case showSignInModal:
+      return {
+        ...state,
+        signInModalVisible: true,
+        signUpModalVisible: false,
+        changePassModalVisible: false,
+      };
+    case showSignUpModal:
+      return {
+        ...state,
+        signInModalVisible: false,
+        signUpModalVisible: true,
+        changePassModalVisible: false,
+      };
+    case showChangePassModal:
+      return {
+        ...state,
+        signInModalVisible: false,
+        signUpModalVisible: false,
+        changePassModalVisible: true,
+      };
+    case closeModal:
+      return {
+        ...state,
+        signInModalVisible: false,
+        signUpModalVisible: false,
+        changePassModalVisible: false,
+      };
+    default:
+      return state;
+  }
+};
+
+const rootReducer = combineReducers({
+  signIn: logInReducer,
+  modal: modalReducer,
+});
+
+export default rootReducer;
+export type ReducerState = ReturnType<typeof rootReducer>;

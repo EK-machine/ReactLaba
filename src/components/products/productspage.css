@@ -3,6 +3,18 @@
   z-index: 0;
   height: auto;
   display: flex;
+  flex-direction: row;
+  padding: 15px;
+}
+
+.productsPage__left {
+  flex-basis: 20%;
+}
+
+.productsPage__right {
+  flex-basis: 80;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
