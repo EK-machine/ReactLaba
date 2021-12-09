@@ -14,7 +14,7 @@ import LogInPage from "./components/logInPage";
 import ProfilePage from "./components/profilePage";
 import Footer from "./components/products/footer";
 import routesData from "./components/routesData";
-import ErrorBoundary from "./components/errorBoundary";
+// import ErrorBoundary from "./components/errorBoundary";
 import ProtectedRoute from "./components/protectedRoute";
 import { AppProps, AppState } from "./types/types";
 import ModalContainer from "./components/elements/modalContainer";
@@ -36,39 +36,34 @@ class AppContainer extends Component<AppProps, AppState> {
       <Provider store={store}>
         <StrictMode>
           <BrowserRouter>
-            <ErrorBoundary>
-              <Header />
+            {/* <ErrorBoundary> */}
+            <Header />
 
-              <Switch>
-                <Route path="/login">
-                  <LogInPage />
-                </Route>
-
-                <Route exact path={routesData[0].path} component={HomePage} />
-
-                {/* just for purpose of development I made protected route to a usual one
-              <Route exact path="/products/:id" component={ProductsPage} /> */}
-                <ProtectedRoute path="/products/:id">
+            <Switch>
+              <Route path="/login">
+                <LogInPage />
+              </Route>
+              <Route exact path={routesData[0].path} component={HomePage} />
+              {/* just for purpose of development I made protected route to a usual one */}
+              <Route exact path="/products/:id" component={ProductsPage} />
+              {/* <ProtectedRoute path="/products/:id">
                   <ProductsPage />
-                </ProtectedRoute>
+                </ProtectedRoute> */}
+              <ProtectedRoute path={routesData[2].path}>
+                <AboutPage />
+              </ProtectedRoute>
+              <ProtectedRoute path={routesData[3].path}>
+                <ProfilePage />
+              </ProtectedRoute>
+              <Route path="*">
+                <Redirect to={routesData[0].path} />
+              </Route>
+            </Switch>
 
-                <ProtectedRoute path={routesData[2].path}>
-                  <AboutPage />
-                </ProtectedRoute>
+            <Footer />
 
-                <ProtectedRoute path={routesData[3].path}>
-                  <ProfilePage />
-                </ProtectedRoute>
-
-                <Route path="*">
-                  <Redirect to={routesData[0].path} />
-                </Route>
-              </Switch>
-
-              <Footer />
-
-              <ModalContainer />
-            </ErrorBoundary>
+            <ModalContainer />
+            {/* </ErrorBoundary> */}
           </BrowserRouter>
         </StrictMode>
       </Provider>
