@@ -26,3 +26,9 @@
   flex-wrap: wrap;
   gap: 20px;
 }
+
+.gameCard__loading-icon {
+  color: #bdbac1;
+  animation: loadingSpin 4s linear infinite;
+  font-size: 30px;
+}

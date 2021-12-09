@@ -18,8 +18,8 @@ export interface ProductItemProps {
   date?: string;
   category: string;
   description: string;
-  genre: string;
-  age: number;
+  genre?: string;
+  age?: number;
   rating: number;
   price: number;
 }
