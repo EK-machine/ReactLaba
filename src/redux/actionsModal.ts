@@ -1,20 +1,4 @@
-import {
-  logInType,
-  logOutType,
-  showSignInModal,
-  showSignUpModal,
-  showChangePassModal,
-  closeModal,
-} from "./actionTypes";
-
-export const logInAction = (userName: string): { type: string; payload: string } => ({
-  type: logInType,
-  payload: userName,
-});
-
-export const logOutAction = (): { type: string } => ({
-  type: logOutType,
-});
+import { showSignInModal, showSignUpModal, showChangePassModal, closeModal } from "./actionTypesModal";
 
 export const showSignInModalAction = (): { type: string } => ({
   type: showSignInModal,

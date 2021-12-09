@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import "./changepassmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { closeModalAction } from "../../redux/actions";
+import { closeModalAction } from "../../redux/actionsModal";
 import InputText from "./inputText";
-import { ReducerState } from "../../redux/reducer";
+import { ReducerState } from "../../redux/reducerRoot";
 
 const ChangePassModalBody: React.FC = () => {
   const userName = useSelector((state: ReducerState) => state.signIn.userName);

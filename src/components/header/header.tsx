@@ -9,7 +9,7 @@ import SignInBtn from "../elements/signInBtn";
 import SignUpBtn from "../elements/signUpBtn";
 import SignOutBtn from "../elements/signOutBtn";
 import { HeaderProps } from "../../types/types";
-import { logInAction, logOutAction } from "../../redux/actions";
+import { logInAction, logOutAction } from "../../redux/actionsLogin";
 
 const Header: React.FC<HeaderProps> = ({ loggedIn, userName, dispatchedLogInAction, dispatchedLogOutAction }) => (
   <header className="header__container">

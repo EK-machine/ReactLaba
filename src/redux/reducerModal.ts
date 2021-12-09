@@ -1,35 +1,5 @@
-import { combineReducers } from "redux";
-import { initialLogInState, initialModalState } from "./initalState";
-import {
-  logInType,
-  logOutType,
-  showSignInModal,
-  showSignUpModal,
-  showChangePassModal,
-  closeModal,
-} from "./actionTypes";
-
-const logInReducer = (
-  state = initialLogInState,
-  action: { type: string; payload: string }
-): { loggedIn: boolean; userName: string } => {
-  switch (action.type) {
-    case logInType:
-      return {
-        ...state,
-        loggedIn: true,
-        userName: action.payload,
-      };
-    case logOutType:
-      return {
-        ...state,
-        loggedIn: false,
-        userName: initialLogInState.userName,
-      };
-    default:
-      return state;
-  }
-};
+import { initialModalState } from "./initalStateModal";
+import { showSignInModal, showSignUpModal, showChangePassModal, closeModal } from "./actionTypesModal";
 
 const modalReducer = (
   state = initialModalState,
@@ -69,10 +39,4 @@ const modalReducer = (
   }
 };
 
-const rootReducer = combineReducers({
-  signIn: logInReducer,
-  modal: modalReducer,
-});
-
-export default rootReducer;
-export type ReducerState = ReturnType<typeof rootReducer>;
+export default modalReducer;

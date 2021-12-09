@@ -4,7 +4,7 @@ import Modal from "./modal";
 import SignInModalBody from "./signInModalBody";
 import SignUpModalBody from "./signUpModalBody";
 import ChangePassModalBody from "./changePassModalBody";
-import { ReducerState } from "../../redux/reducer";
+import { ReducerState } from "../../redux/reducerRoot";
 
 const ModalContainer: React.FC = () => {
   const signInModalVisible = useSelector((state: ReducerState) => state.modal.signInModalVisible);

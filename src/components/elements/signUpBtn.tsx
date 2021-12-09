@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import "./signupbtn.css";
 import { SignUpBtnProps } from "../../types/types";
-import { showSignUpModalAction } from "../../redux/actions";
+import { showSignUpModalAction } from "../../redux/actionsModal";
 
 const SignUpBtn: React.FC<SignUpBtnProps> = () => {
   const dispatch = useDispatch();

@@ -1,0 +1,16 @@
+.ageSelector__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.ageSelector__input_container {
+  width: 100%;
+}
+
+.ageSelector__input_radioButton {
+  margin-right: 5px;
+}
+
+.ageSelector__label_container::after {
+  content: "+";
+}

@@ -1,0 +1,12 @@
+.genreSelector__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.genreSelector__input_container {
+  width: 100%;
+}
+
+.genreSelector__input_radioButton {
+  margin-right: 5px;
+}

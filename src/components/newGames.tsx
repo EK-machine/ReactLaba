@@ -29,8 +29,15 @@ const NewGames: React.FC = () => {
           <h1 className="newGame__title">New games</h1>
         </div>
         <div className="newGame__content-container">
-          {newGamesList.map(({ title, date, category }) => (
-            <GameCard key={title} title={title} date={date} category={category} />
+          {newGamesList.map(({ title, category, description, rating, price }) => (
+            <GameCard
+              key={title}
+              title={title}
+              category={category}
+              description={description}
+              rating={rating}
+              price={price}
+            />
           ))}
         </div>
       </div>

@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import InputText from "./inputText";
 import routesData from "../routesData";
-import { closeModalAction, logInAction } from "../../redux/actions";
-import { ReducerState } from "../../redux/reducer";
+import { logInAction } from "../../redux/actionsLogin";
+import { closeModalAction } from "../../redux/actionsModal";
+import { ReducerState } from "../../redux/reducerRoot";
 
 const SignUpModalBody: React.FC = () => {
   const [logup, setLogup] = useState<string>("");

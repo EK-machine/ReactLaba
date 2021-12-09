@@ -201,6 +201,11 @@
       "login": "ewfeww",
       "password": "Qwerty12",
       "id": 1
+    },
+    {
+      "login": "hit",
+      "password": "Letstry12",
+      "id": 2
     }
   ]
 }

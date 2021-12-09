@@ -15,8 +15,13 @@ export interface ProductItemProps {
   id?: number;
   title: string;
   developer?: string;
-  date: string;
+  date?: string;
   category: string;
+  description: string;
+  genre: string;
+  age: number;
+  rating: number;
+  price: number;
 }
 
 export interface CategoryProp {
@@ -86,4 +91,8 @@ export interface LocationState {
 
 export interface UserNameProps {
   userName: string | undefined;
+}
+
+export interface StarProps {
+  rating: number;
 }
