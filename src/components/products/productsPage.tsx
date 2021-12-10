@@ -3,14 +3,12 @@ import { useDispatch } from "react-redux";
 import "./productspage.css";
 import { useParams } from "react-router-dom";
 import MainProductOutput from "./mainProductOutput";
+import { RouteParams } from "../../types/types";
 import ProductSearchBar from "./productSearchBar";
-import { ProductItemProps, RouteParams } from "../../types/types";
-import CriteriaSelector from "../elements/criteriaSelector";
 import GenreRadioButtons from "../elements/genreRadioButtons";
 import AgeRadioButtons from "../elements/ageRadioButtons";
-import { filterByCategoryAction } from "../../redux/actionsFilter";
-
-const startFetchUrl = "http://localhost:3000/games";
+import CriteriaSelector from "../elements/criteriaSelector";
+import { fetchGamesAction } from "../../redux/actionsFilter";
 
 const ProductsPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,13 +16,8 @@ const ProductsPage: React.FC = () => {
   const { id } = useParams<RouteParams>();
 
   useEffect(() => {
-    async function fetchOnId() {
-      const startFetch = await fetch(startFetchUrl);
-      const startFetchJson: Array<ProductItemProps> = await startFetch.json();
-      const categoryFiltered = startFetchJson.filter(({ category }) => category.toLowerCase().includes(id));
-      dispatch(filterByCategoryAction(categoryFiltered));
-    }
-    fetchOnId();
+    const partOfUrl = `?category_like=${id}`;
+    dispatch(fetchGamesAction(partOfUrl));
   }, [id]);
 
   const categoryTitle = () => {

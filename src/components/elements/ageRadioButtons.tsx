@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./ageradiobuttons.css";
-import { ProductItemProps } from "../../types/types";
-import { filterByCategoryAction } from "../../redux/actionsFilter";
+import { fetchGamesAction } from "../../redux/actionsFilter";
 
 const ageArr = ["all ages", "6", "7", "11", "13", "15", "16", "18"];
 
 const AgeRadioButtons: React.FC = () => {
   const dispatch = useDispatch();
   const [age, setAge] = useState<string>("all ages");
+  const [firstUpdate, setFirstUpdate] = useState<boolean>(true);
 
   useEffect(() => {
-    async function fetchOnAge() {
-      const startFetch = await fetch(`http://localhost:3000/games?age_like=${age}`, { method: "GET" });
-      const startFetchJson: Array<ProductItemProps> = await startFetch.json();
-      dispatch(filterByCategoryAction(startFetchJson));
+    if (firstUpdate) {
+      setFirstUpdate(!firstUpdate);
+      return;
     }
+    const fetchOnAge = () => {
+      const partOfUrl = `?age_like=${age}`;
+      dispatch(fetchGamesAction(partOfUrl));
+    };
 
-    async function fetchAllAges() {
-      const startFetch = await fetch("http://localhost:3000/games", { method: "GET" });
-      const startFetchJson: Array<ProductItemProps> = await startFetch.json();
-      dispatch(filterByCategoryAction(startFetchJson));
-    }
+    const fetchAllAges = () => {
+      const partOfUrl = "";
+      dispatch(fetchGamesAction(partOfUrl));
+    };
+
     if (age === "all ages") {
       fetchAllAges();
     } else {
@@ -37,7 +40,6 @@ const AgeRadioButtons: React.FC = () => {
             className="ageSelector__input_radioButton"
             type="radio"
             id={item}
-            name="fav_lang"
             value={item}
             onChange={(e) => {
               setAge(e.target.value);

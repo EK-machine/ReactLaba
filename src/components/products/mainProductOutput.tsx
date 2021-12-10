@@ -1,19 +1,13 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import "./mainproductoutput.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { ReducerState } from "../../redux/reducerRoot";
+// import GameCard from "../gameCard";
 
 const GameCard = React.lazy(() => import("../gameCard"));
 
 const MainProductOutput: React.FC = () => {
-  const [gamesList, setGamesList] = useState([]);
-  const output = useSelector((state: ReducerState) => state.filter.finalList);
-
-  useEffect(() => {
-    setGamesList(output);
-  }, [output]);
+  const games = useSelector((state: ReducerState) => state.filter);
 
   return (
     <>
@@ -22,8 +16,8 @@ const MainProductOutput: React.FC = () => {
           <h1 className="mainOutput__title">Products</h1>
         </div>
         <div className="mainOutput__content-container">
-          <Suspense fallback={<FontAwesomeIcon icon={faSpinner} className="gameCard__loading-icon" />}>
-            {gamesList.map(({ title, category, description, rating, price }) => (
+          <React.Suspense fallback={<p>loading...</p>}>
+            {games.gamesList.map(({ title, category, description, rating, price }) => (
               <GameCard
                 key={title}
                 title={title}
@@ -33,7 +27,25 @@ const MainProductOutput: React.FC = () => {
                 price={price}
               />
             ))}
-          </Suspense>
+          </React.Suspense>
+          {/* {games.loading ? (
+            <p>loading...</p>
+          ) : games.error ? (
+            <p>{games.error}</p>
+          ) : (
+            <>
+              {games.gamesList.map(({ title, category, description, rating, price }) => (
+                <GameCard
+                  key={title}
+                  title={title}
+                  category={category}
+                  description={description}
+                  rating={rating}
+                  price={price}
+                />
+              ))}
+            </>
+          )} */}
         </div>
       </div>
     </>

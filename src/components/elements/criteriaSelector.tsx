@@ -1,31 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./criteriaselector.css";
 import { ReducerState } from "../../redux/reducerRoot";
-import { filterByCategoryAction } from "../../redux/actionsFilter";
+import {
+  filterByRatingDecsendingAction,
+  filterByRatingAscendingAction,
+  filterByPriceDecsendingAction,
+  filterByPriceAscendingAction,
+} from "../../redux/actionsFilter";
 
 const CriteriaSelector: React.FC = () => {
   const [criteria, setCriteria] = useState<string>("rating");
   const [type, setType] = useState<string>("ascending");
-  const games = useSelector((state: ReducerState) => state.filter.finalList);
+  const games = useSelector((state: ReducerState) => state.filter.gamesList);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const ratingAscendingSort = [...games].sort((a, b) => a.rating - b.rating);
-    const ratingDescendingSort = [...games].sort((a, b) => b.rating - a.rating);
-    const priceAscendingSort = [...games].sort((a, b) => a.price - b.price);
-    const priceDescendingSort = [...games].sort((a, b) => b.price - a.price);
-
     if (criteria === "rating" && type === "ascending") {
-      dispatch(filterByCategoryAction(ratingAscendingSort));
-      console.log(ratingAscendingSort);
+      dispatch(filterByRatingAscendingAction(games));
     } else if (criteria === "rating" && type === "descending") {
-      dispatch(filterByCategoryAction(ratingDescendingSort));
-      console.log(ratingDescendingSort);
+      dispatch(filterByRatingDecsendingAction(games));
     } else if (criteria === "price" && type === "ascending") {
-      dispatch(filterByCategoryAction(priceAscendingSort));
+      dispatch(filterByPriceAscendingAction(games));
     } else if (criteria === "price" && type === "descending") {
-      dispatch(filterByCategoryAction(priceDescendingSort));
+      dispatch(filterByPriceDecsendingAction(games));
     }
   }, [criteria, type]);
 
@@ -36,7 +34,6 @@ const CriteriaSelector: React.FC = () => {
         <select
           className="criteriaSelector__selector"
           id="criteria"
-          name="cars"
           onChange={(e) => {
             setCriteria(e.target.value);
           }}
@@ -50,7 +47,6 @@ const CriteriaSelector: React.FC = () => {
         <select
           className="criteriaSelector__selector"
           id="type"
-          name="cars"
           onChange={(e) => {
             setType(e.target.value);
           }}
