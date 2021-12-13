@@ -4,7 +4,7 @@ import "./productspage.css";
 import { useParams } from "react-router-dom";
 import MainProductOutput from "./mainProductOutput";
 import { RouteParams } from "../../types/types";
-import ProductSearchBar from "./productSearchBar";
+import SearchBar from "./searchBar";
 import GenreRadioButtons from "../elements/genreRadioButtons";
 import AgeRadioButtons from "../elements/ageRadioButtons";
 import CriteriaSelector from "../elements/criteriaSelector";
@@ -64,7 +64,7 @@ const ProductsPage: React.FC = () => {
         </form>
       </section>
       <section className="productsPage__rightContent_container">
-        <ProductSearchBar />
+        <SearchBar />
         <MainProductOutput />
       </section>
     </div>

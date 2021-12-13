@@ -1,62 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import debounce from "lodash.debounce";
-import "./searchBar.css";
+import "./searchbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import ProductsOutput from "./productsOutput";
-import { ProductItemProps } from "../../types/types";
-
-const startFetchUrl = "http://localhost:3000/games";
+import { fetchGamesAction } from "../../redux/actionsFilter";
+import { FilterState } from "../../types/types";
+import { ReducerState } from "../../redux/reducerRoot";
 
 const SearchBar: React.FC = () => {
-  const [query, setQuery] = useState("");
-  const [list, setList] = useState<Array<ProductItemProps>>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const games: FilterState = useSelector((state: ReducerState) => state.filter);
 
-  useEffect(() => {
-    let cancel = false;
-    async function startingFetch() {
-      const startFetch = await fetch(startFetchUrl);
-      const startFetchJson = await startFetch.json();
-      if (!cancel) {
-        setList(startFetchJson);
-      }
-    }
-    startingFetch();
-    return () => {
-      cancel = true;
-    };
-  }, []);
-
-  const updateQuery = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsLoading(true);
+  const updateQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const resp = await fetch(`http://localhost:3000/games?title_like=${value}`, { method: "GET" });
-    setQuery(value);
-    const respJson = await resp.json();
-    setList(respJson);
-    setIsLoading(false);
+    dispatch(fetchGamesAction(`?title_like=${value}`));
   };
 
   const debouncedOnChange = debounce(updateQuery, 300);
-
-  const mockDataFiltered = list.filter(({ title }) => title.toLocaleLowerCase().includes(query.toLocaleLowerCase()));
 
   return (
     <>
       <div className="searchBar__container">
         <div className="searchBar__icon-container">
-          {isLoading ? (
+          {games.loading ? (
             <FontAwesomeIcon icon={faSpinner} className="searchBar__loading-icon" />
           ) : (
             <FontAwesomeIcon icon={faSearch} className="searchBar__search-icon" />
           )}
         </div>
-        <input type="text" placeholder="Search game by name" className="searchBar" onChange={debouncedOnChange} />
+        <input type="text" placeholder="Search" className="searchBar" onChange={debouncedOnChange} />
       </div>
-      <ProductsOutput productList={mockDataFiltered} />
     </>
   );
 };
-
 export default SearchBar;

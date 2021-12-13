@@ -3,8 +3,9 @@
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  padding: 17px;
+  padding: 30px;
   margin: 0;
+  width: 80%;
 }
 
 .newGame__title-container {
@@ -22,6 +23,7 @@
 .newGame__content-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  gap: 30px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
 }

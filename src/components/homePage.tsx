@@ -2,7 +2,7 @@ import React from "react";
 import "./homepage.css";
 import SearchBar from "./products/searchBar";
 import Categories from "./categories";
-import NewGames from "./newGames";
+import HomePageOutput from "./homePageOutput";
 
 const HomePage: React.FC = () => (
   <div className="homePage__container">
@@ -13,7 +13,7 @@ const HomePage: React.FC = () => (
       <Categories />
     </div>
     <div className="homePage__new-container">
-      <NewGames />
+      <HomePageOutput />
     </div>
   </div>
 );

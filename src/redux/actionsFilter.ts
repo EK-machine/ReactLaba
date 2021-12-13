@@ -29,6 +29,17 @@ export const fetchGamesAction =
     return games;
   };
 
+export const fetchLastThreeGamesAction =
+  (partOfUrl: string) =>
+  async (dispatch: Dispatch<FilterAction>): Promise<Array<Game>> => {
+    dispatch(fetchGamesRequestAction());
+    const response = await fetch(`http://localhost:3000/games${partOfUrl}`, { method: "GET" });
+    const games: Array<Game> = await response.json();
+    const lastThreeGames = games.slice(0, 3);
+    dispatch(fetchGamesSuccessAction(lastThreeGames));
+    return games;
+  };
+
 export const filterByPriceDecsendingAction = (games: Array<Game>): FilterAction => ({
   type: filterByPriceDecsending,
   payload: games,
