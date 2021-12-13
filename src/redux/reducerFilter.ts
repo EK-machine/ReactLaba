@@ -1,15 +1,15 @@
-import { initialFilterState } from "./initalStateFilter";
+import initialFilterState from "./initalStateFilter";
 import {
   fetchGamesRequest,
   fetchGamesSuccess,
-  fetchGamesFilure,
   filterByRatingDecsending,
   filterByRatingAscending,
   filterByPriceDecsending,
   filterByPriceAscending,
 } from "./actionTypesFilter";
+import { Game, FilterState } from "../types/types";
 
-const FilterReducer = (state = initialFilterState, action) => {
+const FilterReducer = (state = initialFilterState, action: { type: string; payload: Array<Game> }): FilterState => {
   switch (action.type) {
     case fetchGamesRequest:
       return {
@@ -21,42 +21,30 @@ const FilterReducer = (state = initialFilterState, action) => {
         ...state,
         loading: false,
         gamesList: action.payload,
-        error: "",
       };
     case filterByRatingDecsending:
       return {
         ...state,
         loading: false,
         gamesList: [...action.payload].sort((a, b) => b.rating - a.rating),
-        error: "",
       };
     case filterByRatingAscending:
       return {
         ...state,
         loading: false,
         gamesList: [...action.payload].sort((a, b) => a.rating - b.rating),
-        error: "",
       };
     case filterByPriceDecsending:
       return {
         ...state,
         loading: false,
         gamesList: [...action.payload].sort((a, b) => b.price - a.price),
-        error: "",
       };
     case filterByPriceAscending:
       return {
         ...state,
         loading: false,
         gamesList: [...action.payload].sort((a, b) => a.price - b.price),
-        error: "",
-      };
-    case fetchGamesFilure:
-      return {
-        ...state,
-        loading: false,
-        gamesList: [],
-        error: action.payload,
       };
     default:
       return state;
@@ -64,20 +52,3 @@ const FilterReducer = (state = initialFilterState, action) => {
 };
 
 export default FilterReducer;
-
-// import { initialFilterState } from "./initalStateFilter";
-// import { filter } from "./actionTypesFilter";
-
-// const FilterReducer = (state = initialFilterState, action: { type: string; payload: [] }): { finalList: [] } => {
-//   switch (action.type) {
-//     case filter:
-//       return {
-//         ...state,
-//         finalList: action.payload,
-//       };
-//     default:
-//       return state;
-//   }
-// };
-
-// export default FilterReducer;

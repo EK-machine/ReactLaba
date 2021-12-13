@@ -1,6 +1,8 @@
-// eslint-disable-next-line import/prefer-default-export
-export const initialFilterState = {
+import { InitialFilterState } from "../types/types";
+
+const initialFilterState: InitialFilterState = {
   loading: true,
   gamesList: [],
-  error: "",
 };
+
+export default initialFilterState;

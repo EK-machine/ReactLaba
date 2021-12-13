@@ -12,10 +12,15 @@ import {
 const CriteriaSelector: React.FC = () => {
   const [criteria, setCriteria] = useState<string>("rating");
   const [type, setType] = useState<string>("ascending");
+  const [firstUpdate, setFirstUpdate] = useState<boolean>(true);
   const games = useSelector((state: ReducerState) => state.filter.gamesList);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (firstUpdate) {
+      setFirstUpdate(!firstUpdate);
+      return;
+    }
     if (criteria === "rating" && type === "ascending") {
       dispatch(filterByRatingAscendingAction(games));
     } else if (criteria === "rating" && type === "descending") {

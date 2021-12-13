@@ -1,4 +1,4 @@
-import { initialLogInState } from "./initalStateLogin";
+import initialLogInState from "./initalStateLogin";
 import { logInType, logOutType } from "./actionTypesLogin";
 
 const logInReducer = (

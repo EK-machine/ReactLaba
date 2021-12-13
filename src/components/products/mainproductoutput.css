@@ -32,3 +32,18 @@
   animation: loadingSpin 4s linear infinite;
   font-size: 30px;
 }
+
+.mainOutput__loadingSpinner {
+  color: #bdbac1;
+  animation: loadingSpin 4s linear infinite;
+}
+
+@keyframes loadingSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

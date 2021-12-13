@@ -24,6 +24,23 @@ export interface ProductItemProps {
   price: number;
 }
 
+export type Game = {
+  id?: number;
+  title: string;
+  developer?: string;
+  date?: string;
+  category: string;
+  description: string;
+  genre?: string;
+  age?: number;
+  rating: number;
+  price: number;
+};
+
+export type FilterAction = { type: string; payload?: Array<Game> };
+
+export type FilterState = { loading: boolean; gamesList: Array<Game> };
+
 export interface CategoryProp {
   title: string;
   path: string;
@@ -96,3 +113,11 @@ export interface UserNameProps {
 export interface StarProps {
   rating: number;
 }
+
+export type InitialFilterState = { loading: boolean; gamesList: [] };
+export type InitialLogInState = { loggedIn: boolean; userName: string };
+export type InitialModalState = {
+  signInModalVisible: boolean;
+  signUpModalVisible: boolean;
+  changePassModalVisible: boolean;
+};
