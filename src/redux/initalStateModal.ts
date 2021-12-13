@@ -1,6 +1,9 @@
-// eslint-disable-next-line import/prefer-default-export
-export const initialModalState = {
+import { InitialModalState } from "../types/types";
+
+const initialModalState: InitialModalState = {
   signInModalVisible: false,
   signUpModalVisible: false,
   changePassModalVisible: false,
 };
+
+export default initialModalState;

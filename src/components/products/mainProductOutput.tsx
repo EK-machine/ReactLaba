@@ -1,16 +1,31 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable no-lone-blocks */
+import React from "react";
 import { useSelector } from "react-redux";
 import "./mainproductoutput.css";
-import GameCard from "../gameCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { ReducerState } from "../../redux/reducerRoot";
+import { FilterState } from "../../types/types";
+import GameCard from "../gameCard"; // 1) SOLUTION WITH STATE.LOADING PART I; 3) SOLUTION WITH CUSTOM HOOK PART I
+import useLoadSpin from "../elements/useLoadSpin"; // 3) SOLUTION WITH CUSTOM HOOK PART II
+
+{
+  /* 2) SOLUTION WITH REACT.SUSPENSE PART I */
+}
+// const GameCard = React.lazy(() => new Promise((resolve) => setTimeout(() => resolve(import("../gameCard")), 500)));
+{
+  /* 2) SOLUTION WITH REACT.SUSPENSE PART I */
+}
 
 const MainProductOutput: React.FC = () => {
-  const [gamesList, setGamesList] = useState([]);
-  const output = useSelector((state: ReducerState) => state.filter.finalList);
-
-  useEffect(() => {
-    setGamesList(output);
-  }, [output]);
+  const games: FilterState = useSelector((state: ReducerState) => state.filter);
+  {
+    /* 3) SOLUTION WITH CUSTOM HOOK PART III */
+  }
+  const status = useLoadSpin();
+  {
+    /* 3) SOLUTION WITH CUSTOM HOOK PART III */
+  }
 
   return (
     <>
@@ -19,16 +34,52 @@ const MainProductOutput: React.FC = () => {
           <h1 className="mainOutput__title">Products</h1>
         </div>
         <div className="mainOutput__content-container">
-          {gamesList.map(({ title, category, description, rating, price }) => (
-            <GameCard
+          {/* 1) SOLUTION WITH STATE.LOADING PART II */}
+          {/* {games.loading ? (
+            <FontAwesomeIcon icon={faSpinner} className="mainOutput__loadingSpinner" />
+          ) : (
+            <>
+              {games.gamesList.map(({ title, category, description, rating, price }) => (
+                <GameCard
+                  key={title}
+                  title={title}
+                  category={category}
+                  description={description}
+                  rating={rating}
+                  price={price}
+                />
+              ))}
+            </>
+          )} */}
+          {/* 1) SOLUTION WITH STATE.LOADING PART II */}
+
+          {/* 2) SOLUTION WITH REACT.SUSPENSE PART II */}
+          {/* {games.gamesList.map(({ title, category, description, rating, price }) => (
+            <React.Suspense
+              fallback={<FontAwesomeIcon icon={faSpinner} className="mainOutput__loadingSpinner" />}
               key={title}
-              title={title}
-              category={category}
-              description={description}
-              rating={rating}
-              price={price}
-            />
-          ))}
+            >
+              <GameCard title={title} category={category} description={description} rating={rating} price={price} />
+            </React.Suspense>
+          ))} */}
+          {/* 2) SOLUTION WITH REACT.SUSPENSE PART II */}
+
+          {/* 3) SOLUTION WITH CUSTOM HOOK PART IV */}
+          {status ? (
+            <FontAwesomeIcon icon={faSpinner} className="mainOutput__loadingSpinner" />
+          ) : (
+            games.gamesList.map(({ title, category, description, rating, price }) => (
+              <GameCard
+                key={title}
+                title={title}
+                category={category}
+                description={description}
+                rating={rating}
+                price={price}
+              />
+            ))
+          )}
+          {/* 3) SOLUTION WITH CUSTOM HOOK PART IV */}
         </div>
       </div>
     </>

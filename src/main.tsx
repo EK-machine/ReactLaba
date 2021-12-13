@@ -43,23 +43,17 @@ class AppContainer extends Component<AppProps, AppState> {
                 <Route path="/login">
                   <LogInPage />
                 </Route>
-
                 <Route exact path={routesData[0].path} component={HomePage} />
 
-                {/* just for purpose of development I made protected route to a usual one
-              <Route exact path="/products/:id" component={ProductsPage} /> */}
                 <ProtectedRoute path="/products/:id">
                   <ProductsPage />
                 </ProtectedRoute>
-
                 <ProtectedRoute path={routesData[2].path}>
                   <AboutPage />
                 </ProtectedRoute>
-
                 <ProtectedRoute path={routesData[3].path}>
                   <ProfilePage />
                 </ProtectedRoute>
-
                 <Route path="*">
                   <Redirect to={routesData[0].path} />
                 </Route>

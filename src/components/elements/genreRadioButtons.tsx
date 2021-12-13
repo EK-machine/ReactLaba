@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./genreradiobuttons.css";
-import { ProductItemProps } from "@/types/types";
-import { filterByCategoryAction } from "../../redux/actionsFilter";
+import { fetchGamesAction } from "../../redux/actionsFilter";
 
 const genreArr = [
   "all genres",
@@ -15,20 +14,24 @@ const genreArr = [
 
 const GenreRadioButtons: React.FC = () => {
   const [genre, setGenre] = useState<string>("all genres");
+  const [firstUpdate, setFirstUpdate] = useState<boolean>(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function fetchOnGenre() {
-      const startFetch = await fetch(`http://localhost:3000/games?genre_like=${genre}`, { method: "GET" });
-      const startFetchJson: Array<ProductItemProps> = await startFetch.json();
-      dispatch(filterByCategoryAction(startFetchJson));
+    if (firstUpdate) {
+      setFirstUpdate(!firstUpdate);
+      return;
     }
+    const fetchOnGenre = () => {
+      const partOfUrl = `?genre_like=${genre}`;
+      dispatch(fetchGamesAction(partOfUrl));
+    };
 
-    async function fetchAllGenres() {
-      const startFetch = await fetch("http://localhost:3000/games", { method: "GET" });
-      const startFetchJson: Array<ProductItemProps> = await startFetch.json();
-      dispatch(filterByCategoryAction(startFetchJson));
-    }
+    const fetchAllGenres = () => {
+      const partOfUrl = "";
+      dispatch(fetchGamesAction(partOfUrl));
+    };
+
     if (genre === "all genres") {
       fetchAllGenres();
     } else {
@@ -44,7 +47,6 @@ const GenreRadioButtons: React.FC = () => {
             className="genreSelector__input_radioButton"
             type="radio"
             id={item}
-            name="fav_language"
             value={item}
             onChange={(e) => {
               setGenre(e.target.value);

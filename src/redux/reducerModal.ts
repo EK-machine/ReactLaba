@@ -1,4 +1,4 @@
-import { initialModalState } from "./initalStateModal";
+import initialModalState from "./initalStateModal";
 import { showSignInModal, showSignUpModal, showChangePassModal, closeModal } from "./actionTypesModal";
 
 const modalReducer = (

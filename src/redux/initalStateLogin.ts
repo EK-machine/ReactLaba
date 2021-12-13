@@ -1,5 +1,8 @@
-// eslint-disable-next-line import/prefer-default-export
-export const initialLogInState = {
+import { InitialLogInState } from "../types/types";
+
+const initialLogInState: InitialLogInState = {
   loggedIn: false,
   userName: "",
 };
+
+export default initialLogInState;
