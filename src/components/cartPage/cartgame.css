@@ -1,0 +1,29 @@
+.cartGame__container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.cartGame__data_name {
+  flex-basis: 30%;
+}
+
+.cartGame__data_platform {
+  flex-basis: 23%;
+}
+
+.cartGame__data_date {
+  flex-basis: 13%;
+}
+
+.cartGame__data_amount {
+  flex-basis: 10%;
+}
+
+.cartGame__data_price {
+  flex-basis: 14%;
+}
+
+.cartGame__data_check {
+  flex-basis: 10%;
+}

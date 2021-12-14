@@ -121,3 +121,15 @@ export type InitialModalState = {
   signUpModalVisible: boolean;
   changePassModalVisible: boolean;
 };
+
+export type GameCart = {
+  title: string;
+  category: string;
+  price: number;
+};
+
+export type InitialCartStateType = {
+  gamesList: Array<GameCart>;
+};
+
+export type CartAction = { type: string; payload: GameCart | Array<GameCart> };

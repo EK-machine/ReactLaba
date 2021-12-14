@@ -12,6 +12,7 @@ import ProductsPage from "./components/products/productsPage";
 import AboutPage from "./components/aboutPage";
 import LogInPage from "./components/logInPage";
 import ProfilePage from "./components/profilePage";
+import CartPage from "./components/cartPage/cartPage";
 import Footer from "./components/products/footer";
 import routesData from "./components/routesData";
 // import ErrorBoundary from "./components/errorBoundary";
@@ -36,7 +37,9 @@ class AppContainer extends Component<AppProps, AppState> {
       <Provider store={store}>
         <StrictMode>
           <BrowserRouter>
+            {/* commented for purpose of development */}
             {/* <ErrorBoundary> */}
+            {/* commented for purpose of development */}
             <Header />
 
             <Switch>
@@ -47,15 +50,25 @@ class AppContainer extends Component<AppProps, AppState> {
               <Route exact path={routesData[0].path} component={HomePage} />
 
               <Route exact path="/products/:id" component={ProductsPage} />
+              {/* commented for purpose of development */}
               {/* <ProtectedRoute path="/products/:id">
                 <ProductsPage />
               </ProtectedRoute> */}
+              {/* commented for purpose of development */}
               <ProtectedRoute path={routesData[2].path}>
                 <AboutPage />
               </ProtectedRoute>
               <ProtectedRoute path={routesData[3].path}>
                 <ProfilePage />
               </ProtectedRoute>
+
+              <Route exact path={routesData[4].path} component={CartPage} />
+              {/* commented for purpose of development */}
+              {/* <ProtectedRoute path={routesData[4].path}>
+                <CartPage />
+              </ProtectedRoute> */}
+              {/* commented for purpose of development */}
+
               <Route path="*">
                 <Redirect to={routesData[0].path} />
               </Route>
@@ -64,7 +77,9 @@ class AppContainer extends Component<AppProps, AppState> {
             <Footer />
 
             <ModalContainer />
+            {/* commented for purpose of development */}
             {/* </ErrorBoundary> */}
+            {/* commented for purpose of development */}
           </BrowserRouter>
         </StrictMode>
       </Provider>
