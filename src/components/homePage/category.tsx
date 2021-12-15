@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./category.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CategoryProp } from "../types/types";
+import { CategoryProp } from "../../types/types";
 
 const Category: React.FC<CategoryProp> = ({ icon, title, path }) => (
   <Link to={path} key={title} className="category__container">

@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import routesData from "../routesData";
-import ProductsDropDown from "../productsDropDown";
+import ProductsDropDown from "./productsDropDown";
 import SignInBtn from "../elements/signInBtn";
 import SignUpBtn from "../elements/signUpBtn";
 import SignOutBtn from "../elements/signOutBtn";

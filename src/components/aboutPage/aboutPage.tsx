@@ -1,5 +1,5 @@
 import React from "react";
-import CounterForErrorCatch from "./counterForErrorCatch";
+import CounterForErrorCatch from "../counterForErrorCatch";
 
 const AboutPage: React.FC = () => (
   <>

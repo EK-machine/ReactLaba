@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import "./homePageOutput.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import GameCard from "./gameCard";
-import { FilterState, Game } from "../types/types";
-import { ReducerState } from "../redux/reducerRoot";
-import { fetchLastThreeGamesAction } from "../redux/actionsFilter";
+import GameCard from "../elements/gameCard";
+import { FilterState, Game } from "../../types/types";
+import { ReducerState } from "../../redux/reducerRoot";
+import { fetchLastThreeGamesAction } from "../../redux/actionsFilter";
 
 const HomePageOutput: React.FC = () => {
   const games: FilterState = useSelector((state: ReducerState) => state.filter);

@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDesktop } from "@fortawesome/free-solid-svg-icons";
 import { faPlaystation, faXbox } from "@fortawesome/free-brands-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { ProductItemProps } from "../types/types";
-import StarRate from "./elements/starRate";
-import { addGameToCartAction } from "../redux/cart/actionsCart";
-import { ReducerState } from "../redux/reducerRoot";
+import { ProductItemProps } from "../../types/types";
+import StarRate from "./starRate";
+import { addGameToCartAction } from "../../redux/cart/actionsCart";
+import { ReducerState } from "../../redux/reducerRoot";
 
 const GameCard: React.FC<ProductItemProps> = ({ title, category, description, rating, price }) => {
   const gamesList = useSelector((state: ReducerState) => state.cart.gamesList);

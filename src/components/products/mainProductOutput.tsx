@@ -6,13 +6,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { ReducerState } from "../../redux/reducerRoot";
 import { FilterState } from "../../types/types";
-import GameCard from "../gameCard"; // 1) SOLUTION WITH STATE.LOADING PART I; 3) SOLUTION WITH CUSTOM HOOK PART I
+import GameCard from "../elements/gameCard"; // 1) SOLUTION WITH STATE.LOADING PART I; 3) SOLUTION WITH CUSTOM HOOK PART I
 import useLoadSpin from "../elements/useLoadSpin"; // 3) SOLUTION WITH CUSTOM HOOK PART II
 
 {
   /* 2) SOLUTION WITH REACT.SUSPENSE PART I */
 }
-// const GameCard = React.lazy(() => new Promise((resolve) => setTimeout(() => resolve(import("../gameCard")), 500)));
+// const GameCard = React.lazy(() => new Promise((resolve) => setTimeout(() => resolve(import("../elements/gameCard")), 500)));
 {
   /* 2) SOLUTION WITH REACT.SUSPENSE PART I */
 }

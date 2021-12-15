@@ -1,6 +1,6 @@
 import React from "react";
 import "./homepage.css";
-import SearchBar from "./products/searchBar";
+import SearchBar from "../products/searchBar";
 import Categories from "./categories";
 import HomePageOutput from "./homePageOutput";
 
