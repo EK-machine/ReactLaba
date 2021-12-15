@@ -1,4 +1,4 @@
-import { addGameToCart, removeGameFromCart, removeGamesFromCart } from "./actionTypesCart";
+import { addGameToCart, changeGameCheck, removeGameFromCart, changeGameAmount } from "./actionTypesCart";
 import { GameCart, CartAction } from "../../types/types";
 
 export const addGameToCartAction = (game: GameCart): CartAction => ({
@@ -6,12 +6,16 @@ export const addGameToCartAction = (game: GameCart): CartAction => ({
   payload: game,
 });
 
-export const removeGameFromCartAction = (game: GameCart): CartAction => ({
-  type: removeGameFromCart,
+export const changeGameCheckAction = (game: Array<GameCart>): CartAction => ({
+  type: changeGameCheck,
   payload: game,
 });
 
-export const removeGamesFromCartAction = (games: Array<GameCart>): CartAction => ({
-  type: removeGamesFromCart,
-  payload: games,
+export const changeGameAmountAction = (game: Array<GameCart>): CartAction => ({
+  type: changeGameAmount,
+  payload: game,
+});
+
+export const removeGameFromCartAction = (): { type: string } => ({
+  type: removeGameFromCart,
 });

@@ -126,10 +126,23 @@ export type GameCart = {
   title: string;
   category: string;
   price: number;
+  check: boolean;
+  amount: number;
 };
 
 export type InitialCartStateType = {
   gamesList: Array<GameCart>;
 };
 
+type changeCheckPayload = {
+  title: string;
+  check: boolean;
+};
+
 export type CartAction = { type: string; payload: GameCart | Array<GameCart> };
+
+export interface CartGameProps {
+  title: string;
+  category: string;
+  price: number;
+}

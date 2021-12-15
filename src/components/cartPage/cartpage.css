@@ -66,10 +66,59 @@
 }
 
 .cartPage__content_containerPrice {
-  width: 24%;
+  width: 14%;
+}
+
+.cartPage__content_containerEmpty {
+  width: 10%;
 }
 
 .cartPage__content_title {
   color: white;
   margin: 0;
+}
+
+.cartPage__formRemove_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 15px;
+  align-items: center;
+  box-shadow: 0px 2px 0px 0px rgba(255, 255, 255, 0.4);
+}
+
+.cartPage__formSubmit_container {
+  padding: 0 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0px 2px 0px 0px rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+.cartPage__formRemove_btn {
+  width: 20%;
+  padding: 10px;
+  font-size: 1rem;
+  color: white;
+  background-color: #9933cc;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cartPage__formSubmit_submitBtn {
+  width: 20%;
+}
+
+.cartPage__formSubmit_btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  color: white;
+  background-color: #9933cc;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }

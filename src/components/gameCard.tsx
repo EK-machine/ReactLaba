@@ -38,9 +38,9 @@ const GameCard: React.FC<ProductItemProps> = ({ title, category, description, ra
       title: titleCart,
       category: categoryCart,
       price: priceCart,
+      amount: 1,
+      check: false,
     };
-
-    console.log();
 
     if (gamesList.some((stateGame) => stateGame.title === game.title)) {
       alert("Game is already in cart");

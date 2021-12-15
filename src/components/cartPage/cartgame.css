@@ -4,6 +4,14 @@
   flex-direction: row;
 }
 
+.cartGame__data_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  box-shadow: 0px 2px 0px 0px rgba(255, 255, 255, 0.4);
+}
+
 .cartGame__data_name {
   flex-basis: 30%;
 }
@@ -12,12 +20,33 @@
   flex-basis: 23%;
 }
 
+.cartGame__platform_selector {
+  height: fit-content;
+  flex-basis: 60%;
+  font-family: inherit;
+  font-size: inherit;
+  padding-left: 5px;
+}
+
+.cartGame__platform_selector::after {
+  font-family: inherit;
+  font-size: inherit;
+}
+
 .cartGame__data_date {
   flex-basis: 13%;
 }
 
 .cartGame__data_amount {
   flex-basis: 10%;
+}
+
+.cartGame__amount_input {
+  width: 60%;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding-left: 5px;
 }
 
 .cartGame__data_price {
