@@ -18,7 +18,7 @@ import routesData from "./components/routesData";
 // import ErrorBoundary from "./components/errorBoundary";
 import ProtectedRoute from "./components/protectedRoute";
 import { AppProps, AppState } from "./types/types";
-import ModalContainer from "./components/elements/modalContainer";
+import ModalContainer from "./components/modal/modalContainer";
 
 class AppContainer extends Component<AppProps, AppState> {
   ["constructor"]: typeof AppContainer;

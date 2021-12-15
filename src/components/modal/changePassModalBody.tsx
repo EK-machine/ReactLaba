@@ -4,7 +4,7 @@ import "./changepassmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { closeModalAction } from "../../redux/actionsModal";
-import InputText from "./inputText";
+import InputText from "../elements/inputText";
 import { ReducerState } from "../../redux/reducerRoot";
 
 const ChangePassModalBody: React.FC = () => {

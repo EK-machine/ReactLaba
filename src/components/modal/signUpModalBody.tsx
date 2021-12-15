@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import "./signinmodalbody.css";
+import "./signupmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import InputText from "./inputText";
+import InputText from "../elements/inputText";
 import routesData from "../routesData";
-import { closeModalAction } from "../../redux/actionsModal";
 import { logInAction } from "../../redux/actionsLogin";
+import { closeModalAction } from "../../redux/actionsModal";
 import { ReducerState } from "../../redux/reducerRoot";
 
-const SignInModalBody: React.FC = () => {
-  const [login, setLogin] = useState<string>("");
+const SignUpModalBody: React.FC = () => {
+  const [logup, setLogup] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [repeatPassword, setRepeatPassword] = useState<string>("");
   const [loginMessage, setLoginMessage] = useState("Please enter login");
   const [passMessage, setPassMessage] = useState("Please enter password");
+  const [repeatPassMessage, setRepeatPassMessage] = useState("Please repeat password");
   const [formValid, setFormValid] = useState(false);
   const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);
   const dispatch = useDispatch();
@@ -33,17 +35,21 @@ const SignInModalBody: React.FC = () => {
     history.push(routesData[0].path);
   };
 
-  const signInUrl = "http://localhost:3000/users";
+  const signUpUrl = "http://localhost:3000/users/1";
 
-  const loginGetter = (loginData: string) => {
-    setLogin(loginData);
+  const logupGetter = (logupData: string) => {
+    setLogup(logupData);
   };
 
   const passwordGetter = (passwordData: string) => {
     setPassword(passwordData);
   };
 
-  const signInObj = { login, password };
+  const repeatPasswordGetter = (passwordData: string) => {
+    setRepeatPassword(passwordData);
+  };
+
+  const signUpObj = { login: logup, password };
 
   const verifyName = (log: string) => {
     if (!log) {
@@ -70,62 +76,84 @@ const SignInModalBody: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    verifyName(login);
-    verifyPassword(password);
-  }, [login, password]);
+  const comparePass = (pass: string) => {
+    if (password !== repeatPassword || !repeatPassword) {
+      setRepeatPassMessage("Repeated password in not correct");
+    } else {
+      setRepeatPassMessage("Repeated password is OK");
+    }
+  };
 
   useEffect(() => {
-    if (loginMessage === "Login is OK" && passMessage === "Password is OK") {
+    verifyName(logup);
+    verifyPassword(password);
+    comparePass(repeatPassword);
+  }, [logup, password, repeatPassword]);
+
+  useEffect(() => {
+    if (
+      loginMessage === "Login is OK" &&
+      passMessage === "Password is OK" &&
+      repeatPassMessage === "Repeated password is OK"
+    ) {
       setFormValid(true);
     } else {
       setFormValid(false);
     }
-  }, [loginMessage, passMessage]);
+  }, [loginMessage, passMessage, repeatPassMessage]);
 
-  async function postFunc(e: React.SyntheticEvent) {
+  async function putFunc(e: React.SyntheticEvent) {
     if (e) {
       e.preventDefault();
     }
 
-    const postResponse = await fetch(signInUrl, {
-      method: "POST",
+    const putResponse = await fetch(signUpUrl, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(signInObj),
+      body: JSON.stringify(signUpObj),
     });
 
-    if (postResponse.status === 201) {
-      dispatchedLogInAction(login);
+    if (putResponse.status === 200) {
+      dispatchedLogInAction(logup);
     } else {
-      throw new Error(`HTTP status: ${postResponse.status}`);
+      throw new Error(`HTTP status: ${putResponse.status}`);
     }
 
-    const response = await postResponse.json();
+    const response = await putResponse.json();
+    history.push(routesData[3].path);
     return response;
   }
 
   return (
-    <div className="signIn__modal_container">
-      <div className="signIn__modal_upper-container">
-        <h1 className="signIn__modal_title">Authorization</h1>
-        <button className="signIn__modal_close-btn" type="button" onClick={closeModalHandler}>
+    <div className="signUp__modal_container">
+      <div className="signUp__modal_upper-container">
+        <h1 className="signUp__modal_title">Registration</h1>
+        <button className="signUp__modal_close-btn" type="button" onClick={closeModalHandler}>
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>
-      <form action="#" className="signIn__modal_content-container" onSubmit={postFunc}>
-        <InputText name="Login" id="SignInLogin" type="text" onChange={loginGetter} value={login} />
-        <span>{loginMessage}</span>
-        <InputText name="Password" id="SignInPassword" type="password" onChange={passwordGetter} value={password} />
-        <span>{passMessage}</span>
+      <form action="#" className="signUp__modal_content-container" onSubmit={putFunc}>
+        <InputText name="Login" id="SignUplogin" type="text" onChange={logupGetter} value={logup} />
+        <p>{loginMessage}</p>
+        <InputText name="Password" id="SignUpPassword" type="password" onChange={passwordGetter} value={password} />
+        <p>{passMessage}</p>
+        <InputText
+          name="Repeat password"
+          id="SignUpRepeatPassword"
+          type="password"
+          onChange={repeatPasswordGetter}
+          value={repeatPassword}
+        />
+        <p>{repeatPassMessage}</p>
         <br />
-        <div className="signIn__modal_submit-btn-container">
-          <input className="signIn__modal_submit-btn" type="submit" disabled={!formValid} />
+        <div className="signUp__modal_submit-btn-container">
+          <input className="signUp__modal_submit-btn" type="submit" disabled={!formValid} />
         </div>
       </form>
     </div>
   );
 };
 
-export default SignInModalBody;
+export default SignUpModalBody;
