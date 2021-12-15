@@ -39,7 +39,7 @@ const MainProductOutput: React.FC = () => {
             <FontAwesomeIcon icon={faSpinner} className="mainOutput__loadingSpinner" />
           ) : (
             <>
-              {games.gamesList.map(({ title, category, description, rating, price }) => (
+              {games.gamesList.map(({ title, category, description, rating, price, imgUrl }) => (
                 <GameCard
                   key={title}
                   title={title}
@@ -47,6 +47,7 @@ const MainProductOutput: React.FC = () => {
                   description={description}
                   rating={rating}
                   price={price}
+                  imgUrl={imgUrl}
                 />
               ))}
             </>
@@ -54,12 +55,12 @@ const MainProductOutput: React.FC = () => {
           {/* 1) SOLUTION WITH STATE.LOADING PART II */}
 
           {/* 2) SOLUTION WITH REACT.SUSPENSE PART II */}
-          {/* {games.gamesList.map(({ title, category, description, rating, price }) => (
+          {/* {games.gamesList.map(({ title, category, description, rating, price, imgUrl }) => (
             <React.Suspense
               fallback={<FontAwesomeIcon icon={faSpinner} className="mainOutput__loadingSpinner" />}
               key={title}
             >
-              <GameCard title={title} category={category} description={description} rating={rating} price={price} />
+              <GameCard title={title} category={category} description={description} rating={rating} price={price} imgUrl={imgUrl}/>
             </React.Suspense>
           ))} */}
           {/* 2) SOLUTION WITH REACT.SUSPENSE PART II */}
@@ -68,7 +69,7 @@ const MainProductOutput: React.FC = () => {
           {status ? (
             <FontAwesomeIcon icon={faSpinner} className="mainOutput__loadingSpinner" />
           ) : (
-            games.gamesList.map(({ title, category, description, rating, price }) => (
+            games.gamesList.map(({ title, category, description, rating, price, imgUrl }) => (
               <GameCard
                 key={title}
                 title={title}
@@ -76,6 +77,7 @@ const MainProductOutput: React.FC = () => {
                 description={description}
                 rating={rating}
                 price={price}
+                imgUrl={imgUrl}
               />
             ))
           )}

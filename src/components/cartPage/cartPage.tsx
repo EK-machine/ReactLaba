@@ -16,8 +16,9 @@ const CartPage: React.FC = () => {
   };
 
   useEffect(() => {
-    const total =
-      Math.floor(games.map((game) => game.amount * game.price).reduce((sum, current) => sum + current, 0) * 100) / 100;
+    const total = Number(
+      Math.floor(games.map((game) => game.amount * game.price).reduce((sum, current) => sum + current, 0) * 100) / 100
+    );
     setTotalAmount(total);
   }, [games]);
 

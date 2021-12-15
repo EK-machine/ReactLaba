@@ -1,4 +1,4 @@
-import { InitialFilterState } from "../types/types";
+import { InitialFilterState } from "../../types/types";
 
 const initialFilterState: InitialFilterState = {
   loading: true,

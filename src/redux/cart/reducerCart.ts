@@ -8,14 +8,14 @@ import {
   notWantToBuyGames,
   buyGames,
 } from "./actionTypesCart";
-import { CartAction, InitialCartStateType } from "../../types/types";
+import { CartAction, InitialCartStateType, GameCart } from "../../types/types";
 
 const CartReducer = (state = InitialCartState, action: CartAction): InitialCartStateType => {
   switch (action.type) {
     case addGameToCart:
       return {
         ...state,
-        gamesList: state.gamesList.concat(action.payload),
+        gamesList: state.gamesList.concat(action.payload as GameCart[]),
         totalPurchase: InitialCartState.totalPurchase,
         userBalance: state.userBalance,
       };
@@ -23,7 +23,8 @@ const CartReducer = (state = InitialCartState, action: CartAction): InitialCartS
       return {
         ...state,
         gamesList: state.gamesList.map(
-          (initGame) => action.payload.find((game: { title: string }) => game.title === initGame.title) || initGame
+          (initGame) =>
+            (action.payload as GameCart[]).find((game: { title: string }) => game.title === initGame.title) || initGame
         ),
         totalPurchase: InitialCartState.totalPurchase,
         userBalance: state.userBalance,
@@ -32,7 +33,8 @@ const CartReducer = (state = InitialCartState, action: CartAction): InitialCartS
       return {
         ...state,
         gamesList: state.gamesList.map(
-          (initGame) => action.payload.find((game: { title: string }) => game.title === initGame.title) || initGame
+          (initGame) =>
+            (action.payload as GameCart[]).find((game: { title: string }) => game.title === initGame.title) || initGame
         ),
         totalPurchase: InitialCartState.totalPurchase,
         userBalance: state.userBalance,
@@ -49,7 +51,7 @@ const CartReducer = (state = InitialCartState, action: CartAction): InitialCartS
       return {
         ...state,
         gamesList: state.gamesList,
-        totalPurchase: InitialCartState.totalPurchase + action.payload,
+        totalPurchase: InitialCartState.totalPurchase + (action.payload as number),
         userBalance: state.userBalance,
       };
 
@@ -57,7 +59,7 @@ const CartReducer = (state = InitialCartState, action: CartAction): InitialCartS
       return {
         ...state,
         gamesList: state.gamesList,
-        totalPurchase: state.totalPurchase - action.payload,
+        totalPurchase: state.totalPurchase - (action.payload as number),
         userBalance: state.userBalance,
       };
 
@@ -66,7 +68,7 @@ const CartReducer = (state = InitialCartState, action: CartAction): InitialCartS
         ...state,
         gamesList: InitialCartState.gamesList,
         totalPurchase: state.totalPurchase,
-        userBalance: InitialCartState.userBalance - action.payload,
+        userBalance: InitialCartState.userBalance - (action.payload as number),
       };
     default:
       return state;

@@ -7,7 +7,7 @@ import {
   filterByPriceDecsending,
   filterByPriceAscending,
 } from "./actionTypesFilter";
-import { Game, FilterState } from "../types/types";
+import { Game, FilterState } from "../../types/types";
 
 const FilterReducer = (state = initialFilterState, action: { type: string; payload: Array<Game> }): FilterState => {
   switch (action.type) {

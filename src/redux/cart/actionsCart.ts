@@ -14,12 +14,12 @@ export const addGameToCartAction = (game: GameCart): CartAction => ({
   payload: game,
 });
 
-export const changeGameCheckAction = (game: Array<GameCart>): CartAction => ({
+export const changeGameCheckAction = (game: Array<GameCart>): { type: string; payload: GameCart[] } => ({
   type: changeGameCheck,
   payload: game,
 });
 
-export const changeGameAmountAction = (game: Array<GameCart>): CartAction => ({
+export const changeGameAmountAction = (game: Array<GameCart>): { type: string; payload: GameCart[] } => ({
   type: changeGameAmount,
   payload: game,
 });

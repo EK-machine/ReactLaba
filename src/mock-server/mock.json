@@ -3,6 +3,7 @@
     {
       "id": 1,
       "title": "Halo Infinite",
+      "imgUrl": "https://cdn2.steamgriddb.com/file/sgdb-cdn/icon/1160453108d3e537255e9f7b931f4e90/32/256x256.png",
       "developer": "343 Industries",
       "timestamp": 1636923600000,
       "date": "15.11.2021",
@@ -16,6 +17,7 @@
     {
       "id": 2,
       "title": "Battlefield 2042",
+      "imgUrl": "https://external-preview.redd.it/tzFlgXSFNBG8ucAF4UNf2ixs1vrnUV4nRmPnHmSkdI4.jpg?auto=webp&s=3205b5799f7894e4bf0938980b315e6bcc443ebb",
       "developer": "DICE",
       "timestamp": 1634245200000,
       "date": "15.10.2021",
@@ -29,6 +31,7 @@
     {
       "id": 3,
       "title": "Forza Horizon 5",
+      "imgUrl": "https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/1551360/5326cbada217da5fda9ea3272b5d962fe325bb4f.jpg",
       "developer": "Playground Games",
       "timestamp": 1636059600000,
       "date": "5.11.2021",
@@ -42,11 +45,12 @@
     {
       "id": 4,
       "title": "Grand Theft Auto: The Trilogy",
+      "imgUrl": "https://styles.redditmedia.com/t5_4wb0y6/styles/communityIcon_y12k1vgkn6h71.png",
       "developer": "Rockstar North",
       "timestamp": 1633381200000,
       "date": "5.10.2021",
       "category": "ps",
-      "description": "The Trilogy - The Definitive Edition. GTAIII, Vice City, and San Andreas updated with enhanced visuals and gameplay..",
+      "description": "The Trilogy - The Definitive Edition. GTAIII, Vice City, and San Andreas updated with enhanced visuals and gameplay.",
       "genre": "action-adventure game, nonlinear gameplay",
       "age": 11,
       "rating": 4,
@@ -55,6 +59,7 @@
     {
       "id": 5,
       "title": "Far Cry 6",
+      "imgUrl": "https://img1.evosis.org/game/3134/icon/icon0.X256.png",
       "developer": "Ubisoft Milan",
       "timestamp": 1633467600000,
       "date": "6.10.2021",
@@ -68,6 +73,7 @@
     {
       "id": 6,
       "title": "Call of Duty: Vanguard",
+      "imgUrl": "https://www.techpowerup.com/review/call-of-duty-vanguard-dlss-vs-fsr-comparison/images/small.png",
       "developer": "Sledgehammer Games",
       "timestamp": 1631221200000,
       "date": "10.09.2021",
@@ -81,6 +87,7 @@
     {
       "id": 7,
       "title": "The Gunk",
+      "imgUrl": "https://preview.redd.it/xscfpa5ga0w61.jpg?width=256&format=pjpg&auto=webp&s=3332109e3d95af41e9375883cabf506d6e1edf23",
       "developer": "Image & Form Games",
       "timestamp": 1632085200000,
       "date": "20.09.2021",
@@ -94,6 +101,7 @@
     {
       "id": 8,
       "title": "Back 4 Blood",
+      "imgUrl": "https://img1.evosis.org/game/4652/icon/icon0.X256.webp",
       "developer": "Turtle Rock Studios",
       "timestamp": 1633986000000,
       "date": "12.10.2021",
@@ -107,6 +115,7 @@
     {
       "id": 9,
       "title": "12 Minutes",
+      "imgUrl": "https://cdn2.steamgriddb.com/file/sgdb-cdn/icon/d04cb95ba2bea9fd2f0daa8945d70f11.ico",
       "developer": "Luis Antonio",
       "timestamp": 1629320400000,
       "date": "19.08.2021",
@@ -120,6 +129,7 @@
     {
       "id": 10,
       "title": "Hitman 3",
+      "imgUrl": "https://brator.org/images/1/Hitman_Absolution_1.png",
       "developer": "IO Interactive",
       "timestamp": 1611144000000,
       "date": "20.01.2021",
@@ -133,6 +143,7 @@
     {
       "id": 11,
       "title": "Deathloop",
+      "imgUrl": "https://www.techpowerup.com/review/deathloop-benchmark-test-performance-analysis/images/small.png",
       "developer": "Arkane Studios",
       "timestamp": 1631577600000,
       "date": "14.09.2021",
@@ -146,6 +157,7 @@
     {
       "id": 12,
       "title": "Solar Ash",
+      "imgUrl": "https://external-preview.redd.it/lehaHHsPOCZcn7blAO8-YAx76N8kNNsyoVEkNF0TXXQ.jpg?auto=webp&s=6b5ba712cc205ae34279f8640c035f822452c6f0",
       "developer": "Heart Machine",
       "timestamp": 1638403200000,
       "date": "02.12.2021",
@@ -159,6 +171,7 @@
     {
       "id": 13,
       "title": "Resident Evil Village",
+      "imgUrl": "https://www.techpowerup.com/review/resident-evil-8-village-benchmark-test-performance/images/small.png",
       "developer": "Capcom",
       "timestamp": 1619827200000,
       "date": "01.05.2021",
@@ -172,6 +185,7 @@
     {
       "id": 14,
       "title": "Psychonauts 2",
+      "imgUrl": "https://www.speedrun.com/gameasset/ldejwll1/cover?v=077e56e",
       "developer": "Double Fine",
       "timestamp": 1629849600000,
       "date": "25.08.2021",
@@ -185,6 +199,7 @@
     {
       "id": 15,
       "title": "Returnal",
+      "imgUrl": "https://www.speedrun.com/gameasset/k6qw4296/cover?v=637f0f3",
       "developer": "Housemarque",
       "timestamp": 1619740800000,
       "date": "30.04.2021",
@@ -198,44 +213,9 @@
   ],
   "users": [
     {
-      "login": "scsdcs",
-      "password": "Qwerty123",
+      "login": "asxaxsax",
+      "password": "Asdfgh12",
       "id": 1
-    },
-    {
-      "login": "hit",
-      "password": "Letstry12",
-      "id": 2
-    },
-    {
-      "login": "Qwert1",
-      "password": "Qwerty123",
-      "id": 3
-    },
-    {
-      "login": "qwert",
-      "password": "Qwerty12",
-      "id": 4
-    },
-    {
-      "login": "cxcxc",
-      "password": "Qwerty123",
-      "id": 5
-    },
-    {
-      "login": "qwerty",
-      "password": "Qwerty12",
-      "id": 6
-    },
-    {
-      "login": "hello",
-      "password": "Qwerty123",
-      "id": 7
-    },
-    {
-      "login": "hello",
-      "password": "Qwerty123",
-      "id": 8
     }
   ]
 }

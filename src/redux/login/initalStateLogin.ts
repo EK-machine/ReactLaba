@@ -1,4 +1,4 @@
-import { InitialLogInState } from "../types/types";
+import { InitialLogInState } from "../../types/types";
 
 const initialLogInState: InitialLogInState = {
   loggedIn: false,

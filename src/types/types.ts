@@ -22,6 +22,7 @@ export interface ProductItemProps {
   age?: number;
   rating: number;
   price: number;
+  imgUrl?: string;
 }
 
 export type Game = {
@@ -35,6 +36,7 @@ export type Game = {
   age?: number;
   rating: number;
   price: number;
+  imgUrl?: string;
 };
 
 export type FilterAction = { type: string; payload?: Array<Game> };
@@ -137,7 +139,7 @@ export type InitialCartStateType = {
   userBalance: number;
 };
 
-export type CartAction = { type: string; payload: GameCart | Array<GameCart> };
+export type CartAction = { type: string; payload: GameCart | Array<GameCart> | number };
 
 export interface CartGameProps {
   title: string;

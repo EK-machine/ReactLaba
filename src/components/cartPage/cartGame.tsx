@@ -12,9 +12,9 @@ const CartGame: React.FC<CartGameProps> = ({ title, category, price }) => {
   const dispatch = useDispatch();
   const platforms = category.split(", ");
 
-  const amountHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    if (!(e.target.value <= 0)) {
-      const num = Math.floor(e.target.value);
+  const amountHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (Number(e.target.value) > 0) {
+      const num = Math.floor(Number(e.target.value));
       setNumber(num);
       const amountGame = games.filter((game) => game.title === title);
       amountGame[0].amount = num;
@@ -32,6 +32,8 @@ const CartGame: React.FC<CartGameProps> = ({ title, category, price }) => {
   const totalPerGame = number * price;
   const totalPerGameCut = Math.floor(totalPerGame * 100) / 100;
 
+  const today = new Date();
+
   return (
     <div className="cartGame__container">
       <div className="cartGame__data_name cartGame__data_container">
@@ -47,7 +49,9 @@ const CartGame: React.FC<CartGameProps> = ({ title, category, price }) => {
         </select>
       </div>
       <div className="cartGame__data_date cartGame__data_container">
-        <p className="cartGame__data_paragraphDate">date</p>
+        <p className="cartGame__data_paragraphDate">
+          {`${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`}
+        </p>
       </div>
       <div className="cartGame__data_amount cartGame__data_container">
         <input type="number" value={number} onChange={amountHandler} className="cartGame__amount_input" />
