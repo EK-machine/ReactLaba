@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./changepassmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { closeModalAction } from "../../redux/actionsModal";
+import { closeModalAction } from "../../redux/modal/actionsModal";
 import InputText from "../elements/inputText";
 import { ReducerState } from "../../redux/reducerRoot";
 
@@ -54,7 +54,7 @@ const ChangePassModalBody: React.FC = () => {
 
   const comparePass = (pass: string) => {
     if (newPassword !== repeatNewPassword || !repeatNewPassword) {
-      setRepeatPassMessage("Repeated password in not correct");
+      setRepeatPassMessage("Repeated password is not correct");
     } else {
       setRepeatPassMessage("Repeated password is OK");
     }

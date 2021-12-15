@@ -5,7 +5,7 @@ import { useLocation, Redirect } from "react-router-dom";
 import { LocationState } from "../../types/types";
 import routesData from "../routesData";
 import { ReducerState } from "../../redux/reducerRoot";
-import { showSignInModalAction } from "../../redux/actionsModal";
+import { showSignInModalAction } from "../../redux/modal/actionsModal";
 
 const LogInPage: React.FC = () => {
   const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);

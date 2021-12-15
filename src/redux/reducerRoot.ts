@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import logInReducer from "./reducerLogin";
-import modalReducer from "./reducerModal";
-import FilterReducer from "./reducerFilter";
+import logInReducer from "./login/reducerLogin";
+import modalReducer from "./modal/reducerModal";
+import FilterReducer from "./filter/reducerFilter";
 import CartReducer from "./cart/reducerCart";
 
 const rootReducer = combineReducers({

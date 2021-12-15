@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { FilterAction, Game } from "../types/types";
+import { FilterAction, Game } from "../../types/types";
 
 import {
   fetchGamesRequest,

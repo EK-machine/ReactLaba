@@ -7,7 +7,7 @@ import {
   filterByRatingAscendingAction,
   filterByPriceDecsendingAction,
   filterByPriceAscendingAction,
-} from "../../redux/actionsFilter";
+} from "../../redux/filter/actionsFilter";
 
 const CriteriaSelector: React.FC = () => {
   const [criteria, setCriteria] = useState<string>("rating");

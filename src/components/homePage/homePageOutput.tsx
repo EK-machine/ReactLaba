@@ -6,7 +6,7 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import GameCard from "../elements/gameCard";
 import { FilterState, Game } from "../../types/types";
 import { ReducerState } from "../../redux/reducerRoot";
-import { fetchLastThreeGamesAction } from "../../redux/actionsFilter";
+import { fetchLastThreeGamesAction } from "../../redux/filter/actionsFilter";
 
 const HomePageOutput: React.FC = () => {
   const games: FilterState = useSelector((state: ReducerState) => state.filter);

@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import InputText from "../elements/inputText";
 import routesData from "../routesData";
-import { closeModalAction } from "../../redux/actionsModal";
-import { logInAction } from "../../redux/actionsLogin";
+import { closeModalAction } from "../../redux/modal/actionsModal";
+import { logInAction } from "../../redux/login/actionsLogin";
 import { ReducerState } from "../../redux/reducerRoot";
 
 const SignInModalBody: React.FC = () => {

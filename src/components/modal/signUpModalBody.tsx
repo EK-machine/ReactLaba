@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import InputText from "../elements/inputText";
 import routesData from "../routesData";
-import { logInAction } from "../../redux/actionsLogin";
-import { closeModalAction } from "../../redux/actionsModal";
+import { logInAction } from "../../redux/login/actionsLogin";
+import { closeModalAction } from "../../redux/modal/actionsModal";
 import { ReducerState } from "../../redux/reducerRoot";
 
 const SignUpModalBody: React.FC = () => {
@@ -78,7 +78,7 @@ const SignUpModalBody: React.FC = () => {
 
   const comparePass = (pass: string) => {
     if (password !== repeatPassword || !repeatPassword) {
-      setRepeatPassMessage("Repeated password in not correct");
+      setRepeatPassMessage("Repeated password is not correct");
     } else {
       setRepeatPassMessage("Repeated password is OK");
     }

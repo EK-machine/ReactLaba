@@ -12,7 +12,7 @@ import SignInBtn from "../elements/signInBtn";
 import SignUpBtn from "../elements/signUpBtn";
 import SignOutBtn from "../elements/signOutBtn";
 import { HeaderProps } from "../../types/types";
-import { logInAction, logOutAction } from "../../redux/actionsLogin";
+import { logInAction, logOutAction } from "../../redux/login/actionsLogin";
 import { ReducerState } from "../../redux/reducerRoot";
 
 const Header: React.FC<HeaderProps> = ({ loggedIn, userName, dispatchedLogInAction, dispatchedLogOutAction }) => {
