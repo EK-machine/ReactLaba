@@ -1,10 +1,8 @@
 import initialModalState from "./initalStateModal";
-import { showSignInModal, showSignUpModal, showChangePassModal, closeModal } from "./actionTypesModal";
+import { showSignInModal, showSignUpModal, showChangePassModal, showBuyModal, closeModal } from "./actionTypesModal";
+import { ModalState } from "../../types/types";
 
-const modalReducer = (
-  state = initialModalState,
-  action: { type: string }
-): { signInModalVisible: boolean; signUpModalVisible: boolean; changePassModalVisible: boolean } => {
+const modalReducer = (state = initialModalState, action: { type: string }): ModalState => {
   switch (action.type) {
     case showSignInModal:
       return {
@@ -12,6 +10,7 @@ const modalReducer = (
         signInModalVisible: true,
         signUpModalVisible: false,
         changePassModalVisible: false,
+        buyModalVisible: false,
       };
     case showSignUpModal:
       return {
@@ -19,6 +18,7 @@ const modalReducer = (
         signInModalVisible: false,
         signUpModalVisible: true,
         changePassModalVisible: false,
+        buyModalVisible: false,
       };
     case showChangePassModal:
       return {
@@ -26,6 +26,15 @@ const modalReducer = (
         signInModalVisible: false,
         signUpModalVisible: false,
         changePassModalVisible: true,
+        buyModalVisible: false,
+      };
+    case showBuyModal:
+      return {
+        ...state,
+        signInModalVisible: false,
+        signUpModalVisible: false,
+        changePassModalVisible: false,
+        buyModalVisible: true,
       };
     case closeModal:
       return {
@@ -33,6 +42,7 @@ const modalReducer = (
         signInModalVisible: false,
         signUpModalVisible: false,
         changePassModalVisible: false,
+        buyModalVisible: false,
       };
     default:
       return state;

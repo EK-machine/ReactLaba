@@ -63,23 +63,6 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, userName, dispatchedLogInActi
                 <p className="header__btn-title">{userName}</p>
               </NavLink>
               {/* commented for purpose of development */}
-
-              {/* <NavLink
-              key={routesData[4].text}
-              exact
-              to={routesData[4].path}
-              className="header__btn_cart"
-              activeClassName="header__btn_cart-active"
-              role="button"
-            >
-              <FontAwesomeIcon icon={faShoppingCart} className="header__btn-title" />
-              <p className="header__btn-title">{numOfGames}</p>
-            </NavLink> */}
-              {/* commented for purpose of development */}
-              <SignOutBtn dispatchedLogOutAction={dispatchedLogOutAction} />
-            </>
-          ) : (
-            <>
               <NavLink
                 key={routesData[4].text}
                 exact
@@ -91,6 +74,22 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, userName, dispatchedLogInActi
                 <FontAwesomeIcon icon={faShoppingCart} className="header__btn-title" />
                 <p className="header__btn-title">{numOfGames}</p>
               </NavLink>
+              {/* commented for purpose of development */}
+              <SignOutBtn dispatchedLogOutAction={dispatchedLogOutAction} />
+            </>
+          ) : (
+            <>
+              {/* <NavLink
+                key={routesData[4].text}
+                exact
+                to={routesData[4].path}
+                className="header__btn_cart"
+                activeClassName="header__btn_cart-active"
+                role="button"
+              >
+                <FontAwesomeIcon icon={faShoppingCart} className="header__btn-title" />
+                <p className="header__btn-title">{numOfGames}</p>
+              </NavLink> */}
               <SignInBtn dispatchedLogInAction={dispatchedLogInAction} />
               <SignUpBtn dispatchedLogInAction={dispatchedLogInAction} />
             </>

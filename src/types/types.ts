@@ -116,11 +116,12 @@ export interface StarProps {
 
 export type InitialFilterState = { loading: boolean; gamesList: [] };
 export type InitialLogInState = { loggedIn: boolean; userName: string };
-export type InitialModalState = {
+export interface ModalState {
   signInModalVisible: boolean;
   signUpModalVisible: boolean;
   changePassModalVisible: boolean;
-};
+  buyModalVisible: boolean;
+}
 
 export type GameCart = {
   title: string;
@@ -132,11 +133,8 @@ export type GameCart = {
 
 export type InitialCartStateType = {
   gamesList: Array<GameCart>;
-};
-
-type changeCheckPayload = {
-  title: string;
-  check: boolean;
+  totalPurchase: number;
+  userBalance: number;
 };
 
 export type CartAction = { type: string; payload: GameCart | Array<GameCart> };

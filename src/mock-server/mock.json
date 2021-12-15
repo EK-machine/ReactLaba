@@ -198,10 +198,9 @@
   ],
   "users": [
     {
-      "login": "ratata",
-      "password": "Asdfgh12",
-      "id": 1,
-      "description": ""
+      "login": "scsdcs",
+      "password": "Qwerty123",
+      "id": 1
     },
     {
       "login": "hit",
@@ -227,6 +226,16 @@
       "login": "qwerty",
       "password": "Qwerty12",
       "id": 6
+    },
+    {
+      "login": "hello",
+      "password": "Qwerty123",
+      "id": 7
+    },
+    {
+      "login": "hello",
+      "password": "Qwerty123",
+      "id": 8
     }
   ]
 }

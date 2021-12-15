@@ -3,26 +3,32 @@ import { useSelector, useDispatch } from "react-redux";
 import CartGame from "./cartGame";
 import "./cartpage.css";
 import { ReducerState } from "../../redux/reducerRoot";
-import { removeGameFromCartAction } from "../../redux/cart/actionsCart";
+import { removeGameFromCartAction, wantToBuyGamesAction } from "../../redux/cart/actionsCart";
+import { showBuyModalAction } from "../../redux/modal/actionsModal";
 
 const CartPage: React.FC = () => {
   const games = useSelector((state: ReducerState) => state.cart.gamesList);
+  const userBalance = useSelector((state: ReducerState) => state.cart.userBalance);
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const dispatch = useDispatch();
   const clickHandler = () => {
     dispatch(removeGameFromCartAction());
   };
 
-  const userBalance = 1000;
-
   useEffect(() => {
-    const total = games.map((game) => game.amount * game.price).reduce((sum, current) => sum + current, 0);
-    if (total <= userBalance) {
-      setTotalAmount(total);
-    } else {
-      alert("YOu do not have enough money");
-    }
+    const total =
+      Math.floor(games.map((game) => game.amount * game.price).reduce((sum, current) => sum + current, 0) * 100) / 100;
+    setTotalAmount(total);
   }, [games]);
+
+  const buyFunc = () => {
+    if (totalAmount <= userBalance) {
+      dispatch(wantToBuyGamesAction(totalAmount));
+      dispatch(showBuyModalAction());
+    } else {
+      alert("You do not have enough money. Please remove something from cart.");
+    }
+  };
 
   return (
     <div className="cartPage__container">
@@ -50,7 +56,7 @@ const CartPage: React.FC = () => {
           </div>
           <div className="cartPage__content_titleContainer  cartPage__content_containerEmpty" />
         </div>
-        <form className="cartPage__content_gamesContainer">
+        <div className="cartPage__content_gamesContainer">
           {games.map(({ title, category, price }) => (
             <CartGame key={title} title={title} category={category} price={price} />
           ))}
@@ -66,17 +72,17 @@ const CartPage: React.FC = () => {
               {games.length > 0 ? <p className="cartPage__gamesCost">Games cost {totalAmount} $</p> : null}
             </div>
             <div className="cartPage__formSubmit_yourBalance">
-              <p className="cartPage__yourBalance">Your balance: {userBalance} $</p>
+              <p className="cartPage__yourBalance">Your balance: {Math.floor(userBalance * 100) / 100} $</p>
             </div>
             <div className="cartPage__formSubmit_submitBtn">
               {games.length > 0 ? (
-                <button className="cartPage__formSubmit_btn" type="button">
+                <button className="cartPage__formSubmit_btn" type="button" onClick={buyFunc}>
                   Buy
                 </button>
               ) : null}
             </div>
           </div>
-        </form>
+        </div>
       </section>
     </div>
   );

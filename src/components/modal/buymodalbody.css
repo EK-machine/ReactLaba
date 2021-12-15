@@ -1,0 +1,81 @@
+.buy__modal_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  border-radius: 8px;
+  padding: 30px;
+  width: 60%;
+  height: 60%;
+}
+
+.buy__modal_upper-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.buy__modal_title {
+  margin: 0;
+  font-size: 3rem;
+  color: white;
+}
+
+.buy__modal_close-btn {
+  background-color: inherit;
+  border: none;
+  font-size: 3rem;
+  color: #808080;
+  cursor: pointer;
+}
+
+.buy__modal_content-container {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 80%;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.buy__modal_contentParagraphs {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 90%;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buy__modal_contentParagraph {
+  color: white;
+}
+
+.buy__modal_contentParagraph:first-child::after {
+  content: ":";
+  color: white;
+}
+
+.buy__modal_contentParagraph::after {
+  content: ";";
+  color: white;
+}
+
+.buy__modal_contentParagraph:last-child::after {
+  content: ".";
+  color: white;
+}
+
+.buy__modal_contentButton {
+  width: 20%;
+  font-size: 1.5rem;
+  color: white;
+  background-color: #9933cc;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: center;
+  justify-self: center;
+}
