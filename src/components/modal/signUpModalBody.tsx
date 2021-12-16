@@ -35,7 +35,7 @@ const SignUpModalBody: React.FC = () => {
     history.push(routesData[0].path);
   };
 
-  const signUpUrl = "http://localhost:3000/users/1";
+  const signUpUrl = "http://localhost:3000/users";
 
   const logupGetter = (logupData: string) => {
     setLogup(logupData);
@@ -49,7 +49,7 @@ const SignUpModalBody: React.FC = () => {
     setRepeatPassword(passwordData);
   };
 
-  const signUpObj = { login: logup, password, role: "admin" };
+  const signUpObj = { login: logup, password, role: "user" };
 
   const verifyName = (log: string) => {
     if (!log) {
@@ -102,29 +102,54 @@ const SignUpModalBody: React.FC = () => {
     }
   }, [loginMessage, passMessage, repeatPassMessage]);
 
-  async function putFunc(e: React.SyntheticEvent) {
+  async function postFunc(e: React.SyntheticEvent) {
     if (e) {
       e.preventDefault();
     }
 
-    const putResponse = await fetch(signUpUrl, {
-      method: "PUT",
+    const postResponse = await fetch(signUpUrl, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(signUpObj),
     });
 
-    if (putResponse.status === 200) {
+    if (postResponse.status === 201) {
       dispatchedLogInAction(logup);
     } else {
-      throw new Error(`HTTP status: ${putResponse.status}`);
+      throw new Error(`HTTP status: ${postResponse.status}`);
     }
 
-    const response = await putResponse.json();
-    history.push(routesData[3].path);
+    const response = await postResponse.json();
     return response;
   }
+
+  // old realization with put
+  // async function putFunc(e: React.SyntheticEvent) {
+  //   if (e) {
+  //     e.preventDefault();
+  //   }
+
+  //   const putResponse = await fetch(signUpUrl, {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(signUpObj),
+  //   });
+
+  //   if (putResponse.status === 200) {
+  //     dispatchedLogInAction(logup);
+  //   } else {
+  //     throw new Error(`HTTP status: ${putResponse.status}`);
+  //   }
+
+  //   const response = await putResponse.json();
+  //   history.push(routesData[3].path);
+  //   return response;
+  // }
+  // old realization with put
 
   return (
     <div className="signUp__modal_container">
@@ -134,7 +159,7 @@ const SignUpModalBody: React.FC = () => {
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>
-      <form action="#" className="signUp__modal_content-container" onSubmit={putFunc}>
+      <form action="#" className="signUp__modal_content-container" onSubmit={postFunc}>
         <InputText name="Login" id="SignUplogin" type="text" onChange={logupGetter} value={logup} />
         <p>{loginMessage}</p>
         <InputText name="Password" id="SignUpPassword" type="password" onChange={passwordGetter} value={password} />

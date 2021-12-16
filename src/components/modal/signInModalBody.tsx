@@ -83,38 +83,18 @@ const SignInModalBody: React.FC = () => {
     }
   }, [loginMessage, passMessage]);
 
-  // oldFunc
-  async function postFunc(e: React.SyntheticEvent) {
-    if (e) {
-      e.preventDefault();
-    }
-
-    const postResponse = await fetch(signInUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(signInObj),
-    });
-
-    if (postResponse.status === 201) {
-      dispatchedLogInAction(login);
-    } else {
-      throw new Error(`HTTP status: ${postResponse.status}`);
-    }
-
-    const response = await postResponse.json();
-    return response;
-  }
-  // oldFunc
-
   async function getFunc(e: React.SyntheticEvent) {
     if (e) {
       e.preventDefault();
     }
     const getResponse = await fetch(signInUrl, { method: "GET" });
-    const allUsersArr = await getResponse.json();
-    return allUsersArr;
+    const allUsers = await getResponse.json();
+    const user = allUsers.find((user) => user.login === login && user.password);
+    if (typeof user === "undefined") {
+      alert("Incorrect login or password. Please try again.");
+      return;
+    }
+    dispatchedLogInAction(login);
   }
 
   return (
@@ -125,7 +105,7 @@ const SignInModalBody: React.FC = () => {
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>
-      <form action="#" className="signIn__modal_content-container" onSubmit={postFunc}>
+      <form action="#" className="signIn__modal_content-container" onSubmit={getFunc}>
         <InputText name="Login" id="SignInLogin" type="text" onChange={loginGetter} value={login} />
         <span>{loginMessage}</span>
         <InputText name="Password" id="SignInPassword" type="password" onChange={passwordGetter} value={password} />

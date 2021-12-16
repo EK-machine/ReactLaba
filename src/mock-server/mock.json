@@ -235,6 +235,12 @@
       "password": "User1234",
       "role": "user",
       "id": 4
+    },
+    {
+      "login": "NewUser",
+      "password": "Qwerty12",
+      "role": "user",
+      "id": 5
     }
   ]
 }
