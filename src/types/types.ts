@@ -22,6 +22,7 @@ export interface ProductItemProps {
   age?: number;
   rating: number;
   price: number;
+  imgUrl?: string;
 }
 
 export type Game = {
@@ -35,6 +36,7 @@ export type Game = {
   age?: number;
   rating: number;
   price: number;
+  imgUrl?: string;
 };
 
 export type FilterAction = { type: string; payload?: Array<Game> };
@@ -116,8 +118,33 @@ export interface StarProps {
 
 export type InitialFilterState = { loading: boolean; gamesList: [] };
 export type InitialLogInState = { loggedIn: boolean; userName: string };
-export type InitialModalState = {
+export interface ModalState {
   signInModalVisible: boolean;
   signUpModalVisible: boolean;
   changePassModalVisible: boolean;
+  buyModalVisible: boolean;
+  editModalVisible: boolean;
+  delConfModalVisible: boolean;
+}
+
+export type GameCart = {
+  title: string;
+  category: string;
+  price: number;
+  check: boolean;
+  amount: number;
 };
+
+export type InitialCartStateType = {
+  gamesList: Array<GameCart>;
+  totalPurchase: number;
+  userBalance: number;
+};
+
+export type CartAction = { type: string; payload: GameCart | Array<GameCart> | number };
+
+export interface CartGameProps {
+  title: string;
+  category: string;
+  price: number;
+}

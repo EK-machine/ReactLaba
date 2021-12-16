@@ -4,7 +4,7 @@ import debounce from "lodash.debounce";
 import "./searchbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { fetchGamesAction } from "../../redux/actionsFilter";
+import { fetchGamesAction } from "../../redux/filter/actionsFilter";
 import { FilterState } from "../../types/types";
 import { ReducerState } from "../../redux/reducerRoot";
 

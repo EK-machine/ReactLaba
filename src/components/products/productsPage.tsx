@@ -8,7 +8,7 @@ import SearchBar from "./searchBar";
 import GenreRadioButtons from "../elements/genreRadioButtons";
 import AgeRadioButtons from "../elements/ageRadioButtons";
 import CriteriaSelector from "../elements/criteriaSelector";
-import { fetchGamesAction } from "../../redux/actionsFilter";
+import { fetchGamesAction } from "../../redux/filter/actionsFilter";
 
 const ProductsPage: React.FC = () => {
   const dispatch = useDispatch();

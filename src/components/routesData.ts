@@ -15,6 +15,10 @@ const routesData = [
     path: "/profile",
     text: "Profile",
   },
+  {
+    path: "/cart",
+    text: "Cart",
+  },
 ];
 
 export default routesData;

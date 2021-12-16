@@ -1,0 +1,22 @@
+.inputTextAdmin__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.inputTextAdmin__label {
+  margin-right: 10px;
+  font-size: 1.3rem;
+  color: white;
+}
+
+.inputTextAdmin__input {
+  border: 1px solid white;
+  box-sizing: border-box;
+  background-color: inherit;
+  width: 70%;
+  height: 2rem;
+  color: white;
+}
