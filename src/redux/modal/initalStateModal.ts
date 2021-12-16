@@ -5,6 +5,8 @@ const initialModalState: ModalState = {
   signUpModalVisible: false,
   changePassModalVisible: false,
   buyModalVisible: false,
+  delConfModalVisible: false,
+  editModalVisible: false,
 };
 
 export default initialModalState;

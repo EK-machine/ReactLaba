@@ -5,6 +5,8 @@ import SignInModalBody from "./signInModalBody";
 import SignUpModalBody from "./signUpModalBody";
 import ChangePassModalBody from "./changePassModalBody";
 import BuyModalBody from "./buyModalBody";
+import EditModalBody from "./editModalBody";
+import DelConfModalBody from "./delConfModalBody";
 import { ReducerState } from "../../redux/reducerRoot";
 
 const ModalContainer: React.FC = () => {
@@ -12,6 +14,8 @@ const ModalContainer: React.FC = () => {
   const signUpModalVisible = useSelector((state: ReducerState) => state.modal.signUpModalVisible);
   const changePassModalVisible = useSelector((state: ReducerState) => state.modal.changePassModalVisible);
   const buyModalVisible = useSelector((state: ReducerState) => state.modal.buyModalVisible);
+  const editModalVisible = useSelector((state: ReducerState) => state.modal.editModalVisible);
+  const delConfModalVisible = useSelector((state: ReducerState) => state.modal.delConfModalVisible);
   return (
     <>
       {signInModalVisible ? (
@@ -32,6 +36,16 @@ const ModalContainer: React.FC = () => {
       {buyModalVisible ? (
         <Modal>
           <BuyModalBody />
+        </Modal>
+      ) : null}
+      {editModalVisible ? (
+        <Modal>
+          <EditModalBody />
+        </Modal>
+      ) : null}
+      {delConfModalVisible ? (
+        <Modal>
+          <DelConfModalBody />
         </Modal>
       ) : null}
     </>

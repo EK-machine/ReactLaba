@@ -1,17 +1,18 @@
-.profileTextArea__container {
+.textArea__container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-.profileTextArea__label {
+.textArea__label {
   margin: 0px;
   font-size: 1.5rem;
   color: white;
 }
 
-.profileTextArea__textarea {
+.textArea__textarea {
   border: 1px solid white;
   box-sizing: border-box;
   background-color: inherit;

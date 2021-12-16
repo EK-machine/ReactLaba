@@ -1,5 +1,5 @@
 import React from "react";
-import "./profiletextarea.css";
+import "./textarea.css";
 import { ProfileTextAreaProps } from "../../types/types";
 
 const ProfileTextArea: React.FC<ProfileTextAreaProps> = ({ name, id, value, onChange }) => {
@@ -8,8 +8,8 @@ const ProfileTextArea: React.FC<ProfileTextAreaProps> = ({ name, id, value, onCh
   };
 
   return (
-    <div className="profileTextArea__container">
-      <label htmlFor={id} className="profileTextArea__label">
+    <div className="textArea__container">
+      <label htmlFor={id} className="textArea__label">
         {name}
       </label>
       <textarea
@@ -17,7 +17,7 @@ const ProfileTextArea: React.FC<ProfileTextAreaProps> = ({ name, id, value, onCh
         id={id}
         value={value}
         onChange={changeHandler}
-        className="profileTextArea__textarea"
+        className="textArea__textarea"
         autoComplete="off"
       />
     </div>

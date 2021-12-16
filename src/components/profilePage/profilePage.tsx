@@ -5,7 +5,7 @@ import { showChangePassModalAction } from "../../redux/modal/actionsModal";
 import "./profilepage.css";
 import { ReducerState } from "../../redux/reducerRoot";
 import ProfileInputText from "../elements/profileInputText";
-import ProfileTextArea from "../elements/ProfileTextArea";
+import TextArea from "../elements/textArea";
 
 const ProfilePage: React.FC = () => {
   const userName = useSelector((state: ReducerState) => state.signIn.userName);
@@ -93,12 +93,7 @@ const ProfilePage: React.FC = () => {
           <div className="profilePage__editSection">
             <ProfileInputText name="Username" id="UserName" type="text" onChange={userNameGetter} value={name} />
             <span>{message}</span>
-            <ProfileTextArea
-              name="Profile description"
-              id="Description"
-              onChange={descriptionGetter}
-              value={description}
-            />
+            <TextArea name="Profile description" id="Description" onChange={descriptionGetter} value={description} />
           </div>
           <div className="profilePage__btnsSection">
             <input

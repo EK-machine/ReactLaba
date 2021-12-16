@@ -123,6 +123,8 @@ export interface ModalState {
   signUpModalVisible: boolean;
   changePassModalVisible: boolean;
   buyModalVisible: boolean;
+  editModalVisible: boolean;
+  delConfModalVisible: boolean;
 }
 
 export type GameCart = {

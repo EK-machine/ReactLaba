@@ -35,7 +35,7 @@ const SignUpModalBody: React.FC = () => {
     history.push(routesData[0].path);
   };
 
-  const signUpUrl = "http://localhost:3000/users/1";
+  const signUpUrl = "http://localhost:3000/users/2";
 
   const logupGetter = (logupData: string) => {
     setLogup(logupData);
