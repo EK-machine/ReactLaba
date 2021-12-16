@@ -216,6 +216,11 @@
       "login": "asxaxsax",
       "password": "Asdfgh12",
       "id": 1
+    },
+    {
+      "login": "West",
+      "password": "Qwerty12",
+      "id": 2
     }
   ]
 }
