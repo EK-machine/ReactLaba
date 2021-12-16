@@ -213,15 +213,28 @@
   ],
   "users": [
     {
-      "login": "admin",
-      "password": "Asdfgh12",
-      "id": 1,
-      "role": "admin"
+      "login": "Admin",
+      "password": "Admin123",
+      "role": "admin",
+      "id": 1
     },
     {
-      "login": "East",
-      "password": "Qwerty12",
+      "login": "User1",
+      "password": "User1234",
+      "role": "user",
       "id": 2
+    },
+    {
+      "login": "User2",
+      "password": "User1234",
+      "role": "user",
+      "id": 3
+    },
+    {
+      "login": "User4",
+      "password": "User1234",
+      "role": "user",
+      "id": 4
     }
   ]
 }

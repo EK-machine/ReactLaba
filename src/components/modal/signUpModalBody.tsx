@@ -35,7 +35,7 @@ const SignUpModalBody: React.FC = () => {
     history.push(routesData[0].path);
   };
 
-  const signUpUrl = "http://localhost:3000/users/2";
+  const signUpUrl = "http://localhost:3000/users/1";
 
   const logupGetter = (logupData: string) => {
     setLogup(logupData);
@@ -49,7 +49,7 @@ const SignUpModalBody: React.FC = () => {
     setRepeatPassword(passwordData);
   };
 
-  const signUpObj = { login: logup, password };
+  const signUpObj = { login: logup, password, role: "admin" };
 
   const verifyName = (log: string) => {
     if (!log) {

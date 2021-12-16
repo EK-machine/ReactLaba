@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./productspage.css";
 import { useParams } from "react-router-dom";
 import MainProductOutput from "./mainProductOutput";
@@ -9,8 +9,14 @@ import GenreRadioButtons from "../elements/genreRadioButtons";
 import AgeRadioButtons from "../elements/ageRadioButtons";
 import CriteriaSelector from "../elements/criteriaSelector";
 import { fetchGamesAction } from "../../redux/filter/actionsFilter";
+import { ReducerState } from "../../redux/reducerRoot";
+import { showEditModalAction } from "../../redux/modal/actionsModal";
+
+const getUsersUrl = "http://localhost:3000/users";
 
 const ProductsPage: React.FC = () => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const currentUserName = useSelector((state: ReducerState) => state.signIn.userName);
   const dispatch = useDispatch();
 
   const { id } = useParams<RouteParams>();
@@ -20,6 +26,20 @@ const ProductsPage: React.FC = () => {
     dispatch(fetchGamesAction(partOfUrl));
   }, [id]);
 
+  const userStatusGetter = async () => {
+    const getResponse = await fetch(getUsersUrl, { method: "GET" });
+    const usersResponse = await getResponse.json();
+    const [{ login }] = usersResponse.filter((user: { role: string }) => user.role === "admin");
+    if (login === currentUserName) {
+      setIsAdmin(true);
+    }
+    setIsAdmin(false);
+  };
+
+  useEffect(() => {
+    userStatusGetter();
+  }, []);
+
   const categoryTitle = () => {
     if (id === "xbx") {
       return "Xbox";
@@ -28,6 +48,10 @@ const ProductsPage: React.FC = () => {
       return "Playstation";
     }
     return id.toUpperCase();
+  };
+
+  const createHandler = () => {
+    dispatch(showEditModalAction());
   };
 
   return (
@@ -64,7 +88,18 @@ const ProductsPage: React.FC = () => {
         </form>
       </section>
       <section className="productsPage__rightContent_container">
-        <SearchBar />
+        {isAdmin ? (
+          <div className="productsPage__rightContent_search">
+            <SearchBar />
+          </div>
+        ) : (
+          <div className="productsPage__rightContent_searchEdit">
+            <SearchBar />
+            <button className="productsPage__rightContent_editBtn" type="button" onClick={createHandler}>
+              Create card
+            </button>
+          </div>
+        )}
         <MainProductOutput />
       </section>
     </div>

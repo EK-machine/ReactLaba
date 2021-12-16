@@ -43,7 +43,7 @@ const SignInModalBody: React.FC = () => {
     setPassword(passwordData);
   };
 
-  const signInObj = { login, password };
+  const signInObj = { login, password, role: "user" };
 
   const verifyName = (log: string) => {
     if (!log) {
@@ -83,6 +83,7 @@ const SignInModalBody: React.FC = () => {
     }
   }, [loginMessage, passMessage]);
 
+  // oldFunc
   async function postFunc(e: React.SyntheticEvent) {
     if (e) {
       e.preventDefault();
@@ -104,6 +105,16 @@ const SignInModalBody: React.FC = () => {
 
     const response = await postResponse.json();
     return response;
+  }
+  // oldFunc
+
+  async function getFunc(e: React.SyntheticEvent) {
+    if (e) {
+      e.preventDefault();
+    }
+    const getResponse = await fetch(signInUrl, { method: "GET" });
+    const allUsersArr = await getResponse.json();
+    return allUsersArr;
   }
 
   return (
