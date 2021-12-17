@@ -1,17 +1,17 @@
 import React from "react";
 import "./signoutbtn.css";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
 import routesData from "../routesData";
-import { logOutAction } from "../../redux/login/actionsLogin";
+// import { logOutAction } from "../../redux/login/actionsLogin";
 
 const SignOutBtn: React.FC = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const history = useHistory();
   const handleCkick = () => {
-    dispatch(logOutAction());
+    // dispatch(logOutAction());
     history.push(routesData[0].path);
     window.location.reload();
   };

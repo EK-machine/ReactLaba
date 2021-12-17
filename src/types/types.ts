@@ -115,6 +115,10 @@ export interface ModalState {
   delConfModalVisible: boolean;
 }
 
+export interface initialGameStateType {
+  gameWantToDelete: string;
+}
+
 export type GameCart = {
   title: string;
   category: string;

@@ -7,12 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { ProductItemProps, GameCart } from "../../types/types";
 import StarRate from "./starRate";
 import { addGameToCartAction } from "../../redux/cart/actionsCart";
+import { wantDelGameAction } from "../../redux/games/actionsGames";
 import { ReducerState } from "../../redux/reducerRoot";
 import { showDelConfModalAction, showEditModalAction } from "../../redux/modal/actionsModal";
 
 const GameCard: React.FC<ProductItemProps> = ({ title, category, description, rating, price, imgUrl }) => {
   const gamesList = useSelector((state: ReducerState) => state.cart.gamesList);
-  const currentUserRole = useSelector((state: ReducerState) => state.signIn.userRole);
+  // const currentUserRole = useSelector((state: ReducerState) => state.signIn.userRole);
   const dispatch = useDispatch();
   const categoriesArr = [
     { categ: "pc", icon: faDesktop },
@@ -44,11 +45,14 @@ const GameCard: React.FC<ProductItemProps> = ({ title, category, description, ra
       amount: 1,
     };
 
-    if (gamesList.some((stateGame) => stateGame.title === game.title)) {
-      alert("Game is already in cart");
-    } else {
+    if (!gamesList.some((stateGame) => stateGame.title === game.title)) {
       dispatch(addGameToCartAction(game));
     }
+  };
+
+  const removeHandler = () => {
+    dispatch(showDelConfModalAction());
+    dispatch(wantDelGameAction(title));
   };
 
   return (
@@ -80,7 +84,7 @@ const GameCard: React.FC<ProductItemProps> = ({ title, category, description, ra
         </div>
         <div className="gameCard__back">
           <p className="gameCard__back_description">{description}</p>
-          {currentUserRole === "admin" ? (
+          {/* {currentUserRole === "admin" ? (
             <div className="gameCard__back_btnsContainer">
               <button type="button" className="gameCard__back_btn" onClick={() => dispatch(showEditModalAction())}>
                 Edit
@@ -89,7 +93,15 @@ const GameCard: React.FC<ProductItemProps> = ({ title, category, description, ra
                 Remove
               </button>
             </div>
-          ) : null}
+          ) : null} */}
+          <div className="gameCard__back_btnsContainer">
+            <button type="button" className="gameCard__back_btn" onClick={() => dispatch(showEditModalAction())}>
+              Edit
+            </button>
+            <button type="button" className="gameCard__back_btn" onClick={removeHandler}>
+              Remove
+            </button>
+          </div>
         </div>
       </div>
     </div>
