@@ -14,15 +14,14 @@ export interface AppState {
 export interface ProductItemProps {
   id?: number;
   title: string;
-  developer?: string;
   date?: string;
   category: string;
   description: string;
-  genre?: string;
-  age?: number;
+  genre: string;
+  age: number;
   rating: number;
   price: number;
-  imgUrl?: string;
+  imgUrl: string;
 }
 
 export type Game = {
@@ -131,10 +130,6 @@ export interface ModalState {
   delConfModalVisible: boolean;
 }
 
-export interface initialGameStateType {
-  gameWantToDelete: string;
-}
-
 export type GameCart = {
   title: string;
   category: string;
@@ -142,6 +137,21 @@ export type GameCart = {
   check: boolean;
   amount: number;
 };
+
+export type EditGame = {
+  title: string;
+  category: string;
+  price: number;
+  imgUrl: string;
+  description: string;
+  genre: string;
+  age: number;
+};
+
+export interface initialGameStateType {
+  gameWantToDelete: string;
+  gameWantToEdit: EditGame;
+}
 
 export type InitialCartStateType = {
   gamesList: Array<GameCart>;

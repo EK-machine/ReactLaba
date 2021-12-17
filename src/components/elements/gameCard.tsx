@@ -4,14 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDesktop } from "@fortawesome/free-solid-svg-icons";
 import { faPlaystation, faXbox } from "@fortawesome/free-brands-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { ProductItemProps, GameCart } from "../../types/types";
+import { ProductItemProps, GameCart, EditGame } from "../../types/types";
 import StarRate from "./starRate";
 import { addGameToCartAction } from "../../redux/cart/actionsCart";
-import { wantDelGameAction } from "../../redux/games/actionsGames";
+import { wantDelGameAction, wantToEditGameAction } from "../../redux/games/actionsGames";
 import { ReducerState } from "../../redux/reducerRoot";
 import { showDelConfModalAction, showEditModalAction } from "../../redux/modal/actionsModal";
 
-const GameCard: React.FC<ProductItemProps> = ({ title, category, description, rating, price, imgUrl }) => {
+const GameCard: React.FC<ProductItemProps> = ({ title, category, description, rating, price, imgUrl, genre, age }) => {
   const gamesList = useSelector((state: ReducerState) => state.cart.gamesList);
   // const currentUserRole = useSelector((state: ReducerState) => state.signIn.userRole);
   const dispatch = useDispatch();
@@ -55,6 +55,20 @@ const GameCard: React.FC<ProductItemProps> = ({ title, category, description, ra
     dispatch(wantDelGameAction(title));
   };
 
+  const editHandler = () => {
+    const gameToEdit: EditGame = {
+      title,
+      category,
+      price,
+      imgUrl,
+      description,
+      genre,
+      age,
+    };
+    dispatch(showEditModalAction());
+    dispatch(wantToEditGameAction(gameToEdit));
+  };
+
   return (
     <div
       className="gameCard__container"
@@ -95,7 +109,7 @@ const GameCard: React.FC<ProductItemProps> = ({ title, category, description, ra
             </div>
           ) : null} */}
           <div className="gameCard__back_btnsContainer">
-            <button type="button" className="gameCard__back_btn" onClick={() => dispatch(showEditModalAction())}>
+            <button type="button" className="gameCard__back_btn" onClick={editHandler}>
               Edit
             </button>
             <button type="button" className="gameCard__back_btn" onClick={removeHandler}>

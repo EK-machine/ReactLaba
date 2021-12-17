@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./productspage.css";
 import { useParams } from "react-router-dom";
 import MainProductOutput from "./mainProductOutput";
-import { RouteParams } from "../../types/types";
+import { RouteParams, EditGame } from "../../types/types";
 import SearchBar from "./searchBar";
 import GenreRadioButtons from "../elements/genreRadioButtons";
 import AgeRadioButtons from "../elements/ageRadioButtons";
@@ -11,6 +11,7 @@ import CriteriaSelector from "../elements/criteriaSelector";
 import { fetchGamesAction } from "../../redux/filter/actionsFilter";
 import { ReducerState } from "../../redux/reducerRoot";
 import { showEditModalAction } from "../../redux/modal/actionsModal";
+import { wantToEditGameAction } from "../../redux/games/actionsGames";
 
 const ProductsPage: React.FC = () => {
   const currentUserRole = useSelector((state: ReducerState) => state.signIn.userRole);
@@ -35,6 +36,8 @@ const ProductsPage: React.FC = () => {
 
   const createHandler = () => {
     dispatch(showEditModalAction());
+    const gameToCreate = {} as EditGame;
+    dispatch(wantToEditGameAction(gameToCreate));
   };
 
   return (
