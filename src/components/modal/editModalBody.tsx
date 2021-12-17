@@ -16,17 +16,21 @@ const genreArr = ["action-adventure", "first-person shooter", "fighting game", "
 
 const EditModalBody: React.FC = () => {
   const gameData = useSelector((state: ReducerState) => state.games.gameWantToEdit);
-  const { title, category, price, imgUrl, description, age } = gameData;
+  const { title, category, price, imgUrl, description, age, genre } = gameData;
+
+  const incomGenreArr = genre.split(", ");
+  const incomcategoryArr = category.split(", ");
+  const [pcGenre, psGenre, xbxGenre] = incomcategoryArr;
 
   const [titleInp, setTitleInp] = useState<string>(title);
-  const [categoryInp, setCategoryInp] = useState(category);
+  const [categoryInp, setCategoryInp] = useState(incomGenreArr[0]);
   const [priceInp, setPriceInp] = useState<number>(price);
   const [imgUrlInp, setImgUrlInp] = useState<string>(imgUrl);
   const [descriptionInp, setDescriptionInp] = useState<string>(description);
   const [ageInp, setAgeInp] = useState(`${age}+`);
-  const [pcCheckedInp, setPcCheckedInp] = useState<boolean>(false);
-  const [psCheckedInp, setPsCheckedInp] = useState<boolean>(false);
-  const [xbxCheckedInp, setXbxCheckedInp] = useState<boolean>(false);
+  const [pcCheckedInp, setPcCheckedInp] = useState<boolean>(Boolean(pcGenre));
+  const [psCheckedInp, setPsCheckedInp] = useState<boolean>(Boolean(psGenre));
+  const [xbxCheckedInp, setXbxCheckedInp] = useState<boolean>(Boolean(xbxGenre));
   const dispatch = useDispatch();
 
   const closeHandler = () => {
