@@ -127,32 +127,6 @@ const SignUpModalBody: React.FC = () => {
     return response;
   }
 
-  // old realization with put
-  // async function putFunc(e: React.SyntheticEvent) {
-  //   if (e) {
-  //     e.preventDefault();
-  //   }
-
-  //   const putResponse = await fetch(signUpUrl, {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(signUpObj),
-  //   });
-
-  //   if (putResponse.status === 200) {
-  //     dispatchedLogInAction(logup);
-  //   } else {
-  //     throw new Error(`HTTP status: ${putResponse.status}`);
-  //   }
-
-  //   const response = await putResponse.json();
-  //   history.push(routesData[3].path);
-  //   return response;
-  // }
-  // old realization with put
-
   return (
     <div className="signUp__modal_container">
       <div className="signUp__modal_upper-container">

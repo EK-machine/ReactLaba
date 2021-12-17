@@ -65,8 +65,24 @@ export interface InputProps {
   name: string;
   id: string;
   type: string;
+  value: string | number;
+  onChange: (value: string) => void;
+}
+
+export interface InputTextAdminProps {
+  name: string;
+  id: string;
+  type: string;
   value: string;
   onChange: (value: string) => void;
+}
+
+export interface InputNumberAdminProps {
+  name: string;
+  id: string;
+  type: string;
+  value: number;
+  onChange: (value: number) => void;
 }
 
 export interface ProfileTextAreaProps {
