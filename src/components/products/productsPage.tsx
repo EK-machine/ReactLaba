@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./productspage.css";
 import { useParams } from "react-router-dom";
@@ -12,11 +12,8 @@ import { fetchGamesAction } from "../../redux/filter/actionsFilter";
 import { ReducerState } from "../../redux/reducerRoot";
 import { showEditModalAction } from "../../redux/modal/actionsModal";
 
-const getUsersUrl = "http://localhost:3000/users";
-
 const ProductsPage: React.FC = () => {
-  const [isAdmin, setIsAdmin] = useState(false);
-  const currentUserName = useSelector((state: ReducerState) => state.signIn.userName);
+  const currentUserRole = useSelector((state: ReducerState) => state.signIn.userRole);
   const dispatch = useDispatch();
 
   const { id } = useParams<RouteParams>();
@@ -25,20 +22,6 @@ const ProductsPage: React.FC = () => {
     const partOfUrl = `?category_like=${id}`;
     dispatch(fetchGamesAction(partOfUrl));
   }, [id]);
-
-  const userStatusGetter = async () => {
-    const getResponse = await fetch(getUsersUrl, { method: "GET" });
-    const usersResponse = await getResponse.json();
-    const [{ login }] = usersResponse.filter((user: { role: string }) => user.role === "admin");
-    if (login === currentUserName) {
-      setIsAdmin(true);
-    }
-    setIsAdmin(false);
-  };
-
-  useEffect(() => {
-    userStatusGetter();
-  }, []);
 
   const categoryTitle = () => {
     if (id === "xbx") {
@@ -88,16 +71,16 @@ const ProductsPage: React.FC = () => {
         </form>
       </section>
       <section className="productsPage__rightContent_container">
-        {isAdmin ? (
-          <div className="productsPage__rightContent_search">
-            <SearchBar />
-          </div>
-        ) : (
+        {currentUserRole === "admin" ? (
           <div className="productsPage__rightContent_searchEdit">
             <SearchBar />
             <button className="productsPage__rightContent_editBtn" type="button" onClick={createHandler}>
               Create card
             </button>
+          </div>
+        ) : (
+          <div className="productsPage__rightContent_search">
+            <SearchBar />
           </div>
         )}
         <MainProductOutput />

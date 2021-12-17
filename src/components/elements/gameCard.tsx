@@ -8,9 +8,11 @@ import { ProductItemProps, GameCart } from "../../types/types";
 import StarRate from "./starRate";
 import { addGameToCartAction } from "../../redux/cart/actionsCart";
 import { ReducerState } from "../../redux/reducerRoot";
+import { showDelConfModalAction, showEditModalAction } from "../../redux/modal/actionsModal";
 
 const GameCard: React.FC<ProductItemProps> = ({ title, category, description, rating, price, imgUrl }) => {
   const gamesList = useSelector((state: ReducerState) => state.cart.gamesList);
+  const currentUserRole = useSelector((state: ReducerState) => state.signIn.userRole);
   const dispatch = useDispatch();
   const categoriesArr = [
     { categ: "pc", icon: faDesktop },
@@ -78,6 +80,16 @@ const GameCard: React.FC<ProductItemProps> = ({ title, category, description, ra
         </div>
         <div className="gameCard__back">
           <p className="gameCard__back_description">{description}</p>
+          {currentUserRole === "admin" ? (
+            <div className="gameCard__back_btnsContainer">
+              <button type="button" className="gameCard__back_btn" onClick={() => dispatch(showEditModalAction())}>
+                Edit
+              </button>
+              <button type="button" className="gameCard__back_btn" onClick={() => dispatch(showDelConfModalAction())}>
+                Remove
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

@@ -86,20 +86,8 @@ export interface HeaderProps {
   loggedIn?: boolean;
 }
 
-export interface SignInBtnProps {
-  dispatchedLogInAction: LogInFunctionType;
-}
-
-export interface SignUpBtnProps {
-  dispatchedLogInAction: LogInFunctionType;
-}
-
 export interface UserNameBtnProps {
   userName: string | undefined;
-}
-
-export interface SignOutBtnProps {
-  dispatchedLogOutAction: LogOutFunctionType;
 }
 
 export interface LocationState {
@@ -117,7 +105,7 @@ export interface StarProps {
 }
 
 export type InitialFilterState = { loading: boolean; gamesList: [] };
-export type InitialLogInState = { loggedIn: boolean; userName: string };
+export type InitialLogInState = { loggedIn: boolean; userName: string; userRole: string };
 export interface ModalState {
   signInModalVisible: boolean;
   signUpModalVisible: boolean;

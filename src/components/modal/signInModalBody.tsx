@@ -26,7 +26,7 @@ const SignInModalBody: React.FC = () => {
   }, [loggedIn]);
 
   const closeLogIn = () => dispatch(closeModalAction());
-  const dispatchedLogInAction = (userName: string) => dispatch(logInAction(userName));
+  const dispatchedLogInAction = (obj: { userName: string; userRole: string }) => dispatch(logInAction(obj));
   const history = useHistory();
   const closeModalHandler = () => {
     closeLogIn();
@@ -42,8 +42,6 @@ const SignInModalBody: React.FC = () => {
   const passwordGetter = (passwordData: string) => {
     setPassword(passwordData);
   };
-
-  const signInObj = { login, password, role: "user" };
 
   const verifyName = (log: string) => {
     if (!log) {
@@ -88,13 +86,21 @@ const SignInModalBody: React.FC = () => {
       e.preventDefault();
     }
     const getResponse = await fetch(signInUrl, { method: "GET" });
-    const allUsers = await getResponse.json();
-    const user = allUsers.find((user) => user.login === login && user.password);
-    if (typeof user === "undefined") {
-      alert("Incorrect login or password. Please try again.");
+    const allUsersArr = await getResponse.json();
+    const userMatch = allUsersArr.find(
+      (user: { login: string; password: string }) => user.login === login && user.password === password
+    );
+    const { role } = userMatch;
+    const obj = {
+      userName: login,
+      userRole: role,
+    };
+
+    if (typeof userMatch === "undefined") {
+      alert("Login or password is not correct. Please try again.");
       return;
     }
-    dispatchedLogInAction(login);
+    dispatchedLogInAction(obj);
   }
 
   return (
