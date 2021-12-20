@@ -1,7 +1,7 @@
 import { initialGameStateType } from "../../types/types";
 
 const initialGameState: initialGameStateType = {
-  gameWantToDelete: "",
+  gameWantToDelete: {},
   gameWantToEdit: {},
   gameToPostPut: {},
 };

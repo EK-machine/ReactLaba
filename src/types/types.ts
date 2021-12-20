@@ -150,7 +150,7 @@ export type EditGame = {
 };
 
 export interface initialGameStateType {
-  gameWantToDelete: string;
+  gameWantToDelete: EditGame;
   gameWantToEdit: EditGame;
   gameToPostPut: EditGame;
 }

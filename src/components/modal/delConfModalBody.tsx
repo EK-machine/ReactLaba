@@ -4,11 +4,11 @@ import "./delconfmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { closeModalAction } from "../../redux/modal/actionsModal";
-import { doNotWantDelEditGameAction } from "../../redux/games/actionsGames";
+import { doNotWantDelEditGameAction, deleteGameAction } from "../../redux/games/actionsGames";
 import { ReducerState } from "../../redux/reducerRoot";
 
 const DelConfModalBody: React.FC = () => {
-  const gameTitle = useSelector((state: ReducerState) => state.games.gameWantToDelete);
+  const gameTitle = useSelector((state: ReducerState) => state.games.gameWantToDelete.title);
   const dispatch = useDispatch();
 
   const closeHandler = () => {
@@ -18,6 +18,7 @@ const DelConfModalBody: React.FC = () => {
 
   const yesHandler = () => {
     dispatch(closeModalAction());
+    dispatch(deleteGameAction());
   };
 
   const noHandler = () => {

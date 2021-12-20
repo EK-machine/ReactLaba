@@ -4,13 +4,13 @@ import { EditGame, initialGameStateType } from "../../types/types";
 
 const GamesReducer = (
   state = initialGameState as initialGameStateType,
-  action: { type: string; payload: string | EditGame }
-): { gameWantToDelete: string; gameWantToEdit: EditGame; gameToPostPut: EditGame } => {
+  action: { type: string; payload: EditGame }
+): { gameWantToDelete: EditGame; gameWantToEdit: EditGame; gameToPostPut: EditGame } => {
   switch (action.type) {
     case wantDelGame:
       return {
         ...state,
-        gameWantToDelete: action.payload as string,
+        gameWantToDelete: action.payload as EditGame,
         gameWantToEdit: initialGameState.gameWantToEdit,
         gameToPostPut: initialGameState.gameToPostPut,
       };

@@ -62,7 +62,17 @@ const GameCard: React.FC<ProductItemProps> = ({
 
   const removeHandler = () => {
     dispatch(showDelConfModalAction());
-    dispatch(wantDelGameAction(title));
+    const gameToDel: EditGame = {
+      title,
+      category,
+      price,
+      imgUrl,
+      description,
+      genre,
+      age,
+      id,
+    };
+    dispatch(wantDelGameAction(gameToDel));
   };
 
   const editHandler = () => {
