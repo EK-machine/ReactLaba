@@ -30,7 +30,7 @@ const EditModalBody: React.FC = () => {
 
   const [titleInp, setTitleInp] = useState<string>(title || "");
   const [categoryInp, setCategoryInp] = useState(incomGenreArr[0]);
-  const [priceInp, setPriceInp] = useState<number>(price);
+  const [priceInp, setPriceInp] = useState<number>(price || 0.99);
   const [imgUrlInp, setImgUrlInp] = useState<string>(imgUrl || "");
   const [descriptionInp, setDescriptionInp] = useState<string>(description);
   const [ageInp, setAgeInp] = useState(age);
