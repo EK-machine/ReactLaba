@@ -10,7 +10,7 @@ const GamesReducer = (
     case wantDelGame:
       return {
         ...state,
-        gameWantToDelete: action.payload as EditGame,
+        gameWantToDelete: action.payload,
         gameWantToEdit: initialGameState.gameWantToEdit,
         gameToPostPut: initialGameState.gameToPostPut,
       };
@@ -25,7 +25,7 @@ const GamesReducer = (
       return {
         ...state,
         gameWantToDelete: initialGameState.gameWantToDelete,
-        gameWantToEdit: action.payload as EditGame,
+        gameWantToEdit: action.payload,
         gameToPostPut: initialGameState.gameToPostPut,
       };
     case getGameData:
@@ -33,7 +33,7 @@ const GamesReducer = (
         ...state,
         gameWantToDelete: initialGameState.gameWantToDelete,
         gameWantToEdit: initialGameState.gameWantToEdit,
-        gameToPostPut: action.payload as EditGame,
+        gameToPostPut: action.payload,
       };
     default:
       return state;

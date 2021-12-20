@@ -23,7 +23,7 @@ const GameCard: React.FC<ProductItemProps> = ({
   id,
 }) => {
   const gamesList = useSelector((state: ReducerState) => state.cart.gamesList);
-  // const currentUserRole = useSelector((state: ReducerState) => state.signIn.userRole);
+  const currentUserRole = useSelector((state: ReducerState) => state.signIn.userRole);
   const dispatch = useDispatch();
   const categoriesArr = [
     { categ: "pc", icon: faDesktop },
@@ -44,13 +44,10 @@ const GameCard: React.FC<ProductItemProps> = ({
     });
 
   const clickHandler = (e: React.MouseEvent | React.KeyboardEvent<HTMLDivElement>) => {
-    const titleCart: string = e.currentTarget.getAttribute("data-title") as string;
-    const categoryCart: string = e.currentTarget.getAttribute("data-category") as string;
-    const priceCart: number = parseFloat(e.currentTarget.getAttribute("data-price") as string);
     const game: GameCart = {
-      title: titleCart,
-      category: categoryCart,
-      price: priceCart,
+      title,
+      category,
+      price,
       check: false,
       amount: 1,
     };
@@ -91,16 +88,7 @@ const GameCard: React.FC<ProductItemProps> = ({
   };
 
   return (
-    <div
-      className="gameCard__container"
-      tabIndex={0}
-      onClick={clickHandler}
-      onKeyUp={clickHandler}
-      data-title={title}
-      data-category={category}
-      data-price={price}
-      role="menuitem"
-    >
+    <div className="gameCard__container" tabIndex={0} onClick={clickHandler} onKeyUp={clickHandler} role="menuitem">
       <div className="gameCard__inner">
         <div className="gameCard__front">
           <div className="gameCard__img-container">
@@ -119,24 +107,16 @@ const GameCard: React.FC<ProductItemProps> = ({
         </div>
         <div className="gameCard__back">
           <p className="gameCard__back_description">{description}</p>
-          {/* {currentUserRole === "admin" ? (
+          {currentUserRole === "admin" ? (
             <div className="gameCard__back_btnsContainer">
-              <button type="button" className="gameCard__back_btn" onClick={() => dispatch(showEditModalAction())}>
+              <button type="button" className="gameCard__back_btn" onClick={editHandler}>
                 Edit
               </button>
-              <button type="button" className="gameCard__back_btn" onClick={() => dispatch(showDelConfModalAction())}>
+              <button type="button" className="gameCard__back_btn" onClick={removeHandler}>
                 Remove
               </button>
             </div>
-          ) : null} */}
-          <div className="gameCard__back_btnsContainer">
-            <button type="button" className="gameCard__back_btn" onClick={editHandler}>
-              Edit
-            </button>
-            <button type="button" className="gameCard__back_btn" onClick={removeHandler}>
-              Remove
-            </button>
-          </div>
+          ) : null}
         </div>
       </div>
     </div>

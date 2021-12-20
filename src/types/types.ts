@@ -146,7 +146,8 @@ export type EditGame = {
   description: string;
   genre: string;
   age: number;
-  id: number;
+  rating?: number;
+  id?: number;
 };
 
 export interface initialGameStateType {

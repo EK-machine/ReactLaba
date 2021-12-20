@@ -1,9 +1,9 @@
-import { initialGameStateType } from "../../types/types";
+import { initialGameStateType, EditGame } from "../../types/types";
 
 const initialGameState: initialGameStateType = {
-  gameWantToDelete: {},
-  gameWantToEdit: {},
-  gameToPostPut: {},
+  gameWantToDelete: {} as EditGame,
+  gameWantToEdit: {} as EditGame,
+  gameToPostPut: {} as EditGame,
 };
 
 export default initialGameState;

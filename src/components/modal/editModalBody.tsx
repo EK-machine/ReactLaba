@@ -18,22 +18,20 @@ import { ReducerState } from "../../redux/reducerRoot";
 
 const ageArr = [6, 7, 11, 13, 15, 16, 18];
 
-// dispatch(fetchGamesAction(`?id_like=${value}`));
-
 const genreArr = ["action-adventure", "first-person shooter", "fighting game", "survival game", "nonlinear gameplay"];
 
 const EditModalBody: React.FC = () => {
   const gameData = useSelector((state: ReducerState) => state.games.gameWantToEdit);
-  const { title, category, price, imgUrl, description, age, genre, id } = gameData;
+  const { title, category, price, imgUrl, description, age, genre, id, rating } = gameData;
 
   const incomGenreArr = genre ? genre.split(", ") : ["fighting game"];
   const incomcategoryArr = category ? category.split(", ") : ["", "", ""];
   const [pcGenre, psGenre, xbxGenre] = incomcategoryArr;
 
-  const [titleInp, setTitleInp] = useState<string>(title);
+  const [titleInp, setTitleInp] = useState<string>(title || "");
   const [categoryInp, setCategoryInp] = useState(incomGenreArr[0]);
   const [priceInp, setPriceInp] = useState<number>(price);
-  const [imgUrlInp, setImgUrlInp] = useState<string>(imgUrl);
+  const [imgUrlInp, setImgUrlInp] = useState<string>(imgUrl || "");
   const [descriptionInp, setDescriptionInp] = useState<string>(description);
   const [ageInp, setAgeInp] = useState(age);
   const [pcCheckedInp, setPcCheckedInp] = useState<boolean>(Boolean(pcGenre));
@@ -46,6 +44,7 @@ const EditModalBody: React.FC = () => {
   const finalXbx = xbxCheckedInp ? "xbx" : null;
   const categories = [finalPc, finalPs, finalXbx];
   const finalCategory = categories.filter((categor) => Boolean(categor)).join(", ");
+  const finalRating = rating || 4;
 
   const closeHandler = () => {
     dispatch(closeModalAction());
@@ -54,7 +53,17 @@ const EditModalBody: React.FC = () => {
 
   const deleteHandler = () => {
     dispatch(showDelConfModalAction());
-    dispatch(wantDelGameAction(title));
+    const gameObj = {
+      id,
+      title: titleInp,
+      imgUrl: imgUrlInp,
+      price: priceInp,
+      description: descriptionInp,
+      age: Number(ageInp),
+      genre: categoryInp,
+      category: finalCategory,
+    };
+    dispatch(wantDelGameAction(gameObj));
   };
 
   const titleGetter = (nameData: string) => {
@@ -78,32 +87,31 @@ const EditModalBody: React.FC = () => {
   };
 
   const submitHandlerEdit = () => {
-    const partOfUrl = `?id_like=${id}`;
     const gameObj = {
       id,
       title: titleInp,
       imgUrl: imgUrlInp,
       price: priceInp,
       description: descriptionInp,
+      rating: finalRating,
       age: Number(ageInp),
       genre: categoryInp,
       category: finalCategory,
     };
     dispatch(getGameDataAction(gameObj));
-    dispatch(editGameAction(partOfUrl, gameObj));
+    dispatch(editGameAction(gameObj));
   };
 
   const submitHandlerCreate = () => {
-    console.log(pcGenre, psGenre, xbxGenre);
     const gameObj = {
       title: titleInp,
       imgUrl: imgUrlInp,
       price: priceInp,
       description: descriptionInp,
+      rating: 4,
       age: Number(ageInp),
       genre: categoryInp,
       category: finalCategory,
-      rating: 4,
     };
     dispatch(getGameDataAction(gameObj));
     dispatch(createGameAction(gameObj));
@@ -150,7 +158,7 @@ const EditModalBody: React.FC = () => {
                 className="editModal__contentForm_age"
                 id="age"
                 onChange={(e) => {
-                  setAgeInp(e.target.value);
+                  setAgeInp(Number(e.target.value));
                 }}
                 value={ageInp}
               >

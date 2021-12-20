@@ -34,22 +34,21 @@ export const createGameAction = (gameToEdit: EditGame) => async (dispatch, getSt
 };
 
 export const deleteGameAction = () => async (dispatch, getState) => {
-  const gameId = getState().games.gameWantToDelete.id;
-  const game = getState().games.gameWantToDelete;
-  await fetch(`http://localhost:3000/games/${gameId}`, {
+  const gameDelId = getState().games.gameWantToDelete.id;
+  await fetch(`http://localhost:3000/games/${gameDelId}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(game),
   });
 };
 
-export const editGameAction = (partOfUrl: string, gameToEdit: EditGame) => async (dispatch, getState) => {
+export const editGameAction = (gameToEdit: EditGame) => async (dispatch, getState) => {
   dispatch(getGameDataAction(gameToEdit));
+  const gameEditId = getState().games.gameToPostPut.id;
   const game = getState().games.gameToPostPut;
-  await fetch(`http://localhost:3000/games${partOfUrl}`, {
+  await fetch(`http://localhost:3000/games/${gameEditId}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
