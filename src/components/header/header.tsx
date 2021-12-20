@@ -9,10 +9,9 @@ import ProductsDropDown from "./productsDropDown";
 import SignInBtn from "../elements/signInBtn";
 import SignUpBtn from "../elements/signUpBtn";
 import SignOutBtn from "../elements/signOutBtn";
-import { HeaderProps } from "../../types/types";
 import { ReducerState } from "../../redux/reducerRoot";
 
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC = () => {
   const numOfGames: number = useSelector((state: ReducerState) => state.cart.gamesList.length);
   const userName: string = useSelector((state: ReducerState) => state.signIn.userName);
   const loggedIn: boolean = useSelector((state: ReducerState) => state.signIn.loggedIn);

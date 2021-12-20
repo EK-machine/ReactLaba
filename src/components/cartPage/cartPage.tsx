@@ -58,9 +58,11 @@ const CartPage: React.FC = () => {
           <div className="cartPage__content_titleContainer  cartPage__content_containerEmpty" />
         </div>
         <div className="cartPage__content_gamesContainer">
-          {games.map(({ title, category, price }) => (
-            <CartGame key={title} title={title} category={category} price={price} />
-          ))}
+          <div className="cartPage__content_gamesListed">
+            {games.map(({ title, category, price }) => (
+              <CartGame key={title} title={title} category={category} price={price} />
+            ))}
+          </div>
           {games.length > 0 ? (
             <div className="cartPage__formRemove_container">
               <button className="cartPage__formRemove_btn" type="button" onClick={clickHandler}>

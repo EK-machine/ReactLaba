@@ -8,7 +8,7 @@
 
 .productsPage__leftContent_container {
   width: 25%;
-  padding: 30px;
+  padding: 0 15px 0 0;
 }
 
 .productsPage__sortTable {
@@ -48,7 +48,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 30px;
+  padding: 0 0 0 15px;
 }
 
 .productsPage__rightContent_search {

@@ -94,13 +94,6 @@ export interface ProfileTextAreaProps {
 export type LogInFunctionType = (userName: string) => void;
 export type LogOutFunctionType = () => void;
 
-export interface HeaderProps {
-  dispatchedLogOutAction: LogOutFunctionType;
-  dispatchedLogInAction: LogInFunctionType;
-  userName?: string;
-  loggedIn?: boolean;
-}
-
 export interface UserNameBtnProps {
   userName: string | undefined;
 }
