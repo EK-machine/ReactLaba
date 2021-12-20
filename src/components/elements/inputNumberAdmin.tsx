@@ -1,8 +1,8 @@
 import React from "react";
-import "./inputtextadmin.css";
-import { InputTextAdminProps } from "../../types/types";
+import "./inputnumberadmin.css";
+import { InputNumberAdminProps } from "../../types/types";
 
-const InputTextAdmin: React.FC<InputTextAdminProps> = ({ name, id, type, value, onChange }) => {
+const InputNumberAdmin: React.FC<InputNumberAdminProps> = ({ name, id, type, value, onChange }) => {
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
     onChange(event.target?.value);
   };
@@ -25,4 +25,4 @@ const InputTextAdmin: React.FC<InputTextAdminProps> = ({ name, id, type, value, 
   );
 };
 
-export default InputTextAdmin;
+export default InputNumberAdmin;

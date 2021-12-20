@@ -28,3 +28,10 @@ h2 {
 .test-block + .test-block {
   margin-top: 20px;
 }
+
+.main__content_container {
+  height: calc(100vh - 126px);
+  padding: 15px;
+  background-color: #353434;
+  overflow: hidden;
+}

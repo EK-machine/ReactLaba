@@ -14,15 +14,14 @@ export interface AppState {
 export interface ProductItemProps {
   id?: number;
   title: string;
-  developer?: string;
   date?: string;
   category: string;
   description: string;
-  genre?: string;
-  age?: number;
+  genre: string;
+  age: number;
   rating: number;
   price: number;
-  imgUrl?: string;
+  imgUrl: string;
 }
 
 export type Game = {
@@ -65,8 +64,24 @@ export interface InputProps {
   name: string;
   id: string;
   type: string;
+  value: string | number;
+  onChange: (value: string) => void;
+}
+
+export interface InputTextAdminProps {
+  name: string;
+  id: string;
+  type: string;
   value: string;
   onChange: (value: string) => void;
+}
+
+export interface InputNumberAdminProps {
+  name: string;
+  id: string;
+  type: string;
+  value: number;
+  onChange: (value: number) => void;
 }
 
 export interface ProfileTextAreaProps {
@@ -79,27 +94,8 @@ export interface ProfileTextAreaProps {
 export type LogInFunctionType = (userName: string) => void;
 export type LogOutFunctionType = () => void;
 
-export interface HeaderProps {
-  dispatchedLogOutAction: LogOutFunctionType;
-  dispatchedLogInAction: LogInFunctionType;
-  userName?: string;
-  loggedIn?: boolean;
-}
-
-export interface SignInBtnProps {
-  dispatchedLogInAction: LogInFunctionType;
-}
-
-export interface SignUpBtnProps {
-  dispatchedLogInAction: LogInFunctionType;
-}
-
 export interface UserNameBtnProps {
   userName: string | undefined;
-}
-
-export interface SignOutBtnProps {
-  dispatchedLogOutAction: LogOutFunctionType;
 }
 
 export interface LocationState {
@@ -117,7 +113,7 @@ export interface StarProps {
 }
 
 export type InitialFilterState = { loading: boolean; gamesList: [] };
-export type InitialLogInState = { loggedIn: boolean; userName: string };
+export type InitialLogInState = { loggedIn: boolean; userName: string; userRole: string };
 export interface ModalState {
   signInModalVisible: boolean;
   signUpModalVisible: boolean;
@@ -134,6 +130,24 @@ export type GameCart = {
   check: boolean;
   amount: number;
 };
+
+export type EditGame = {
+  title: string;
+  category: string;
+  price: number;
+  imgUrl: string;
+  description: string;
+  genre: string;
+  age: number;
+  rating?: number;
+  id?: number;
+};
+
+export interface initialGameStateType {
+  gameWantToDelete: EditGame;
+  gameWantToEdit: EditGame;
+  gameToPostPut: EditGame;
+}
 
 export type InitialCartStateType = {
   gamesList: Array<GameCart>;

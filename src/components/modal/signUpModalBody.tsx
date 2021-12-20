@@ -28,14 +28,14 @@ const SignUpModalBody: React.FC = () => {
   }, [loggedIn]);
 
   const closeLogIn = () => dispatch(closeModalAction());
-  const dispatchedLogInAction = (userName: string) => dispatch(logInAction(userName));
+  const dispatchedLogInAction = (obj: { userName: string; userRole: string }) => dispatch(logInAction(obj));
   const history = useHistory();
   const closeModalHandler = () => {
     closeLogIn();
     history.push(routesData[0].path);
   };
 
-  const signUpUrl = "http://localhost:3000/users/2";
+  const signUpUrl = "http://localhost:3000/users";
 
   const logupGetter = (logupData: string) => {
     setLogup(logupData);
@@ -49,7 +49,7 @@ const SignUpModalBody: React.FC = () => {
     setRepeatPassword(passwordData);
   };
 
-  const signUpObj = { login: logup, password };
+  const signUpObj = { login: logup, password, role: "user" };
 
   const verifyName = (log: string) => {
     if (!log) {
@@ -102,27 +102,28 @@ const SignUpModalBody: React.FC = () => {
     }
   }, [loginMessage, passMessage, repeatPassMessage]);
 
-  async function putFunc(e: React.SyntheticEvent) {
+  async function postFunc(e: React.SyntheticEvent) {
     if (e) {
       e.preventDefault();
     }
 
-    const putResponse = await fetch(signUpUrl, {
-      method: "PUT",
+    const postResponse = await fetch(signUpUrl, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(signUpObj),
     });
 
-    if (putResponse.status === 200) {
-      dispatchedLogInAction(logup);
+    const userObj = { userName: logup, userRole: "user" };
+
+    if (postResponse.status === 201) {
+      dispatchedLogInAction(userObj);
     } else {
-      throw new Error(`HTTP status: ${putResponse.status}`);
+      throw new Error(`HTTP status: ${postResponse.status}`);
     }
 
-    const response = await putResponse.json();
-    history.push(routesData[3].path);
+    const response = await postResponse.json();
     return response;
   }
 
@@ -134,7 +135,7 @@ const SignUpModalBody: React.FC = () => {
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>
-      <form action="#" className="signUp__modal_content-container" onSubmit={putFunc}>
+      <form action="#" className="signUp__modal_content-container" onSubmit={postFunc}>
         <InputText name="Login" id="SignUplogin" type="text" onChange={logupGetter} value={logup} />
         <p>{loginMessage}</p>
         <InputText name="Password" id="SignUpPassword" type="password" onChange={passwordGetter} value={password} />

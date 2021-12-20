@@ -4,13 +4,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDesktop } from "@fortawesome/free-solid-svg-icons";
 import { faPlaystation, faXbox } from "@fortawesome/free-brands-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { ProductItemProps, GameCart } from "../../types/types";
+import { ProductItemProps, GameCart, EditGame } from "../../types/types";
 import StarRate from "./starRate";
 import { addGameToCartAction } from "../../redux/cart/actionsCart";
+import { wantDelGameAction, wantToEditGameAction } from "../../redux/games/actionsGames";
 import { ReducerState } from "../../redux/reducerRoot";
+import { showDelConfModalAction, showEditModalAction } from "../../redux/modal/actionsModal";
 
-const GameCard: React.FC<ProductItemProps> = ({ title, category, description, rating, price, imgUrl }) => {
+const GameCard: React.FC<ProductItemProps> = ({
+  title,
+  category,
+  description,
+  rating,
+  price,
+  imgUrl,
+  genre,
+  age,
+  id,
+}) => {
   const gamesList = useSelector((state: ReducerState) => state.cart.gamesList);
+  const currentUserRole = useSelector((state: ReducerState) => state.signIn.userRole);
   const dispatch = useDispatch();
   const categoriesArr = [
     { categ: "pc", icon: faDesktop },
@@ -31,35 +44,51 @@ const GameCard: React.FC<ProductItemProps> = ({ title, category, description, ra
     });
 
   const clickHandler = (e: React.MouseEvent | React.KeyboardEvent<HTMLDivElement>) => {
-    const titleCart: string = e.currentTarget.getAttribute("data-title") as string;
-    const categoryCart: string = e.currentTarget.getAttribute("data-category") as string;
-    const priceCart: number = parseFloat(e.currentTarget.getAttribute("data-price") as string);
     const game: GameCart = {
-      title: titleCart,
-      category: categoryCart,
-      price: priceCart,
+      title,
+      category,
+      price,
       check: false,
       amount: 1,
     };
 
-    if (gamesList.some((stateGame) => stateGame.title === game.title)) {
-      alert("Game is already in cart");
-    } else {
+    if (!gamesList.some((stateGame) => stateGame.title === game.title)) {
       dispatch(addGameToCartAction(game));
     }
   };
 
+  const removeHandler = () => {
+    dispatch(showDelConfModalAction());
+    const gameToDel: EditGame = {
+      title,
+      category,
+      price,
+      imgUrl,
+      description,
+      genre,
+      age,
+      id,
+    };
+    dispatch(wantDelGameAction(gameToDel));
+  };
+
+  const editHandler = () => {
+    const gameToEdit: EditGame = {
+      title,
+      category,
+      price,
+      imgUrl,
+      description,
+      genre,
+      age,
+      id,
+    };
+    dispatch(showEditModalAction());
+    dispatch(wantToEditGameAction(gameToEdit));
+  };
+
   return (
-    <div
-      className="gameCard__container"
-      tabIndex={0}
-      onClick={clickHandler}
-      onKeyUp={clickHandler}
-      data-title={title}
-      data-category={category}
-      data-price={price}
-      role="menuitem"
-    >
+    <div className="gameCard__container" tabIndex={0} onClick={clickHandler} onKeyUp={clickHandler} role="menuitem">
       <div className="gameCard__inner">
         <div className="gameCard__front">
           <div className="gameCard__img-container">
@@ -78,6 +107,16 @@ const GameCard: React.FC<ProductItemProps> = ({ title, category, description, ra
         </div>
         <div className="gameCard__back">
           <p className="gameCard__back_description">{description}</p>
+          {currentUserRole === "admin" ? (
+            <div className="gameCard__back_btnsContainer">
+              <button type="button" className="gameCard__back_btn" onClick={editHandler}>
+                Edit
+              </button>
+              <button type="button" className="gameCard__back_btn" onClick={removeHandler}>
+                Remove
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

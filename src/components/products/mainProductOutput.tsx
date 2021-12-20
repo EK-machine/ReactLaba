@@ -39,37 +39,7 @@ const MainProductOutput: React.FC = () => {
             <FontAwesomeIcon icon={faSpinner} className="mainOutput__loadingSpinner" />
           ) : (
             <>
-              {games.gamesList.map(({ title, category, description, rating, price, imgUrl }) => (
-                <GameCard
-                  key={title}
-                  title={title}
-                  category={category}
-                  description={description}
-                  rating={rating}
-                  price={price}
-                  imgUrl={imgUrl}
-                />
-              ))}
-            </>
-          )} */}
-          {/* 1) SOLUTION WITH STATE.LOADING PART II */}
-
-          {/* 2) SOLUTION WITH REACT.SUSPENSE PART II */}
-          {/* {games.gamesList.map(({ title, category, description, rating, price, imgUrl }) => (
-            <React.Suspense
-              fallback={<FontAwesomeIcon icon={faSpinner} className="mainOutput__loadingSpinner" />}
-              key={title}
-            >
-              <GameCard title={title} category={category} description={description} rating={rating} price={price} imgUrl={imgUrl}/>
-            </React.Suspense>
-          ))} */}
-          {/* 2) SOLUTION WITH REACT.SUSPENSE PART II */}
-
-          {/* 3) SOLUTION WITH CUSTOM HOOK PART IV */}
-          {status ? (
-            <FontAwesomeIcon icon={faSpinner} className="mainOutput__loadingSpinner" />
-          ) : (
-            games.gamesList.map(({ title, category, description, rating, price, imgUrl }) => (
+              {games.gamesList.map(({ title, category, description, rating, price, imgUrl, id, genre, age }) => (
               <GameCard
                 key={title}
                 title={title}
@@ -78,6 +48,53 @@ const MainProductOutput: React.FC = () => {
                 rating={rating}
                 price={price}
                 imgUrl={imgUrl}
+                id={id}
+                genre={genre}
+                age={age}
+              />
+              ))}
+            </>
+          )} */}
+          {/* 1) SOLUTION WITH STATE.LOADING PART II */}
+
+          {/* 2) SOLUTION WITH REACT.SUSPENSE PART II */}
+          {/* {games.gamesList.map(({ title, category, description, rating, price, imgUrl, id, genre, age }) => (
+            <React.Suspense
+              fallback={<FontAwesomeIcon icon={faSpinner} className="mainOutput__loadingSpinner" />}
+              key={title}
+            >
+              <GameCard
+                key={title}
+                title={title}
+                category={category}
+                description={description}
+                rating={rating}
+                price={price}
+                imgUrl={imgUrl}
+                id={id}
+                genre={genre}
+                age={age}
+              />
+            </React.Suspense>
+          ))} */}
+          {/* 2) SOLUTION WITH REACT.SUSPENSE PART II */}
+
+          {/* 3) SOLUTION WITH CUSTOM HOOK PART IV */}
+          {status ? (
+            <FontAwesomeIcon icon={faSpinner} className="mainOutput__loadingSpinner" />
+          ) : (
+            games.gamesList.map(({ title, category, description, rating, price, imgUrl, id, genre, age }) => (
+              <GameCard
+                key={title}
+                title={title}
+                category={category}
+                description={description}
+                rating={rating}
+                price={price}
+                imgUrl={imgUrl}
+                id={id}
+                genre={genre}
+                age={age}
               />
             ))
           )}

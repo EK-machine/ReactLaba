@@ -1,10 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import "./signinbtn.css";
-import { SignInBtnProps } from "../../types/types";
 import { showSignInModalAction } from "../../redux/modal/actionsModal";
 
-const SignInBtn: React.FC<SignInBtnProps> = () => {
+const SignInBtn: React.FC = () => {
   const dispatch = useDispatch();
   return (
     <div className="signIn__container">

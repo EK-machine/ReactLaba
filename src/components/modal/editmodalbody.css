@@ -41,6 +41,7 @@
 
 .editModal__contentImg_container {
   flex-basis: 35%;
+  padding-right: 10px;
 }
 
 .editModal__contentImg_title {
@@ -51,7 +52,7 @@
 }
 
 .editModal__contentImg_img {
-  border: 1px solid yellow;
+  width: 100%;
 }
 
 .editModal__contentForm_container {

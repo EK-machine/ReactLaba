@@ -9,21 +9,23 @@ import TextArea from "../elements/textArea";
 
 const ProfilePage: React.FC = () => {
   const userName = useSelector((state: ReducerState) => state.signIn.userName);
-  const [currentName, setCurrentName] = useState("");
-  const [currentId, setCurrentId] = useState();
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [message, setMessage] = useState("");
-  const [formValid, setFormValid] = useState(false);
+  const [currentName, setCurrentName] = useState<string>("");
+  const [currentId, setCurrentId] = useState<string>();
+  const [currentRole, setCurrentRole] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+  const [formValid, setFormValid] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const dispatchedLogInAction = (newUserName: string) => dispatch(logInAction(newUserName));
+  const dispatchedLogInAction = (obj: { userName: string; userRole: string }) => dispatch(logInAction(obj));
 
   useEffect(() => {
     const currenUserFetch = async () => {
       const currentUserResp = await fetch(`http://localhost:3000/users?login_like=${userName}`, { method: "GET" });
       const currentUserRespJson = await currentUserResp.json();
-      const [{ login, id }] = currentUserRespJson;
+      const [{ login, role, id }] = currentUserRespJson;
       setCurrentName(login);
+      setCurrentRole(role);
       setCurrentId(id);
     };
     currenUserFetch();
@@ -72,7 +74,8 @@ const ProfilePage: React.FC = () => {
     if (patchResponse.status === 404) {
       throw new Error(`HTTP status: ${patchResponse.status}`);
     }
-    dispatchedLogInAction(updatedName);
+    const userObjToUpdate = { userName: updatedName, userRole: currentRole };
+    dispatchedLogInAction(userObjToUpdate);
   }
 
   return (

@@ -1,5 +1,5 @@
 .cartPage__container {
-  padding: 10px 30px;
+  padding: 0 15px;
   background-color: #353434;
   z-index: 0;
   height: auto;
@@ -21,8 +21,7 @@
   box-shadow: 0px 2px 0px 0px rgb(255, 255, 255);
   display: flex;
   justify-content: flex-start;
-  margin-bottom: 30px;
-  padding: 10px;
+  margin-bottom: 15px;
 }
 
 .cartPage__title {
@@ -76,6 +75,15 @@
 .cartPage__content_title {
   color: white;
   margin: 0;
+}
+
+.cartPage__content_gamesContainer {
+  max-height: 73vh;
+}
+
+.cartPage__content_gamesListed {
+  max-height: 59vh;
+  overflow: scroll;
 }
 
 .cartPage__formRemove_container {

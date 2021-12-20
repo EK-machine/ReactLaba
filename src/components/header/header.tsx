@@ -1,7 +1,5 @@
 import React from "react";
-import { useSelector, connect } from "react-redux";
-
-import { Dispatch } from "redux";
+import { useSelector } from "react-redux";
 import "./header.css";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,12 +9,12 @@ import ProductsDropDown from "./productsDropDown";
 import SignInBtn from "../elements/signInBtn";
 import SignUpBtn from "../elements/signUpBtn";
 import SignOutBtn from "../elements/signOutBtn";
-import { HeaderProps } from "../../types/types";
-import { logInAction, logOutAction } from "../../redux/login/actionsLogin";
 import { ReducerState } from "../../redux/reducerRoot";
 
-const Header: React.FC<HeaderProps> = ({ loggedIn, userName, dispatchedLogInAction, dispatchedLogOutAction }) => {
+const Header: React.FC = () => {
   const numOfGames: number = useSelector((state: ReducerState) => state.cart.gamesList.length);
+  const userName: string = useSelector((state: ReducerState) => state.signIn.userName);
+  const loggedIn: boolean = useSelector((state: ReducerState) => state.signIn.loggedIn);
 
   return (
     <header className="header__container">
@@ -62,7 +60,6 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, userName, dispatchedLogInActi
               >
                 <p className="header__btn-title">{userName}</p>
               </NavLink>
-              {/* commented for purpose of development */}
               <NavLink
                 key={routesData[4].text}
                 exact
@@ -74,24 +71,12 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, userName, dispatchedLogInActi
                 <FontAwesomeIcon icon={faShoppingCart} className="header__btn-title" />
                 <p className="header__btn-title">{numOfGames}</p>
               </NavLink>
-              {/* commented for purpose of development */}
-              <SignOutBtn dispatchedLogOutAction={dispatchedLogOutAction} />
+              <SignOutBtn />
             </>
           ) : (
             <>
-              {/* <NavLink
-                key={routesData[4].text}
-                exact
-                to={routesData[4].path}
-                className="header__btn_cart"
-                activeClassName="header__btn_cart-active"
-                role="button"
-              >
-                <FontAwesomeIcon icon={faShoppingCart} className="header__btn-title" />
-                <p className="header__btn-title">{numOfGames}</p>
-              </NavLink> */}
-              <SignInBtn dispatchedLogInAction={dispatchedLogInAction} />
-              <SignUpBtn dispatchedLogInAction={dispatchedLogInAction} />
+              <SignInBtn />
+              <SignUpBtn />
             </>
           )}
         </div>
@@ -100,14 +85,4 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, userName, dispatchedLogInActi
   );
 };
 
-const mapStateToProps = (state: { signIn: { loggedIn: boolean; userName: string } }) => ({
-  loggedIn: state.signIn.loggedIn,
-  userName: state.signIn.userName,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  dispatchedLogInAction: (userName: string) => dispatch(logInAction(userName)),
-  dispatchedLogOutAction: () => dispatch(logOutAction()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

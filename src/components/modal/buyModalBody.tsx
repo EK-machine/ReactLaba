@@ -37,7 +37,9 @@ const BuyModalBody: React.FC = () => {
             Dear {userName}, are you sure you want to buy following games for amount {amount}$
           </p>
           {cartGames.map(({ title }) => (
-            <p className="buy__modal_contentParagraph">- {title}</p>
+            <p className="buy__modal_contentParagraph" key={title}>
+              - {title}
+            </p>
           ))}
         </div>
         <button className="buy__modal_contentButton" type="button" onClick={confirmHandler}>

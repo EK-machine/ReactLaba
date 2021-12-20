@@ -26,7 +26,7 @@ const SignInModalBody: React.FC = () => {
   }, [loggedIn]);
 
   const closeLogIn = () => dispatch(closeModalAction());
-  const dispatchedLogInAction = (userName: string) => dispatch(logInAction(userName));
+  const dispatchedLogInAction = (obj: { userName: string; userRole: string }) => dispatch(logInAction(obj));
   const history = useHistory();
   const closeModalHandler = () => {
     closeLogIn();
@@ -42,8 +42,6 @@ const SignInModalBody: React.FC = () => {
   const passwordGetter = (passwordData: string) => {
     setPassword(passwordData);
   };
-
-  const signInObj = { login, password };
 
   const verifyName = (log: string) => {
     if (!log) {
@@ -83,27 +81,26 @@ const SignInModalBody: React.FC = () => {
     }
   }, [loginMessage, passMessage]);
 
-  async function postFunc(e: React.SyntheticEvent) {
+  async function getFunc(e: React.SyntheticEvent) {
     if (e) {
       e.preventDefault();
     }
+    const getResponse = await fetch(signInUrl, { method: "GET" });
+    const allUsersArr = await getResponse.json();
+    const userMatch = allUsersArr.find(
+      (user: { login: string; password: string }) => user.login === login && user.password === password
+    );
+    const { role } = userMatch;
+    const obj = {
+      userName: login,
+      userRole: role,
+    };
 
-    const postResponse = await fetch(signInUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(signInObj),
-    });
-
-    if (postResponse.status === 201) {
-      dispatchedLogInAction(login);
-    } else {
-      throw new Error(`HTTP status: ${postResponse.status}`);
+    if (typeof userMatch === "undefined") {
+      alert("Login or password is not correct. Please try again.");
+      return;
     }
-
-    const response = await postResponse.json();
-    return response;
+    dispatchedLogInAction(obj);
   }
 
   return (
@@ -114,7 +111,7 @@ const SignInModalBody: React.FC = () => {
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>
-      <form action="#" className="signIn__modal_content-container" onSubmit={postFunc}>
+      <form action="#" className="signIn__modal_content-container" onSubmit={getFunc}>
         <InputText name="Login" id="SignInLogin" type="text" onChange={loginGetter} value={login} />
         <span>{loginMessage}</span>
         <InputText name="Password" id="SignInPassword" type="password" onChange={passwordGetter} value={password} />

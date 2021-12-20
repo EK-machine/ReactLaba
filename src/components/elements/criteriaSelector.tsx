@@ -42,6 +42,7 @@ const CriteriaSelector: React.FC = () => {
           onChange={(e) => {
             setCriteria(e.target.value);
           }}
+          value={criteria}
         >
           <option value="rating">Rating</option>
           <option value="price">Price</option>
@@ -55,6 +56,7 @@ const CriteriaSelector: React.FC = () => {
           onChange={(e) => {
             setType(e.target.value);
           }}
+          value={type}
         >
           <option value="ascending">Ascending</option>
           <option value="descending">Descending</option>

@@ -1,16 +1,20 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./productspage.css";
 import { useParams } from "react-router-dom";
 import MainProductOutput from "./mainProductOutput";
-import { RouteParams } from "../../types/types";
+import { RouteParams, EditGame } from "../../types/types";
 import SearchBar from "./searchBar";
 import GenreRadioButtons from "../elements/genreRadioButtons";
 import AgeRadioButtons from "../elements/ageRadioButtons";
 import CriteriaSelector from "../elements/criteriaSelector";
 import { fetchGamesAction } from "../../redux/filter/actionsFilter";
+import { ReducerState } from "../../redux/reducerRoot";
+import { showEditModalAction } from "../../redux/modal/actionsModal";
+import { wantToEditGameAction } from "../../redux/games/actionsGames";
 
 const ProductsPage: React.FC = () => {
+  const currentUserRole = useSelector((state: ReducerState) => state.signIn.userRole);
   const dispatch = useDispatch();
 
   const { id } = useParams<RouteParams>();
@@ -28,6 +32,12 @@ const ProductsPage: React.FC = () => {
       return "Playstation";
     }
     return id.toUpperCase();
+  };
+
+  const createHandler = () => {
+    dispatch(showEditModalAction());
+    const gameToCreate = {} as EditGame;
+    dispatch(wantToEditGameAction(gameToCreate));
   };
 
   return (
@@ -64,7 +74,18 @@ const ProductsPage: React.FC = () => {
         </form>
       </section>
       <section className="productsPage__rightContent_container">
-        <SearchBar />
+        {currentUserRole === "admin" ? (
+          <div className="productsPage__rightContent_searchEdit">
+            <SearchBar />
+            <button className="productsPage__rightContent_editBtn" type="button" onClick={createHandler}>
+              Create card
+            </button>
+          </div>
+        ) : (
+          <div className="productsPage__rightContent_search">
+            <SearchBar />
+          </div>
+        )}
         <MainProductOutput />
       </section>
     </div>
