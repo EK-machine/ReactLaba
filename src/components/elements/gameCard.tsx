@@ -11,7 +11,17 @@ import { wantDelGameAction, wantToEditGameAction } from "../../redux/games/actio
 import { ReducerState } from "../../redux/reducerRoot";
 import { showDelConfModalAction, showEditModalAction } from "../../redux/modal/actionsModal";
 
-const GameCard: React.FC<ProductItemProps> = ({ title, category, description, rating, price, imgUrl, genre, age }) => {
+const GameCard: React.FC<ProductItemProps> = ({
+  title,
+  category,
+  description,
+  rating,
+  price,
+  imgUrl,
+  genre,
+  age,
+  id,
+}) => {
   const gamesList = useSelector((state: ReducerState) => state.cart.gamesList);
   // const currentUserRole = useSelector((state: ReducerState) => state.signIn.userRole);
   const dispatch = useDispatch();
@@ -64,6 +74,7 @@ const GameCard: React.FC<ProductItemProps> = ({ title, category, description, ra
       description,
       genre,
       age,
+      id,
     };
     dispatch(showEditModalAction());
     dispatch(wantToEditGameAction(gameToEdit));

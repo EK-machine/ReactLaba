@@ -194,6 +194,104 @@
       "age": 16,
       "rating": 4,
       "price": 39.99
+    },
+    {
+      "title": "1111",
+      "price": 7,
+      "description": "wewdwd",
+      "genre": "fighting game",
+      "category": "",
+      "id": 16
+    },
+    {
+      "title": "1111",
+      "price": 7,
+      "description": "wewdwd",
+      "genre": "fighting game",
+      "category": "",
+      "id": 17
+    },
+    {
+      "title": "1111",
+      "price": 7,
+      "description": "wewdwd",
+      "genre": "fighting game",
+      "category": "",
+      "id": 18
+    },
+    {
+      "title": "qwqq",
+      "imgUrl": "wswqqws",
+      "price": 22,
+      "description": "qwsqsqsw",
+      "genre": "fighting game",
+      "category": "",
+      "id": 19
+    },
+    {
+      "title": "Harvest Moon",
+      "imgUrl": "https://cdn.kanobu.ru/games/a7309b52-e96a-4275-8bcc-15541e274b05.png",
+      "price": 120,
+      "description": "Harvest moon",
+      "genre": "first-person shooter",
+      "category": "",
+      "rating": 4,
+      "id": 20
+    },
+    {
+      "title": "Harvester",
+      "imgUrl": "https://cdn.kanobu.ru/games/a7309b52-e96a-4275-8bcc-15541e274b05.png",
+      "price": 258,
+      "description": "Harvester",
+      "age": "15+",
+      "genre": "fighting game",
+      "category": "",
+      "rating": 4,
+      "id": 21
+    },
+    {
+      "title": "Mario",
+      "imgUrl": "https://wowroms-photos.com/emulators-roms-logo/26/9283/420-420/Game-Boy-Gallery-2-(Australia)-(SGB-Enhanced).jpg",
+      "price": 33,
+      "description": "Mario",
+      "age": "16",
+      "genre": "survival game",
+      "category": "",
+      "rating": 4,
+      "id": 22
+    },
+    {
+      "title": "Marr",
+      "imgUrl": "https://wowroms-photos.com/emulators-roms-logo/26/9283/420-420/Game-Boy-Gallery-2-(Australia)-(SGB-Enhanced).jpg",
+      "price": 220,
+      "description": "220",
+      "age": 18,
+      "genre": "fighting game",
+      "category": "",
+      "rating": 4,
+      "id": 23
+    },
+    {
+      "title": "Pockemon",
+      "imgUrl": "https://upload.wikimedia.org/wikipedia/ru/1/19/Pok%C3%A9mon_Trading_Card_Game_Coverart.png",
+      "price": 99,
+      "description": "Pockemon",
+      "age": 11,
+      "genre": "fighting game",
+      "category": "",
+      "rating": 4,
+      "id": 24
+    },
+    {
+      "title": "Mechanic",
+      "imgUrl": "https://ontabs.com/uploads/images/9479/scrap-mechanic-game-256.png",
+      "price": 100,
+      "description": "Mechanic",
+      "age": 15,
+      "genre": "action-adventure",
+      "category": "pc, xbx",
+      "rating": 4,
+      "id": 25
     }
   ],
   "users": [

@@ -146,11 +146,13 @@ export type EditGame = {
   description: string;
   genre: string;
   age: number;
+  id: number;
 };
 
 export interface initialGameStateType {
   gameWantToDelete: string;
   gameWantToEdit: EditGame;
+  gameToPostPut: EditGame;
 }
 
 export type InitialCartStateType = {

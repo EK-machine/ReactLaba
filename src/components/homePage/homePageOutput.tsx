@@ -32,7 +32,7 @@ const HomePageOutput: React.FC = () => {
           {games.loading ? (
             <FontAwesomeIcon icon={faSpinner} className="searchBar__loading-icon" />
           ) : (
-            output.map(({ title, category, description, rating, price, imgUrl, age, genre }) => (
+            output.map(({ title, category, description, rating, price, imgUrl, age, genre, id }) => (
               <GameCard
                 key={title}
                 title={title}
@@ -43,6 +43,7 @@ const HomePageOutput: React.FC = () => {
                 imgUrl={imgUrl as string}
                 age={age as number}
                 genre={genre as string}
+                id={id}
               />
             ))
           )}
