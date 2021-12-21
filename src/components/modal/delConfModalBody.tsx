@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./delconfmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +11,17 @@ import { ReducerState } from "../../redux/reducerRoot";
 const DelConfModalBody: React.FC = () => {
   const gameTitle = useSelector((state: ReducerState) => state.games.gameWantToDelete.title);
   const dispatch = useDispatch();
+  const location = useLocation();
+  let partOfUrl = "/";
+  if (location.pathname.includes("pc")) {
+    partOfUrl = "?category_like=pc";
+  }
+  if (location.pathname.includes("ps")) {
+    partOfUrl = "?category_like=ps";
+  }
+  if (location.pathname.includes("xbx")) {
+    partOfUrl = "?category_like=xbx";
+  }
 
   const closeHandler = () => {
     dispatch(doNotWantDelEditGameAction());
@@ -17,7 +29,7 @@ const DelConfModalBody: React.FC = () => {
   };
 
   const yesHandler = () => {
-    dispatch(deleteGameAction());
+    dispatch(deleteGameAction(partOfUrl));
     dispatch(closeModalAction());
   };
 

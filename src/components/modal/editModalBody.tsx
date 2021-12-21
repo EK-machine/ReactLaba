@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./editmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -38,6 +39,17 @@ const EditModalBody: React.FC = () => {
   const [psCheckedInp, setPsCheckedInp] = useState<boolean>(Boolean(psGenre));
   const [xbxCheckedInp, setXbxCheckedInp] = useState<boolean>(Boolean(xbxGenre));
   const dispatch = useDispatch();
+  const location = useLocation();
+  let partOfUrl = "/";
+  if (location.pathname.includes("pc")) {
+    partOfUrl = "?category_like=pc";
+  }
+  if (location.pathname.includes("ps")) {
+    partOfUrl = "?category_like=ps";
+  }
+  if (location.pathname.includes("xbx")) {
+    partOfUrl = "?category_like=xbx";
+  }
 
   const finalPc = pcCheckedInp ? "pc" : null;
   const finalPs = psCheckedInp ? "ps" : null;
@@ -99,7 +111,7 @@ const EditModalBody: React.FC = () => {
       category: finalCategory,
     };
     dispatch(getGameDataAction(gameObj));
-    dispatch(editGameAction(gameObj));
+    dispatch(editGameAction(gameObj, partOfUrl));
     dispatch(closeModalAction());
   };
 
@@ -115,7 +127,7 @@ const EditModalBody: React.FC = () => {
       category: finalCategory,
     };
     dispatch(getGameDataAction(gameObj));
-    dispatch(createGameAction(gameObj));
+    dispatch(createGameAction(gameObj, partOfUrl));
     dispatch(closeModalAction());
   };
 

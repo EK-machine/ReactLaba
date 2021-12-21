@@ -1,4 +1,5 @@
 import { wantDelGame, doNotWantDelEditGame, wantToEditGame, getGameData } from "./actionTypesGames";
+import { fetchGamesAction } from "../filter/actionsFilter";
 import { EditGame } from "../../types/types";
 
 export const wantDelGameAction = (gameToDel: EditGame): { type: string; payload: EditGame } => ({
@@ -20,40 +21,49 @@ export const getGameDataAction = (gameToEdit: EditGame): { type: string; payload
   payload: gameToEdit,
 });
 
-export const createGameAction = (gameToEdit: EditGame) => async (dispatch, getState) => {
+export const deleteGameAction = (partOfUrl: string) => (dispatch, getState) => {
+  const gameDelId = getState().games.gameWantToDelete.id;
+  fetch(`http://localhost:3000/games/${gameDelId}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  }).then((resp) => {
+    resp.json();
+    dispatch(fetchGamesAction(partOfUrl));
+  });
+};
+
+export const createGameAction = (gameToEdit: EditGame, partOfUrl: string) => (dispatch, getState) => {
   dispatch(getGameDataAction(gameToEdit));
   const game = getState().games.gameToPostPut;
-  await fetch(`http://localhost:3000/games`, {
+  fetch(`http://localhost:3000/games`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify(game),
+  }).then((resp) => {
+    resp.json();
+    dispatch(fetchGamesAction(partOfUrl));
   });
 };
 
-export const deleteGameAction = () => async (dispatch, getState) => {
-  const gameDelId = getState().games.gameWantToDelete.id;
-  await fetch(`http://localhost:3000/games/${gameDelId}`, {
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  });
-};
-
-export const editGameAction = (gameToEdit: EditGame) => async (dispatch, getState) => {
+export const editGameAction = (gameToEdit: EditGame, partOfUrl: string) => (dispatch, getState) => {
   dispatch(getGameDataAction(gameToEdit));
   const gameEditId = getState().games.gameToPostPut.id;
   const game = getState().games.gameToPostPut;
-  await fetch(`http://localhost:3000/games/${gameEditId}`, {
+  fetch(`http://localhost:3000/games/${gameEditId}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify(game),
+  }).then((resp) => {
+    resp.json();
+    dispatch(fetchGamesAction(partOfUrl));
   });
 };

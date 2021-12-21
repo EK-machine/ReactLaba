@@ -2,14 +2,16 @@
   "games": [
     {
       "id": 1,
-      "title": "Halo Infinite 11",
+      "title": "Halo Infinite",
       "imgUrl": "https://cdn2.steamgriddb.com/file/sgdb-cdn/icon/1160453108d3e537255e9f7b931f4e90/32/256x256.png",
-      "price": 59.99,
+      "timestamp": 1636923600000,
+      "date": "15.11.2021",
+      "category": "pc",
       "description": "It is the seventh main entry in the Halo series, following 2015's Halo 5: Guardians.",
-      "rating": 4,
+      "genre": "action-adventure game, first-person shooter",
       "age": 13,
-      "genre": "action-adventure game",
-      "category": "pc"
+      "rating": 5,
+      "price": 59.99
     },
     {
       "id": 2,
@@ -54,14 +56,12 @@
       "id": 5,
       "title": "Far Cry 6",
       "imgUrl": "https://img1.evosis.org/game/3134/icon/icon0.X256.png",
-      "timestamp": 1633467600000,
-      "date": "6.10.2021",
-      "category": "pc, ps",
+      "price": 79.99,
       "description": "In Far Cry 6, play as a local Yaran and fight using over-the-top guerrilla tactics and weaponry to liberate your nation.",
-      "genre": "action-adventure game, first-person shooter, nonlinear gameplay",
+      "rating": 4,
       "age": 18,
-      "rating": 3,
-      "price": 79.99
+      "genre": "action-adventure game",
+      "category": "pc, ps"
     },
     {
       "id": 6,
@@ -143,14 +143,16 @@
     },
     {
       "id": 12,
-      "title": "Solar Ash23",
+      "title": "Solar Ash",
       "imgUrl": "https://external-preview.redd.it/lehaHHsPOCZcn7blAO8-YAx76N8kNNsyoVEkNF0TXXQ.jpg?auto=webp&s=6b5ba712cc205ae34279f8640c035f822452c6f0",
-      "price": 39.99,
+      "timestamp": 1638403200000,
+      "date": "02.12.2021",
+      "category": "pc, ps",
       "description": "Solar Ash is an adventure platforming game developed by Heart Machine and published by Annapurna Interactive.",
-      "rating": 4,
+      "genre": "action-adventure game, fighting game",
       "age": 11,
-      "genre": "action-adventure game",
-      "category": "pc, ps"
+      "rating": 4,
+      "price": 39.99
     },
     {
       "id": 13,
@@ -207,11 +209,22 @@
       "title": "Stalker",
       "imgUrl": "http://icons.iconarchive.com/icons/3xhumed/mega-games-pack-33/256/Stalker-Call-of-Pripyat-2-icon.png",
       "price": 40.99,
-      "description": "Stalker is a well known game about post-apocalyptic world.",
+      "description": "Stalker",
       "rating": 4,
       "age": 15,
       "genre": "fighting game",
-      "category": "pc, ps"
+      "category": "pc, xbx"
+    },
+    {
+      "title": "Mortal Kombat 11",
+      "imgUrl": "https://www.truetrophies.com/boxart/Game_8365.jpg",
+      "price": 20.99,
+      "description": "Mortal Kombat 11 is a fighting game developed by NetherRealm Studios and published by Warner Bros.",
+      "rating": 4,
+      "age": 18,
+      "genre": "fighting game",
+      "category": "pc, ps, xbx",
+      "id": 18
     }
   ],
   "users": [

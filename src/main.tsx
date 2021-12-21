@@ -14,26 +14,12 @@ import ErrorBoundary from "./components/errorBoundary";
 import ProtectedRoute from "./components/protectedRoute";
 import { AppProps, AppState } from "./types/types";
 import ModalContainer from "./components/modal/modalContainer";
-// import ProductsPage from "./components/products/productsPage";
-// import AboutPage from "./components/aboutPage/aboutPage";
-// import LogInPage from "./components/loginPage/logInPage";
-// import ProfilePage from "./components/profilePage/profilePage";
-// import CartPage from "./components/cartPage/cartPage";
-const ProductsPage = React.lazy(
-  () => new Promise((resolve) => setTimeout(() => resolve(import("./components/products/productsPage")), 500))
-);
-const AboutPage = React.lazy(
-  () => new Promise((resolve) => setTimeout(() => resolve(import("./components/aboutPage/aboutPage")), 500))
-);
-const LogInPage = React.lazy(
-  () => new Promise((resolve) => setTimeout(() => resolve(import("./components/loginPage/logInPage")), 500))
-);
-const ProfilePage = React.lazy(
-  () => new Promise((resolve) => setTimeout(() => resolve(import("./components/profilePage/profilePage")), 500))
-);
-const CartPage = React.lazy(
-  () => new Promise((resolve) => setTimeout(() => resolve(import("./components/cartPage/cartPage")), 500))
-);
+
+const ProductsPage = React.lazy(() => import("./components/products/productsPage"));
+const AboutPage = React.lazy(() => import("./components/aboutPage/aboutPage"));
+const LogInPage = React.lazy(() => import("./components/loginPage/logInPage"));
+const ProfilePage = React.lazy(() => import("./components/profilePage/profilePage"));
+const CartPage = React.lazy(() => import("./components/cartPage/cartPage"));
 
 class AppContainer extends Component<AppProps, AppState> {
   ["constructor"]: typeof AppContainer;
