@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import "./header.css";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons/faShoppingCart";
 import routesData from "../routesData";
 import ProductsDropDown from "./productsDropDown";
 import SignInBtn from "../elements/signInBtn";

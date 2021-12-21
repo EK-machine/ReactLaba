@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./delconfmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 import { closeModalAction } from "../../redux/modal/actionsModal";
 import { doNotWantDelEditGameAction, deleteGameAction } from "../../redux/games/actionsGames";
 import { ReducerState } from "../../redux/reducerRoot";

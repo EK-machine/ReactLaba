@@ -1,6 +1,6 @@
 import React from "react";
 import "./starrate.css";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons/faStar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { StarProps } from "../../types/types";
 

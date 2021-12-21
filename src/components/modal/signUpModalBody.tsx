@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./signupmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 import InputText from "../elements/inputText";
 import routesData from "../routesData";
 import { logInAction } from "../../redux/login/actionsLogin";

@@ -3,7 +3,7 @@ import "./signoutbtn.css";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
+import { faDoorOpen } from "@fortawesome/free-solid-svg-icons/faDoorOpen";
 import routesData from "../routesData";
 import { logOutAction } from "../../redux/login/actionsLogin";
 

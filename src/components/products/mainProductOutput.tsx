@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "./mainproductoutput.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons/faSpinner";
 import { ReducerState } from "../../redux/reducerRoot";
 import { FilterState } from "../../types/types";
 import GameCard from "../elements/gameCard"; // 1) SOLUTION WITH STATE.LOADING PART I; 3) SOLUTION WITH CUSTOM HOOK PART I

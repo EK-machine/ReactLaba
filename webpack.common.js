@@ -2,6 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 // console.clear(); // TODO: watchFix => it doesn't work properly since VSCode-terminal has bug: https://github.com/microsoft/vscode/issues/75141
 const webpack = require("webpack");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const PreloadPlugin = require("preload-webpack-plugin");
@@ -15,11 +16,14 @@ const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const path = require("path");
 const browserslist = require("browserslist");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+// const { plugins } = require("babel.config");
 
 const srcPath = path.resolve(__dirname, "./src/");
 const destPath = path.resolve(__dirname, "./build/"); // ('../Api/wwwroot')
 const assetsPath = "./public";
 const filesThreshold = 8196; // (bytes) threshold for compression, url-loader plugins
+
+// plugins.push(new BundleAnalyzerPlugin());
 
 /* eslint-disable func-names */
 module.exports = function (env, argv) {
@@ -72,6 +76,7 @@ module.exports = function (env, argv) {
         },
       },
     },
+
     module: {
       rules: [
         // rule for js, jsx files
@@ -205,6 +210,7 @@ module.exports = function (env, argv) {
       ],
     },
     plugins: [
+      new BundleAnalyzerPlugin(),
       new webpack.WatchIgnorePlugin({ paths: [/\.d\.ts$/] }), // ignore d.ts files in --watch mode
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // it adds force-ignoring unused parts of modules like moment/locale/*.js
       new webpack.DefinePlugin({

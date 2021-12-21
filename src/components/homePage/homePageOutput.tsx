@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./homePageOutput.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons/faSpinner";
 import GameCard from "../elements/gameCard";
 import { FilterState, Game } from "../../types/types";
 import { ReducerState } from "../../redux/reducerRoot";
