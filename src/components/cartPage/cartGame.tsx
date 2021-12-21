@@ -66,4 +66,4 @@ const CartGame: React.FC<CartGameProps> = ({ title, category, price }) => {
   );
 };
 
-export default CartGame;
+export default React.memo(CartGame);

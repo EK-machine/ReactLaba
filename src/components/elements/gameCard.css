@@ -7,7 +7,6 @@
   min-height: 210px;
   border-radius: 8px;
   perspective: 1000px;
-  cursor: pointer;
 }
 
 .gameCard__inner {
@@ -67,7 +66,7 @@
 
 .gameCard__back_btn {
   width: fit-content;
-  padding: 10px;
+  padding: 8px;
   font-size: 1rem;
   color: white;
   background-color: #9933cc;
@@ -76,10 +75,12 @@
   cursor: pointer;
   align-self: center;
   justify-self: center;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
-.gameCard__back_btn:first-child {
-  margin-right: 10px;
+.gameCard__back_btn:last-child {
+  margin-right: 0;
 }
 
 .gameCard__img-container {

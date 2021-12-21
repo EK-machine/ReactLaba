@@ -100,6 +100,7 @@ const EditModalBody: React.FC = () => {
     };
     dispatch(getGameDataAction(gameObj));
     dispatch(editGameAction(gameObj));
+    dispatch(closeModalAction());
   };
 
   const submitHandlerCreate = () => {
@@ -115,6 +116,7 @@ const EditModalBody: React.FC = () => {
     };
     dispatch(getGameDataAction(gameObj));
     dispatch(createGameAction(gameObj));
+    dispatch(closeModalAction());
   };
 
   return (

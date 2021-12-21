@@ -90,16 +90,16 @@ const SignInModalBody: React.FC = () => {
     const userMatch = allUsersArr.find(
       (user: { login: string; password: string }) => user.login === login && user.password === password
     );
-    const { role } = userMatch;
-    const obj = {
-      userName: login,
-      userRole: role,
-    };
 
     if (typeof userMatch === "undefined") {
       alert("Login or password is not correct. Please try again.");
       return;
     }
+    const { role } = userMatch;
+    const obj = {
+      userName: login,
+      userRole: role,
+    };
     dispatchedLogInAction(obj);
   }
 

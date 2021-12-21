@@ -12,18 +12,18 @@ const DelConfModalBody: React.FC = () => {
   const dispatch = useDispatch();
 
   const closeHandler = () => {
-    dispatch(closeModalAction());
     dispatch(doNotWantDelEditGameAction());
+    dispatch(closeModalAction());
   };
 
   const yesHandler = () => {
-    dispatch(closeModalAction());
     dispatch(deleteGameAction());
+    dispatch(closeModalAction());
   };
 
   const noHandler = () => {
-    dispatch(closeModalAction());
     dispatch(doNotWantDelEditGameAction());
+    dispatch(closeModalAction());
   };
 
   return (

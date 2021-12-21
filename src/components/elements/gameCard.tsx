@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "./gameCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDesktop } from "@fortawesome/free-solid-svg-icons";
@@ -24,6 +24,7 @@ const GameCard: React.FC<ProductItemProps> = ({
 }) => {
   const gamesList = useSelector((state: ReducerState) => state.cart.gamesList);
   const currentUserRole = useSelector((state: ReducerState) => state.signIn.userRole);
+  const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);
   const dispatch = useDispatch();
   const categoriesArr = [
     { categ: "pc", icon: faDesktop },
@@ -31,17 +32,20 @@ const GameCard: React.FC<ProductItemProps> = ({
     { categ: "xbx", icon: faXbox },
   ];
 
-  const gameCategories = () =>
-    categoriesArr.map((item) => {
-      if (category.includes(item.categ)) {
-        return (
-          <div className="gameCard__category_icon" key={item.categ}>
-            <FontAwesomeIcon icon={item.icon} />
-          </div>
-        );
-      }
-      return null;
-    });
+  const gameCategories = useMemo(
+    () =>
+      categoriesArr.map((item) => {
+        if (category.includes(item.categ)) {
+          return (
+            <div className="gameCard__category_icon" key={item.categ}>
+              <FontAwesomeIcon icon={item.icon} />
+            </div>
+          );
+        }
+        return null;
+      }),
+    [categoriesArr]
+  );
 
   const clickHandler = (e: React.MouseEvent | React.KeyboardEvent<HTMLDivElement>) => {
     const game: GameCart = {
@@ -52,9 +56,11 @@ const GameCard: React.FC<ProductItemProps> = ({
       amount: 1,
     };
 
-    if (!gamesList.some((stateGame) => stateGame.title === game.title)) {
-      dispatch(addGameToCartAction(game));
+    if (gamesList.some((stateGame) => stateGame.title === game.title)) {
+      alert("Game is already in the cart");
+      return;
     }
+    dispatch(addGameToCartAction(game));
   };
 
   const removeHandler = () => {
@@ -88,11 +94,11 @@ const GameCard: React.FC<ProductItemProps> = ({
   };
 
   return (
-    <div className="gameCard__container" tabIndex={0} onClick={clickHandler} onKeyUp={clickHandler} role="menuitem">
+    <div className="gameCard__container" tabIndex={0} role="menuitem">
       <div className="gameCard__inner">
         <div className="gameCard__front">
           <div className="gameCard__img-container">
-            <div className="gameCard__category-container">{gameCategories()}</div>
+            <div className="gameCard__category-container">{gameCategories}</div>
             <img className="gameCard__category_img-container" src={imgUrl} alt={title} />
           </div>
           <div className="gameCard__content-container">
@@ -107,13 +113,23 @@ const GameCard: React.FC<ProductItemProps> = ({
         </div>
         <div className="gameCard__back">
           <p className="gameCard__back_description">{description}</p>
-          {currentUserRole === "admin" ? (
+          {currentUserRole === "admin" && loggedIn ? (
             <div className="gameCard__back_btnsContainer">
+              <button type="button" className="gameCard__back_btn" onClick={clickHandler}>
+                Add to cart
+              </button>
               <button type="button" className="gameCard__back_btn" onClick={editHandler}>
                 Edit
               </button>
               <button type="button" className="gameCard__back_btn" onClick={removeHandler}>
                 Remove
+              </button>
+            </div>
+          ) : null}
+          {currentUserRole === "user" && loggedIn ? (
+            <div className="gameCard__back_btnsContainer">
+              <button type="button" className="gameCard__back_btn" onClick={clickHandler}>
+                Add to cart
               </button>
             </div>
           ) : null}
@@ -123,4 +139,4 @@ const GameCard: React.FC<ProductItemProps> = ({
   );
 };
 
-export default GameCard;
+export default React.memo(GameCard);

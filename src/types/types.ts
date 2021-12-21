@@ -1,5 +1,13 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
+// eslint-disable-next-line no-shadow
+export enum Criteria {
+  RAT = "rating",
+  PRI = "price",
+  ASC = "ascending",
+  DESC = "descending",
+}
+
 export interface AppProps {
   nothing: boolean;
 }

@@ -91,10 +91,10 @@ const MainProductOutput: React.FC = () => {
                 description={description}
                 rating={rating}
                 price={price}
-                imgUrl={imgUrl}
+                imgUrl={imgUrl as string}
                 id={id}
-                genre={genre}
-                age={age}
+                genre={genre as string}
+                age={age as number}
               />
             ))
           )}

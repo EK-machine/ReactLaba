@@ -8,12 +8,13 @@ import {
   filterByPriceDecsendingAction,
   filterByPriceAscendingAction,
 } from "../../redux/filter/actionsFilter";
+import { FilterState, Criteria } from "../../types/types";
 
 const CriteriaSelector: React.FC = () => {
-  const [criteria, setCriteria] = useState<string>("rating");
-  const [type, setType] = useState<string>("ascending");
+  const [criteria, setCriteria] = useState<Criteria>(Criteria.RAT);
+  const [type, setType] = useState<Criteria>(Criteria.ASC);
   const [firstUpdate, setFirstUpdate] = useState<boolean>(true);
-  const games = useSelector((state: ReducerState) => state.filter.gamesList);
+  const games: FilterState = useSelector((state: ReducerState) => state.filter);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,14 +22,14 @@ const CriteriaSelector: React.FC = () => {
       setFirstUpdate(!firstUpdate);
       return;
     }
-    if (criteria === "rating" && type === "ascending") {
-      dispatch(filterByRatingAscendingAction(games));
-    } else if (criteria === "rating" && type === "descending") {
-      dispatch(filterByRatingDecsendingAction(games));
-    } else if (criteria === "price" && type === "ascending") {
-      dispatch(filterByPriceAscendingAction(games));
-    } else if (criteria === "price" && type === "descending") {
-      dispatch(filterByPriceDecsendingAction(games));
+    if (criteria === Criteria.RAT && type === Criteria.ASC) {
+      dispatch(filterByRatingAscendingAction(games.gamesList));
+    } else if (criteria === Criteria.RAT && type === Criteria.DESC) {
+      dispatch(filterByRatingDecsendingAction(games.gamesList));
+    } else if (criteria === Criteria.PRI && type === Criteria.ASC) {
+      dispatch(filterByPriceAscendingAction(games.gamesList));
+    } else if (criteria === Criteria.PRI && type === Criteria.DESC) {
+      dispatch(filterByPriceDecsendingAction(games.gamesList));
     }
   }, [criteria, type]);
 
@@ -40,7 +41,7 @@ const CriteriaSelector: React.FC = () => {
           className="criteriaSelector__selector"
           id="criteria"
           onChange={(e) => {
-            setCriteria(e.target.value);
+            setCriteria(e.target.value as Criteria);
           }}
           value={criteria}
         >
@@ -54,12 +55,12 @@ const CriteriaSelector: React.FC = () => {
           className="criteriaSelector__selector"
           id="type"
           onChange={(e) => {
-            setType(e.target.value);
+            setType(e.target.value as Criteria);
           }}
           value={type}
         >
-          <option value="ascending">Ascending</option>
-          <option value="descending">Descending</option>
+          <option value={Criteria.ASC}>Ascending</option>
+          <option value={Criteria.DESC}>Descending</option>
         </select>
       </label>
     </div>
