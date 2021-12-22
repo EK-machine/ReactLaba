@@ -2,7 +2,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 // console.clear(); // TODO: watchFix => it doesn't work properly since VSCode-terminal has bug: https://github.com/microsoft/vscode/issues/75141
 const webpack = require("webpack");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const PreloadPlugin = require("preload-webpack-plugin");
@@ -10,13 +9,18 @@ const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const MinifyCssNames = require("mini-css-class-name/css-loader");
 const ObsoleteWebpackPlugin = require("obsolete-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const path = require("path");
 const browserslist = require("browserslist");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
+const { classNameAlphabet, getLocalIdentName } = require("css-loader-shorter-classnames");
+// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+// const MinifyCssNames = require("mini-css-class-name/css-loader");
 // const { plugins } = require("babel.config");
+
+const MinifyCssNamesShorter = getLocalIdentName(classNameAlphabet, "_");
 
 const srcPath = path.resolve(__dirname, "./src/");
 const destPath = path.resolve(__dirname, "./build/"); // ('../Api/wwwroot')
@@ -115,7 +119,6 @@ module.exports = function (env, argv) {
       //   },
       // },
     },
-
     module: {
       rules: [
         // rule for js, jsx files
@@ -215,6 +218,7 @@ module.exports = function (env, argv) {
               options: {
                 modules: {
                   auto: /\.module\.\w+$/, // enable css-modules option for files *.module*.
+                  // localIdentName: "[sha1:hash:hex:4]",
                   getLocalIdent: isDevMode
                     ? (loaderContext, _localIdentName, localName, options) => {
                         // it simplifies classNames fo debug purpose
@@ -227,10 +231,11 @@ module.exports = function (env, argv) {
                           .replace(/\./g, "_");
                         return `${request}__${localName}`;
                       }
-                    : MinifyCssNames(
-                        // minify classNames for prod-build
-                        { excludePattern: /[_dD]/gi } // exclude '_','d','D' because Adblock blocks '%ad%' classNames
-                      ),
+                    : MinifyCssNamesShorter,
+                  // : MinifyCssNames(
+                  //     // minify classNames for prod-build
+                  //     { prefix: "x__", suffix: "--y", excludePattern: /[_dD]/gi } // exclude '_','d','D' because Adblock blocks '%ad%' classNames
+                  //   ),
                 },
               },
             },
@@ -249,7 +254,13 @@ module.exports = function (env, argv) {
       ],
     },
     plugins: [
-      new BundleAnalyzerPlugin(),
+      new CompressionPlugin({
+        test: /\.js(\?.*)?$/i,
+        algorithm: "gzip",
+        // deleteOriginalAssets: true,
+        filename: "[path][base].gz",
+      }),
+      // new BundleAnalyzerPlugin(),
       new webpack.WatchIgnorePlugin({ paths: [/\.d\.ts$/] }), // ignore d.ts files in --watch mode
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // it adds force-ignoring unused parts of modules like moment/locale/*.js
       new webpack.DefinePlugin({
