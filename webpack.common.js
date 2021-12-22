@@ -23,8 +23,6 @@ const destPath = path.resolve(__dirname, "./build/"); // ('../Api/wwwroot')
 const assetsPath = "./public";
 const filesThreshold = 8196; // (bytes) threshold for compression, url-loader plugins
 
-// plugins.push(new BundleAnalyzerPlugin());
-
 /* eslint-disable func-names */
 module.exports = function (env, argv) {
   const isDevServer = env.WEBPACK_SERVE;
@@ -49,32 +47,73 @@ module.exports = function (env, argv) {
       filename: "[name].js",
       chunkFilename: "[name].js",
       publicPath: "/", // url that should be used for providing assets
+      clean: true,
     },
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"], // using import without file-extensions
       plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })], // plugin makes mapping from tsconfig.json to weback:alias
     },
     optimization: {
-      // config is taken from vue-cli
       splitChunks: {
-        // for avoiding duplicated dependencies across modules
-        minChunks: 1, // Minimum number of chunks that must share a module before splitting.
+        chunks: "all",
+        minChunks: 1,
+        maxAsyncRequests: 5,
+        maxInitialRequests: Infinity,
+        automaticNameDelimiter: "~",
+        name: false,
         cacheGroups: {
           defaultVendors: {
-            name: "chunk-vendors", // move js-files from node_modules into splitted file [chunk-vendors].js
-            test: /[\\/]node_modules[\\/]/, // filtering files that should be included
-            priority: -10, // a module can belong to multiple cache groups. The optimization will prefer the cache group with a higher priority
-            chunks: "initial", // type of optimization: [initial | async | all]
+            name(module) {
+              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+              return `npm.${packageName.replace("@", "")}`;
+            },
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10,
+            chunks: "all",
+            reuseExistingChunk: true,
           },
           common: {
             name: "chunk-common", // move reusable nested js-files into splitted file [chunk-common].js
             minChunks: 2, // minimum number of chunks that must share a module before splitting
             priority: -20,
-            chunks: "initial",
+            chunks: "all",
             reuseExistingChunk: true, // If the current chunk contains modules already split out from the main bundle, it will be reused instead of a new one being generated. This can impact the resulting file name of the chunk
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
           },
         },
       },
+      // config is taken from vue-cli
+      // splitChunks: {
+      //   chunks: "all",
+      //   maxAsyncRequests: 5,
+      //   maxInitialRequests: 3,
+      //   name: false,
+      //   // for avoiding duplicated dependencies across modules
+      //   minChunks: 1, // Minimum number of chunks that must share a module before splitting.
+      //   cacheGroups: {
+      //     v {
+      //       name: "chunk-vendors", // move js-files from node_modules into splitted file [chunk-vendors].js
+      //       test: /[\\/]node_modules[\\/]/, // filtering files that should be included
+      //       priority: -10, // a module can belong to multiple cache groups. The optimization will prefer the cache group with a higher priority
+      //       chunks: "initial", // type of optimization: [initial | async | all]
+      //       // chunks: "all", // type of optimization: [initial | async | all]
+      //     },
+      //     common: {
+      //       name: "chunk-common", // move reusable nested js-files into splitted file [chunk-common].js
+      //       minChunks: 2, // minimum number of chunks that must share a module before splitting
+      //       priority: -20,
+      //       chunks: "initial",
+      //       reuseExistingChunk: true, // If the current chunk contains modules already split out from the main bundle, it will be reused instead of a new one being generated. This can impact the resulting file name of the chunk
+      //     },
+      //     default: {
+      //       reuseExistingChunk: true,
+      //     },
+      //   },
+      // },
     },
 
     module: {

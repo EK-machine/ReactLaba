@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -35,8 +34,15 @@ const ProductsDropDown: React.FC = () => {
           </div>
           <div className="productsDropDown__items-container">
             {productsRoutesData.map(({ text, path }) => (
-              // eslint-disable-next-line jsx-a11y/tabindex-no-positive
-              <div className="productsDropDown__item-wrapper" key={text} tabIndex={1}>
+              <div
+                className="productsDropDown__item-wrapper"
+                key={text}
+                // eslint-disable-next-line jsx-a11y/tabindex-no-positive
+                tabIndex={1}
+                onClick={clickHandler}
+                onKeyUp={buttonHandler}
+                role="button"
+              >
                 <NavLink
                   to={path}
                   key={text}

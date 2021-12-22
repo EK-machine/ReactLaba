@@ -1,5 +1,6 @@
 .profilePage__container {
-  background-color: #353434;
+  /* background-color: #353434; */
+  background-color: transparent;
   width: 100%;
   margin: 0;
 }
