@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should be rendered in category component is first snapshot test 1`] = `
+<Link
+  className="category__container"
+  key="hello"
+  to="/products/pc"
+>
+  <div
+    className="category__frame"
+  >
+    <div
+      className="category__icon-container"
+    >
+      <FontAwesomeIcon
+        border={false}
+        className="category__icon"
+        fixedWidth={false}
+        flip={null}
+        icon="hi"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </div>
+    <div
+      className="category__title-container"
+    >
+      <p
+        className="category__title"
+      >
+        hello
+      </p>
+    </div>
+  </div>
+</Link>
+`;

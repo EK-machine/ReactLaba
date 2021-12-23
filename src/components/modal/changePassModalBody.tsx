@@ -53,7 +53,7 @@ const ChangePassModalBody: React.FC = () => {
   };
 
   const comparePass = (pass: string) => {
-    if (newPassword !== repeatNewPassword || !repeatNewPassword) {
+    if (newPassword !== pass || !pass) {
       setRepeatPassMessage("Repeated password is not correct");
     } else {
       setRepeatPassMessage("Repeated password is OK");

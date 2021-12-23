@@ -1,4 +1,4 @@
-.inputTextAdmin__container {
+.inputNumberAdmin__container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -6,13 +6,13 @@
   margin-bottom: 10px;
 }
 
-.inputTextAdmin__label {
+.inputNumberAdmin__label {
   margin-right: 10px;
   font-size: 1.3rem;
   color: white;
 }
 
-.inputTextAdmin__input {
+.inputNumberAdmin__input {
   border: 1px solid white;
   box-sizing: border-box;
   background-color: inherit;

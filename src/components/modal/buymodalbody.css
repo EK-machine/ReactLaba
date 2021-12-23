@@ -49,11 +49,12 @@
   align-items: center;
 }
 
+.buy__modal_contentParagraph-user,
 .buy__modal_contentParagraph {
   color: white;
 }
 
-.buy__modal_contentParagraph:first-child::after {
+.buy__modal_contentParagraph-user::after {
   content: ":";
   color: white;
 }

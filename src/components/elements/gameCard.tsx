@@ -48,7 +48,7 @@ const GameCard: React.FC<ProductItemProps> = ({
     [categoriesArr]
   );
 
-  const clickHandler = (e: React.MouseEvent | React.KeyboardEvent<HTMLDivElement>) => {
+  const clickHandler = () => {
     const game: GameCart = {
       title,
       category,

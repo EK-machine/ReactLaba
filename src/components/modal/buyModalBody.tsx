@@ -33,7 +33,7 @@ const BuyModalBody: React.FC = () => {
       </div>
       <div className="buy__modal_content-container">
         <div className="buy__modal_contentParagraphs">
-          <p className="buy__modal_contentParagraph">
+          <p className="buy__modal_contentParagraph-user">
             Dear {userName}, are you sure you want to buy following games for amount {amount}$
           </p>
           {cartGames.map(({ title }) => (

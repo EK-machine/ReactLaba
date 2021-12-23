@@ -21,7 +21,7 @@ export const fetchGamesSuccessAction = (games: Array<Game>): FilterAction => ({
 
 export const fetchGamesAction =
   (partOfUrl: string) =>
-  async (dispatch: Dispatch<FilterAction>): Promise<Array<Game>> => {
+  async (dispatch: Dispatch<{ type: string } | FilterAction>): Promise<Array<Game>> => {
     dispatch(fetchGamesRequestAction());
     const response = await fetch(`http://localhost:3000/games${partOfUrl}`, { method: "GET" });
     const games: Array<Game> = await response.json();
@@ -31,7 +31,7 @@ export const fetchGamesAction =
 
 export const fetchLastThreeGamesAction =
   (partOfUrl: string) =>
-  async (dispatch: Dispatch<FilterAction>): Promise<Array<Game>> => {
+  async (dispatch: Dispatch<{ type: string } | FilterAction>): Promise<Array<Game>> => {
     dispatch(fetchGamesRequestAction());
     const response = await fetch(`http://localhost:3000/games${partOfUrl}`, { method: "GET" });
     const games: Array<Game> = await response.json();

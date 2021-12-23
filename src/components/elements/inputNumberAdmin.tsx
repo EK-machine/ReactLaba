@@ -8,8 +8,8 @@ const InputNumberAdmin: React.FC<InputNumberAdminProps> = ({ name, id, type, val
   };
 
   return (
-    <div className="inputTextAdmin__container">
-      <label htmlFor={id} className="inputTextAdmin__label">
+    <div className="inputNumberAdmin__container">
+      <label htmlFor={id} className="inputNumberAdmin__label">
         {name}
       </label>
       <input
@@ -18,7 +18,7 @@ const InputNumberAdmin: React.FC<InputNumberAdminProps> = ({ name, id, type, val
         type={type}
         value={value}
         onChange={changeHandler}
-        className="inputTextAdmin__input"
+        className="inputNumberAdmin__input"
         autoComplete="off"
       />
     </div>

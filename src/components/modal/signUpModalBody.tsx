@@ -77,7 +77,7 @@ const SignUpModalBody: React.FC = () => {
   };
 
   const comparePass = (pass: string) => {
-    if (password !== repeatPassword || !repeatPassword) {
+    if (password !== pass || !pass) {
       setRepeatPassMessage("Repeated password is not correct");
     } else {
       setRepeatPassMessage("Repeated password is OK");
@@ -132,9 +132,6 @@ const SignUpModalBody: React.FC = () => {
     } else {
       throw new Error(`HTTP status: ${postResponse.status}`);
     }
-
-    const response = await postResponse.json();
-    return response;
   }
 
   return (

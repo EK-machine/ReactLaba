@@ -15,6 +15,7 @@ const FilterReducer = (state = initialFilterState, action: { type: string; paylo
       return {
         ...state,
         loading: true,
+        gamesList: initialFilterState.gamesList,
       };
     case fetchGamesSuccess:
       return {

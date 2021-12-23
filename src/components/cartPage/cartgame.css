@@ -21,7 +21,6 @@
 }
 
 .cartGame__platform_selector {
-  height: fit-content;
   flex-basis: 60%;
   font-family: inherit;
   font-size: inherit;

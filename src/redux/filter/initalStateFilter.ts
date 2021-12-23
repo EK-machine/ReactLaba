@@ -1,6 +1,6 @@
-import { InitialFilterState } from "../../types/types";
+import { FilterState } from "../../types/types";
 
-const initialFilterState: InitialFilterState = {
+const initialFilterState: FilterState = {
   loading: true,
   gamesList: [],
 };
