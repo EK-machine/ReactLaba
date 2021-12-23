@@ -3,8 +3,8 @@ import "./inputnumberadmin.css";
 import { InputNumberAdminProps } from "../../types/types";
 
 const InputNumberAdmin: React.FC<InputNumberAdminProps> = ({ name, id, type, value, onChange }) => {
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    onChange(event.target?.value);
+  const changeHandler = (event: React.FormEvent<HTMLInputElement>): void => {
+    onChange(event.target.value);
   };
 
   return (

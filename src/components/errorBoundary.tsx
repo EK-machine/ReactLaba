@@ -1,10 +1,10 @@
 import React, { ErrorInfo } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect, RouteComponentProps } from "react-router-dom";
 import routesData from "./routesData";
 import { ErrorBoundaryProps, ErrorBoundaryState } from "../types/types";
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
+class ErrorBoundary extends React.Component<ErrorBoundaryProps & RouteComponentProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps & RouteComponentProps) {
     super(props);
     this.state = {
       thereIsError: false,
@@ -15,7 +15,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     alert("Oups! there is an Error!");
     console.error(errorInfo);
     console.error(error);
-    this.props.history.push(routesData[0].path);
+    <Redirect to={routesData[0].path} />;
     window.location.reload();
   }
 
