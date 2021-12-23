@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons/faCaretUp";
@@ -11,6 +12,8 @@ const ProductsDropDown: React.FC = () => {
   const clickHandler = () => {
     setToggle(!toggle);
   };
+
+  const location = useLocation().pathname;
 
   const buttonHandler = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -59,7 +62,7 @@ const ProductsDropDown: React.FC = () => {
         <div
           onClick={clickHandler}
           onKeyUp={buttonHandler}
-          className="productsDropDown__btn"
+          className={location.includes("product") ? "productsDropDown__btn-activePage" : "productsDropDown__btn"}
           role="button"
           tabIndex={0}
         >
