@@ -6,7 +6,9 @@
   "scripts": {
     "test": "exit 0",
     "start": "npm run serve",
+    "start-prod": "npm run serve-prod",
     "serve": "./node_modules/.bin/webpack serve --open --config webpack.devServer.js",
+    "serve-prod": "./node_modules/.bin/webpack serve --open --config webpack.prod.js",
     "build-prod": "./node_modules/.bin/webpack --mode production --config webpack.prod.js",
     "build-prod-withMap": "./node_modules/.bin/webpack --mode production --config webpack.prod.js --sourceMap",
     "build-dev": "./node_modules/.bin/webpack --mode development --config webpack.dev.js",
@@ -71,6 +73,7 @@
     "eslint-plugin-unused-imports": "^1.1.2",
     "file-loader": "^6.2.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
+    "html-webpack-change-assets-extension-plugin": "^1.2.0",
     "html-webpack-plugin": "^5.3.2",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.1",

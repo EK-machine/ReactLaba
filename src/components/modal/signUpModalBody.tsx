@@ -107,6 +107,16 @@ const SignUpModalBody: React.FC = () => {
       e.preventDefault();
     }
 
+    const signInUrl = "http://localhost:3000/users";
+    const getResponse = await fetch(signInUrl, { method: "GET" });
+    const allUsersArr = await getResponse.json();
+    const userMatch = allUsersArr.find((user: { login: string }) => user.login === logup);
+
+    if (userMatch) {
+      alert(`Sorry, the name "${logup}" already exists. Please try another name`);
+      return;
+    }
+
     const postResponse = await fetch(signUpUrl, {
       method: "POST",
       headers: {

@@ -257,7 +257,7 @@ module.exports = function (env, argv) {
       new CompressionPlugin({
         test: /\.js(\?.*)?$/i,
         algorithm: "gzip",
-        // deleteOriginalAssets: true,
+        deleteOriginalAssets: false,
         filename: "[path][base].gz",
       }),
       // new BundleAnalyzerPlugin(),
