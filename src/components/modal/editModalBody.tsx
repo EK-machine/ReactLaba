@@ -83,7 +83,7 @@ const EditModalBody: React.FC = () => {
   };
 
   const priceGetter = (priceData: number) => {
-    if (Number(priceData) <= 0) {
+    if (Number(priceData) <= 0.01 && Number(priceData) > 999) {
       return;
     }
     const num = Number(Math.round(priceData * 100) / 100);

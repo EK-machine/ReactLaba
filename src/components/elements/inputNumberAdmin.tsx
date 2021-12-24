@@ -3,8 +3,8 @@ import "./inputnumberadmin.css";
 import { InputNumberAdminProps } from "../../types/types";
 
 const InputNumberAdmin: React.FC<InputNumberAdminProps> = ({ name, id, type, value, onChange }) => {
-  const changeHandler = (event: React.FormEvent<HTMLInputElement>): void => {
-    onChange(event.target.value);
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    onChange(Number(event.target.value));
   };
 
   return (
@@ -17,6 +17,9 @@ const InputNumberAdmin: React.FC<InputNumberAdminProps> = ({ name, id, type, val
         id={id}
         type={type}
         value={value}
+        step="0.01"
+        min="0.01"
+        max="999"
         onChange={changeHandler}
         className="inputNumberAdmin__input"
         autoComplete="off"
