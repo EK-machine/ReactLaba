@@ -10,7 +10,6 @@ const Category: React.FC<CategoryProp> = ({ icon, title, path }) => (
       <div className="category__icon-container">
         <FontAwesomeIcon icon={icon} className="category__icon" />
       </div>
-      <p>hi there</p>
       <div className="category__title-container">
         <p className="category__title">{title}</p>
       </div>
