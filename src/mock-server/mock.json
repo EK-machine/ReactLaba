@@ -257,6 +257,12 @@
       "password": "Qwerty123",
       "role": "user",
       "id": 5
+    },
+    {
+      "login": "User6",
+      "password": "Qwerty123",
+      "role": "user",
+      "id": 6
     }
   ]
 }

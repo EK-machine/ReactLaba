@@ -69,7 +69,7 @@ const EditModalBody: React.FC = () => {
       id,
       title: titleInp,
       imgUrl: imgUrlInp,
-      price: priceInp,
+      price: Number(priceInp),
       description: descriptionInp,
       age: Number(ageInp),
       genre: categoryInp,
@@ -83,7 +83,7 @@ const EditModalBody: React.FC = () => {
   };
 
   const priceGetter = (priceData: number) => {
-    if (Number(priceData) <= 0) {
+    if (Number(priceData) <= 0.01 && Number(priceData) > 999) {
       return;
     }
     const num = Number(Math.round(priceData * 100) / 100);
@@ -103,7 +103,7 @@ const EditModalBody: React.FC = () => {
       id,
       title: titleInp,
       imgUrl: imgUrlInp,
-      price: priceInp,
+      price: Number(priceInp),
       description: descriptionInp,
       rating: finalRating,
       age: Number(ageInp),

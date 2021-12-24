@@ -6,9 +6,9 @@ import CartReducer from "./cart/reducerCart";
 import GamesReducer from "./games/reducerGames";
 
 const rootReducer = combineReducers({
+  filter: FilterReducer,
   signIn: logInReducer,
   modal: modalReducer,
-  filter: FilterReducer,
   cart: CartReducer,
   games: GamesReducer,
 });

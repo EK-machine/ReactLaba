@@ -1,3 +1,4 @@
+import { Dispatch } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 // eslint-disable-next-line no-shadow
@@ -46,9 +47,8 @@ export type Game = {
   imgUrl?: string;
 };
 
-export type FilterAction = { type: string; payload?: Array<Game> };
-
-export type FilterState = { loading: boolean; gamesList: Array<Game> };
+export type FilterAction = { type: string; payload: Array<Game> };
+export type FetchFunctionFilterAction = (dispatch: Dispatch<FilterAction>) => Promise<Array<Game>>;
 
 export interface CategoryProp {
   title: string;
@@ -92,6 +92,11 @@ export interface InputNumberAdminProps {
   onChange: (value: number) => void;
 }
 
+export interface FilterState {
+  loading: boolean;
+  gamesList: Array<Game>;
+}
+
 export interface ProfileTextAreaProps {
   name: string;
   id: string;
@@ -120,7 +125,6 @@ export interface StarProps {
   rating: number;
 }
 
-export type InitialFilterState = { loading: boolean; gamesList: [] };
 export type InitialLogInState = { loggedIn: boolean; userName: string; userRole: string };
 export interface ModalState {
   signInModalVisible: boolean;
@@ -170,3 +174,5 @@ export interface CartGameProps {
   category: string;
   price: number;
 }
+
+export type GameAction = { type: string; payload: EditGame };
