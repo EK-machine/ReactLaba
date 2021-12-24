@@ -3,6 +3,7 @@
 }
 
 .homePage__container {
+  width: 100%;
   background-color: transparent;
   z-index: 0;
   height: auto;
@@ -20,6 +21,12 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.homePage__categories-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .homePage__new-container {

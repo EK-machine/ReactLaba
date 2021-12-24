@@ -56,12 +56,14 @@
       "id": 5,
       "title": "Far Cry 6",
       "imgUrl": "https://img1.evosis.org/game/3134/icon/icon0.X256.png",
-      "price": 79.99,
+      "timestamp": 1633467600000,
+      "date": "6.10.2021",
+      "category": "pc, ps",
       "description": "In Far Cry 6, play as a local Yaran and fight using over-the-top guerrilla tactics and weaponry to liberate your nation.",
-      "rating": 4,
+      "genre": "action-adventure game, first-person shooter, nonlinear gameplay",
       "age": 18,
-      "genre": "action-adventure game",
-      "category": "pc, ps"
+      "rating": 3,
+      "price": 79.99
     },
     {
       "id": 6,
@@ -232,7 +234,8 @@
       "login": "Admin",
       "password": "Admin123",
       "role": "admin",
-      "id": 1
+      "id": 1,
+      "description": ""
     },
     {
       "login": "User1",
@@ -263,6 +266,12 @@
       "password": "Qwerty123",
       "role": "user",
       "id": 6
+    },
+    {
+      "login": "User7",
+      "password": "Qwerty123",
+      "role": "user",
+      "id": 7
     }
   ]
 }

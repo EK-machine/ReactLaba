@@ -57,3 +57,7 @@
   background-color: #ad7cc5;
   cursor: default;
 }
+
+.signIn__message {
+  color: rgb(212, 212, 212);
+}

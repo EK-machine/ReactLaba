@@ -92,7 +92,8 @@ const SignInModalBody: React.FC = () => {
     );
 
     if (typeof userMatch === "undefined") {
-      alert("Login or password is not correct. Please try again.");
+      setLoginMessage("Login or password is not correct. Please try again.");
+      setPassMessage("Login or password is not correct. Please try again.");
       return;
     }
     const { role } = userMatch;
@@ -113,9 +114,9 @@ const SignInModalBody: React.FC = () => {
       </div>
       <form action="#" className="signIn__modal_content-container" onSubmit={getFunc}>
         <InputText name="Login" id="SignInLogin" type="text" onChange={loginGetter} value={login} />
-        <span>{loginMessage}</span>
+        <span className="signIn__message">{loginMessage}</span>
         <InputText name="Password" id="SignInPassword" type="password" onChange={passwordGetter} value={password} />
-        <span>{passMessage}</span>
+        <span className="signIn__message">{passMessage}</span>
         <br />
         <div className="signIn__modal_submit-btn-container">
           <input className="signIn__modal_submit-btn" type="submit" disabled={!formValid} />

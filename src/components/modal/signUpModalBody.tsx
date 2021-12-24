@@ -113,7 +113,7 @@ const SignUpModalBody: React.FC = () => {
     const userMatch = allUsersArr.find((user: { login: string }) => user.login === logup);
 
     if (userMatch) {
-      alert(`Sorry, the name "${logup}" already exists. Please try another name`);
+      setLoginMessage(`Sorry, the name "${logup}" already exists. Please try another name`);
       return;
     }
 
@@ -144,9 +144,9 @@ const SignUpModalBody: React.FC = () => {
       </div>
       <form action="#" className="signUp__modal_content-container" onSubmit={postFunc}>
         <InputText name="Login" id="SignUplogin" type="text" onChange={logupGetter} value={logup} />
-        <p>{loginMessage}</p>
+        <span className="signUp__message">{loginMessage}</span>
         <InputText name="Password" id="SignUpPassword" type="password" onChange={passwordGetter} value={password} />
-        <p>{passMessage}</p>
+        <span className="signUp__message">{passMessage}</span>
         <InputText
           name="Repeat password"
           id="SignUpRepeatPassword"
@@ -154,7 +154,7 @@ const SignUpModalBody: React.FC = () => {
           onChange={repeatPasswordGetter}
           value={repeatPassword}
         />
-        <p>{repeatPassMessage}</p>
+        <span className="signUp__message">{repeatPassMessage}</span>
         <br />
         <div className="signUp__modal_submit-btn-container">
           <input className="signUp__modal_submit-btn" type="submit" disabled={!formValid} />
