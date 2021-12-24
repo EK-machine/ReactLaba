@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should be rendered in category component is first snapshot test 1`] = `
+exports[`Category component tests: - Snapshot test 1`] = `
 <Link
   className="category__container"
   key="hello"
