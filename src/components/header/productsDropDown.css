@@ -128,14 +128,33 @@
 
 @media only screen and (max-width: 767px) {
   .productsDropDown__container {
-    width: 80px;
+    min-width: 60px;
   }
 
   .productsDropDown__btn {
-    padding: 0 12px;
+    padding: 0 8px;
   }
 
   .productsDropDown__btn-title {
-    font-size: 14px;
+    font-size: 0.75em;
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .productsDropDown__container {
+    min-width: 60px;
+  }
+
+  .productsDropDown__btn {
+    padding: 0 3px;
+  }
+
+  .productsDropDown__btn-title {
+    font-size: 0.6em;
+    padding-right: 3px;
+  }
+
+  .productsDropDown__btn-arrow {
+    font-size: 0.6em;
   }
 }

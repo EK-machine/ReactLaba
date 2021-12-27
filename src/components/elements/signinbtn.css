@@ -40,11 +40,22 @@
 
 @media only screen and (max-width: 767px) {
   .signIn__btn {
-    width: 80px;
-    padding: 0 12px;
+    width: 60px;
+    padding: 0 8px;
   }
 
   .signIn__title {
-    font-size: 14px;
+    font-size: 0.75em;
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .signIn__btn {
+    width: 40px;
+    padding: 0 3px;
+  }
+
+  .signIn__title {
+    font-size: 0.6em;
   }
 }

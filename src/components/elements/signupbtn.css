@@ -40,11 +40,22 @@
 
 @media only screen and (max-width: 767px) {
   .signUp__btn {
-    width: 80px;
-    padding: 0 12px;
+    width: 60px;
+    padding: 0 8px;
   }
 
   .signUp__title {
-    font-size: 14px;
+    font-size: 0.75em;
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .signUp__btn {
+    width: 42px;
+    padding: 0 3px;
+  }
+
+  .signUp__title {
+    font-size: 0.6em;
   }
 }

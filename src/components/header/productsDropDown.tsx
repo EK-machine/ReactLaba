@@ -33,7 +33,7 @@ const ProductsDropDown: React.FC = () => {
             tabIndex={0}
           >
             <p className="productsDropDown__btn-title_acive">Products </p>
-            <FontAwesomeIcon icon={faCaretUp} />
+            <FontAwesomeIcon icon={faCaretUp} className="productsDropDown__btn-arrow" />
           </div>
           <div className="productsDropDown__items-container">
             {productsRoutesData.map(({ text, path }) => (
@@ -67,7 +67,7 @@ const ProductsDropDown: React.FC = () => {
           tabIndex={0}
         >
           <p className="productsDropDown__btn-title">Products </p>
-          <FontAwesomeIcon icon={faCaretDown} />
+          <FontAwesomeIcon icon={faCaretDown} className="productsDropDown__btn-arrow" />
         </div>
       )}
     </div>
