@@ -38,7 +38,7 @@
   font-family: "OpenSans-Regular", sans-serif;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .signUp__btn {
     width: 60px;
     padding: 0 8px;
@@ -49,13 +49,13 @@
   }
 }
 
-@media only screen and (max-width: 479px) {
+@media only screen and (max-width: 480px) {
   .signUp__btn {
     width: 42px;
     padding: 0 3px;
   }
 
   .signUp__title {
-    font-size: 0.6em;
+    font-size: 0.58em;
   }
 }

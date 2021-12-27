@@ -6,8 +6,6 @@
   align-items: center;
   background-color: #121212;
   height: 63px;
-  /* position: relative; */
-  /* bottom: 0; */
   z-index: 1;
 }
 
@@ -47,8 +45,9 @@
   transition: transform 0.2s ease-in-out, font-weight 0.2s ease-in-out;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .footer__container {
+    height: 55px;
     padding: 0 10px;
   }
 
@@ -77,8 +76,9 @@
   }
 }
 
-@media only screen and (max-width: 479px) {
+@media only screen and (max-width: 480px) {
   .footer__container {
+    height: 45px;
     padding: 0 5px;
   }
 

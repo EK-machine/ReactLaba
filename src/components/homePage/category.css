@@ -48,3 +48,49 @@
   margin: 0;
   color: rgb(230, 230, 230);
 }
+
+@media only screen and (max-width: 768px) {
+  .category__container {
+    padding: 1px 1px 6px 1px;
+    margin: 0 10px 10px 0;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .category__frame {
+    padding: 10px;
+    width: 99%;
+    height: 99%;
+  }
+
+  .category__icon-container {
+    font-size: 1.5em;
+  }
+
+  .category__title {
+    margin: 0;
+    font-size: 0.8em;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .category__container {
+    margin: 0 5px 0 0;
+  }
+
+  .category__frame {
+    padding: 5px;
+    width: 99%;
+    height: 99%;
+  }
+
+  .category__icon-container {
+    font-size: 1.3em;
+  }
+
+  .category__title {
+    margin: 0;
+    font-size: 0.6em;
+  }
+}

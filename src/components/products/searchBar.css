@@ -47,3 +47,9 @@
     transform: rotate(360deg);
   }
 }
+
+@media only screen and (max-width: 479px) {
+  .searchBar__container {
+    margin-bottom: 5px;
+  }
+}

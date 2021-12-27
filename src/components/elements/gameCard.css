@@ -1,10 +1,10 @@
 .gameCard__container {
   width: 20vw;
   max-width: 260px;
-  min-width: 130px;
+  min-width: 180px;
   height: 32vw;
   max-height: 420px;
-  min-height: 210px;
+  min-height: 288px;
   border-radius: 8px;
   perspective: 1000px;
 }
@@ -148,4 +148,34 @@
   margin: 0;
   font-size: 16px;
   color: white;
+}
+
+@media only screen and (max-width: 1024px) {
+  .gameCard__content_left > p,
+  .gameCard__content_right > p,
+  .gameCard__content_right > p::after,
+  .gameCard__back_description {
+    font-size: 12px;
+  }
+
+  .gameCard__back_btn {
+    padding: 7px;
+    font-size: 0.7em;
+    margin-right: 7px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .gameCard__content_left > p,
+  .gameCard__content_right > p,
+  .gameCard__content_right > p::after,
+  .gameCard__back_description {
+    font-size: 10px;
+  }
+
+  .gameCard__back_btn {
+    padding: 7px;
+    font-size: 0.6em;
+    margin-right: 7px;
+  }
 }

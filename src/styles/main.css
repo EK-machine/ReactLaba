@@ -32,6 +32,7 @@ h2 {
   padding: 15px;
   overflow: hidden;
   background: url(../assets/batla.jpg);
+  background-position: top center;
 }
 
 .main__fallback_div {
@@ -44,4 +45,18 @@ h2 {
 
 .main__fallback_p {
   color: white;
+}
+
+@media only screen and (max-width: 767px) {
+  .main__content_container {
+    height: calc(100vh - 110px);
+    padding: 10px;
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .main__content_container {
+    height: calc(100vh - 90px);
+    padding: 5px;
+  }
 }

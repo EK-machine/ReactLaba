@@ -37,3 +37,19 @@
   margin: 0;
   font-family: "OpenSans-Regular", sans-serif;
 }
+
+@media only screen and (max-width: 768px) {
+  .signOut__btn {
+    width: 60px;
+    padding: 0 8px;
+    font-size: 0.75em;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .signOut__btn {
+    width: 30px;
+    padding: 0 3px;
+    font-size: 0.58em;
+  }
+}

@@ -3,7 +3,7 @@
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  padding: 15px 30px 0 30px;
+  padding: 10px 15px 0 15px;
   margin: 0;
   width: 80%;
   height: 58vh;
@@ -30,4 +30,70 @@
   padding: 30px 0;
   overflow-y: scroll;
   margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .newGame__container {
+    padding: 5px;
+    margin: 0;
+    height: 61vh;
+  }
+
+  .newGame__title-container {
+    padding: 7px;
+    margin-bottom: 8px;
+  }
+
+  .newGame__title {
+    font-size: 13px;
+  }
+
+  .newGame__content-container {
+    gap: 15px;
+    padding: 10px 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .newGame__container {
+    padding: 7px;
+    margin: 0;
+    height: 61vh;
+  }
+
+  .newGame__title-container {
+    padding: 5px;
+    margin-bottom: 7px;
+  }
+
+  .newGame__title {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .newGame__container {
+    padding: 5px;
+    margin: 0;
+    height: 58vh;
+  }
+
+  .newGame__title-container {
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+
+  .newGame__title {
+    font-size: 10px;
+  }
+
+  .newGame__content-container {
+    gap: 10px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .newGame__container {
+    height: 60vh;
+  }
 }
