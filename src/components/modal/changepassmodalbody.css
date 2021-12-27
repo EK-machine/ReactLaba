@@ -6,8 +6,8 @@
   background-color: black;
   border-radius: 8px;
   padding: 30px;
-  width: 60%;
-  height: 60%;
+  width: 80%;
+  height: 80%;
 }
 
 .changePass__modal_upper-container {
@@ -38,6 +38,10 @@
   width: 100%;
 }
 
+.changePass__message {
+  color: rgb(212, 212, 212);
+}
+
 .changePass__modal_submit-btn-container {
   width: 100%;
   display: flex;
@@ -57,4 +61,47 @@
 .changePass__modal_submit-btn:disabled {
   background-color: #ad7cc5;
   cursor: default;
+}
+
+@media only screen and (max-width: 768px) {
+  .changePass__modal_title,
+  .changePass__modal_close-btn {
+    font-size: 2.5rem;
+  }
+
+  .changePass__modal_submit-btn {
+    width: 30%;
+    font-size: 1.7rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .changePass__modal_title,
+  .changePass__modal_close-btn {
+    font-size: 2rem;
+  }
+
+  .changePass__message {
+    font-size: 14px;
+  }
+
+  .changePass__modal_submit-btn {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .changePass__modal_title,
+  .changePass__modal_close-btn {
+    font-size: 1.3rem;
+  }
+
+  .changePass__message {
+    font-size: 10px;
+  }
+
+  .changePass__modal_submit-btn {
+    width: 40%;
+    font-size: 1rem;
+  }
 }

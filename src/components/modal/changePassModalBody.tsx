@@ -105,7 +105,7 @@ const ChangePassModalBody: React.FC = () => {
       </div>
       <form action="#" className="changePass__modal_content-container" onSubmit={changeFunc}>
         <InputText name="Password" id="SignUpPassword" type="password" onChange={passwordGetter} value={newPassword} />
-        <p>{passMessage}</p>
+        <span className="changePass__message">{passMessage}</span>
         <br />
         <InputText
           name="Repeat password"
@@ -114,7 +114,7 @@ const ChangePassModalBody: React.FC = () => {
           onChange={repeatPasswordGetter}
           value={repeatNewPassword}
         />
-        <p>{repeatPassMessage}</p>
+        <span className="changePass__message">{repeatPassMessage}</span>
         <br />
         <div className="changePass__modal_submit-btn-container">
           <input className="changePass__modal_submit-btn" type="submit" disabled={!formValid} />

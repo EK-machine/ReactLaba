@@ -9,10 +9,12 @@
   margin-right: 10px;
   font-size: 2rem;
   color: white;
+  width: 30%;
 }
 
 .inputText__label::after {
   content: "*";
+  font-size: 2rem;
   color: red;
 }
 
@@ -23,4 +25,46 @@
   width: 70%;
   height: 2rem;
   color: white;
+}
+
+@media only screen and (max-width: 768px) {
+  .inputText__container {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .inputText__label,
+  .inputText__label::after {
+    font-size: 1.7rem;
+  }
+
+  .inputText__label {
+    margin-right: 5px;
+  }
+
+  .inputText__input {
+    height: 1.7rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .inputText__label,
+  .inputText__label::after {
+    font-size: 1.1rem;
+  }
+
+  .inputText__input {
+    height: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .inputText__label,
+  .inputText__label::after {
+    font-size: 0.7rem;
+  }
+
+  .inputText__input {
+    height: 0.7rem;
+  }
 }

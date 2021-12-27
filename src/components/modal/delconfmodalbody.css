@@ -6,8 +6,8 @@
   background-color: black;
   border-radius: 8px;
   padding: 30px;
-  width: 60%;
-  height: 60%;
+  width: 80%;
+  height: 80%;
 }
 
 .delconf__modal_upper-container {
@@ -51,6 +51,7 @@
 
 .delconf__modal_contentParagraph {
   color: white;
+  margin: 0px;
 }
 
 .delconf__modal_btnsContainer {
@@ -62,7 +63,7 @@
 
 .delconf__modal_contentButton {
   width: 20%;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: white;
   background-color: #9933cc;
   border: none;
@@ -70,4 +71,52 @@
   cursor: pointer;
   align-self: center;
   justify-self: center;
+  padding: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  .delconf__modal_title,
+  .delconf__modal_closeBtn {
+    font-size: 2.5rem;
+  }
+
+  .delconf__modal_contentParagraph {
+    font-size: 16px;
+  }
+
+  .delconf__modal_contentButton {
+    width: 30%;
+    font-size: 1.7rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .delconf__modal_title,
+  .delconf__modal_closeBtn {
+    font-size: 2rem;
+  }
+
+  .delconf__modal_contentParagraph {
+    font-size: 14px;
+  }
+
+  .delconf__modal_contentButton {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .delconf__modal_title,
+  .delconf__modal_closeBtn {
+    font-size: 1.3rem;
+  }
+
+  .delconf__modal_contentParagraph {
+    font-size: 12px;
+  }
+
+  .delconf__modal_contentButton {
+    width: 40%;
+    font-size: 1rem;
+  }
 }

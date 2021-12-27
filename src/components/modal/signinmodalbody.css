@@ -5,8 +5,8 @@
   background-color: black;
   border-radius: 8px;
   padding: 30px;
-  width: 60%;
-  height: 60%;
+  width: 80%;
+  height: 80%;
 }
 
 .signIn__modal_upper-container {
@@ -51,6 +51,7 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  padding: 5px;
 }
 
 .signIn__modal_submit-btn:disabled {
@@ -60,4 +61,47 @@
 
 .signIn__message {
   color: rgb(212, 212, 212);
+}
+
+@media only screen and (max-width: 768px) {
+  .signIn__modal_title,
+  .signIn__modal_close-btn {
+    font-size: 2.5rem;
+  }
+
+  .signIn__modal_submit-btn {
+    width: 30%;
+    font-size: 1.7rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .signIn__modal_title,
+  .signIn__modal_close-btn {
+    font-size: 2rem;
+  }
+
+  .signIn__message {
+    font-size: 14px;
+  }
+
+  .signIn__modal_submit-btn {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .signIn__modal_title,
+  .signIn__modal_close-btn {
+    font-size: 1.3rem;
+  }
+
+  .signIn__message {
+    font-size: 10px;
+  }
+
+  .signIn__modal_submit-btn {
+    width: 40%;
+    font-size: 1rem;
+  }
 }

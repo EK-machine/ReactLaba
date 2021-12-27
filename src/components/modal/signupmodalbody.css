@@ -6,8 +6,8 @@
   background-color: black;
   border-radius: 8px;
   padding: 30px;
-  width: 60%;
-  height: 60%;
+  width: 80%;
+  height: 80%;
 }
 
 .signUp__modal_upper-container {
@@ -52,6 +52,7 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  padding: 5px;
 }
 
 .signUp__modal_submit-btn:disabled {
@@ -61,4 +62,47 @@
 
 .signUp__message {
   color: rgb(212, 212, 212);
+}
+
+@media only screen and (max-width: 768px) {
+  .signUp__modal_title,
+  .signUp__modal_close-btn {
+    font-size: 2.5rem;
+  }
+
+  .signUp__modal_submit-btn {
+    width: 30%;
+    font-size: 1.7rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .signUp__modal_title,
+  .signUp__modal_close-btn {
+    font-size: 2rem;
+  }
+
+  .signUp__message {
+    font-size: 14px;
+  }
+
+  .signUp__modal_submit-btn {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .signUp__modal_title,
+  .signUp__modal_close-btn {
+    font-size: 1.3rem;
+  }
+
+  .signUp__message {
+    font-size: 10px;
+  }
+
+  .signUp__modal_submit-btn {
+    width: 40%;
+    font-size: 1rem;
+  }
 }
