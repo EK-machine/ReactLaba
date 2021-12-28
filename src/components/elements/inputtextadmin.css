@@ -10,6 +10,7 @@
   margin-right: 10px;
   font-size: 1.3rem;
   color: white;
+  width: 30%;
 }
 
 .inputTextAdmin__input {
@@ -17,6 +18,68 @@
   box-sizing: border-box;
   background-color: inherit;
   width: 70%;
-  height: 2rem;
   color: white;
+  padding: 1px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .inputTextAdmin__container {
+    margin-bottom: 7px;
+  }
+
+  .inputTextAdmin__label {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .inputTextAdmin__label {
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .inputTextAdmin__container {
+    margin-bottom: 5px;
+  }
+
+  .inputTextAdmin__label {
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .inputTextAdmin__container {
+    margin-bottom: 3px;
+  }
+
+  .inputTextAdmin__label {
+    font-size: 0.75rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .inputTextAdmin__container {
+    margin-bottom: 5px;
+  }
+
+  .inputTextAdmin__label {
+    font-size: 1.1rem;
+    width: 37%;
+    margin: 0 5px 0 0;
+  }
+
+  .inputTextAdmin__input {
+    width: 63%;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .inputTextAdmin__container {
+    margin-bottom: 3px;
+  }
+
+  .inputTextAdmin__label {
+    font-size: 0.75rem;
+  }
 }

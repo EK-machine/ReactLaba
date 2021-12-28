@@ -59,6 +59,33 @@
   }
 }
 
+@media only screen and (max-width: 720px) {
+  .categories__container {
+    margin-bottom: 7px;
+  }
+
+  .categories__title-container {
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .categories__container {
+    padding: 5px 7px;
+    margin-bottom: 3px;
+  }
+
+  .categories__title-container {
+    padding: 3px;
+    margin-bottom: 3px;
+  }
+
+  .categories__title {
+    font-size: 11px;
+  }
+}
+
 @media only screen and (max-width: 480x) {
   .categories__container {
     padding: 5px;
@@ -72,5 +99,17 @@
 
   .categories__title {
     font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 320x) {
+  .categories__container {
+    padding: 3px;
+    margin-bottom: 3px;
+  }
+
+  .categories__title-container {
+    padding: 3px;
+    margin-bottom: 3px;
   }
 }

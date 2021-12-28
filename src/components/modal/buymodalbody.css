@@ -100,6 +100,26 @@
   }
 }
 
+@media only screen and (max-width: 568px) {
+  .buy__modal_container {
+    padding: 15px;
+  }
+
+  .buy__modal_title,
+  .buy__modal_close-btn {
+    font-size: 1.8rem;
+  }
+
+  .buy__modal_contentParagraph-user,
+  .buy__modal_contentParagraph {
+    font-size: 12px;
+  }
+
+  .buy__modal_contentButton {
+    font-size: 1rem;
+  }
+}
+
 @media only screen and (max-width: 480px) {
   .buy__modal_title,
   .buy__modal_close-btn {

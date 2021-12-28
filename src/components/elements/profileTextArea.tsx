@@ -1,15 +1,15 @@
 import React from "react";
-import "./textarea.css";
+import "./profiletextarea.css";
 import { TextAreaProps } from "../../types/types";
 
-const TextArea: React.FC<TextAreaProps> = ({ name, id, value, onChange }) => {
+const ProfileTextArea: React.FC<TextAreaProps> = ({ name, id, value, onChange }) => {
   const changeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
     onChange(event.target?.value);
   };
 
   return (
-    <div className="textArea__container">
-      <label htmlFor={id} className="textArea__label">
+    <div className="profileTextArea__container">
+      <label htmlFor={id} className="profileTextArea__label">
         {name}
       </label>
       <textarea
@@ -17,11 +17,11 @@ const TextArea: React.FC<TextAreaProps> = ({ name, id, value, onChange }) => {
         id={id}
         value={value}
         onChange={changeHandler}
-        className="textArea__textarea"
+        className="profileTextArea__textarea"
         autoComplete="off"
       />
     </div>
   );
 };
 
-export default TextArea;
+export default ProfileTextArea;

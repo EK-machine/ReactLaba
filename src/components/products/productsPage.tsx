@@ -67,7 +67,7 @@ const ProductsPage: React.FC = () => {
             <div className="productsPage__sortTable_title">
               <p className="productsPage__sortTable_genreTitle sortTable_titleItem">Age</p>
             </div>
-            <div className="productsPage__sortTable_genreSelector sortTable_contentItem">
+            <div className="productsPage__sortTable_ageSelector sortTable_contentItem">
               <AgeRadioButtons />
             </div>
           </div>

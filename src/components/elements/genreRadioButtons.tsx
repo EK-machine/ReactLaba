@@ -53,7 +53,9 @@ const GenreRadioButtons: React.FC = () => {
             }}
             checked={genre === item}
           />
-          <label htmlFor={item}>{item.charAt(0).toUpperCase() + item.slice(1)}</label>
+          <label htmlFor={item} className="genreSelector__label_radioButton">
+            {item.charAt(0).toUpperCase() + item.slice(1)}
+          </label>
         </div>
       ))}
     </div>

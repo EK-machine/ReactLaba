@@ -97,7 +97,7 @@ export interface FilterState {
   gamesList: Array<Game>;
 }
 
-export interface ProfileTextAreaProps {
+export interface TextAreaProps {
   name: string;
   id: string;
   value: string;

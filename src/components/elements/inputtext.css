@@ -47,6 +47,17 @@
   }
 }
 
+@media only screen and (max-width: 568px) {
+  .inputText__label,
+  .inputText__label::after {
+    font-size: 1rem;
+  }
+
+  .inputText__input {
+    height: 1rem;
+  }
+}
+
 @media only screen and (max-width: 480px) {
   .inputText__label,
   .inputText__label::after {

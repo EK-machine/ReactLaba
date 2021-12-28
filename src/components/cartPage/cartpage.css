@@ -130,3 +130,104 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 768px) {
+  .cartPage__container {
+    padding: 0 10px;
+  }
+
+  .cartPage__title_section,
+  .cartPage__content_section {
+    width: 90%;
+  }
+
+  .cartPage__content_title {
+    font-size: 12px;
+  }
+
+  .cartPage__formRemove_container {
+    padding: 15px 0 15px 15px;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .cartPage__container {
+    padding: 0 5px;
+  }
+
+  .cartPage__title_section,
+  .cartPage__content_section {
+    width: 95%;
+  }
+
+  .cartPage__title_section {
+    padding: 5px 5px 0 5px;
+  }
+
+  .cartPage__content_section {
+    padding: 0 5px 5px 5px;
+  }
+
+  .cartPage__title_container {
+    margin-bottom: 5px;
+  }
+
+  .cartPage__title {
+    font-size: 16px;
+  }
+
+  .cartPage__content_titlesContainer {
+    padding: 0 0 5px 0;
+  }
+
+  .cartPage__content_title {
+    font-size: 12px;
+  }
+
+  .cartPage__formRemove_container {
+    padding: 5px 0 5px 5px;
+  }
+
+  .cartPage__formRemove_btn,
+  .cartPage__formSubmit_btn {
+    padding: 5px;
+    font-size: 0.8rem;
+  }
+
+  .cartPage__gamesCost,
+  .cartPage__yourBalance {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .cartPage__content_title,
+  .cartPage__gamesCost,
+  .cartPage__yourBalance {
+    font-size: 11px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .cartPage__container {
+    padding: 0 3px;
+  }
+
+  .cartPage__title_section,
+  .cartPage__content_section {
+    width: 100%;
+    padding: 3px;
+  }
+
+  .cartPage__content_title,
+  .cartPage__gamesCost,
+  .cartPage__yourBalance {
+    font-size: 9px;
+  }
+
+  .cartPage__formRemove_btn,
+  .cartPage__formSubmit_btn {
+    margin: 3px 0;
+    padding: 3px;
+    font-size: 0.6rem;
+  }
+}

@@ -47,16 +47,34 @@ h2 {
   color: white;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .main__content_container {
     height: calc(100vh - 110px);
     padding: 10px;
   }
 }
-
-@media only screen and (max-width: 479px) {
+@media only screen and (max-width: 720px) {
   .main__content_container {
-    height: calc(100vh - 90px);
+    padding: 7px;
+    overflow-y: scroll;
+  }
+}
+@media only screen and (max-width: 568px) {
+  .main__content_container {
     padding: 5px;
+    height: calc(100vh - 90px);
+    overflow-y: scroll;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .main__content_container {
+    overflow-y: none;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .main__content_container {
+    padding: 3px;
   }
 }

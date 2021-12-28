@@ -130,10 +130,41 @@
   }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 568px) {
   .header__container {
     height: 45px;
     padding: 0 5px;
+  }
+
+  .header__title-container {
+    width: 20%;
+  }
+
+  .header__title {
+    font-size: 0.65em;
+    line-height: 22px;
+  }
+
+  .header__btn,
+  .header__btn_cart,
+  .header__btn_cart-active {
+    padding: 0 3px;
+  }
+
+  .header__btn_cart,
+  .header__btn_cart-active {
+    min-width: 30px;
+    justify-content: space-around;
+  }
+
+  .header__btn-title {
+    font-size: 0.58em;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .header__title-container {
+    width: 20%;
   }
 
   .header__title {

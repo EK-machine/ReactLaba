@@ -36,7 +36,7 @@ const CriteriaSelector: React.FC = () => {
   return (
     <div className="criteriaSelector__container">
       <label htmlFor="criteria" className="criteriaSelector__label">
-        Criteria
+        <p className="criteriaSelector__item_title">Criteria</p>
         <select
           className="criteriaSelector__selector"
           id="criteria"
@@ -50,7 +50,7 @@ const CriteriaSelector: React.FC = () => {
         </select>
       </label>
       <label htmlFor="type" className="criteriaSelector__label">
-        Type
+        <p className="criteriaSelector__item_title">Type</p>
         <select
           className="criteriaSelector__selector"
           id="type"

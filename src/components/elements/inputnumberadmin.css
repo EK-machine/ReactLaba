@@ -10,6 +10,7 @@
   margin-right: 10px;
   font-size: 1.3rem;
   color: white;
+  width: 30%;
 }
 
 .inputNumberAdmin__input {
@@ -17,6 +18,68 @@
   box-sizing: border-box;
   background-color: inherit;
   width: 70%;
-  height: 2rem;
   color: white;
+  padding: 1px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .inputNumberAdmin__container {
+    margin-bottom: 7px;
+  }
+
+  .inputNumberAdmin__label {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .inputNumberAdmin__label {
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .inputNumberAdmin__container {
+    margin-bottom: 5px;
+  }
+
+  .inputNumberAdmin__label {
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .inputNumberAdmin__container {
+    margin-bottom: 3px;
+  }
+
+  .inputNumberAdmin__label {
+    font-size: 0.75rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .inputNumberAdmin__container {
+    margin-bottom: 5px;
+  }
+
+  .inputNumberAdmin__label {
+    font-size: 1.1rem;
+    width: 37%;
+    margin: 0 5px 0 0;
+  }
+
+  .inputNumberAdmin__input {
+    width: 63%;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .inputNumberAdmin__container {
+    margin-bottom: 3px;
+  }
+
+  .inputNumberAdmin__label {
+    font-size: 0.75rem;
+  }
 }

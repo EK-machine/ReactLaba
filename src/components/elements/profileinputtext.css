@@ -25,3 +25,44 @@
   color: white;
   margin-bottom: 15px;
 }
+
+@media only screen and (max-width: 720px) {
+  .profileInputText__label {
+    font-size: 1.3rem;
+  }
+
+  .profileInputText__input {
+    margin-bottom: 5px;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .profileInputText__label {
+    font-size: 1rem;
+  }
+
+  .profileInputText__input {
+    margin-bottom: 5px;
+    height: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .profileInputText__label {
+    font-size: 1.2rem;
+  }
+
+  .profileInputText__input {
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .profileInputText__label {
+    font-size: 0.8rem;
+  }
+
+  .profileInputText__input {
+    margin-bottom: 5px;
+  }
+}

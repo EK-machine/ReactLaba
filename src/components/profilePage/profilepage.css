@@ -1,5 +1,4 @@
 .profilePage__container {
-  /* background-color: #353434; */
   background-color: transparent;
   width: 100%;
   margin: 0;
@@ -13,7 +12,7 @@
   flex-direction: column;
 }
 
-.profilePage__upperSectiopn {
+.profilePage__upperSection {
   border-bottom: 1px solid white;
   margin: 0 0 55px 0;
 }
@@ -24,8 +23,8 @@
   color: white;
 }
 
-.profilePage__lowerSectiopn {
-  width: 60%;
+.profilePage__lowerSection {
+  width: 80%;
   align-self: center;
   display: flex;
   flex-direction: row;
@@ -34,6 +33,10 @@
 .profilePage__picSection,
 .profilePage__editSection {
   margin-right: 50px;
+}
+
+.profilePage__edit_message {
+  color: white;
 }
 
 .profilePage__picSection {
@@ -87,4 +90,170 @@
 
 .profilePage__btnsSection {
   width: 18%;
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePage__inner-container {
+    padding: 5px 10px;
+  }
+
+  .profilePage__upperSection {
+    margin: 0 0 15px 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .profilePage__inner-container {
+    padding: 0 10px;
+  }
+
+  .profilePage__userName_title {
+    font-size: 26px;
+    margin: 0;
+    padding: 10px 0 10px 10px;
+  }
+
+  .profilePage__lowerSection {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .profilePage__picSection,
+  .profilePage__editSection {
+    margin-right: 20px;
+  }
+
+  .profilePage__picSection_changePicBtn,
+  .profilePage__btnsSection_saveBtn,
+  .profilePage__btnsSection_changePassBtn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 7px;
+    margin: 0 0 5px 0;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .profilePage__inner-container {
+    padding: 0 7px;
+  }
+
+  .profilePage__upperSection {
+    margin: 0 0 10px 0;
+  }
+
+  .profilePage__userName_title {
+    font-size: 22px;
+  }
+
+  .profilePage__picSection_pic {
+    margin-bottom: 10px;
+    height: 240px;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .profilePage__inner-container {
+    padding: 0 5px;
+  }
+
+  .profilePage__userName_title {
+    font-size: 18px;
+    padding: 5px 0 5px 5px;
+  }
+
+  .profilePage__upperSection {
+    margin: 0 0 5px 0;
+  }
+
+  .profilePage__picSection_pic {
+    margin-bottom: 10px;
+    height: 130px;
+  }
+
+  .profilePage__picSection_changePicBtn,
+  .profilePage__btnsSection_saveBtn,
+  .profilePage__btnsSection_changePassBtn {
+    font-size: 0.8rem;
+    padding: 7px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .profilePage__inner-container {
+    padding: 0 5px;
+  }
+
+  .profilePage__upperSection {
+    margin: 0 0 10px 0;
+  }
+
+  .profilePage__userName_title {
+    font-size: 22px;
+    margin: 0;
+    padding: 5px 0 5px 5px;
+  }
+
+  .profilePage__picSection,
+  .profilePage__editSection {
+    margin-right: 10px;
+  }
+
+  .profilePage__picSection_pic {
+    margin-bottom: 10px;
+    height: 300px;
+  }
+
+  .profilePage__picSection_changePicBtn,
+  .profilePage__btnsSection_saveBtn,
+  .profilePage__btnsSection_changePassBtn {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 5px;
+    margin: 0 0 5px 0;
+  }
+
+  .profilePage__edit_message {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .profilePage__inner-container {
+    padding: 0 5px;
+  }
+
+  .profilePage__upperSection {
+    margin: 0 0 5px 0;
+  }
+
+  .profilePage__userName_title {
+    font-size: 20px;
+    margin: 0;
+    padding: 5px 0 5px 5px;
+  }
+
+  .profilePage__picSection,
+  .profilePage__editSection {
+    margin-right: 5px;
+  }
+
+  .profilePage__picSection_pic {
+    margin-bottom: 5px;
+    height: 200px;
+  }
+
+  .profilePage__picSection_changePicBtn,
+  .profilePage__btnsSection_saveBtn,
+  .profilePage__btnsSection_changePassBtn {
+    width: 100%;
+    font-size: 0.5rem;
+    padding: 5px;
+    margin: 0 0 5px 0;
+  }
+
+  .profilePage__edit_message {
+    font-size: 10px;
+  }
 }

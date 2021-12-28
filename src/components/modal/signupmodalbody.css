@@ -76,6 +76,38 @@
   }
 }
 
+@media only screen and (max-width: 720px) {
+  .signUp__modal_container {
+    padding: 20px;
+    height: 90%;
+  }
+
+  .signUp__modal_title,
+  .signUp__modal_close-btn {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .signUp__modal_container {
+    padding: 15px;
+    height: 90%;
+  }
+
+  .signUp__modal_title,
+  .signUp__modal_close-btn {
+    font-size: 1.8rem;
+  }
+
+  .signUp__message {
+    font-size: 12px;
+  }
+
+  .signUp__modal_submit-btn {
+    font-size: 1rem;
+  }
+}
+
 @media only screen and (max-width: 480px) {
   .signUp__modal_title,
   .signUp__modal_close-btn {

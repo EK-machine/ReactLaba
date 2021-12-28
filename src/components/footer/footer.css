@@ -76,6 +76,22 @@
   }
 }
 
+@media only screen and (max-width: 568px) {
+  .footer__container {
+    height: 45px;
+    padding: 0 5px;
+  }
+
+  .footer__title {
+    font-size: 0.7em;
+    line-height: 20px;
+  }
+
+  .footer__link-icon {
+    font-size: 16px;
+  }
+}
+
 @media only screen and (max-width: 480px) {
   .footer__container {
     height: 45px;

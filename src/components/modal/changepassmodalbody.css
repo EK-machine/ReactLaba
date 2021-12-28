@@ -75,6 +75,38 @@
   }
 }
 
+@media only screen and (max-width: 720px) {
+  .changePass__modal_container {
+    padding: 20px;
+    height: 90%;
+  }
+
+  .changePass__modal_title,
+  .changePass__modal_close-btn {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .changePass__modal_container {
+    padding: 15px;
+    height: 90%;
+  }
+
+  .changePass__modal_title,
+  .changePass__modal_close-btn {
+    font-size: 1.8rem;
+  }
+
+  .changePass__message {
+    font-size: 12px;
+  }
+
+  .changePass__modal_submit-btn {
+    font-size: 1rem;
+  }
+}
+
 @media only screen and (max-width: 480px) {
   .changePass__modal_title,
   .changePass__modal_close-btn {

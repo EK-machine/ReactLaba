@@ -149,7 +149,7 @@ const EditModalBody: React.FC = () => {
           <form className="editModal__contentForm_form">
             <InputTextAdmin name="Name" id="titleInput" type="text" onChange={titleGetter} value={titleInp} />
             <label htmlFor="genre" className="editModal__contentForm_labelGen">
-              Category
+              <p className="editModal__contentForm_paragraph">Category</p>
               <select
                 className="editModal__contentForm_genre"
                 id="genre"
@@ -167,7 +167,7 @@ const EditModalBody: React.FC = () => {
             <InputTextAdmin name="Image" id="imgUrlInput" type="text" onChange={imgUrlGetter} value={imgUrlInp} />
             <TextArea name="Description" id="Description" onChange={descriptionGetter} value={descriptionInp} />
             <label htmlFor="age" className="editModal__contentForm_labelAge">
-              Age
+              <p className="editModal__contentForm_paragraph">Age</p>
               <select
                 className="editModal__contentForm_age"
                 id="age"

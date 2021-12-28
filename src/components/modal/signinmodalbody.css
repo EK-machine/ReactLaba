@@ -75,6 +75,38 @@
   }
 }
 
+@media only screen and (max-width: 720px) {
+  .signIn__modal_container {
+    padding: 20px;
+    height: 90%;
+  }
+
+  .signIn__modal_title,
+  .signIn__modal_close-btn {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .signIn__modal_container {
+    padding: 15px;
+    height: 90%;
+  }
+
+  .signIn__modal_title,
+  .signIn__modal_close-btn {
+    font-size: 1.8rem;
+  }
+
+  .signIn__message {
+    font-size: 12px;
+  }
+
+  .signIn__modal_submit-btn {
+    font-size: 1rem;
+  }
+}
+
 @media only screen and (max-width: 480px) {
   .signIn__modal_title,
   .signIn__modal_close-btn {

@@ -55,3 +55,46 @@
 .cartGame__data_check {
   flex-basis: 10%;
 }
+
+@media only screen and (max-width: 768px) {
+  .cartGame__data_paragraphName,
+  .cartGame__data_paragraphDate,
+  .cartGame__data_paragraphPrice {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .cartGame__data_paragraphName,
+  .cartGame__data_paragraphDate,
+  .cartGame__data_paragraphPrice {
+    font-size: 10px;
+  }
+
+  .cartGame__amount_input {
+    width: 85%;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .cartGame__data_paragraphName,
+  .cartGame__data_paragraphDate,
+  .cartGame__data_paragraphPrice {
+    font-size: 9px;
+  }
+
+  .cartGame__data_platform {
+    flex-basis: 17%;
+  }
+
+  .cartGame__platform_selector {
+    font-size: 10px;
+  }
+
+  .cartGame__data_date {
+    flex-basis: 19%;
+  }
+
+  .cartGame__amount_input {
+    width: 95%;
+  }
+}

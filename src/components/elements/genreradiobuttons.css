@@ -10,3 +10,25 @@
 .genreSelector__input_radioButton {
   margin-right: 5px;
 }
+
+@media only screen and (max-width: 768px) {
+  .genreSelector__label_radioButton {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .genreSelector__input_container {
+    line-height: 14px;
+  }
+
+  .genreSelector__label_radioButton {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .genreSelector__label_radioButton {
+    font-size: 10px;
+  }
+}
