@@ -77,7 +77,7 @@ export interface InputNumberAdminProps {
 
 export interface FilterState {
   loading: boolean;
-  gamesList: Array<Game>;
+  gamesList: Game[];
 }
 
 export interface TextAreaProps {
@@ -126,11 +126,17 @@ export interface CartGameProps {
   price: number;
 }
 
-export type LogInFunctionType = (userName: string) => void;
+export interface LogInFunctionType {
+  (userName: string): void;
+}
 
-export type LogOutFunctionType = () => void;
+export interface LogOutFunctionType {
+  (): void;
+}
 
-export type FetchFunctionFilterAction = (dispatch: Dispatch<FilterAction>) => Promise<Array<Game>>;
+export interface FetchFunctionFilterAction {
+  (dispatch: Dispatch<FilterAction>): Promise<Game[]>;
+}
 
 export interface InitialLogInState {
   loggedIn: boolean;
@@ -140,7 +146,7 @@ export interface InitialLogInState {
 
 export interface CartAction {
   type: string;
-  payload: GameCart | Array<GameCart> | number;
+  payload: GameCart | GameCart[] | number;
 }
 
 export interface GameAction {
@@ -178,7 +184,7 @@ export interface Game extends EditGame {
 }
 
 export interface InitialCartStateType {
-  gamesList: Array<GameCart>;
+  gamesList: GameCart[];
   totalPurchase: number;
   userBalance: number;
 }
