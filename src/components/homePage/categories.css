@@ -86,7 +86,7 @@
   }
 }
 
-@media only screen and (max-width: 480x) {
+@media only screen and (max-width: 480px) {
   .categories__container {
     padding: 5px;
     margin-bottom: 5px;
@@ -102,7 +102,7 @@
   }
 }
 
-@media only screen and (max-width: 320x) {
+@media only screen and (max-width: 320px) {
   .categories__container {
     padding: 3px;
     margin-bottom: 3px;

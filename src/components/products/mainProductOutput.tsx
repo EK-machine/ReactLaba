@@ -89,7 +89,7 @@ const MainProductOutput: React.FC = () => {
                 title={title}
                 category={category}
                 description={description}
-                rating={rating}
+                rating={rating as number}
                 price={price}
                 imgUrl={imgUrl as string}
                 id={id}

@@ -10,7 +10,7 @@ import { fetchLastThreeGamesAction } from "../../redux/filter/actionsFilter";
 
 const HomePageOutput: React.FC = () => {
   const games: FilterState = useSelector((state: ReducerState) => state.filter);
-  const [output, setOutput] = useState<Array<Game>>([]);
+  const [output, setOutput] = useState<Game[]>([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const HomePageOutput: React.FC = () => {
                 title={title}
                 category={category}
                 description={description}
-                rating={rating}
+                rating={rating as number}
                 price={price}
                 imgUrl={imgUrl as string}
                 age={age as number}

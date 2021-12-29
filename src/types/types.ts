@@ -33,23 +33,6 @@ export interface ProductItemProps {
   imgUrl: string;
 }
 
-export type Game = {
-  id?: number;
-  title: string;
-  developer?: string;
-  date?: string;
-  category: string;
-  description: string;
-  genre?: string;
-  age?: number;
-  rating: number;
-  price: number;
-  imgUrl?: string;
-};
-
-export type FilterAction = { type: string; payload: Array<Game> };
-export type FetchFunctionFilterAction = (dispatch: Dispatch<FilterAction>) => Promise<Array<Game>>;
-
 export interface CategoryProp {
   title: string;
   path: string;
@@ -104,9 +87,6 @@ export interface TextAreaProps {
   onChange: (value: string) => void;
 }
 
-export type LogInFunctionType = (userName: string) => void;
-export type LogOutFunctionType = () => void;
-
 export interface UserNameBtnProps {
   userName: string | undefined;
 }
@@ -125,7 +105,6 @@ export interface StarProps {
   rating: number;
 }
 
-export type InitialLogInState = { loggedIn: boolean; userName: string; userRole: string };
 export interface ModalState {
   signInModalVisible: boolean;
   signUpModalVisible: boolean;
@@ -135,15 +114,54 @@ export interface ModalState {
   delConfModalVisible: boolean;
 }
 
-export type GameCart = {
+export interface initialGameStateType {
+  gameWantToDelete: EditGame;
+  gameWantToEdit: EditGame;
+  gameToPostPut: EditGame;
+}
+
+export interface CartGameProps {
+  title: string;
+  category: string;
+  price: number;
+}
+
+export type LogInFunctionType = (userName: string) => void;
+
+export type LogOutFunctionType = () => void;
+
+export type FetchFunctionFilterAction = (dispatch: Dispatch<FilterAction>) => Promise<Array<Game>>;
+
+export interface InitialLogInState {
+  loggedIn: boolean;
+  userName: string;
+  userRole: string;
+}
+
+export interface CartAction {
+  type: string;
+  payload: GameCart | Array<GameCart> | number;
+}
+
+export interface GameAction {
+  type: string;
+  payload: EditGame;
+}
+
+export interface FilterAction {
+  type: string;
+  payload: Game[];
+}
+
+export interface GameCart {
   title: string;
   category: string;
   price: number;
   check: boolean;
   amount: number;
-};
+}
 
-export type EditGame = {
+export interface EditGame {
   title: string;
   category: string;
   price: number;
@@ -153,26 +171,14 @@ export type EditGame = {
   age: number;
   rating?: number;
   id?: number;
-};
-
-export interface initialGameStateType {
-  gameWantToDelete: EditGame;
-  gameWantToEdit: EditGame;
-  gameToPostPut: EditGame;
 }
 
-export type InitialCartStateType = {
+export interface Game extends EditGame {
+  date?: string;
+}
+
+export interface InitialCartStateType {
   gamesList: Array<GameCart>;
   totalPurchase: number;
   userBalance: number;
-};
-
-export type CartAction = { type: string; payload: GameCart | Array<GameCart> | number };
-
-export interface CartGameProps {
-  title: string;
-  category: string;
-  price: number;
 }
-
-export type GameAction = { type: string; payload: EditGame };

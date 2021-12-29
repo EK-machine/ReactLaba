@@ -9,7 +9,7 @@ import {
 } from "./actionTypesFilter";
 import { Game, FilterState } from "../../types/types";
 
-const FilterReducer = (state = initialFilterState, action: { type: string; payload: Array<Game> }): FilterState => {
+const FilterReducer = (state = initialFilterState, action: { type: string; payload: Game[] }): FilterState => {
   switch (action.type) {
     case fetchGamesRequest:
       return {
@@ -27,13 +27,13 @@ const FilterReducer = (state = initialFilterState, action: { type: string; paylo
       return {
         ...state,
         loading: false,
-        gamesList: [...action.payload].sort((a, b) => b.rating - a.rating),
+        gamesList: [...action.payload].sort((a, b) => (b.rating as number) - (a.rating as number)),
       };
     case filterByRatingAscending:
       return {
         ...state,
         loading: false,
-        gamesList: [...action.payload].sort((a, b) => a.rating - b.rating),
+        gamesList: [...action.payload].sort((a, b) => (a.rating as number) - (b.rating as number)),
       };
     case filterByPriceDecsending:
       return {
