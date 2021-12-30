@@ -26,7 +26,8 @@ const SignInModalBody: React.FC = () => {
   }, [loggedIn]);
 
   const closeLogIn = () => dispatch(closeModalAction());
-  const dispatchedLogInAction = (obj: { userName: string; userRole: string }) => dispatch(logInAction(obj));
+  const dispatchedLogInAction = (obj: { userName: string; userRole: string; userPic: string }) =>
+    dispatch(logInAction(obj));
   const history = useHistory();
   const closeModalHandler = () => {
     closeLogIn();
@@ -96,10 +97,11 @@ const SignInModalBody: React.FC = () => {
       setPassMessage("Login or password is not correct. Please try again.");
       return;
     }
-    const { role } = userMatch;
+    const { role, imgUrl } = userMatch;
     const obj = {
       userName: login,
       userRole: role,
+      userPic: imgUrl,
     };
     dispatchedLogInAction(obj);
   }

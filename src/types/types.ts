@@ -142,6 +142,7 @@ export interface InitialLogInState {
   loggedIn: boolean;
   userName: string;
   userRole: string;
+  userPic: string;
 }
 
 export interface CartAction {

@@ -10,23 +10,26 @@ import ProfileTextArea from "../elements/profileTextArea";
 const ProfilePage: React.FC = () => {
   const userName = useSelector((state: ReducerState) => state.signIn.userName);
   const [currentName, setCurrentName] = useState<string>("");
-  const [currentId, setCurrentId] = useState<string>();
   const [currentRole, setCurrentRole] = useState<string>("");
+  const [currentId, setCurrentId] = useState<string>("");
+  const [currentPic, setCurrentPic] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [formValid, setFormValid] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const dispatchedLogInAction = (obj: { userName: string; userRole: string }) => dispatch(logInAction(obj));
+  const dispatchedLogInAction = (obj: { userName: string; userRole: string; userPic: string }) =>
+    dispatch(logInAction(obj));
 
   useEffect(() => {
     const currenUserFetch = async () => {
       const currentUserResp = await fetch(`http://localhost:3000/users?login_like=${userName}`, { method: "GET" });
       const currentUserRespJson = await currentUserResp.json();
-      const [{ login, role, id }] = currentUserRespJson;
+      const [{ login, role, id, imgUrl }] = currentUserRespJson;
       setCurrentName(login);
       setCurrentRole(role);
       setCurrentId(id);
+      setCurrentPic(imgUrl);
     };
     currenUserFetch();
   }, []);
@@ -74,7 +77,7 @@ const ProfilePage: React.FC = () => {
     if (patchResponse.status === 404) {
       throw new Error(`HTTP status: ${patchResponse.status}`);
     }
-    const userObjToUpdate = { userName: updatedName, userRole: currentRole };
+    const userObjToUpdate = { userName: updatedName, userRole: currentRole, userPic: currentPic };
     dispatchedLogInAction(userObjToUpdate);
   }
 
@@ -87,7 +90,8 @@ const ProfilePage: React.FC = () => {
         <form className="profilePage__lowerSection" onSubmit={saveHandler}>
           <div className="profilePage__picSection">
             <div className="profilePage__picSection_pic">
-              <div>no picture</div>
+              <img src={currentPic} alt={userName} />
+              {/* <div>no picture</div> */}
             </div>
             <button type="button" className="profilePage__picSection_changePicBtn">
               <p>Change profile image</p>
