@@ -1,0 +1,123 @@
+.changePic__modal_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  border-radius: 8px;
+  padding: 30px;
+  width: 80%;
+  height: 80%;
+}
+
+.changePic__modal_upper-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.changePic__modal_title {
+  margin: 0;
+  font-size: 3rem;
+  color: white;
+}
+
+.changePic__modal_close-btn {
+  background-color: inherit;
+  border: none;
+  font-size: 3rem;
+  color: #808080;
+  cursor: pointer;
+}
+
+.changePic__modal_content-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.changePic__modal_submit-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.changePic__modal_submit-btn {
+  width: 20%;
+  font-size: 2rem;
+  color: white;
+  background-color: #9933cc;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.changePic__modal_submit-btn:disabled {
+  background-color: #ad7cc5;
+  cursor: default;
+}
+
+@media only screen and (max-width: 768px) {
+  .changePic__modal_title,
+  .changePic__modal_close-btn {
+    font-size: 2.5rem;
+  }
+
+  .changePic__modal_submit-btn {
+    width: 30%;
+    font-size: 1.7rem;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .changePic__modal_container {
+    padding: 20px;
+    height: 90%;
+  }
+
+  .changePic__modal_title,
+  .changePic__modal_close-btn {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .changePic__modal_container {
+    padding: 15px;
+    height: 90%;
+  }
+
+  .changePic__modal_title,
+  .changePic__modal_close-btn {
+    font-size: 1.8rem;
+  }
+
+  .changePic__modal_submit-btn {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .changePic__modal_title,
+  .changePic__modal_close-btn {
+    font-size: 2rem;
+  }
+
+  .changePic__modal_submit-btn {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .changePic__modal_title,
+  .changePic__modal_close-btn {
+    font-size: 1.3rem;
+  }
+
+  .changePic__modal_submit-btn {
+    width: 40%;
+    font-size: 1rem;
+  }
+}

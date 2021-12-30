@@ -3,8 +3,8 @@ import { logInType, logOutType } from "./actionTypesLogin";
 
 const logInReducer = (
   state = initialLogInState,
-  action: { type: string; payload: { userName: string; userRole: string; userPic: string } }
-): { loggedIn: boolean; userName: string; userRole: string; userPic: string } => {
+  action: { type: string; payload: { userName: string; userRole: string; userPic: string; userId?: number } }
+): { loggedIn: boolean; userName: string; userRole: string; userPic: string; userId?: number } => {
   switch (action.type) {
     case logInType:
       return {

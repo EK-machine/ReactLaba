@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logInAction } from "../../redux/login/actionsLogin";
-import { showChangePassModalAction } from "../../redux/modal/actionsModal";
+import { showChangePassModalAction, showChangeUserPicModalAction } from "../../redux/modal/actionsModal";
 import "./profilepage.css";
 import { ReducerState } from "../../redux/reducerRoot";
 import ProfileInputText from "../elements/profileInputText";
@@ -89,11 +89,14 @@ const ProfilePage: React.FC = () => {
         </section>
         <form className="profilePage__lowerSection" onSubmit={saveHandler}>
           <div className="profilePage__picSection">
-            <div className="profilePage__picSection_pic">
-              <img src={currentPic} alt={userName} />
-              {/* <div>no picture</div> */}
+            <div className="profilePage__picSection_picWrapper">
+              <img src={currentPic} alt={userName} className="profilePage__picSection_pic" />
             </div>
-            <button type="button" className="profilePage__picSection_changePicBtn">
+            <button
+              type="button"
+              className="profilePage__picSection_changePicBtn"
+              onClick={() => dispatch(showChangeUserPicModalAction())}
+            >
               <p>Change profile image</p>
             </button>
           </div>

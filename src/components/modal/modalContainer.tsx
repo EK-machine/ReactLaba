@@ -4,6 +4,7 @@ import Modal from "./modal";
 import SignInModalBody from "./signInModalBody";
 import SignUpModalBody from "./signUpModalBody";
 import ChangePassModalBody from "./changePassModalBody";
+import ChangeUserPicModalBody from "./changeUserPicModalBody";
 import BuyModalBody from "./buyModalBody";
 import EditModalBody from "./editModalBody";
 import DelConfModalBody from "./delConfModalBody";
@@ -13,6 +14,7 @@ const ModalContainer: React.FC = () => {
   const signInModalVisible = useSelector((state: ReducerState) => state.modal.signInModalVisible);
   const signUpModalVisible = useSelector((state: ReducerState) => state.modal.signUpModalVisible);
   const changePassModalVisible = useSelector((state: ReducerState) => state.modal.changePassModalVisible);
+  const changeUserPicModalVisible = useSelector((state: ReducerState) => state.modal.changeUserPicModalVisible);
   const buyModalVisible = useSelector((state: ReducerState) => state.modal.buyModalVisible);
   const editModalVisible = useSelector((state: ReducerState) => state.modal.editModalVisible);
   const delConfModalVisible = useSelector((state: ReducerState) => state.modal.delConfModalVisible);
@@ -31,6 +33,11 @@ const ModalContainer: React.FC = () => {
       {changePassModalVisible ? (
         <Modal>
           <ChangePassModalBody />
+        </Modal>
+      ) : null}
+      {changeUserPicModalVisible ? (
+        <Modal>
+          <ChangeUserPicModalBody />
         </Modal>
       ) : null}
       {buyModalVisible ? (

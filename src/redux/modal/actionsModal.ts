@@ -2,6 +2,7 @@ import {
   showSignInModal,
   showSignUpModal,
   showChangePassModal,
+  showChangeUserPicModal,
   showBuyModal,
   showEditModal,
   showDelConfModal,
@@ -18,6 +19,10 @@ export const showSignUpModalAction = (): { type: string } => ({
 
 export const showChangePassModalAction = (): { type: string } => ({
   type: showChangePassModal,
+});
+
+export const showChangeUserPicModalAction = (): { type: string } => ({
+  type: showChangeUserPicModal,
 });
 
 export const showBuyModalAction = (): { type: string } => ({

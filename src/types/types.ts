@@ -109,6 +109,7 @@ export interface ModalState {
   signInModalVisible: boolean;
   signUpModalVisible: boolean;
   changePassModalVisible: boolean;
+  changeUserPicModalVisible: boolean;
   buyModalVisible: boolean;
   editModalVisible: boolean;
   delConfModalVisible: boolean;

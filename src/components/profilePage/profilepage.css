@@ -44,16 +44,21 @@
   box-sizing: border-box;
 }
 
-.profilePage__picSection_pic {
-  width: 100%;
-  background-color: #ababab;
+.profilePage__picSection_picWrapper {
+  max-width: 256px;
+  max-height: 256px;
   border-radius: 8px;
   margin-bottom: 20px;
-  height: 450px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
+  overflow: hidden;
+}
+
+.profilePage__picSection_pic {
+  max-width: 256px;
+  max-height: 256px;
 }
 
 .profilePage__picSection_changePicBtn,
@@ -147,7 +152,7 @@
     font-size: 22px;
   }
 
-  .profilePage__picSection_pic {
+  .profilePage__picSection_picWrapper {
     margin-bottom: 10px;
     height: 240px;
   }
@@ -167,7 +172,7 @@
     margin: 0 0 5px 0;
   }
 
-  .profilePage__picSection_pic {
+  .profilePage__picSection_picWrapper {
     margin-bottom: 10px;
     height: 130px;
   }
@@ -200,7 +205,7 @@
     margin-right: 10px;
   }
 
-  .profilePage__picSection_pic {
+  .profilePage__picSection_picWrapper {
     margin-bottom: 10px;
     height: 300px;
   }
@@ -239,7 +244,7 @@
     margin-right: 5px;
   }
 
-  .profilePage__picSection_pic {
+  .profilePage__picSection_picWrapper {
     margin-bottom: 5px;
     height: 200px;
   }
