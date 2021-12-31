@@ -28,7 +28,8 @@ const SignUpModalBody: React.FC = () => {
   }, [loggedIn]);
 
   const closeLogIn = () => dispatch(closeModalAction());
-  const dispatchedLogInAction = (obj: { userName: string; userRole: string }) => dispatch(logInAction(obj));
+  const dispatchedLogInAction = (obj: { userName: string; userRole: string; userPic: string }) =>
+    dispatch(logInAction(obj));
   const history = useHistory();
   const closeModalHandler = () => {
     closeLogIn();
@@ -125,7 +126,7 @@ const SignUpModalBody: React.FC = () => {
       body: JSON.stringify(signUpObj),
     });
 
-    const userObj = { userName: logup, userRole: "user" };
+    const userObj = { userName: logup, userRole: "user", userPic: "" };
 
     if (postResponse.status === 201) {
       dispatchedLogInAction(userObj);

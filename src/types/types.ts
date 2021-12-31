@@ -109,6 +109,7 @@ export interface ModalState {
   signInModalVisible: boolean;
   signUpModalVisible: boolean;
   changePassModalVisible: boolean;
+  changeUserPicModalVisible: boolean;
   buyModalVisible: boolean;
   editModalVisible: boolean;
   delConfModalVisible: boolean;
@@ -142,6 +143,7 @@ export interface InitialLogInState {
   loggedIn: boolean;
   userName: string;
   userRole: string;
+  userPic: string;
 }
 
 export interface CartAction {
