@@ -11,10 +11,10 @@ const ChangePassModalBody: React.FC = () => {
   const userName = useSelector((state: ReducerState) => state.signIn.userName);
   const [newPassword, setNewPassword] = useState<string>("");
   const [repeatNewPassword, setRepeatNewPassword] = useState<string>("");
-  const [passMessage, setPassMessage] = useState("Please enter new password");
-  const [repeatPassMessage, setRepeatPassMessage] = useState("Please enter password");
-  const [formValid, setFormValid] = useState(false);
-  const [currentPassword, setCurrentPassword] = useState("");
+  const [passMessage, setPassMessage] = useState<string>("Please enter new password");
+  const [repeatPassMessage, setRepeatPassMessage] = useState<string>("Please enter password");
+  const [formValid, setFormValid] = useState<boolean>(false);
+  const [currentPassword, setCurrentPassword] = useState<string>("");
   const [currentId, setCurrentId] = useState();
   const dispatch = useDispatch();
 

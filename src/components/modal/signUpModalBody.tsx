@@ -14,10 +14,10 @@ const SignUpModalBody: React.FC = () => {
   const [logup, setLogup] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
-  const [loginMessage, setLoginMessage] = useState("Please enter login");
-  const [passMessage, setPassMessage] = useState("Please enter password");
-  const [repeatPassMessage, setRepeatPassMessage] = useState("Please repeat password");
-  const [formValid, setFormValid] = useState(false);
+  const [loginMessage, setLoginMessage] = useState<string>("Please enter login");
+  const [passMessage, setPassMessage] = useState<string>("Please enter password");
+  const [repeatPassMessage, setRepeatPassMessage] = useState<string>("Please repeat password");
+  const [formValid, setFormValid] = useState<boolean>(false);
   const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);
   const dispatch = useDispatch();
 

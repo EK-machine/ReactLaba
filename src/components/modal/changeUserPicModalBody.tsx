@@ -12,7 +12,7 @@ const ChangeUserPicModalBody: React.FC = () => {
   const userName = useSelector((state: ReducerState) => state.signIn.userName);
   const [userPic, setUserPic] = useState<string>("");
   const [newUserPic, setNewUserPic] = useState<string>("");
-  const [formValid, setFormValid] = useState(false);
+  const [formValid, setFormValid] = useState<boolean>(false);
   const [currentId, setCurrentId] = useState<number>(0);
   const [currentPass, setCurrentPass] = useState<string>("");
   const dispatch = useDispatch();

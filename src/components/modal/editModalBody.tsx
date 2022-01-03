@@ -34,7 +34,7 @@ const EditModalBody: React.FC = () => {
   const [priceInp, setPriceInp] = useState<number>(price || 0.99);
   const [imgUrlInp, setImgUrlInp] = useState<string>(imgUrl || "");
   const [descriptionInp, setDescriptionInp] = useState<string>(description);
-  const [ageInp, setAgeInp] = useState(age);
+  const [ageInp, setAgeInp] = useState<number>(age);
   const [pcCheckedInp, setPcCheckedInp] = useState<boolean>(Boolean(pcGenre));
   const [psCheckedInp, setPsCheckedInp] = useState<boolean>(Boolean(psGenre));
   const [xbxCheckedInp, setXbxCheckedInp] = useState<boolean>(Boolean(xbxGenre));

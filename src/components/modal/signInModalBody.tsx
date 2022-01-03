@@ -13,9 +13,9 @@ import { ReducerState } from "../../redux/reducerRoot";
 const SignInModalBody: React.FC = () => {
   const [login, setLogin] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [loginMessage, setLoginMessage] = useState("Please enter login");
-  const [passMessage, setPassMessage] = useState("Please enter password");
-  const [formValid, setFormValid] = useState(false);
+  const [loginMessage, setLoginMessage] = useState<string>("Please enter login");
+  const [passMessage, setPassMessage] = useState<string>("Please enter password");
+  const [formValid, setFormValid] = useState<boolean>(false);
   const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);
   const dispatch = useDispatch();
 

@@ -8,7 +8,7 @@ import "./productsDropDown.css";
 import productsRoutesData from "./productsRoutesData";
 
 const ProductsDropDown: React.FC = () => {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState<boolean>(false);
   const clickHandler = () => {
     setToggle(!toggle);
   };
