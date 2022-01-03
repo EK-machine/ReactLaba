@@ -1,24 +1,19 @@
 import { Dispatch } from "react";
+import { LogInUserDataType, LogInActionType, LogOutActionType } from "../../types/types";
 import { logInType, logOutType } from "./actionTypesLogin";
 
-export const logInAction = (userData: {
-  userName: string;
-  userRole: string;
-  userPic: string;
-}): { type: string; payload: { userName: string; userRole: string; userPic: string } } => ({
+export const logInAction = (userData: LogInUserDataType): LogInActionType => ({
   type: logInType,
   payload: userData,
 });
 
-export const logOutAction = (): { type: string } => ({
+export const logOutAction = (): LogOutActionType => ({
   type: logOutType,
 });
 
 export const fetchLogInAction =
   (login: string, password: string) =>
-  async (
-    dispatch: Dispatch<{ type: string; payload: { userName: string; userRole: string; userPic: string } }>
-  ): Promise<void> => {
+  async (dispatch: Dispatch<LogInActionType>): Promise<void> => {
     const getResponse = await fetch("http://localhost:3000/users", { method: "GET" });
     const allUsersArr = await getResponse.json();
     const userMatch = allUsersArr.find(

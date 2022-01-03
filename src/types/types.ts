@@ -139,13 +139,6 @@ export interface FetchFunctionFilterAction {
   (dispatch: Dispatch<FilterAction>): Promise<Game[]>;
 }
 
-export interface InitialLogInState {
-  loggedIn: boolean;
-  userName: string;
-  userRole: string;
-  userPic: string;
-}
-
 export interface CartAction {
   type: string;
   payload: GameCart | GameCart[] | number;
@@ -189,4 +182,23 @@ export interface InitialCartStateType {
   gamesList: GameCart[];
   totalPurchase: number;
   userBalance: number;
+}
+
+export interface LogInUserDataType {
+  userName: string;
+  userRole: string;
+  userPic: string;
+}
+
+export interface InitialLogInState extends LogInUserDataType {
+  loggedIn: boolean;
+}
+
+export interface LogInActionType {
+  type: string;
+  payload: LogInUserDataType;
+}
+
+export interface LogOutActionType {
+  type: string;
 }

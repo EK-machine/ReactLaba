@@ -1,10 +1,8 @@
 import initialLogInState from "./initalStateLogin";
+import { LogInActionType, InitialLogInState } from "../../types/types";
 import { logInType, logOutType } from "./actionTypesLogin";
 
-const logInReducer = (
-  state = initialLogInState,
-  action: { type: string; payload: { userName: string; userRole: string; userPic: string; userId?: number } }
-): { loggedIn: boolean; userName: string; userRole: string; userPic: string; userId?: number } => {
+const logInReducer = (state = initialLogInState, action: LogInActionType): InitialLogInState => {
   switch (action.type) {
     case logInType:
       return {
