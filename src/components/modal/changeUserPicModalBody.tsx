@@ -8,8 +8,8 @@ import InputText from "../elements/inputText";
 import { ReducerState } from "../../redux/reducerRoot";
 
 const ChangeUserPicModalBody: React.FC = () => {
-  const userPic = useSelector((state: ReducerState) => state.signIn.userPic);
   const userName = useSelector((state: ReducerState) => state.signIn.userName);
+  const [userPic, setUserPic] = useState<string>("");
   const [newUserPic, setNewUserPic] = useState<string>("");
   const [formValid, setFormValid] = useState(false);
   const [currentId, setCurrentId] = useState();
@@ -19,8 +19,9 @@ const ChangeUserPicModalBody: React.FC = () => {
     const currenUserFetch = async () => {
       const currentUserResp = await fetch(`http://localhost:3000/users?login_like=${userName}`, { method: "GET" });
       const currentUserRespJson = await currentUserResp.json();
-      const [{ id }] = currentUserRespJson;
+      const [{ id, imgUrl }] = currentUserRespJson;
       setCurrentId(id);
+      setUserPic(imgUrl);
     };
     currenUserFetch();
   }, []);

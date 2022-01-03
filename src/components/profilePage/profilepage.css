@@ -42,6 +42,9 @@
 .profilePage__picSection {
   width: 30%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profilePage__picSection_picWrapper {

@@ -9,6 +9,7 @@ import ProfileTextArea from "../elements/profileTextArea";
 
 const ProfilePage: React.FC = () => {
   const userName = useSelector((state: ReducerState) => state.signIn.userName);
+  const userAvatar = useSelector((state: ReducerState) => state.signIn.userPic);
   const [currentName, setCurrentName] = useState<string>("");
   const [currentRole, setCurrentRole] = useState<string>("");
   const [currentId, setCurrentId] = useState<string>("");
@@ -90,7 +91,7 @@ const ProfilePage: React.FC = () => {
         <form className="profilePage__lowerSection" onSubmit={saveHandler}>
           <div className="profilePage__picSection">
             <div className="profilePage__picSection_picWrapper">
-              <img src={currentPic} alt={userName} className="profilePage__picSection_pic" />
+              <img src={userAvatar} alt={userName} className="profilePage__picSection_pic" />
             </div>
             <button
               type="button"
