@@ -45,6 +45,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 }
 
 .profilePage__picSection_picWrapper {
@@ -60,6 +61,7 @@
 }
 
 .profilePage__picSection_pic {
+  width: 100%;
   max-width: 256px;
   max-height: 256px;
 }
@@ -138,6 +140,10 @@
     width: 100%;
     font-size: 1rem;
     padding: 7px;
+  }
+
+  .profilePage__btnsSection_saveBtn,
+  .profilePage__btnsSection_changePassBtn {
     margin: 0 0 5px 0;
   }
 }
@@ -157,7 +163,7 @@
 
   .profilePage__picSection_picWrapper {
     margin-bottom: 10px;
-    height: 240px;
+    align-items: flex-start;
   }
 }
 
@@ -210,7 +216,6 @@
 
   .profilePage__picSection_picWrapper {
     margin-bottom: 10px;
-    height: 300px;
   }
 
   .profilePage__picSection_changePicBtn,
@@ -219,6 +224,10 @@
     width: 100%;
     font-size: 0.8rem;
     padding: 5px;
+  }
+
+  .profilePage__btnsSection_saveBtn,
+  .profilePage__btnsSection_changePassBtn {
     margin: 0 0 5px 0;
   }
 
@@ -247,17 +256,16 @@
     margin-right: 5px;
   }
 
-  .profilePage__picSection_picWrapper {
-    margin-bottom: 5px;
-    height: 200px;
-  }
-
   .profilePage__picSection_changePicBtn,
   .profilePage__btnsSection_saveBtn,
   .profilePage__btnsSection_changePassBtn {
     width: 100%;
     font-size: 0.5rem;
     padding: 5px;
+  }
+
+  .profilePage__btnsSection_saveBtn,
+  .profilePage__btnsSection_changePassBtn {
     margin: 0 0 5px 0;
   }
 
