@@ -7,7 +7,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 import InputText from "../elements/inputText";
 import routesData from "../routesData";
 import { closeModalAction } from "../../redux/modal/actionsModal";
-import { logInAction } from "../../redux/login/actionsLogin";
+import { fetchLogInAction } from "../../redux/login/actionsLogin";
 import { ReducerState } from "../../redux/reducerRoot";
 
 const SignInModalBody: React.FC = () => {
@@ -26,15 +26,11 @@ const SignInModalBody: React.FC = () => {
   }, [loggedIn]);
 
   const closeLogIn = () => dispatch(closeModalAction());
-  const dispatchedLogInAction = (obj: { userName: string; userRole: string; userPic: string }) =>
-    dispatch(logInAction(obj));
   const history = useHistory();
   const closeModalHandler = () => {
     closeLogIn();
     history.push(routesData[0].path);
   };
-
-  const signInUrl = "http://localhost:3000/users";
 
   const loginGetter = (loginData: string) => {
     setLogin(loginData);
@@ -82,28 +78,22 @@ const SignInModalBody: React.FC = () => {
     }
   }, [loginMessage, passMessage]);
 
-  async function getFunc(e: React.SyntheticEvent) {
+  async function logInFunc(e: React.SyntheticEvent) {
     if (e) {
       e.preventDefault();
     }
-    const getResponse = await fetch(signInUrl, { method: "GET" });
+
+    const getResponse = await fetch("http://localhost:3000/users", { method: "GET" });
     const allUsersArr = await getResponse.json();
     const userMatch = allUsersArr.find(
       (user: { login: string; password: string }) => user.login === login && user.password === password
     );
-
     if (typeof userMatch === "undefined") {
       setLoginMessage("Login or password is not correct. Please try again.");
       setPassMessage("Login or password is not correct. Please try again.");
       return;
     }
-    const { role, imgUrl } = userMatch;
-    const obj = {
-      userName: login,
-      userRole: role,
-      userPic: imgUrl,
-    };
-    dispatchedLogInAction(obj);
+    dispatch(fetchLogInAction(login, password));
   }
 
   return (
@@ -114,7 +104,7 @@ const SignInModalBody: React.FC = () => {
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>
-      <form action="#" className="signIn__modal_content-container" onSubmit={getFunc}>
+      <form action="#" className="signIn__modal_content-container" onSubmit={logInFunc}>
         <InputText name="Login" id="SignInLogin" type="text" onChange={loginGetter} value={login} />
         <span className="signIn__message">{loginMessage}</span>
         <InputText name="Password" id="SignInPassword" type="password" onChange={passwordGetter} value={password} />

@@ -4,6 +4,7 @@ import "./changeuserpicmodalbody.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 import { closeModalAction } from "../../redux/modal/actionsModal";
+import { fetchLogInAction } from "../../redux/login/actionsLogin";
 import InputText from "../elements/inputText";
 import { ReducerState } from "../../redux/reducerRoot";
 
@@ -12,16 +13,18 @@ const ChangeUserPicModalBody: React.FC = () => {
   const [userPic, setUserPic] = useState<string>("");
   const [newUserPic, setNewUserPic] = useState<string>("");
   const [formValid, setFormValid] = useState(false);
-  const [currentId, setCurrentId] = useState();
+  const [currentId, setCurrentId] = useState<number>(0);
+  const [currentPass, setCurrentPass] = useState<string>("");
   const dispatch = useDispatch();
 
   useEffect(() => {
     const currenUserFetch = async () => {
       const currentUserResp = await fetch(`http://localhost:3000/users?login_like=${userName}`, { method: "GET" });
       const currentUserRespJson = await currentUserResp.json();
-      const [{ id, imgUrl }] = currentUserRespJson;
+      const [{ id, imgUrl, password }] = currentUserRespJson;
       setCurrentId(id);
       setUserPic(imgUrl);
+      setCurrentPass(password);
     };
     currenUserFetch();
   }, []);
@@ -57,6 +60,7 @@ const ChangeUserPicModalBody: React.FC = () => {
       throw new Error(`HTTP status: ${patchResponse.status}`);
     }
     dispatch(closeModalAction());
+    dispatch(fetchLogInAction(userName, currentPass));
     return null;
   }
 

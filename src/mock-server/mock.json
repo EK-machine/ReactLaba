@@ -245,7 +245,7 @@
       "password": "Admin123",
       "role": "admin",
       "id": 1,
-      "imgUrl": "https://www.meme-arsenal.com/memes/bb75b90d2a8352bc97c507f96c0c795f.jpg"
+      "imgUrl": "https://cs13.pikabu.ru/avatars/2128/x2128149-1621773431.png"
     },
     {
       "login": "User1",
@@ -262,7 +262,7 @@
       "imgUrl": "https://d33wubrfki0l68.cloudfront.net/836968ad9fee45dd0abd9e988ea1ca9a16bc2338/36d04/static/kalina_tyrkiel-6074da23ffcfefb5265cc12e0336ba27.jpg"
     },
     {
-      "login": "User4",
+      "login": "User3",
       "password": "User1234",
       "role": "user",
       "id": 4,
