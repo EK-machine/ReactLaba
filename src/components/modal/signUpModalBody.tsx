@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 import InputText from "../elements/inputText";
 import routesData from "../routesData";
-import { logInAction } from "../../redux/login/actionsLogin";
+import { fetchLogUpAction } from "../../redux/login/actionsLogin";
 import { closeModalAction } from "../../redux/modal/actionsModal";
 import { ReducerState } from "../../redux/reducerRoot";
 
@@ -28,15 +28,11 @@ const SignUpModalBody: React.FC = () => {
   }, [loggedIn]);
 
   const closeLogIn = () => dispatch(closeModalAction());
-  const dispatchedLogInAction = (obj: { userName: string; userRole: string; userPic: string }) =>
-    dispatch(logInAction(obj));
   const history = useHistory();
   const closeModalHandler = () => {
     closeLogIn();
     history.push(routesData[0].path);
   };
-
-  const signUpUrl = "http://localhost:3000/users";
 
   const logupGetter = (logupData: string) => {
     setLogup(logupData);
@@ -49,8 +45,6 @@ const SignUpModalBody: React.FC = () => {
   const repeatPasswordGetter = (passwordData: string) => {
     setRepeatPassword(passwordData);
   };
-
-  const signUpObj = { login: logup, password, role: "user" };
 
   const verifyName = (log: string) => {
     if (!log) {
@@ -108,8 +102,7 @@ const SignUpModalBody: React.FC = () => {
       e.preventDefault();
     }
 
-    const signInUrl = "http://localhost:3000/users";
-    const getResponse = await fetch(signInUrl, { method: "GET" });
+    const getResponse = await fetch("http://localhost:3000/users", { method: "GET" });
     const allUsersArr = await getResponse.json();
     const userMatch = allUsersArr.find((user: { login: string }) => user.login === logup);
 
@@ -117,22 +110,7 @@ const SignUpModalBody: React.FC = () => {
       setLoginMessage(`Sorry, the name "${logup}" already exists. Please try another name`);
       return;
     }
-
-    const postResponse = await fetch(signUpUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(signUpObj),
-    });
-
-    const userObj = { userName: logup, userRole: "user", userPic: "" };
-
-    if (postResponse.status === 201) {
-      dispatchedLogInAction(userObj);
-    } else {
-      throw new Error(`HTTP status: ${postResponse.status}`);
-    }
+    dispatch(fetchLogUpAction(logup, password));
   }
 
   return (

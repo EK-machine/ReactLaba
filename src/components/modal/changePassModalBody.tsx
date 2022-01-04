@@ -12,7 +12,7 @@ const ChangePassModalBody: React.FC = () => {
   const [newPassword, setNewPassword] = useState<string>("");
   const [repeatNewPassword, setRepeatNewPassword] = useState<string>("");
   const [passMessage, setPassMessage] = useState<string>("Please enter new password");
-  const [repeatPassMessage, setRepeatPassMessage] = useState<string>("Please enter password");
+  const [repeatPassMessage, setRepeatPassMessage] = useState<string>("Please repeat new password");
   const [formValid, setFormValid] = useState<boolean>(false);
   const [currentPassword, setCurrentPassword] = useState<string>("");
   const [currentId, setCurrentId] = useState();
@@ -40,7 +40,7 @@ const ChangePassModalBody: React.FC = () => {
   const verifyPassword = (pass: string) => {
     const alphNumPass = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
     if (!pass) {
-      setPassMessage("Please enter password");
+      setPassMessage("Please enter new password");
     } else if (pass.length < 8 || pass.length > 15) {
       setPassMessage("Password must be between 8 and 15 characters");
     } else if (pass[0].toUpperCase() !== pass[0]) {
@@ -53,7 +53,9 @@ const ChangePassModalBody: React.FC = () => {
   };
 
   const comparePass = (pass: string) => {
-    if (newPassword !== pass || !pass) {
+    if (repeatNewPassword.length <= 0) {
+      setRepeatPassMessage("Please repeat new password");
+    } else if (newPassword !== pass || !pass) {
       setRepeatPassMessage("Repeated password is not correct");
     } else {
       setRepeatPassMessage("Repeated password is OK");
