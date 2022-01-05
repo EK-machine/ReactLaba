@@ -20,7 +20,8 @@
   border-radius: 8px;
 }
 
-.gameCard__container:hover .gameCard__inner {
+.gameCard__container:hover .gameCard__inner,
+.gameCard__container:focus-within .gameCard__inner {
   transform: rotateY(180deg);
 }
 
