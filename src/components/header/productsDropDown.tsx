@@ -37,24 +37,17 @@ const ProductsDropDown: React.FC = () => {
           </div>
           <div className="productsDropDown__items-container">
             {productsRoutesData.map(({ text, path }) => (
-              <div
-                className="productsDropDown__item-wrapper"
+              <NavLink
+                to={path}
                 key={text}
-                // eslint-disable-next-line jsx-a11y/tabindex-no-positive
-                tabIndex={1}
+                tabIndex={0}
+                className="productsDropDown__item"
+                activeClassName="productsDropDown__item-active"
                 onClick={clickHandler}
                 onKeyUp={buttonHandler}
-                role="button"
               >
-                <NavLink
-                  to={path}
-                  key={text}
-                  className="productsDropDown__item"
-                  activeClassName="productsDropDown__item-active"
-                >
-                  <p className="productsDropDown__item-text">{text}</p>
-                </NavLink>
-              </div>
+                <p className="productsDropDown__item-text">{text}</p>
+              </NavLink>
             ))}
           </div>
         </>

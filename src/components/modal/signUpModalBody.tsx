@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./signupmodalbody.css";
@@ -20,6 +20,29 @@ const SignUpModalBody: React.FC = () => {
   const [formValid, setFormValid] = useState<boolean>(false);
   const loggedIn = useSelector((state: ReducerState) => state.signIn.loggedIn);
   const dispatch = useDispatch();
+
+  const outerTabRef = useRef<HTMLDivElement | null>(null);
+  const topTabRef = useRef<HTMLElement | null>(null);
+  const bottomTabRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
+    const topTab = focusableElements[0];
+    topTabRef.current = topTab;
+    setTimeout(() => topTabRef.current?.focus(), 0);
+  }, []);
+
+  useEffect(() => {
+    const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
+    if (formValid) {
+      const bottomTab = focusableElements[focusableElements.length - 1];
+      bottomTabRef.current = bottomTab;
+    } else {
+      const bottomTab = focusableElements[focusableElements.length - 2];
+      bottomTabRef.current = bottomTab;
+    }
+    bottomTabRef.current.focus();
+  }, [formValid]);
 
   useEffect(() => {
     if (loggedIn) {
@@ -113,8 +136,23 @@ const SignUpModalBody: React.FC = () => {
     dispatch(fetchLogUpAction(logup, password));
   }
 
+  const onKeyDownFunk = (e: React.KeyboardEvent) => {
+    if (document.activeElement === bottomTabRef.current && e.key === "Tab" && !e.shiftKey) {
+      e.preventDefault();
+      topTabRef.current?.focus();
+    }
+    if (document.activeElement === topTabRef.current && e.key === "Tab" && e.shiftKey) {
+      e.preventDefault();
+      bottomTabRef.current?.focus();
+    }
+    if (e.key === "Escape") {
+      closeLogIn();
+    }
+  };
+
   return (
-    <div className="signUp__modal_container">
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+    <div className="signUp__modal_container" ref={outerTabRef} onKeyDown={onKeyDownFunk} role="note">
       <div className="signUp__modal_upper-container">
         <h1 className="signUp__modal_title">Registration</h1>
         <button className="signUp__modal_close-btn" type="button" onClick={closeModalHandler}>
