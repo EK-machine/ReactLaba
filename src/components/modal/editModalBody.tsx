@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./editmodalbody.css";
@@ -39,6 +39,20 @@ const EditModalBody: React.FC = () => {
   const [psCheckedInp, setPsCheckedInp] = useState<boolean>(Boolean(psGenre));
   const [xbxCheckedInp, setXbxCheckedInp] = useState<boolean>(Boolean(xbxGenre));
   const dispatch = useDispatch();
+
+  const outerTabRef = useRef<HTMLDivElement | null>(null);
+  const topTabRef = useRef<HTMLElement | null>(null);
+  const bottomTabRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
+    const topTab = focusableElements[0];
+    topTabRef.current = topTab;
+    setTimeout(() => topTabRef.current?.focus(), 0);
+    const bottomTab = focusableElements[focusableElements.length - 1];
+    bottomTabRef.current = bottomTab;
+  }, []);
+
   const location = useLocation();
   let partOfUrl = "/";
   if (location.pathname.includes("pc")) {
@@ -131,8 +145,53 @@ const EditModalBody: React.FC = () => {
     dispatch(closeModalAction());
   };
 
+  const pcCheckHandler = () => {
+    setPcCheckedInp(!pcCheckedInp);
+  };
+
+  const onKeyUpPc = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      setPcCheckedInp(!pcCheckedInp);
+    }
+  };
+
+  const psCheckHandler = () => {
+    setPsCheckedInp(!psCheckedInp);
+  };
+
+  const onKeyUpPs = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      setPsCheckedInp(!psCheckedInp);
+    }
+  };
+
+  const xbxCheckHandler = () => {
+    setXbxCheckedInp(!xbxCheckedInp);
+  };
+
+  const onKeyUpXbx = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      setXbxCheckedInp(!xbxCheckedInp);
+    }
+  };
+
+  const onKeyDownFunk = (e: React.KeyboardEvent) => {
+    if (document.activeElement === bottomTabRef.current && e.key === "Tab" && !e.shiftKey) {
+      e.preventDefault();
+      topTabRef.current?.focus();
+    }
+    if (document.activeElement === topTabRef.current && e.key === "Tab" && e.shiftKey) {
+      e.preventDefault();
+      bottomTabRef.current?.focus();
+    }
+    if (e.key === "Escape") {
+      closeHandler();
+    }
+  };
+
   return (
-    <div className="editModal__container">
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+    <div className="editModal__container" ref={outerTabRef} onKeyDown={onKeyDownFunk} role="note">
       <div className="editModal__upper_container">
         <h1 className="editModal__title">Edit card</h1>
         <button className="editModal__closeBtn" type="button" onClick={closeHandler}>
@@ -190,7 +249,8 @@ const EditModalBody: React.FC = () => {
                 type="checkbox"
                 className="editModal__contentForm_PcCheck"
                 checked={pcCheckedInp}
-                onChange={() => setPcCheckedInp(!pcCheckedInp)}
+                onChange={pcCheckHandler}
+                onKeyUp={onKeyUpPc}
               />
             </label>
             <label htmlFor="PS" className="editModal__contentForm_labelPs">
@@ -199,7 +259,8 @@ const EditModalBody: React.FC = () => {
                 type="checkbox"
                 className="editModal__contentForm_PsCheck"
                 checked={psCheckedInp}
-                onChange={() => setPsCheckedInp(!psCheckedInp)}
+                onChange={psCheckHandler}
+                onKeyUp={onKeyUpPs}
               />
             </label>
             <label htmlFor="XBX" className="editModal__contentForm_labelXbx">
@@ -208,7 +269,8 @@ const EditModalBody: React.FC = () => {
                 type="checkbox"
                 className="editModal__contentForm_XbxCheck"
                 checked={xbxCheckedInp}
-                onChange={() => setXbxCheckedInp(!xbxCheckedInp)}
+                onChange={xbxCheckHandler}
+                onKeyUp={onKeyUpXbx}
               />
             </label>
             {gameData.title ? (

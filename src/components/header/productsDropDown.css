@@ -92,10 +92,6 @@
   z-index: 1;
 }
 
-.productsDropDown__item-wrapper {
-  width: 100%;
-}
-
 .productsDropDown__item {
   width: 100%;
   cursor: pointer;
@@ -113,8 +109,10 @@
   transition: font-weight 0.2s ease-in-out;
 }
 
-.productsDropDown__item:hover {
+.productsDropDown__item:hover,
+.productsDropDown__item:focus {
   background-color: #272727;
+  width: 100%;
   font-weight: bold;
   transition: font-weight 0.2s ease-in-out;
 }

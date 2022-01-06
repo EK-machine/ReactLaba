@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./delconfmodalbody.css";
@@ -11,6 +11,20 @@ import { ReducerState } from "../../redux/reducerRoot";
 const DelConfModalBody: React.FC = () => {
   const gameTitle = useSelector((state: ReducerState) => state.games.gameWantToDelete.title);
   const dispatch = useDispatch();
+
+  const outerTabRef = useRef<HTMLDivElement | null>(null);
+  const topTabRef = useRef<HTMLElement | null>(null);
+  const bottomTabRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
+    const topTab = focusableElements[0];
+    topTabRef.current = topTab;
+    const bottomTab = focusableElements[focusableElements.length - 1];
+    bottomTabRef.current = bottomTab;
+    setTimeout(() => topTabRef.current?.focus(), 0);
+  }, []);
+
   const location = useLocation();
   let partOfUrl = "/";
   if (location.pathname.includes("pc")) {
@@ -38,8 +52,23 @@ const DelConfModalBody: React.FC = () => {
     dispatch(closeModalAction());
   };
 
+  const onKeyDownFunk = (e: React.KeyboardEvent) => {
+    if (document.activeElement === bottomTabRef.current && e.key === "Tab" && !e.shiftKey) {
+      e.preventDefault();
+      topTabRef.current?.focus();
+    }
+    if (document.activeElement === topTabRef.current && e.key === "Tab" && e.shiftKey) {
+      e.preventDefault();
+      bottomTabRef.current?.focus();
+    }
+    if (e.key === "Escape") {
+      closeHandler();
+    }
+  };
+
   return (
-    <div className="delconf__modal_container">
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+    <div className="delconf__modal_container" ref={outerTabRef} onKeyDown={onKeyDownFunk} role="note">
       <div className="delconf__modal_upper-container">
         <h1 className="delconf__modal_title">Confirm delete</h1>
         <button className="delconf__modal_closeBtn" type="button" onClick={closeHandler}>
