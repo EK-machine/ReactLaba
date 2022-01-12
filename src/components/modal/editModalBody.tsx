@@ -140,25 +140,13 @@ const EditModalBody: React.FC = () => {
     dispatch(closeModalAction());
   };
 
-  const createGameObj = {
-    title: titleInp,
-    imgUrl: imgUrlInp,
-    price: priceInp,
-    description: descriptionInp,
-    rating: 4,
-    age: Number(ageInp),
-    genre: categoryInp,
-    category: finalCategory,
-  };
-
   useEffect(() => {
     if (
-      Boolean(createGameObj.title) !== false &&
-      Boolean(createGameObj.imgUrl) !== false &&
-      Boolean(createGameObj.price) !== false &&
-      Boolean(createGameObj.description) !== false &&
-      Boolean(createGameObj.rating) !== false &&
-      Boolean(createGameObj.category) !== false
+      Boolean(titleInp) !== false &&
+      Boolean(imgUrlInp) !== false &&
+      Boolean(priceInp) !== false &&
+      Boolean(descriptionInp) !== false &&
+      Boolean(finalCategory) !== false
     ) {
       setFormValid(true);
     } else {
@@ -167,6 +155,16 @@ const EditModalBody: React.FC = () => {
   }, [titleInp, imgUrlInp, priceInp, descriptionInp, finalCategory]);
 
   const submitHandlerCreate = () => {
+    const createGameObj = {
+      title: titleInp,
+      imgUrl: imgUrlInp,
+      price: priceInp,
+      description: descriptionInp,
+      rating: 4,
+      age: Number(ageInp),
+      genre: categoryInp,
+      category: finalCategory,
+    };
     dispatch(getGameDataAction(createGameObj));
     dispatch(createGameAction(createGameObj, partOfUrl));
     dispatch(closeModalAction());
