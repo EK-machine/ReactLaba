@@ -28,7 +28,6 @@ const EditModalBody: React.FC = () => {
   const incomGenreArr = genre ? genre.split(", ") : ["fighting game"];
   const incomcategoryArr = category ? category.split(", ") : ["", "", ""];
   const [pcGenre, psGenre, xbxGenre] = incomcategoryArr;
-
   const [titleInp, setTitleInp] = useState<string>(title || "");
   const [categoryInp, setCategoryInp] = useState(incomGenreArr[0]);
   const [priceInp, setPriceInp] = useState<number>(price || 0.99);
@@ -38,6 +37,7 @@ const EditModalBody: React.FC = () => {
   const [pcCheckedInp, setPcCheckedInp] = useState<boolean>(Boolean(pcGenre));
   const [psCheckedInp, setPsCheckedInp] = useState<boolean>(Boolean(psGenre));
   const [xbxCheckedInp, setXbxCheckedInp] = useState<boolean>(Boolean(xbxGenre));
+  const [formValid, setFormValid] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   const outerTabRef = useRef<HTMLDivElement | null>(null);
@@ -49,9 +49,20 @@ const EditModalBody: React.FC = () => {
     const topTab = focusableElements[0];
     topTabRef.current = topTab;
     setTimeout(() => topTabRef.current?.focus(), 0);
-    const bottomTab = focusableElements[focusableElements.length - 1];
-    bottomTabRef.current = bottomTab;
   }, []);
+
+  useEffect(() => {
+    const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
+    if (formValid) {
+      const bottomTab = focusableElements[focusableElements.length - 1];
+      bottomTabRef.current = bottomTab;
+    } else {
+      const bottomTab = focusableElements[focusableElements.length - 2];
+      bottomTabRef.current = bottomTab;
+    }
+    bottomTabRef.current.focus();
+    console.log(bottomTabRef.current);
+  }, [formValid]);
 
   const location = useLocation();
   let partOfUrl = "/";
@@ -79,7 +90,7 @@ const EditModalBody: React.FC = () => {
 
   const deleteHandler = () => {
     dispatch(showDelConfModalAction());
-    const gameObj = {
+    const delGameObj = {
       id,
       title: titleInp,
       imgUrl: imgUrlInp,
@@ -89,7 +100,7 @@ const EditModalBody: React.FC = () => {
       genre: categoryInp,
       category: finalCategory,
     };
-    dispatch(wantDelGameAction(gameObj));
+    dispatch(wantDelGameAction(delGameObj));
   };
 
   const titleGetter = (nameData: string) => {
@@ -113,7 +124,7 @@ const EditModalBody: React.FC = () => {
   };
 
   const submitHandlerEdit = () => {
-    const gameObj = {
+    const editGameObj = {
       id,
       title: titleInp,
       imgUrl: imgUrlInp,
@@ -124,24 +135,40 @@ const EditModalBody: React.FC = () => {
       genre: categoryInp,
       category: finalCategory,
     };
-    dispatch(getGameDataAction(gameObj));
-    dispatch(editGameAction(gameObj, partOfUrl));
+    dispatch(getGameDataAction(editGameObj));
+    dispatch(editGameAction(editGameObj, partOfUrl));
     dispatch(closeModalAction());
   };
 
+  const createGameObj = {
+    title: titleInp,
+    imgUrl: imgUrlInp,
+    price: priceInp,
+    description: descriptionInp,
+    rating: 4,
+    age: Number(ageInp),
+    genre: categoryInp,
+    category: finalCategory,
+  };
+
+  useEffect(() => {
+    if (
+      Boolean(createGameObj.title) !== false &&
+      Boolean(createGameObj.imgUrl) !== false &&
+      Boolean(createGameObj.price) !== false &&
+      Boolean(createGameObj.description) !== false &&
+      Boolean(createGameObj.rating) !== false &&
+      Boolean(createGameObj.category) !== false
+    ) {
+      setFormValid(true);
+    } else {
+      setFormValid(false);
+    }
+  }, [titleInp, imgUrlInp, priceInp, descriptionInp, finalCategory]);
+
   const submitHandlerCreate = () => {
-    const gameObj = {
-      title: titleInp,
-      imgUrl: imgUrlInp,
-      price: priceInp,
-      description: descriptionInp,
-      rating: 4,
-      age: Number(ageInp),
-      genre: categoryInp,
-      category: finalCategory,
-    };
-    dispatch(getGameDataAction(gameObj));
-    dispatch(createGameAction(gameObj, partOfUrl));
+    dispatch(getGameDataAction(createGameObj));
+    dispatch(createGameAction(createGameObj, partOfUrl));
     dispatch(closeModalAction());
   };
 
@@ -284,7 +311,12 @@ const EditModalBody: React.FC = () => {
               </div>
             ) : (
               <div className="editModal__contentForm_btnContainer">
-                <button type="button" className="editModal__contentForm_btn" onClick={submitHandlerCreate}>
+                <button
+                  type="button"
+                  className="editModal__contentForm_btn"
+                  onClick={submitHandlerCreate}
+                  disabled={!formValid}
+                >
                   Submit
                 </button>
               </div>

@@ -118,6 +118,11 @@
   justify-self: center;
 }
 
+.editModal__contentForm_btn:disabled {
+  background-color: #ad7cc5;
+  cursor: default;
+}
+
 @media only screen and (max-width: 1024px) {
   .editModal__container {
     padding: 10px 15px;
