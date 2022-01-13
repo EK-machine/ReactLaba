@@ -26,7 +26,7 @@ const ChangePassModalBody: React.FC = () => {
     const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
     const topTab = focusableElements[0];
     topTabRef.current = topTab;
-    setTimeout(() => topTabRef.current?.focus(), 0);
+    setTimeout(() => focusableElements[1]?.focus());
   }, []);
 
   useEffect(() => {

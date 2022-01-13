@@ -40,30 +40,15 @@
       "price": 59.99
     },
     {
-      "id": 4,
-      "title": "Grand Theft Auto: The Trilogy",
-      "imgUrl": "https://styles.redditmedia.com/t5_4wb0y6/styles/communityIcon_y12k1vgkn6h71.png",
-      "timestamp": 1633381200000,
-      "date": "5.10.2021",
-      "category": "ps",
-      "description": "The Trilogy - The Definitive Edition. GTAIII, Vice City, and San Andreas updated with enhanced visuals and gameplay.",
-      "genre": "action-adventure game, nonlinear gameplay",
-      "age": 11,
-      "rating": 4,
-      "price": 59.99
-    },
-    {
       "id": 5,
-      "title": "Far Cry 6",
+      "title": "Far Cry 66666",
       "imgUrl": "https://img1.evosis.org/game/3134/icon/icon0.X256.png",
-      "timestamp": 1633467600000,
-      "date": "6.10.2021",
-      "category": "pc, ps",
+      "price": 79.99,
       "description": "In Far Cry 6, play as a local Yaran and fight using over-the-top guerrilla tactics and weaponry to liberate your nation.",
-      "genre": "action-adventure game, first-person shooter, nonlinear gameplay",
+      "rating": 4,
       "age": 18,
-      "rating": 3,
-      "price": 79.99
+      "genre": "action-adventure game",
+      "category": "pc, ps"
     },
     {
       "id": 6,
@@ -235,7 +220,7 @@
       "password": "Admin123",
       "role": "admin",
       "id": 1,
-      "imgUrl": "https://cs13.pikabu.ru/avatars/2128/x2128149-1621773431.png"
+      "imgUrl": " https://www.meme-arsenal.com/memes/bb75b90d2a8352bc97c507f96c0c795f.jpg"
     },
     {
       "login": "User1",
@@ -257,6 +242,12 @@
       "role": "user",
       "id": 4,
       "imgUrl": "https://static.thedecisionlab.com/wp-content/uploads/2019/08/Linkedin-300x300.png"
+    },
+    {
+      "login": "User80",
+      "password": "User1234",
+      "role": "user",
+      "id": 5
     }
   ]
 }

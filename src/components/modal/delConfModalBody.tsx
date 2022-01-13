@@ -22,7 +22,7 @@ const DelConfModalBody: React.FC = () => {
     topTabRef.current = topTab;
     const bottomTab = focusableElements[focusableElements.length - 1];
     bottomTabRef.current = bottomTab;
-    setTimeout(() => topTabRef.current?.focus(), 0);
+    setTimeout(() => focusableElements[1]?.focus());
   }, []);
 
   const location = useLocation();
