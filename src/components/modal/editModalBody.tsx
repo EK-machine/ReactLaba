@@ -24,19 +24,20 @@ const genreArr = ["action-adventure", "first-person shooter", "fighting game", "
 const EditModalBody: React.FC = () => {
   const gameData = useSelector((state: ReducerState) => state.games.gameWantToEdit);
   const { title, category, price, imgUrl, description, age, genre, id, rating } = gameData;
-
   const incomGenreArr = genre ? genre.split(", ") : ["fighting game"];
-  const incomcategoryArr = category ? category.split(", ") : ["", "", ""];
-  const [pcGenre, psGenre, xbxGenre] = incomcategoryArr;
+  const pcGenre = category ? category.includes("pc") : false;
+  const psGenre = category ? category.includes("ps") : false;
+  const xbxGenre = category ? category.includes("xbx") : false;
+
   const [titleInp, setTitleInp] = useState<string>(title || "");
   const [categoryInp, setCategoryInp] = useState(incomGenreArr[0]);
   const [priceInp, setPriceInp] = useState<number>(price || 0.99);
   const [imgUrlInp, setImgUrlInp] = useState<string>(imgUrl || "");
   const [descriptionInp, setDescriptionInp] = useState<string>(description);
   const [ageInp, setAgeInp] = useState<number>(age);
-  const [pcCheckedInp, setPcCheckedInp] = useState<boolean>(Boolean(pcGenre));
-  const [psCheckedInp, setPsCheckedInp] = useState<boolean>(Boolean(psGenre));
-  const [xbxCheckedInp, setXbxCheckedInp] = useState<boolean>(Boolean(xbxGenre));
+  const [pcCheckedInp, setPcCheckedInp] = useState<boolean>(pcGenre);
+  const [psCheckedInp, setPsCheckedInp] = useState<boolean>(psGenre);
+  const [xbxCheckedInp, setXbxCheckedInp] = useState<boolean>(xbxGenre);
   const [formValid, setFormValid] = useState<boolean>(false);
   const dispatch = useDispatch();
 
@@ -61,7 +62,6 @@ const EditModalBody: React.FC = () => {
       bottomTabRef.current = bottomTab;
     }
     bottomTabRef.current.focus();
-    console.log(bottomTabRef.current);
   }, [formValid]);
 
   const location = useLocation();
@@ -226,7 +226,8 @@ const EditModalBody: React.FC = () => {
       <div className="editModal__content_container">
         <div className="editModal__contentImg_container">
           <p className="editModal__contentImg_title">Card image</p>
-          <img className="editModal__contentImg_img" src={imgUrlInp} alt="Here will be pic of game" />
+          <img className="editModal__contentImg_img" src={imgUrlInp} alt={`Here will be pic of game ${titleInp}`} />
+          {/* <img className="editModal__contentImg_img" src={imgUrlInp} alt="Here will be pic of game" /> */}
         </div>
         <div className="editModal__contentForm_container">
           <p className="editModal__contentForm_title">Information</p>

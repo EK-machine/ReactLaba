@@ -40,15 +40,30 @@
       "price": 59.99
     },
     {
-      "id": 5,
-      "title": "Far Cry 66666",
-      "imgUrl": "https://img1.evosis.org/game/3134/icon/icon0.X256.png",
-      "price": 79.99,
-      "description": "In Far Cry 6, play as a local Yaran and fight using over-the-top guerrilla tactics and weaponry to liberate your nation.",
+      "id": 4,
+      "title": "Grand Theft Auto: The Trilogy",
+      "imgUrl": "https://styles.redditmedia.com/t5_4wb0y6/styles/communityIcon_y12k1vgkn6h71.png",
+      "timestamp": 1633381200000,
+      "date": "5.10.2021",
+      "category": "ps",
+      "description": "The Trilogy - The Definitive Edition. GTAIII, Vice City, and San Andreas updated with enhanced visuals and gameplay.",
+      "genre": "action-adventure game, nonlinear gameplay",
+      "age": 11,
       "rating": 4,
+      "price": 59.99
+    },
+    {
+      "id": 5,
+      "title": "Far Cry 6",
+      "imgUrl": "https://img1.evosis.org/game/3134/icon/icon0.X256.png",
+      "timestamp": 1633467600000,
+      "date": "6.10.2021",
+      "category": "pc, ps",
+      "description": "In Far Cry 6, play as a local Yaran and fight using over-the-top guerrilla tactics and weaponry to liberate your nation.",
+      "genre": "action-adventure game, first-person shooter, nonlinear gameplay",
       "age": 18,
-      "genre": "action-adventure game",
-      "category": "pc, ps"
+      "rating": 3,
+      "price": 79.99
     },
     {
       "id": 6,
@@ -106,14 +121,12 @@
       "id": 10,
       "title": "Hitman 3",
       "imgUrl": "https://brator.org/images/1/Hitman_Absolution_1.png",
-      "timestamp": 1611144000000,
-      "date": "20.01.2021",
-      "category": "pc, ps, xbx",
+      "price": 79.99,
       "description": "HITMAN 3 is the dramatic conclusion to the World of Assassination trilogy.",
-      "genre": "action-adventure game, shooter game, stealth game",
+      "rating": 4,
       "age": 18,
-      "rating": 5,
-      "price": 79.99
+      "genre": "action-adventure game",
+      "category": "pc, ps, xbx"
     },
     {
       "id": 11,
@@ -185,9 +198,9 @@
       "title": "PUBG",
       "imgUrl": "https://s.starladder.com/uploads/disciplines/logo/29/huge_bbe3007f56d47da75e5c95fe9edf64ee.png",
       "price": 99.99,
-      "description": "PUBG is well known.",
+      "description": "PUBG is well known. Almost everybody plays it, yes, really.",
       "rating": 4,
-      "age": 15,
+      "age": 13,
       "genre": "action-adventure",
       "category": "pc"
     },
@@ -203,6 +216,7 @@
       "category": "pc, xbx"
     },
     {
+      "id": 18,
       "title": "Mortal Kombat 11",
       "imgUrl": "https://www.truetrophies.com/boxart/Game_8365.jpg",
       "price": 20.99,
@@ -210,8 +224,7 @@
       "rating": 4,
       "age": 18,
       "genre": "fighting game",
-      "category": "pc, ps, xbx",
-      "id": 18
+      "category": "pc, ps, xbx"
     }
   ],
   "users": [
@@ -220,7 +233,7 @@
       "password": "Admin123",
       "role": "admin",
       "id": 1,
-      "imgUrl": " https://www.meme-arsenal.com/memes/bb75b90d2a8352bc97c507f96c0c795f.jpg"
+      "imgUrl": "https://habrastorage.org/webt/5b/db/fe/5bdbfe8c54bc4130948080.jpeg"
     },
     {
       "login": "User1",
