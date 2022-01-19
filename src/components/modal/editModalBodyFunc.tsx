@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./editmodalbody.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 import { showDelConfModalAction, closeModalAction } from "../../redux/modal/actionsModal";
 import {
   wantDelGameAction,
@@ -12,19 +10,18 @@ import {
   editGameAction,
   createGameAction,
 } from "../../redux/games/actionsGames";
-import InputTextAdmin from "../elements/inputTextAdmin";
-import InputNumberAdmin from "../elements/inputNumberAdmin";
-import TextArea from "../elements/textArea";
 import { ReducerState } from "../../redux/reducerRoot";
+import help from "../../helpers/funcs";
+import EditModalContent from "./editModalContent";
 
 const ageArr = [6, 7, 11, 13, 15, 16, 18];
 
 const genreArr = ["action-adventure", "first-person shooter", "fighting game", "survival game", "nonlinear gameplay"];
 
-const EditModalBody: React.FC = () => {
+const EditModalFunc: React.FC = () => {
   const gameData = useSelector((state: ReducerState) => state.games.gameWantToEdit);
   const { title, category, price, imgUrl, description, age, genre, id, rating } = gameData;
-  const incomGenreArr = genre ? genre.split(", ") : ["fighting game"];
+  const incomGenreArr = genre ? genre.split(", ") : genreArr[2];
   const pcGenre = category ? category.includes("pc") : false;
   const psGenre = category ? category.includes("ps") : false;
   const xbxGenre = category ? category.includes("xbx") : false;
@@ -34,7 +31,7 @@ const EditModalBody: React.FC = () => {
   const [priceInp, setPriceInp] = useState<number>(price || 0.99);
   const [imgUrlInp, setImgUrlInp] = useState<string>(imgUrl || "");
   const [descriptionInp, setDescriptionInp] = useState<string>(description);
-  const [ageInp, setAgeInp] = useState<number>(age);
+  const [ageInp, setAgeInp] = useState<number>(age || ageArr[0]);
   const [pcCheckedInp, setPcCheckedInp] = useState<boolean>(pcGenre);
   const [psCheckedInp, setPsCheckedInp] = useState<boolean>(psGenre);
   const [xbxCheckedInp, setXbxCheckedInp] = useState<boolean>(xbxGenre);
@@ -65,22 +62,12 @@ const EditModalBody: React.FC = () => {
   }, [formValid]);
 
   const location = useLocation();
-  let partOfUrl = "/";
-  if (location.pathname.includes("pc")) {
-    partOfUrl = "?category_like=pc";
-  }
-  if (location.pathname.includes("ps")) {
-    partOfUrl = "?category_like=ps";
-  }
-  if (location.pathname.includes("xbx")) {
-    partOfUrl = "?category_like=xbx";
-  }
+  const partOfUrl = help.getPath(location);
+  console.log(location);
 
-  const finalPc = pcCheckedInp ? "pc" : null;
-  const finalPs = psCheckedInp ? "ps" : null;
-  const finalXbx = xbxCheckedInp ? "xbx" : null;
-  const categories = [finalPc, finalPs, finalXbx];
-  const finalCategory = categories.filter((categor) => Boolean(categor)).join(", ");
+  const finalCategory = [pcCheckedInp ? "pc" : null, psCheckedInp ? "ps" : null, xbxCheckedInp ? "xbx" : null]
+    .filter((categor) => Boolean(categor))
+    .join(", ");
   const finalRating = rating || 4;
 
   const closeHandler = () => {
@@ -141,13 +128,7 @@ const EditModalBody: React.FC = () => {
   };
 
   useEffect(() => {
-    if (
-      Boolean(titleInp) !== false &&
-      Boolean(imgUrlInp) !== false &&
-      Boolean(priceInp) !== false &&
-      Boolean(descriptionInp) !== false &&
-      Boolean(finalCategory) !== false
-    ) {
+    if (help.formValidEdit(titleInp, imgUrlInp, priceInp, descriptionInp, finalCategory)) {
       setFormValid(true);
     } else {
       setFormValid(false);
@@ -200,6 +181,14 @@ const EditModalBody: React.FC = () => {
     }
   };
 
+  const setCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategoryInp(e.target.value);
+  };
+
+  const setAge = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setAgeInp(Number(e.target.value));
+  };
+
   const onKeyDownFunk = (e: React.KeyboardEvent) => {
     if (document.activeElement === bottomTabRef.current && e.key === "Tab" && !e.shiftKey) {
       e.preventDefault();
@@ -217,114 +206,39 @@ const EditModalBody: React.FC = () => {
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <div className="editModal__container" ref={outerTabRef} onKeyDown={onKeyDownFunk} role="note">
-      <div className="editModal__upper_container">
-        <h1 className="editModal__title">Edit card</h1>
-        <button className="editModal__closeBtn" type="button" onClick={closeHandler}>
-          <FontAwesomeIcon icon={faTimes} />
-        </button>
-      </div>
-      <div className="editModal__content_container">
-        <div className="editModal__contentImg_container">
-          <p className="editModal__contentImg_title">Card image</p>
-          <img className="editModal__contentImg_img" src={imgUrlInp} alt={`Here will be pic of game ${titleInp}`} />
-          {/* <img className="editModal__contentImg_img" src={imgUrlInp} alt="Here will be pic of game" /> */}
-        </div>
-        <div className="editModal__contentForm_container">
-          <p className="editModal__contentForm_title">Information</p>
-          <form className="editModal__contentForm_form">
-            <InputTextAdmin name="Name" id="titleInput" type="text" onChange={titleGetter} value={titleInp} />
-            <label htmlFor="genre" className="editModal__contentForm_labelGen">
-              <p className="editModal__contentForm_paragraph">Category</p>
-              <select
-                className="editModal__contentForm_genre"
-                id="genre"
-                onChange={(e) => setCategoryInp(e.target.value)}
-                value={categoryInp}
-              >
-                {genreArr.map((gen) => (
-                  <option value={gen} key={gen}>
-                    {gen}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <InputNumberAdmin name="Price" id="priceInput" type="number" onChange={priceGetter} value={priceInp} />
-            <InputTextAdmin name="Image" id="imgUrlInput" type="text" onChange={imgUrlGetter} value={imgUrlInp} />
-            <TextArea name="Description" id="Description" onChange={descriptionGetter} value={descriptionInp} />
-            <label htmlFor="age" className="editModal__contentForm_labelAge">
-              <p className="editModal__contentForm_paragraph">Age</p>
-              <select
-                className="editModal__contentForm_age"
-                id="age"
-                onChange={(e) => {
-                  setAgeInp(Number(e.target.value));
-                }}
-                value={ageInp}
-              >
-                {ageArr.map((ageOp) => (
-                  <option value={ageOp} key={ageOp}>
-                    {ageOp}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <p className="editModal__contentForm_platformTitle">Platgorm</p>
-            <label htmlFor="PC" className="editModal__contentForm_labelPc">
-              PC
-              <input
-                type="checkbox"
-                className="editModal__contentForm_PcCheck"
-                checked={pcCheckedInp}
-                onChange={pcCheckHandler}
-                onKeyUp={onKeyUpPc}
-              />
-            </label>
-            <label htmlFor="PS" className="editModal__contentForm_labelPs">
-              PlayStation 5
-              <input
-                type="checkbox"
-                className="editModal__contentForm_PsCheck"
-                checked={psCheckedInp}
-                onChange={psCheckHandler}
-                onKeyUp={onKeyUpPs}
-              />
-            </label>
-            <label htmlFor="XBX" className="editModal__contentForm_labelXbx">
-              XBox One
-              <input
-                type="checkbox"
-                className="editModal__contentForm_XbxCheck"
-                checked={xbxCheckedInp}
-                onChange={xbxCheckHandler}
-                onKeyUp={onKeyUpXbx}
-              />
-            </label>
-            {gameData.title ? (
-              <div className="editModal__contentForm_btnContainer">
-                <button type="button" className="editModal__contentForm_btn" onClick={submitHandlerEdit}>
-                  Submit
-                </button>
-                <button type="button" className="editModal__contentForm_btn" onClick={deleteHandler}>
-                  Delete card
-                </button>
-              </div>
-            ) : (
-              <div className="editModal__contentForm_btnContainer">
-                <button
-                  type="button"
-                  className="editModal__contentForm_btn"
-                  onClick={submitHandlerCreate}
-                  disabled={!formValid}
-                >
-                  Submit
-                </button>
-              </div>
-            )}
-          </form>
-        </div>
-      </div>
+      <EditModalContent
+        closeHandler={closeHandler}
+        imgUrlInp={imgUrlInp}
+        titleInp={titleInp}
+        titleGetter={titleGetter}
+        categoryInp={categoryInp}
+        setCategory={setCategory}
+        ageArr={ageArr}
+        genreArr={genreArr}
+        priceGetter={priceGetter}
+        priceInp={priceInp}
+        imgUrlGetter={imgUrlGetter}
+        descriptionGetter={descriptionGetter}
+        descriptionInp={descriptionInp}
+        ageInp={ageInp}
+        setAge={setAge}
+        pcCheckedInp={pcCheckedInp}
+        pcCheckHandler={pcCheckHandler}
+        onKeyUpPc={onKeyUpPc}
+        psCheckedInp={psCheckedInp}
+        psCheckHandler={psCheckHandler}
+        onKeyUpPs={onKeyUpPs}
+        xbxCheckedInp={xbxCheckedInp}
+        xbxCheckHandler={xbxCheckHandler}
+        onKeyUpXbx={onKeyUpXbx}
+        gameData={gameData.title}
+        formValid={formValid}
+        submitHandlerEdit={submitHandlerEdit}
+        deleteHandler={deleteHandler}
+        submitHandlerCreate={submitHandlerCreate}
+      />
     </div>
   );
 };
 
-export default EditModalBody;
+export default EditModalFunc;
