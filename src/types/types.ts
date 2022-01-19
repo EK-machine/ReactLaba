@@ -284,7 +284,12 @@ interface LocatType {
 
 export interface HelpTypes {
   getPath: (location: LocatType) => string;
+  formValidSignUp: (logMess: string, passMess: string, repPassMess: string) => boolean;
+  formValidSignIn: (logMess: string, passMess: string) => boolean;
   formValidEdit: (title: string, img: string, price: number, desc: string, finCat: string) => boolean;
+  formValidPic: (pic: string) => boolean;
+  formValidPass: (pass: string, repPass: string) => boolean;
+  formValidProfile: (name: string) => boolean;
   formValidEditClass: (
     pc: boolean,
     ps: boolean,
@@ -294,4 +299,7 @@ export interface HelpTypes {
     price: number,
     desc: string
   ) => boolean;
+  verifyName: (log: string, marker: string) => string;
+  verifyPassword: (pass: string, marker: string) => string;
+  comparePass: (pass: string, repPass: string, marker: string) => string;
 }

@@ -6,6 +6,7 @@ import "./profilepage.css";
 import { ReducerState } from "../../redux/reducerRoot";
 import ProfileInputText from "../elements/profileInputText";
 import ProfileTextArea from "../elements/profileTextArea";
+import help from "../../helpers/funcs";
 
 const ProfilePage: React.FC = () => {
   const userName = useSelector((state: ReducerState) => state.signIn.userName);
@@ -46,21 +47,9 @@ const ProfilePage: React.FC = () => {
 
   const userObj = { id: currentId, login: updatedName, description };
 
-  const verifyNewName = (log: string) => {
-    if (!log) {
-      setFormValid(false);
-      setMessage("Please enter new login");
-    } else if (log.length < 3 || log.length > 12) {
-      setFormValid(false);
-      setMessage("New login must be between 3 and 12 characters");
-    } else {
-      setFormValid(true);
-      setMessage("New login is OK");
-    }
-  };
-
   useEffect(() => {
-    verifyNewName(name);
+    setFormValid(help.formValidProfile(name));
+    setMessage(help.verifyName(name, "change"));
   }, [name]);
 
   async function saveHandler(e: React.SyntheticEvent) {

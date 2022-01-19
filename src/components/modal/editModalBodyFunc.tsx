@@ -63,7 +63,6 @@ const EditModalFunc: React.FC = () => {
 
   const location = useLocation();
   const partOfUrl = help.getPath(location);
-  console.log(location);
 
   const finalCategory = [pcCheckedInp ? "pc" : null, psCheckedInp ? "ps" : null, xbxCheckedInp ? "xbx" : null]
     .filter((categor) => Boolean(categor))

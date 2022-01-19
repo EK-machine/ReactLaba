@@ -7,7 +7,7 @@ const initialModalState: ModalState = {
   changeUserPicModalVisible: false,
   buyModalVisible: false,
   delConfModalVisible: false,
-  editModalVisible: true,
+  editModalVisible: false,
 };
 
 export default initialModalState;

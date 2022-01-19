@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./signupmodalbody.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 import InputText from "../elements/inputText";
 import routesData from "../routesData";
 import { fetchLogUpAction } from "../../redux/login/actionsLogin";
 import { closeModalAction } from "../../redux/modal/actionsModal";
 import { ReducerState } from "../../redux/reducerRoot";
+import help from "../../helpers/funcs";
+import CloseBtn from "../elements/closeBtn";
 
 const SignUpModalBody: React.FC = () => {
   const [logup, setLogup] = useState<string>("");
@@ -69,55 +69,14 @@ const SignUpModalBody: React.FC = () => {
     setRepeatPassword(passwordData);
   };
 
-  const verifyName = (log: string) => {
-    if (!log) {
-      setLoginMessage("Please enter login");
-    } else if (log.length < 3 || log.length > 12) {
-      setLoginMessage("Login must be between 3 and 12 characters");
-    } else {
-      setLoginMessage("Login is OK");
-    }
-  };
-
-  const verifyPassword = (pass: string) => {
-    const alphNumPass = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
-    if (!pass) {
-      setPassMessage("Please enter password");
-    } else if (pass.length < 8 || pass.length > 15) {
-      setPassMessage("Password must be between 8 and 15 characters");
-    } else if (pass[0].toUpperCase() !== pass[0]) {
-      setPassMessage("First character of password must be capital");
-    } else if (!alphNumPass.test(pass)) {
-      setPassMessage("At least 1 character of password must be numeric or alphabetic");
-    } else {
-      setPassMessage("Password is OK");
-    }
-  };
-
-  const comparePass = (pass: string) => {
-    if (password !== pass || !pass) {
-      setRepeatPassMessage("Repeated password is not correct");
-    } else {
-      setRepeatPassMessage("Repeated password is OK");
-    }
-  };
-
   useEffect(() => {
-    verifyName(logup);
-    verifyPassword(password);
-    comparePass(repeatPassword);
+    setLoginMessage(help.verifyName(logup, "signinout"));
+    setPassMessage(help.verifyPassword(password, "signinout"));
+    setRepeatPassMessage(help.comparePass(password, repeatPassword, "signinout"));
   }, [logup, password, repeatPassword]);
 
   useEffect(() => {
-    if (
-      loginMessage === "Login is OK" &&
-      passMessage === "Password is OK" &&
-      repeatPassMessage === "Repeated password is OK"
-    ) {
-      setFormValid(true);
-    } else {
-      setFormValid(false);
-    }
+    setFormValid(help.formValidSignUp(loginMessage, passMessage, repeatPassMessage));
   }, [loginMessage, passMessage, repeatPassMessage]);
 
   async function postFunc(e: React.SyntheticEvent) {
@@ -153,12 +112,7 @@ const SignUpModalBody: React.FC = () => {
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <div className="signUp__modal_container" ref={outerTabRef} onKeyDown={onKeyDownFunk} role="note">
-      <div className="signUp__modal_upper-container">
-        <h1 className="signUp__modal_title">Registration</h1>
-        <button className="signUp__modal_close-btn" type="button" onClick={closeModalHandler}>
-          <FontAwesomeIcon icon={faTimes} />
-        </button>
-      </div>
+      <CloseBtn title="Registration" closeHandler={closeModalHandler} />
       <form action="#" className="signUp__modal_content-container" onSubmit={postFunc}>
         <InputText name="Login" id="SignUplogin" type="text" onChange={logupGetter} value={logup} />
         <span className="signUp__message">{loginMessage}</span>
