@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./buymodalbody.css";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 import { closeModalAction } from "../../redux/modal/actionsModal";
 import { buyGamesAction, notWantToBuyGamesAction } from "../../redux/cart/actionsCart";
 import { ReducerState } from "../../redux/reducerRoot";
