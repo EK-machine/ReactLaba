@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./buymodalbody.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 import { closeModalAction } from "../../redux/modal/actionsModal";
 import { buyGamesAction, notWantToBuyGamesAction } from "../../redux/cart/actionsCart";
 import { ReducerState } from "../../redux/reducerRoot";
+import CloseBtn from "../elements/closeBtn";
 
 const BuyModalBody: React.FC = () => {
   const userName = useSelector((state: ReducerState) => state.signIn.userName);
@@ -53,12 +54,7 @@ const BuyModalBody: React.FC = () => {
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <div className="buy__modal_container" ref={outerTabRef} onKeyDown={onKeyDownFunk} role="note">
-      <div className="buy__modal_upper-container">
-        <h1 className="buy__modal_title">Confirm purchase</h1>
-        <button className="buy__modal_close-btn" type="button" onClick={closeHandler}>
-          <FontAwesomeIcon icon={faTimes} />
-        </button>
-      </div>
+      <CloseBtn title="Confirm purchase" closeHandler={closeHandler} />
       <div className="buy__modal_content-container">
         <div className="buy__modal_contentParagraphs">
           <p className="buy__modal_contentParagraph-user">
