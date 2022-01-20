@@ -196,15 +196,15 @@
       "price": 39.99
     },
     {
-      "id": 16,
       "title": "PUBG",
       "imgUrl": "https://s.starladder.com/uploads/disciplines/logo/29/huge_bbe3007f56d47da75e5c95fe9edf64ee.png",
       "price": 99.99,
       "description": "PUBG is well known.",
-      "rating": 4,
       "age": 15,
       "genre": "action-adventure",
-      "category": "pc"
+      "category": "pc",
+      "id": 16,
+      "rating": 4
     },
     {
       "id": 17,

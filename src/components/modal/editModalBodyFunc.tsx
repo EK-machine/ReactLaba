@@ -22,19 +22,20 @@ const EditModalFunc: React.FC = () => {
   const gameData = useSelector((state: ReducerState) => state.games.gameWantToEdit);
   const { title, category, price, imgUrl, description, age, genre, id, rating } = gameData;
   const incomGenreArr = genre ? genre.split(", ") : genreArr[2];
-  const pcGenre = category ? category.includes("pc") : false;
-  const psGenre = category ? category.includes("ps") : false;
-  const xbxGenre = category ? category.includes("xbx") : false;
-
+  const commonGenre = [
+    category ? category.includes("pc") : false,
+    category ? category.includes("ps") : false,
+    category ? category.includes("xbx") : false,
+  ];
   const [titleInp, setTitleInp] = useState<string>(title || "");
   const [categoryInp, setCategoryInp] = useState(incomGenreArr[0]);
   const [priceInp, setPriceInp] = useState<number>(price || 0.99);
   const [imgUrlInp, setImgUrlInp] = useState<string>(imgUrl || "");
   const [descriptionInp, setDescriptionInp] = useState<string>(description);
   const [ageInp, setAgeInp] = useState<number>(age || ageArr[0]);
-  const [pcCheckedInp, setPcCheckedInp] = useState<boolean>(pcGenre);
-  const [psCheckedInp, setPsCheckedInp] = useState<boolean>(psGenre);
-  const [xbxCheckedInp, setXbxCheckedInp] = useState<boolean>(xbxGenre);
+  const [pcCheckedInp, setPcCheckedInp] = useState<boolean>(commonGenre[0]);
+  const [psCheckedInp, setPsCheckedInp] = useState<boolean>(commonGenre[1]);
+  const [xbxCheckedInp, setXbxCheckedInp] = useState<boolean>(commonGenre[2]);
   const [formValid, setFormValid] = useState<boolean>(false);
   const dispatch = useDispatch();
 
@@ -44,25 +45,39 @@ const EditModalFunc: React.FC = () => {
   const finalCategory = [pcCheckedInp ? "pc" : null, psCheckedInp ? "ps" : null, xbxCheckedInp ? "xbx" : null]
     .filter((categor) => Boolean(categor))
     .join(", ");
-  const finalRating = rating || 4;
 
   const closeHandler = () => {
     dispatch(closeModalAction());
     dispatch(doNotWantDelEditGameAction());
   };
 
+  const gameObj = {
+    title: titleInp,
+    imgUrl: imgUrlInp,
+    price: Number(priceInp),
+    description: descriptionInp,
+    age: Number(ageInp),
+    genre: categoryInp,
+    category: finalCategory,
+  };
+
+  const delGameObj = {
+    ...gameObj,
+    id,
+  };
+
+  const editGameObj = {
+    ...delGameObj,
+    rating: rating || 4,
+  };
+
+  const createGameObj = {
+    ...gameObj,
+    rating: 4,
+  };
+
   const deleteHandler = () => {
     dispatch(showDelConfModalAction());
-    const delGameObj = {
-      id,
-      title: titleInp,
-      imgUrl: imgUrlInp,
-      price: Number(priceInp),
-      description: descriptionInp,
-      age: Number(ageInp),
-      genre: categoryInp,
-      category: finalCategory,
-    };
     dispatch(wantDelGameAction(delGameObj));
   };
 
@@ -87,17 +102,6 @@ const EditModalFunc: React.FC = () => {
   };
 
   const submitHandlerEdit = () => {
-    const editGameObj = {
-      id,
-      title: titleInp,
-      imgUrl: imgUrlInp,
-      price: Number(priceInp),
-      description: descriptionInp,
-      rating: finalRating,
-      age: Number(ageInp),
-      genre: categoryInp,
-      category: finalCategory,
-    };
     dispatch(getGameDataAction(editGameObj));
     dispatch(editGameAction(editGameObj, partOfUrl));
     dispatch(closeModalAction());
@@ -112,16 +116,6 @@ const EditModalFunc: React.FC = () => {
   }, [titleInp, imgUrlInp, priceInp, descriptionInp, finalCategory]);
 
   const submitHandlerCreate = () => {
-    const createGameObj = {
-      title: titleInp,
-      imgUrl: imgUrlInp,
-      price: priceInp,
-      description: descriptionInp,
-      rating: 4,
-      age: Number(ageInp),
-      genre: categoryInp,
-      category: finalCategory,
-    };
     dispatch(getGameDataAction(createGameObj));
     dispatch(createGameAction(createGameObj, partOfUrl));
     dispatch(closeModalAction());
