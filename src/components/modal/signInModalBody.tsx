@@ -9,6 +9,7 @@ import { fetchLogInAction } from "../../redux/login/actionsLogin";
 import { ReducerState } from "../../redux/reducerRoot";
 import help from "../../helpers/funcs";
 import CloseBtn from "../elements/closeBtn";
+import useFocusTrap from "../../helpers/useFocusTrap";
 
 const SignInModalBody: React.FC = () => {
   const [login, setLogin] = useState<string>("");
@@ -23,32 +24,15 @@ const SignInModalBody: React.FC = () => {
   const topTabRef = useRef<HTMLElement | null>(null);
   const bottomTabRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
-    const topTab = focusableElements[0];
-    topTabRef.current = topTab;
-    setTimeout(() => focusableElements[1]?.focus());
-  }, []);
+  const closeLogIn = () => dispatch(closeModalAction());
 
-  useEffect(() => {
-    const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
-    if (formValid) {
-      const bottomTab = focusableElements[focusableElements.length - 1];
-      bottomTabRef.current = bottomTab;
-    } else {
-      const bottomTab = focusableElements[focusableElements.length - 2];
-      bottomTabRef.current = bottomTab;
-    }
-    bottomTabRef.current.focus();
-  }, [formValid]);
+  const focusTrap = useFocusTrap(outerTabRef, topTabRef, bottomTabRef, closeLogIn, formValid);
 
   useEffect(() => {
     if (loggedIn) {
       dispatch(closeModalAction());
     }
   }, [loggedIn]);
-
-  const closeLogIn = () => dispatch(closeModalAction());
   const history = useHistory();
   const closeModalHandler = () => {
     closeLogIn();
@@ -90,23 +74,9 @@ const SignInModalBody: React.FC = () => {
     dispatch(fetchLogInAction(login, password));
   }
 
-  const onKeyDownFunk = (e: React.KeyboardEvent) => {
-    if (document.activeElement === bottomTabRef.current && e.key === "Tab" && !e.shiftKey) {
-      e.preventDefault();
-      topTabRef.current?.focus();
-    }
-    if (document.activeElement === topTabRef.current && e.key === "Tab" && e.shiftKey) {
-      e.preventDefault();
-      bottomTabRef.current?.focus();
-    }
-    if (e.key === "Escape") {
-      closeLogIn();
-    }
-  };
-
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-    <div className="signIn__modal_container" ref={outerTabRef} onKeyDown={onKeyDownFunk} role="note">
+    <div className="signIn__modal_container" ref={outerTabRef} onKeyDown={focusTrap} role="note">
       <CloseBtn title="Authorization" closeHandler={closeModalHandler} />
       <form action="#" className="signIn__modal_content-container" onSubmit={logInFunc}>
         <InputText name="Login" id="SignInLogin" type="text" onChange={loginGetter} value={login} />

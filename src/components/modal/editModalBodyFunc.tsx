@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./editmodalbody.css";
@@ -37,29 +37,6 @@ const EditModalFunc: React.FC = () => {
   const [xbxCheckedInp, setXbxCheckedInp] = useState<boolean>(xbxGenre);
   const [formValid, setFormValid] = useState<boolean>(false);
   const dispatch = useDispatch();
-
-  const outerTabRef = useRef<HTMLDivElement | null>(null);
-  const topTabRef = useRef<HTMLElement | null>(null);
-  const bottomTabRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
-    const topTab = focusableElements[0];
-    topTabRef.current = topTab;
-    setTimeout(() => focusableElements[1]?.focus());
-  }, []);
-
-  useEffect(() => {
-    const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
-    if (formValid) {
-      const bottomTab = focusableElements[focusableElements.length - 1];
-      bottomTabRef.current = bottomTab;
-    } else {
-      const bottomTab = focusableElements[focusableElements.length - 2];
-      bottomTabRef.current = bottomTab;
-    }
-    bottomTabRef.current.focus();
-  }, [formValid]);
 
   const location = useLocation();
   const partOfUrl = help.getPath(location);
@@ -188,23 +165,8 @@ const EditModalFunc: React.FC = () => {
     setAgeInp(Number(e.target.value));
   };
 
-  const onKeyDownFunk = (e: React.KeyboardEvent) => {
-    if (document.activeElement === bottomTabRef.current && e.key === "Tab" && !e.shiftKey) {
-      e.preventDefault();
-      topTabRef.current?.focus();
-    }
-    if (document.activeElement === topTabRef.current && e.key === "Tab" && e.shiftKey) {
-      e.preventDefault();
-      bottomTabRef.current?.focus();
-    }
-    if (e.key === "Escape") {
-      closeHandler();
-    }
-  };
-
   return (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-    <div className="editModal__container" ref={outerTabRef} onKeyDown={onKeyDownFunk} role="note">
+    <>
       <EditModalContent
         closeHandler={closeHandler}
         imgUrlInp={imgUrlInp}
@@ -236,7 +198,7 @@ const EditModalFunc: React.FC = () => {
         deleteHandler={deleteHandler}
         submitHandlerCreate={submitHandlerCreate}
       />
-    </div>
+    </>
   );
 };
 
