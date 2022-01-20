@@ -8,6 +8,7 @@ import { closeModalAction } from "../../redux/modal/actionsModal";
 import { doNotWantDelEditGameAction, deleteGameAction } from "../../redux/games/actionsGames";
 import { ReducerState } from "../../redux/reducerRoot";
 import useFocusTrap from "../../helpers/useFocusTrap";
+import Btn from "../elements/btn";
 
 const DelConfModalBody: React.FC = () => {
   const gameTitle = useSelector((state: ReducerState) => state.games.gameWantToDelete.title);
@@ -60,12 +61,8 @@ const DelConfModalBody: React.FC = () => {
           <p className="delconf__modal_contentParagraph">Are you sure you want to delete the product {gameTitle}?</p>
         </div>
         <div className="delconf__modal_btnsContainer">
-          <button className="delconf__modal_contentButton" type="button" onClick={yesHandler}>
-            Yes
-          </button>
-          <button className="delconf__modal_contentButton" type="button" onClick={noHandler}>
-            No
-          </button>
+          <Btn title="Yes" onClick={yesHandler} />
+          <Btn title="No" onClick={noHandler} />
         </div>
       </div>
     </div>

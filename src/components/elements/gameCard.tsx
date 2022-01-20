@@ -11,6 +11,7 @@ import { addGameToCartAction } from "../../redux/cart/actionsCart";
 import { wantDelGameAction, wantToEditGameAction } from "../../redux/games/actionsGames";
 import { ReducerState } from "../../redux/reducerRoot";
 import { showDelConfModalAction, showEditModalAction } from "../../redux/modal/actionsModal";
+import Btn from "./btn";
 
 const GameCard: React.FC<ProductItemProps> = ({
   title,
@@ -48,15 +49,28 @@ const GameCard: React.FC<ProductItemProps> = ({
     [categoriesArr]
   );
 
-  const clickHandler = () => {
-    const game: GameCart = {
-      title,
-      category,
-      price,
-      check: false,
-      amount: 1,
-    };
+  const gameBase = {
+    title,
+    category,
+    price,
+  };
 
+  const game: GameCart = {
+    ...gameBase,
+    check: false,
+    amount: 1,
+  };
+
+  const gameToDelEdit: EditGame = {
+    ...gameBase,
+    imgUrl,
+    description,
+    genre,
+    age,
+    id,
+  };
+
+  const clickHandler = () => {
     if (gamesList.some((stateGame) => stateGame.title === game.title)) {
       alert("Game is already in the cart");
       return;
@@ -66,32 +80,12 @@ const GameCard: React.FC<ProductItemProps> = ({
 
   const removeHandler = () => {
     dispatch(showDelConfModalAction());
-    const gameToDel: EditGame = {
-      title,
-      category,
-      price,
-      imgUrl,
-      description,
-      genre,
-      age,
-      id,
-    };
-    dispatch(wantDelGameAction(gameToDel));
+    dispatch(wantDelGameAction(gameToDelEdit));
   };
 
   const editHandler = () => {
-    const gameToEdit: EditGame = {
-      title,
-      category,
-      price,
-      imgUrl,
-      description,
-      genre,
-      age,
-      id,
-    };
     dispatch(showEditModalAction());
-    dispatch(wantToEditGameAction(gameToEdit));
+    dispatch(wantToEditGameAction(gameToDelEdit));
   };
 
   return (
@@ -116,22 +110,26 @@ const GameCard: React.FC<ProductItemProps> = ({
           <p className="gameCard__back_description">{description}</p>
           {currentUserRole === "admin" && loggedIn ? (
             <div className="gameCard__back_btnsContainer">
-              <button type="button" className="gameCard__back_btn" onClick={clickHandler}>
+              <Btn title="Add to cart" onClick={clickHandler} />
+              {/* <button type="button" className="gameCard__back_btn" onClick={clickHandler}>
                 Add to cart
-              </button>
-              <button type="button" className="gameCard__back_btn" onClick={editHandler}>
+              </button> */}
+              <Btn title="Edit" onClick={editHandler} />
+              {/* <button type="button" className="gameCard__back_btn" onClick={editHandler}>
                 Edit
-              </button>
-              <button type="button" className="gameCard__back_btn" onClick={removeHandler}>
+              </button> */}
+              <Btn title="Remove" onClick={removeHandler} />
+              {/* <button type="button" className="gameCard__back_btn" onClick={removeHandler}>
                 Remove
-              </button>
+              </button> */}
             </div>
           ) : null}
           {currentUserRole === "user" && loggedIn ? (
             <div className="gameCard__back_btnsContainer">
-              <button type="button" className="gameCard__back_btn" onClick={clickHandler}>
+              <Btn title="Add to cart" onClick={clickHandler} />
+              {/* <button type="button" className="gameCard__back_btn" onClick={clickHandler}>
                 Add to cart
-              </button>
+              </button> */}
             </div>
           ) : null}
         </div>

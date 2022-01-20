@@ -6,35 +6,7 @@ import { buyGamesAction, notWantToBuyGamesAction } from "../../redux/cart/action
 import { ReducerState } from "../../redux/reducerRoot";
 import CloseBtn from "../elements/closeBtn";
 import useFocusTrap from "../../helpers/useFocusTrap";
-
-// const useFocusTrap = (
-//   outerTabRef: React.MutableRefObject<HTMLDivElement | null>,
-//   topTabRef: React.MutableRefObject<HTMLElement | null>,
-//   bottomTabRef: React.MutableRefObject<HTMLElement | null>
-// ) => {
-//   useEffect(() => {
-//     const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
-//     const topTab = focusableElements[0];
-//     // eslint-disable-next-line no-param-reassign
-//     topTabRef.current = topTab;
-//     setTimeout(() => focusableElements[1]?.focus());
-//     const bottomTab = focusableElements[focusableElements.length - 1];
-//     // eslint-disable-next-line no-param-reassign
-//     bottomTabRef.current = bottomTab;
-//   }, []);
-//   const onKeyDownFunk = (e: React.KeyboardEvent) => {
-//     if (document.activeElement === bottomTabRef.current && e.key === "Tab" && !e.shiftKey) {
-//       e.preventDefault();
-//       topTabRef.current?.focus();
-//     }
-//     if (document.activeElement === topTabRef.current && e.key === "Tab" && e.shiftKey) {
-//       e.preventDefault();
-//       bottomTabRef.current?.focus();
-//     }
-//   };
-
-//   return onKeyDownFunk;
-// };
+import Btn from "../elements/btn";
 
 const BuyModalBody: React.FC = () => {
   const userName = useSelector((state: ReducerState) => state.signIn.userName);
@@ -58,29 +30,6 @@ const BuyModalBody: React.FC = () => {
 
   const focusTrap = useFocusTrap(outerTabRef, topTabRef, bottomTabRef, closeHandler);
 
-  // useEffect(() => {
-  //   const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
-  //   const topTab = focusableElements[0];
-  //   topTabRef.current = topTab;
-  //   setTimeout(() => focusableElements[1]?.focus());
-  //   const bottomTab = focusableElements[focusableElements.length - 1];
-  //   bottomTabRef.current = bottomTab;
-  // }, []);
-
-  // const onKeyDownFunk = (e: React.KeyboardEvent) => {
-  //   if (document.activeElement === bottomTabRef.current && e.key === "Tab" && !e.shiftKey) {
-  //     e.preventDefault();
-  //     topTabRef.current?.focus();
-  //   }
-  //   if (document.activeElement === topTabRef.current && e.key === "Tab" && e.shiftKey) {
-  //     e.preventDefault();
-  //     bottomTabRef.current?.focus();
-  //   }
-  //   if (e.key === "Escape") {
-  //     closeHandler();
-  //   }
-  // };
-
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <div className="buy__modal_container" ref={outerTabRef} onKeyDown={focusTrap} role="note">
@@ -96,9 +45,7 @@ const BuyModalBody: React.FC = () => {
             </p>
           ))}
         </div>
-        <button className="buy__modal_contentButton" type="button" onClick={confirmHandler}>
-          Confirm
-        </button>
+        <Btn title="Confirm" onClick={confirmHandler} />
       </div>
     </div>
   );

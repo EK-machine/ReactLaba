@@ -5,6 +5,7 @@ import "./cartpage.css";
 import { ReducerState } from "../../redux/reducerRoot";
 import { removeGameFromCartAction, wantToBuyGamesAction } from "../../redux/cart/actionsCart";
 import { showBuyModalAction } from "../../redux/modal/actionsModal";
+import Btn from "../elements/btn";
 
 const CartPage: React.FC = () => {
   const games = useSelector((state: ReducerState) => state.cart.gamesList);
@@ -65,9 +66,10 @@ const CartPage: React.FC = () => {
           </div>
           {games.length > 0 ? (
             <div className="cartPage__formRemove_container">
-              <button className="cartPage__formRemove_btn" type="button" onClick={clickHandler}>
+              <Btn title="Remove" onClick={clickHandler} />
+              {/* <button className="cartPage__formRemove_btn" type="button" onClick={clickHandler}>
                 Remove
-              </button>
+              </button> */}
             </div>
           ) : null}
           <div className="cartPage__formSubmit_container">
@@ -79,10 +81,11 @@ const CartPage: React.FC = () => {
             </div>
             <div className="cartPage__formSubmit_submitBtn">
               {games.length > 0 ? (
-                <button className="cartPage__formSubmit_btn" type="button" onClick={buyFunc}>
-                  Buy
-                </button>
-              ) : null}
+                <Btn title="Buy" onClick={buyFunc} />
+              ) : // <button className="cartPage__formSubmit_btn" type="button" onClick={buyFunc}>
+              //   Buy
+              // </button>
+              null}
             </div>
           </div>
         </div>

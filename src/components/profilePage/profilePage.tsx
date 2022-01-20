@@ -7,6 +7,7 @@ import { ReducerState } from "../../redux/reducerRoot";
 import ProfileInputText from "../elements/profileInputText";
 import ProfileTextArea from "../elements/profileTextArea";
 import help from "../../helpers/funcs";
+import Btn from "../elements/btn";
 
 const ProfilePage: React.FC = () => {
   const userName = useSelector((state: ReducerState) => state.signIn.userName);
@@ -82,13 +83,14 @@ const ProfilePage: React.FC = () => {
             <div className="profilePage__picSection_picWrapper">
               <img src={userAvatar} alt={userName} className="profilePage__picSection_pic" />
             </div>
-            <button
+            <Btn title="Change profile image" onClick={() => dispatch(showChangeUserPicModalAction())} />
+            {/* <button
               type="button"
               className="profilePage__picSection_changePicBtn"
               onClick={() => dispatch(showChangeUserPicModalAction())}
             >
               <p>Change profile image</p>
-            </button>
+            </button> */}
           </div>
           <div className="profilePage__editSection">
             <ProfileInputText name="Username" id="UserName" type="text" onChange={userNameGetter} value={name} />
@@ -107,13 +109,14 @@ const ProfilePage: React.FC = () => {
               value="Save profile"
               disabled={!formValid}
             />
-            <button
+            <Btn title="Change password" onClick={() => dispatch(showChangePassModalAction())} />
+            {/* <button
               type="button"
               className="profilePage__btnsSection_changePassBtn"
               onClick={() => dispatch(showChangePassModalAction())}
             >
               <p>Change password</p>
-            </button>
+            </button> */}
           </div>
         </form>
       </div>
