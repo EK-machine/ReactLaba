@@ -1,5 +1,5 @@
 import React from "react";
-import "./textarea.css";
+import "./textarea.scss";
 import { TextAreaProps } from "../../types/types";
 
 const TextArea: React.FC<TextAreaProps> = ({ name, id, value, onChange }) => {

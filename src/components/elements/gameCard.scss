@@ -16,7 +16,7 @@
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
-  box-shadow: 0px 0px 15px -4px #9933cc;
+  box-shadow: 0px 0px 15px -4px $actBtnColor;
   border-radius: 8px;
 }
 
@@ -46,7 +46,7 @@
 
 .gameCard__back {
   background-color: black;
-  color: white;
+  color: $mainTextColor;
   transform: rotateY(180deg);
   padding: 15px 10px;
   display: flex;
@@ -68,8 +68,8 @@
 .gameCard__back_btn {
   padding: 8px;
   font-size: 1rem;
-  color: white;
-  background-color: #9933cc;
+  color: $mainTextColor;
+  background-color: $actBtnColor;
   border: none;
   border-radius: 8px;
   cursor: pointer;

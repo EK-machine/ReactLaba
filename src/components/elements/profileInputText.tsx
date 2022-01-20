@@ -1,5 +1,5 @@
 import React from "react";
-import "./profileinputtext.css";
+import "./profileinputtext.scss";
 import { InputProps } from "../../types/types";
 
 const ProfileInputText: React.FC<InputProps> = ({ name, id, type, value, onChange }) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import "./signinbtn.css";
+import "./signinbtn.scss";
 import { showSignInModalAction } from "../../redux/modal/actionsModal";
 
 const SignInBtn: React.FC = () => {

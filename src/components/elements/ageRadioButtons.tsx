@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import "./ageradiobuttons.css";
+import "./ageradiobuttons.scss";
 import { fetchGamesAction } from "../../redux/filter/actionsFilter";
 
 const ageArr = ["all ages", "6", "7", "11", "13", "15", "16", "18"];

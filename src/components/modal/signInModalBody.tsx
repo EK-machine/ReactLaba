@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import "./signinmodalbody.css";
+import "./signinmodalbody.scss";
 import InputText from "../elements/inputText";
 import routesData from "../routesData";
 import { closeModalAction } from "../../redux/modal/actionsModal";

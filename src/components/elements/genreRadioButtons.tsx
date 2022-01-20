@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import "./genreradiobuttons.css";
+import "./genreradiobuttons.scss";
 import { fetchGamesAction } from "../../redux/filter/actionsFilter";
 
 const genreArr = [

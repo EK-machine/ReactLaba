@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./changepassmodalbody.css";
+import "./changepassmodalbody.scss";
 import { closeModalAction } from "../../redux/modal/actionsModal";
 import InputText from "../elements/inputText";
 import { ReducerState } from "../../redux/reducerRoot";

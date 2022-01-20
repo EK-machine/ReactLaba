@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./loginpage.css";
+import "./loginpage.scss";
 import { useLocation, Redirect } from "react-router-dom";
 import { LocationState } from "../../types/types";
 import routesData from "../routesData";

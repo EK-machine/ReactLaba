@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import "./signupmodalbody.css";
+import "./signupmodalbody.scss";
 import InputText from "../elements/inputText";
 import routesData from "../routesData";
 import { fetchLogUpAction } from "../../redux/login/actionsLogin";

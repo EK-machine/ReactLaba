@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./buymodalbody.css";
+import "./buymodalbody.scss";
 import { closeModalAction } from "../../redux/modal/actionsModal";
 import { buyGamesAction, notWantToBuyGamesAction } from "../../redux/cart/actionsCart";
 import { ReducerState } from "../../redux/reducerRoot";

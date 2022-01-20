@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import "./usernamebtn.css";
+import "./usernamebtn.scss";
 import { UserNameBtnProps } from "../../types/types";
 import routesData from "../routesData";
 

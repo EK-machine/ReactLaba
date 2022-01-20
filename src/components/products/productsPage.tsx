@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./productspage.css";
+import "./productspage.scss";
 import { useParams } from "react-router-dom";
 import MainProductOutput from "./mainProductOutput";
 import { RouteParams, EditGame } from "../../types/types";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./changeuserpicmodalbody.css";
+import "./changeuserpicmodalbody.scss";
 import { closeModalAction } from "../../redux/modal/actionsModal";
 import { fetchLogInAction } from "../../redux/login/actionsLogin";
 import InputText from "../elements/inputText";

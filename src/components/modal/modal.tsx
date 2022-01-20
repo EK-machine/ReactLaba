@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import "./modal.css";
+import "./modal.scss";
 
 const Modal: React.FC = ({ children }) => {
   const [container] = useState(() => document.createElement("div"));

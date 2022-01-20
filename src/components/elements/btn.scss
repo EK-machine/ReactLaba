@@ -3,17 +3,16 @@
   margin-right: 15px;
   font-size: 1.3rem;
   color: white;
-  background-color: #9933cc;
+  background-color: $actBtnColor;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   align-self: center;
   justify-self: center;
-}
-
-.btn:disabled {
-  background-color: #ad7cc5;
-  cursor: default;
+  &:disabled {
+    background-color: $disablBtnColor;
+    cursor: default;
+  }
 }
 
 @media only screen and (max-width: 568px) {

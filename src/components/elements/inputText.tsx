@@ -1,5 +1,5 @@
 import React from "react";
-import "./inputtext.css";
+import "./inputtext.scss";
 import { InputProps } from "../../types/types";
 
 const InputText: React.FC<InputProps> = ({ name, id, type, value, onChange }) => {

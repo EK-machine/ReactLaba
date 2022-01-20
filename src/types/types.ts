@@ -251,8 +251,19 @@ export interface gameBase {
   category: string;
 }
 
+export interface BtnProps {
+  title: string;
+  disabled?: boolean;
+  onClick: () => void;
+}
+
 export interface delGameBase extends gameBase {
   id: number;
+}
+
+export interface closeBtnProps {
+  title: string;
+  closeHandler: () => void;
 }
 
 export interface editGameBase extends delGameBase {
@@ -302,4 +313,36 @@ export interface HelpTypes {
   verifyName: (log: string, marker: string) => string;
   verifyPassword: (pass: string, marker: string) => string;
   comparePass: (pass: string, repPass: string, marker: string) => string;
+}
+
+export interface EditModalContentProps {
+  closeHandler: () => void;
+  imgUrlInp: string;
+  titleInp: string;
+  titleGetter: (nameData: string) => void;
+  categoryInp: string;
+  setCategory: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  ageArr: number[];
+  genreArr: string[];
+  priceGetter: (priceData: number) => void;
+  priceInp: number;
+  imgUrlGetter: (imgUrlData: string) => void;
+  descriptionGetter: (inputName: string) => void;
+  descriptionInp: string;
+  ageInp: number;
+  setAge: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  pcCheckedInp: boolean;
+  pcCheckHandler: () => void;
+  onKeyUpPc: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  psCheckedInp: boolean;
+  psCheckHandler: () => void;
+  onKeyUpPs: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  xbxCheckedInp: boolean;
+  xbxCheckHandler: () => void;
+  onKeyUpXbx: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  gameData: string;
+  formValid: boolean;
+  submitHandlerEdit: () => void;
+  deleteHandler: () => void;
+  submitHandlerCreate: () => void;
 }

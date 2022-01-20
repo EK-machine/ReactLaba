@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./category.css";
+import "./category.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CategoryProp } from "../../types/types";
 

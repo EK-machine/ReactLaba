@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./cartgame.css";
+import "./cartgame.scss";
 import { CartGameProps } from "../../types/types";
 import { changeGameCheckAction, changeGameAmountAction } from "../../redux/cart/actionsCart";
 import { ReducerState } from "../../redux/reducerRoot";

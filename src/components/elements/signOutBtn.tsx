@@ -1,5 +1,5 @@
 import React from "react";
-import "./signoutbtn.css";
+import "./signoutbtn.scss";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

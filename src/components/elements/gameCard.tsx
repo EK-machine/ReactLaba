@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import "./gameCard.css";
+import "./gameCard.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDesktop } from "@fortawesome/free-solid-svg-icons/faDesktop";
 import { faPlaystation } from "@fortawesome/free-brands-svg-icons/faPlaystation";

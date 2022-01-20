@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./criteriaselector.css";
+import "./criteriaselector.scss";
 import { ReducerState } from "../../redux/reducerRoot";
 import {
   filterByRatingDecsendingAction,

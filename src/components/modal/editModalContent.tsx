@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import "./editmodalcontent.css";
+import "./editmodalcontent.scss";
 import InputTextAdmin from "../elements/inputTextAdmin";
 import InputNumberAdmin from "../elements/inputNumberAdmin";
 import TextArea from "../elements/textArea";
@@ -8,38 +8,7 @@ import Checkbox from "../elements/checkbox";
 import CloseBtn from "../elements/closeBtn";
 import Btn from "../elements/btn";
 import useFocusTrap from "../../helpers/useFocusTrap";
-
-interface EditModalContentProps {
-  closeHandler: () => void;
-  imgUrlInp: string;
-  titleInp: string;
-  titleGetter: (nameData: string) => void;
-  categoryInp: string;
-  setCategory: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  ageArr: number[];
-  genreArr: string[];
-  priceGetter: (priceData: number) => void;
-  priceInp: number;
-  imgUrlGetter: (imgUrlData: string) => void;
-  descriptionGetter: (inputName: string) => void;
-  descriptionInp: string;
-  ageInp: number;
-  setAge: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  pcCheckedInp: boolean;
-  pcCheckHandler: () => void;
-  onKeyUpPc: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  psCheckedInp: boolean;
-  psCheckHandler: () => void;
-  onKeyUpPs: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  xbxCheckedInp: boolean;
-  xbxCheckHandler: () => void;
-  onKeyUpXbx: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  gameData: string;
-  formValid: boolean;
-  submitHandlerEdit: () => void;
-  deleteHandler: () => void;
-  submitHandlerCreate: () => void;
-}
+import { EditModalContentProps } from "../../types/types";
 
 const EditModalContent: React.FC<EditModalContentProps> = (props) => {
   const outerTabRef = useRef<HTMLDivElement | null>(null);

@@ -4,7 +4,7 @@ import { useLocation, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons/faCaretUp";
-import "./productsDropDown.css";
+import "./productsDropDown.scss";
 import productsRoutesData from "./productsRoutesData";
 
 const ProductsDropDown: React.FC = () => {

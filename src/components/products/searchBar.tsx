@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import debounce from "lodash.debounce";
-import "./searchbar.css";
+import "./searchbar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons/faSearch";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons/faSpinner";

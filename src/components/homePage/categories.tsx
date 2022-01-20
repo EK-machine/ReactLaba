@@ -1,5 +1,5 @@
 import React from "react";
-import "./categories.css";
+import "./categories.scss";
 import { faDesktop } from "@fortawesome/free-solid-svg-icons/faDesktop";
 import { faPlaystation } from "@fortawesome/free-brands-svg-icons/faPlaystation";
 import { faXbox } from "@fortawesome/free-brands-svg-icons/faXbox";

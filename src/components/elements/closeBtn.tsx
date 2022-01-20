@@ -1,12 +1,8 @@
 import React from "react";
-import "./closebtn.css";
+import "./closebtn.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
-
-interface closeBtnProps {
-  title: string;
-  closeHandler: () => void;
-}
+import { closeBtnProps } from "../../types/types";
 
 const CloseBtn: React.FC<closeBtnProps> = ({ title, closeHandler }) => (
   <div className="closeBtn__container">

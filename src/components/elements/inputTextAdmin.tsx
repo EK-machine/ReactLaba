@@ -1,5 +1,5 @@
 import React from "react";
-import "./inputtextadmin.css";
+import "./inputtextadmin.scss";
 import { InputTextAdminProps } from "../../types/types";
 
 const InputTextAdmin: React.FC<InputTextAdminProps> = ({ name, id, type, value, onChange }) => {

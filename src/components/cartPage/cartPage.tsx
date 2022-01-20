@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CartGame from "./cartGame";
-import "./cartpage.css";
+import "./cartpage.scss";
 import { ReducerState } from "../../redux/reducerRoot";
 import { removeGameFromCartAction, wantToBuyGamesAction } from "../../redux/cart/actionsCart";
 import { showBuyModalAction } from "../../redux/modal/actionsModal";

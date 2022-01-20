@@ -1,5 +1,5 @@
 import React from "react";
-import "./profiletextarea.css";
+import "./profiletextarea.scss";
 import { TextAreaProps } from "../../types/types";
 
 const ProfileTextArea: React.FC<TextAreaProps> = ({ name, id, value, onChange }) => {

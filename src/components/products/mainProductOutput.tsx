@@ -1,7 +1,7 @@
 /* eslint-disable no-lone-blocks */
 import React from "react";
 import { useSelector } from "react-redux";
-import "./mainproductoutput.css";
+import "./mainproductoutput.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons/faSpinner";
 import { ReducerState } from "../../redux/reducerRoot";

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logInAction } from "../../redux/login/actionsLogin";
 import { showChangePassModalAction, showChangeUserPicModalAction } from "../../redux/modal/actionsModal";
-import "./profilepage.css";
+import "./profilepage.scss";
 import { ReducerState } from "../../redux/reducerRoot";
 import ProfileInputText from "../elements/profileInputText";
 import ProfileTextArea from "../elements/profileTextArea";

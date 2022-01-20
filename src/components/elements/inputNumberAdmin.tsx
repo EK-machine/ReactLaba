@@ -1,5 +1,5 @@
 import React from "react";
-import "./inputnumberadmin.css";
+import "./inputnumberadmin.scss";
 import { InputNumberAdminProps } from "../../types/types";
 
 const InputNumberAdmin: React.FC<InputNumberAdminProps> = ({ name, id, type, value, onChange }) => {
