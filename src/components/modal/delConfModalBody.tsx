@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./delconfmodalbody.css";
@@ -7,6 +7,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 import { closeModalAction } from "../../redux/modal/actionsModal";
 import { doNotWantDelEditGameAction, deleteGameAction } from "../../redux/games/actionsGames";
 import { ReducerState } from "../../redux/reducerRoot";
+import useFocusTrap from "../../helpers/useFocusTrap";
 
 const DelConfModalBody: React.FC = () => {
   const gameTitle = useSelector((state: ReducerState) => state.games.gameWantToDelete.title);
@@ -16,14 +17,12 @@ const DelConfModalBody: React.FC = () => {
   const topTabRef = useRef<HTMLElement | null>(null);
   const bottomTabRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
-    const topTab = focusableElements[0];
-    topTabRef.current = topTab;
-    const bottomTab = focusableElements[focusableElements.length - 1];
-    bottomTabRef.current = bottomTab;
-    setTimeout(() => topTabRef.current?.focus(), 0);
-  }, []);
+  const closeHandler = () => {
+    dispatch(doNotWantDelEditGameAction());
+    dispatch(closeModalAction());
+  };
+
+  const focusTrap = useFocusTrap(outerTabRef, topTabRef, bottomTabRef, closeHandler);
 
   const location = useLocation();
   let partOfUrl = "/";
@@ -37,11 +36,6 @@ const DelConfModalBody: React.FC = () => {
     partOfUrl = "?category_like=xbx";
   }
 
-  const closeHandler = () => {
-    dispatch(doNotWantDelEditGameAction());
-    dispatch(closeModalAction());
-  };
-
   const yesHandler = () => {
     dispatch(deleteGameAction(partOfUrl));
     dispatch(closeModalAction());
@@ -52,23 +46,9 @@ const DelConfModalBody: React.FC = () => {
     dispatch(closeModalAction());
   };
 
-  const onKeyDownFunk = (e: React.KeyboardEvent) => {
-    if (document.activeElement === bottomTabRef.current && e.key === "Tab" && !e.shiftKey) {
-      e.preventDefault();
-      topTabRef.current?.focus();
-    }
-    if (document.activeElement === topTabRef.current && e.key === "Tab" && e.shiftKey) {
-      e.preventDefault();
-      bottomTabRef.current?.focus();
-    }
-    if (e.key === "Escape") {
-      closeHandler();
-    }
-  };
-
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-    <div className="delconf__modal_container" ref={outerTabRef} onKeyDown={onKeyDownFunk} role="note">
+    <div className="delconf__modal_container" ref={outerTabRef} onKeyDown={focusTrap} role="note">
       <div className="delconf__modal_upper-container">
         <h1 className="delconf__modal_title">Confirm delete</h1>
         <button className="delconf__modal_closeBtn" type="button" onClick={closeHandler}>

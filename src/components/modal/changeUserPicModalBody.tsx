@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./changeuserpicmodalbody.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 import { closeModalAction } from "../../redux/modal/actionsModal";
 import { fetchLogInAction } from "../../redux/login/actionsLogin";
 import InputText from "../elements/inputText";
 import { ReducerState } from "../../redux/reducerRoot";
+import help from "../../helpers/funcs";
+import CloseBtn from "../elements/closeBtn";
+import useFocusTrap from "../../helpers/useFocusTrap";
 
 const ChangeUserPicModalBody: React.FC = () => {
   const userName = useSelector((state: ReducerState) => state.signIn.userName);
@@ -21,24 +22,11 @@ const ChangeUserPicModalBody: React.FC = () => {
   const topTabRef = useRef<HTMLElement | null>(null);
   const bottomTabRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
-    const topTab = focusableElements[0];
-    topTabRef.current = topTab;
-    setTimeout(() => topTabRef.current?.focus(), 0);
-  }, []);
+  const closeChangeUserPic = () => {
+    dispatch(closeModalAction());
+  };
 
-  useEffect(() => {
-    const focusableElements = Array.from<HTMLElement>(outerTabRef.current?.querySelectorAll("[type]") ?? []);
-    if (formValid) {
-      const bottomTab = focusableElements[focusableElements.length - 1];
-      bottomTabRef.current = bottomTab;
-    } else {
-      const bottomTab = focusableElements[focusableElements.length - 2];
-      bottomTabRef.current = bottomTab;
-    }
-    bottomTabRef.current.focus();
-  }, [formValid]);
+  const focusTrap = useFocusTrap(outerTabRef, topTabRef, bottomTabRef, closeChangeUserPic, formValid);
 
   useEffect(() => {
     const currenUserFetch = async () => {
@@ -57,11 +45,7 @@ const ChangeUserPicModalBody: React.FC = () => {
   };
 
   useEffect(() => {
-    if (newUserPic.length > 0) {
-      setFormValid(true);
-    } else {
-      setFormValid(false);
-    }
+    setFormValid(help.formValidPic(newUserPic));
   }, [newUserPic]);
 
   async function changePicFunc(e: React.SyntheticEvent) {
@@ -89,33 +73,10 @@ const ChangeUserPicModalBody: React.FC = () => {
 
   const userAvatar = newUserPic || userPic;
 
-  const closeChangeUserPic = () => {
-    dispatch(closeModalAction());
-  };
-
-  const onKeyDownFunk = (e: React.KeyboardEvent) => {
-    if (document.activeElement === bottomTabRef.current && e.key === "Tab" && !e.shiftKey) {
-      e.preventDefault();
-      topTabRef.current?.focus();
-    }
-    if (document.activeElement === topTabRef.current && e.key === "Tab" && e.shiftKey) {
-      e.preventDefault();
-      bottomTabRef.current?.focus();
-    }
-    if (e.key === "Escape") {
-      closeChangeUserPic();
-    }
-  };
-
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-    <div className="changePic__modal_container" ref={outerTabRef} onKeyDown={onKeyDownFunk} role="note">
-      <div className="changePic__modal_upper-container">
-        <h1 className="changePic__modal_title">Change avatar</h1>
-        <button className="changePic__modal_close-btn" type="button" onClick={closeChangeUserPic}>
-          <FontAwesomeIcon icon={faTimes} />
-        </button>
-      </div>
+    <div className="changePic__modal_container" ref={outerTabRef} onKeyDown={focusTrap} role="note">
+      <CloseBtn title="Change avatar" closeHandler={closeChangeUserPic} />
       <div className="changePic__modal_picContainer">
         <img src={userAvatar} alt={`Avatar of ${userName}`} />
       </div>

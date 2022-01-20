@@ -36,7 +36,7 @@ const GameCard: React.FC<ProductItemProps> = ({
   const gameCategories = useMemo(
     () =>
       categoriesArr.map((item) => {
-        if (category.includes(item.categ)) {
+        if (category?.includes(item.categ)) {
           return (
             <div className="gameCard__category_icon" key={item.categ}>
               <FontAwesomeIcon icon={item.icon} />
@@ -108,7 +108,7 @@ const GameCard: React.FC<ProductItemProps> = ({
               <StarRate rating={rating} />
             </div>
             <div className="gameCard__content_right">
-              <p>{price.toString()}</p>
+              <p>{price?.toString()}</p>
             </div>
           </div>
         </div>

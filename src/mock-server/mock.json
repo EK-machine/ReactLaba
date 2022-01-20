@@ -196,15 +196,15 @@
       "price": 39.99
     },
     {
-      "id": 16,
       "title": "PUBG",
       "imgUrl": "https://s.starladder.com/uploads/disciplines/logo/29/huge_bbe3007f56d47da75e5c95fe9edf64ee.png",
       "price": 99.99,
       "description": "PUBG is well known.",
-      "rating": 4,
       "age": 15,
       "genre": "action-adventure",
-      "category": "pc"
+      "category": "pc",
+      "id": 16,
+      "rating": 4
     },
     {
       "id": 17,
@@ -235,7 +235,7 @@
       "password": "Admin123",
       "role": "admin",
       "id": 1,
-      "imgUrl": "https://cs13.pikabu.ru/avatars/2128/x2128149-1621773431.png"
+      "imgUrl": "https://habrastorage.org/webt/5b/db/fe/5bdbfe8c54bc4130948080.jpeg"
     },
     {
       "login": "User1",
@@ -257,6 +257,12 @@
       "role": "user",
       "id": 4,
       "imgUrl": "https://static.thedecisionlab.com/wp-content/uploads/2019/08/Linkedin-300x300.png"
+    },
+    {
+      "login": "User80",
+      "password": "User1234",
+      "role": "user",
+      "id": 5
     }
   ]
 }

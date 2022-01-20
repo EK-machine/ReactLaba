@@ -6,7 +6,7 @@ import SignUpModalBody from "./signUpModalBody";
 import ChangePassModalBody from "./changePassModalBody";
 import ChangeUserPicModalBody from "./changeUserPicModalBody";
 import BuyModalBody from "./buyModalBody";
-import EditModalBody from "./editModalBody";
+import EditModalBodyFunc from "./editModalBodyFunc";
 import DelConfModalBody from "./delConfModalBody";
 import { ReducerState } from "../../redux/reducerRoot";
 
@@ -47,7 +47,7 @@ const ModalContainer: React.FC = () => {
       ) : null}
       {editModalVisible ? (
         <Modal>
-          <EditModalBody />
+          <EditModalBodyFunc />
         </Modal>
       ) : null}
       {delConfModalVisible ? (

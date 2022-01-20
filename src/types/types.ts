@@ -1,4 +1,4 @@
-import { Dispatch } from "react";
+import React, { Dispatch } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 // eslint-disable-next-line no-shadow
@@ -144,6 +144,10 @@ export interface CartAction {
   payload: GameCart | GameCart[] | number;
 }
 
+export interface UsualAction {
+  type: string;
+}
+
 export interface GameAction {
   type: string;
   payload: EditGame;
@@ -201,4 +205,101 @@ export interface LogInActionType {
 
 export interface LogOutActionType {
   type: string;
+}
+
+export interface EditModalProps {
+  gameData: {
+    title: string;
+    price: number;
+    imgUrl: string;
+    description: string;
+    age: number;
+    genre: string;
+    category: string;
+    id: number;
+    rating: number;
+  };
+  location: { pathname: string };
+  closeModal: () => void;
+  showDelConfModal: () => void;
+  doNotWantDelEditGame: () => void;
+  wantDelGame: (delGameObj: EditGame) => void;
+  getGameData: (editGameObj: EditGame) => void;
+  editGame: (editGameObj: EditGame, partOfUrl: string) => void;
+  createGame: (createGameObj: EditGame, partOfUrl: string) => void;
+}
+
+export interface EditModalState {
+  titleInp: string;
+  priceInp: number;
+  imgUrlInp: string;
+  descriptionInp: string;
+  ageInp: number;
+  categoryInp: string;
+  pcCheckedInp: boolean;
+  psCheckedInp: boolean;
+  xbxCheckedInp: boolean;
+}
+
+export interface gameBase {
+  title: string;
+  imgUrl: string;
+  price: number;
+  description: string;
+  age: number;
+  genre: string;
+  category: string;
+}
+
+export interface delGameBase extends gameBase {
+  id: number;
+}
+
+export interface editGameBase extends delGameBase {
+  rating: number;
+}
+
+export interface createGameBase extends gameBase {
+  rating: number;
+}
+
+export interface OptSelProps {
+  name: string;
+  id: string;
+  value: string | number;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  arr: string[] | number[];
+}
+
+export interface CheckboxProps {
+  name: string;
+  checked: boolean;
+  onChange: () => void;
+  onKeyUp: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+}
+
+interface LocatType {
+  pathname: string;
+}
+
+export interface HelpTypes {
+  getPath: (location: LocatType) => string;
+  formValidSignUp: (logMess: string, passMess: string, repPassMess: string) => boolean;
+  formValidSignIn: (logMess: string, passMess: string) => boolean;
+  formValidEdit: (title: string, img: string, price: number, desc: string, finCat: string) => boolean;
+  formValidPic: (pic: string) => boolean;
+  formValidPass: (pass: string, repPass: string) => boolean;
+  formValidProfile: (name: string) => boolean;
+  formValidEditClass: (
+    pc: boolean,
+    ps: boolean,
+    xbx: boolean,
+    title: string,
+    img: string,
+    price: number,
+    desc: string
+  ) => boolean;
+  verifyName: (log: string, marker: string) => string;
+  verifyPassword: (pass: string, marker: string) => string;
+  comparePass: (pass: string, repPass: string, marker: string) => string;
 }

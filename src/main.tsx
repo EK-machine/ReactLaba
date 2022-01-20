@@ -10,7 +10,7 @@ import Header from "./components/header/header";
 import HomePage from "./components/homePage/homePage";
 import Footer from "./components/footer/footer";
 import routesData from "./components/routesData";
-import ErrorBoundary from "./components/errorBoundary";
+// import ErrorBoundary from "./components/errorBoundary";
 import ProtectedRoute from "./components/protectedRoute";
 import { AppProps, AppState } from "./types/types";
 import ModalContainer from "./components/modal/modalContainer";
@@ -38,78 +38,78 @@ class AppContainer extends Component<AppProps, AppState> {
       <Provider store={store}>
         <StrictMode>
           <BrowserRouter>
-            <ErrorBoundary>
-              <Header />
-              <div className="main__content_container">
-                <Switch>
-                  <Route path="/login">
-                    <React.Suspense
-                      fallback={
-                        <div className="main__fallback_div">
-                          <p className="main__fallback_p">Loading...</p>
-                        </div>
-                      }
-                    >
-                      <LogInPage />
-                    </React.Suspense>
-                  </Route>
+            {/* <ErrorBoundary> */}
+            <Header />
+            <div className="main__content_container">
+              <Switch>
+                <Route path="/login">
+                  <React.Suspense
+                    fallback={
+                      <div className="main__fallback_div">
+                        <p className="main__fallback_p">Loading...</p>
+                      </div>
+                    }
+                  >
+                    <LogInPage />
+                  </React.Suspense>
+                </Route>
 
-                  <Route exact path={routesData[0].path} component={HomePage} />
-                  <ProtectedRoute path="/products/:id">
-                    <React.Suspense
-                      fallback={
-                        <div className="main__fallback_div">
-                          <p className="main__fallback_p">Loading...</p>
-                        </div>
-                      }
-                    >
-                      <ProductsPage />
-                    </React.Suspense>
-                  </ProtectedRoute>
-                  <ProtectedRoute path={routesData[2].path}>
-                    <React.Suspense
-                      fallback={
-                        <div className="main__fallback_div">
-                          <p className="main__fallback_p">Loading...</p>
-                        </div>
-                      }
-                    >
-                      <AboutPage />
-                    </React.Suspense>
-                  </ProtectedRoute>
-                  <ProtectedRoute path={routesData[3].path}>
-                    <React.Suspense
-                      fallback={
-                        <div className="main__fallback_div">
-                          <p className="main__fallback_p">Loading...</p>
-                        </div>
-                      }
-                    >
-                      <ProfilePage />
-                    </React.Suspense>
-                  </ProtectedRoute>
+                <Route exact path={routesData[0].path} component={HomePage} />
+                <ProtectedRoute path="/products/:id">
+                  <React.Suspense
+                    fallback={
+                      <div className="main__fallback_div">
+                        <p className="main__fallback_p">Loading...</p>
+                      </div>
+                    }
+                  >
+                    <ProductsPage />
+                  </React.Suspense>
+                </ProtectedRoute>
+                <ProtectedRoute path={routesData[2].path}>
+                  <React.Suspense
+                    fallback={
+                      <div className="main__fallback_div">
+                        <p className="main__fallback_p">Loading...</p>
+                      </div>
+                    }
+                  >
+                    <AboutPage />
+                  </React.Suspense>
+                </ProtectedRoute>
+                <ProtectedRoute path={routesData[3].path}>
+                  <React.Suspense
+                    fallback={
+                      <div className="main__fallback_div">
+                        <p className="main__fallback_p">Loading...</p>
+                      </div>
+                    }
+                  >
+                    <ProfilePage />
+                  </React.Suspense>
+                </ProtectedRoute>
 
-                  <ProtectedRoute path={routesData[4].path}>
-                    <React.Suspense
-                      fallback={
-                        <div className="main__fallback_div">
-                          <p className="main__fallback_p">Loading...</p>
-                        </div>
-                      }
-                    >
-                      <CartPage />
-                    </React.Suspense>
-                  </ProtectedRoute>
+                <ProtectedRoute path={routesData[4].path}>
+                  <React.Suspense
+                    fallback={
+                      <div className="main__fallback_div">
+                        <p className="main__fallback_p">Loading...</p>
+                      </div>
+                    }
+                  >
+                    <CartPage />
+                  </React.Suspense>
+                </ProtectedRoute>
 
-                  <Route path="*">
-                    <Redirect to={routesData[0].path} />
-                  </Route>
-                </Switch>
-              </div>
-              <Footer />
+                <Route path="*">
+                  <Redirect to={routesData[0].path} />
+                </Route>
+              </Switch>
+            </div>
+            <Footer />
 
-              <ModalContainer />
-            </ErrorBoundary>
+            <ModalContainer />
+            {/* </ErrorBoundary> */}
           </BrowserRouter>
         </StrictMode>
       </Provider>
