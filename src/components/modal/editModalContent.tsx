@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
-import "./editmodalbody.css";
-
+import "./editmodalcontent.css";
 import InputTextAdmin from "../elements/inputTextAdmin";
 import InputNumberAdmin from "../elements/inputNumberAdmin";
 import TextArea from "../elements/textArea";
