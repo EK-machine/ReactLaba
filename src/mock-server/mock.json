@@ -144,6 +144,19 @@
       "price": 59.99
     },
     {
+      "id": 12,
+      "title": "Solar Ash",
+      "imgUrl": "https://external-preview.redd.it/lehaHHsPOCZcn7blAO8-YAx76N8kNNsyoVEkNF0TXXQ.jpg?auto=webp&s=6b5ba712cc205ae34279f8640c035f822452c6f0",
+      "timestamp": 1638403200000,
+      "date": "02.12.2021",
+      "category": "pc, ps",
+      "description": "Solar Ash is an adventure platforming game developed by Heart Machine and published by Annapurna Interactive.",
+      "genre": "action-adventure game, fighting game",
+      "age": 11,
+      "rating": 4,
+      "price": 39.99
+    },
+    {
       "id": 13,
       "title": "Resident Evil Village",
       "imgUrl": "https://www.techpowerup.com/review/resident-evil-8-village-benchmark-test-performance/images/small.png",
@@ -183,15 +196,26 @@
       "price": 39.99
     },
     {
+      "id": 16,
       "title": "PUBG",
       "imgUrl": "https://s.starladder.com/uploads/disciplines/logo/29/huge_bbe3007f56d47da75e5c95fe9edf64ee.png",
       "price": 99.99,
       "description": "PUBG is well known.",
+      "rating": 4,
       "age": 15,
       "genre": "action-adventure",
-      "category": "pc",
-      "id": 16,
-      "rating": 4
+      "category": "pc"
+    },
+    {
+      "id": 17,
+      "title": "Stalker",
+      "imgUrl": "http://icons.iconarchive.com/icons/3xhumed/mega-games-pack-33/256/Stalker-Call-of-Pripyat-2-icon.png",
+      "price": 40.99,
+      "description": "Stalker",
+      "rating": 4,
+      "age": 15,
+      "genre": "fighting game",
+      "category": "pc, xbx"
     },
     {
       "title": "Mortal Kombat 11",
